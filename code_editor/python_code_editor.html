@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Python  Code Editor</title>
+<link rel="stylesheet" href="/css/brython.css">
+<link rel="stylesheet" href="/css/console.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.9.3/css/bulma.min.css" 
+		integrity="sha512-IgmDkwzs96t4SrChW29No3NXBIBv8baW490zk5aXvhCD8vuZM3yUSkbyTBcXohkySecyzIrUwiF/qV0cuPcL3Q==" 
+		crossorigin="anonymous" referrerpolicy="no-referrer" />  
+
+<script type="text/javascript" src="/src/brython_builtins.js"></script>
+<script type="text/javascript" src="/src/version_info.js"></script>
+<script type="text/javascript" src="/src/python_tokenizer.js"></script>
+<script type="text/javascript" src="/src/py_ast.js"></script>
+<script type="text/javascript" src="/src/py2js.js"></script>
+<script type="text/javascript" src="/src/loaders.js"></script>
+<script type="text/javascript" src="/src/py_object.js"></script>
+<script type="text/javascript" src="/src/py_type.js"></script>
+<script type="text/javascript" src="/src/py_utils.js"></script>
+<script type="text/javascript" src="/src/py_sort.js"></script>
+<script type="text/javascript" src="/src/py_builtin_functions.js"></script>
+<script type="text/javascript" src="/src/py_exceptions.js"></script>
+<script type="text/javascript" src="/src/py_range_slice.js"></script>
+<script type="text/javascript" src="/src/py_bytes.js"></script>
+<script type="text/javascript" src="/src/py_set.js"></script>
+<script type="text/javascript" src="/src/js_objects.js"></script>
+<script type="text/javascript" src="/src/stdlib_paths.js"></script>
+<script type="text/javascript" src="/src/py_import.js"></script>
+<script type="text/javascript" src="/src/unicode_data.js"></script>
+<script type="text/javascript" src="/src/py_string.js"></script>
+<script type="text/javascript" src="/src/py_int.js"></script>
+<script type="text/javascript" src="/src/py_long_int.js"></script>
+<script type="text/javascript" src="/src/py_float.js"></script>
+<script type="text/javascript" src="/src/py_complex.js"></script>
+<script type="text/javascript" src="/src/py_dict.js"></script>
+<script type="text/javascript" src="/src/py_list.js"></script>
+<script type="text/javascript" src="/src/py_generator.js"></script>
+<script type="text/javascript" src="/src/py_dom.js"></script>
+<script type="text/javascript" src="/src/py_pattern_matching.js"></script>
+<script type="text/javascript" src="/src/builtin_modules.js"></script>
+<script type="text/javascript" src="/src/async.js"></script>
+<script type="text/javascript" src="/src/ast_to_js.js"></script>
+<script type="text/javascript" src="/src/symtable.js"></script>
+
+<!-- script type="text/javascript" src="../src/brython_stdlib.js"></script -->
+<script src="/assets/header.brython.js"></script>
+
+<!-- sqlite -->
+
+
+ 
+<script src="https://cdnjs.cloudflare.com/ajax/libs/ace/1.9.6/ace.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/ace/1.9.6/ext-language_tools.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/ace/1.9.6/theme-xcode.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/ace/1.9.6/mode-python.min.js"></script>
+
+<script type="text/python3" id="tests_editor">
+from browser import document, window
+from browser import html
+from browser.local_storage import storage
+import header
+
+#import editor
+import python_code_editor as editor
+
+#qs_lang,language = header.show()
+
+#document["test_suite"].href = f"index.html?lang={language}"
+# other translations
+'''
+trans = {
+    'report_bugs':{'en':'Please report bugs in the ',
+                   'es':'Poner los bugs en el ',
+                   'fr':"Signalez les bugs dans l'"},
+    'test_page':{'en':'Tests page','es':'P&aacute;gina de pruebas','fr':'Page de tests'},
+    'run':{'en':'run','es':'ejecutar','fr':'Exécuter'},
+    'clear':{'en':'clear','es':'borrar','fr':'Effacer'}
+}
+
+for key in trans:
+    if key in document:
+        document[key].html = trans[key].get(language,trans[key]['en'])
+'''
+# next functions are defined in editor.py
+'''
+document['show_js'].bind('click', editor.show_js)
+document['share_code'].bind('click', editor.share_code)
+'''
+
+# Create a lambda around editor.run() so that the event object is not passed to it
+def clear_code(ev):
+	editor.editor.setValue("")
+
+def clear_console(ev):
+	 document['console'].value = ''
+
+def run(ev):
+    document['console'].value = ''
+    editor.run(editor.editor.getValue())
+
+def view_prob(ev):
+	if document["problem-text"].style.display=='block':
+		document["problem-text"].style.display='none'
+		document['problem-text'].innerHTML=""
+	else :
+		document["problem-text"].style.display='block'
+		if storage['problem'] != '':
+			document['problem-text'].innerHTML="<p class='title is-5'>Problem :</p>"+window.exercises[storage['problem']]
+    
+document['run'].bind('click', run)
+document['clear-code-btn'].bind('click',clear_code)
+document['clear-result-btn'].bind('click',clear_console)
+document["view-prob-btn"].bind('click',view_prob)
+
+#document['show_console'].bind('click', editor.show_console)
+
+editor.reset()
+</script>
+
+<script>
+function run_js(){
+    var cons = document.getElementById("console")
+    var jscode = cons.value
+    var t0 = (new Date()).getTime()
+    eval(jscode)
+    var t1 = (new Date()).getTime()
+    console.log("Javascript code run in "+(t1-t0)+" ms")
+}
+</script>
+</head>
+<body onload="brython({debug:1})">
+	
+	<br/>
+	<div class="container">
+		<div class="columns is-desktop is-multiline is-centered ">
+			<div class="column is-full box">
+				<nav class="navbar" role="navigation" aria-label="main navigation">
+					<div class="navbar-brand">
+						<div class="navbar-item" >
+							<p class="title is-3">Code Editor</p>
+						</div>						
+					</div>
+					<div class="navbar-end">
+						<div class="navbar-item">
+							<div class="buttons ">						
+								<button id="run" class="button is-primary">Run</button>
+								<button id="view-prob-btn" class="button is-info" >View Problem</button>
+								<button id="clear-code-btn" class="button is-danger" >Clear Code</button>
+								<button id="clear-result-btn" class="button is-warning" >Clear Result</button>
+								<button id="back-btn" class="button is-link"  onclick="goback()">Go Back</button>
+							</div>
+						</div>
+					</div>					
+				</nav>				
+			</div>
+			<div class="column is-full box"  id="problem-text" style="display:none"></div>
+			<div class="column is-half card">
+				<div id="editor" style="width:100%; font-size: 16px;"></div>
+			</div>
+			<div class="column is-half  ">
+				<textarea id="console" autocomplete="off" rows="20" style="width:100%; font-size: 16px;"></textarea>
+			</div>
+			
+		</div>
+	</div>
+	<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+	<script type="text/javascript"  src="/js/exercises.js"></script>
+	<script>
+		
+		document.querySelectorAll('pre.code').forEach(el => {
+        // then highlight each
+        hljs.highlightElement(el);
+    });
+    
+		function goback(){	
+			bp = localStorage.getItem('caller_page');
+			//console.log(bp);
+			localStorage.removeItem('caller_page');
+			localStorage.removeItem('problem');
+			if(bp) window.location=bp;
+			else window.location="/";
+		}
+ 
+	</script>
+</body>
+</html>
