@@ -1,0 +1,857 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>Function</title>
+    <link rel="icon" type="image/png" href="https://cdn.glitch.global/cb61e7ff-aec7-49ac-884a-cea3cd4cd9da/favicon-32x32.png?v=1655545783728" />    
+    <link rel="stylesheet" href="https://pyscript.net/alpha/pyscript.css" />    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.9.3/css/bulma.min.css" 
+		integrity="sha512-IgmDkwzs96t4SrChW29No3NXBIBv8baW490zk5aXvhCD8vuZM3yUSkbyTBcXohkySecyzIrUwiF/qV0cuPcL3Q==" 
+		crossorigin="anonymous" referrerpolicy="no-referrer" />  
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma-extensions@6.2.7/bulma-quickview/dist/css/bulma-quickview.min.css" />		
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@creativebulma/bulma-tooltip@1.2.0/dist/bulma-tooltip.min.css" />
+		
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@creativebulma/bulma-divider@1.1.0/dist/bulma-divider.min.css"/>
+  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/11.5.1/styles/default.min.css">
+  <link rel="stylesheet" href="../css/my_css.css"> 
+  </head>  
+  <!--
+  <py-env>
+    - numpy
+    - matplotlib
+    - paths:
+      - ./antigravity.py
+  </py-env>
+-->
+  <body>
+	<nav class="navbar bg1" role="navigation" aria-label="main navigation">
+		<div class="navbar-brand">
+			<span class="navbar-item title is-2" >
+				Functions
+			</span>				
+		</div>
+		<div class="navbar-end">
+			<div class="navbar-item" >
+				<a class="button is-primary has-tooltip-left" 
+					data-show="quickview" 
+					alt="subcontent"
+					data-target="quickviewDefault"  data-tooltip="Topics">
+					<ion-icon name="ellipsis-vertical"></ion-icon>
+			</a>
+		</div>	 
+	</nav>
+    <div class="container is-widescreen" data-dismiss="quickview">	
+      <section class="section slide box content">        
+        <p class="title is-3">Motivation</p>
+        <p>
+          ตัวอย่างประโยคทางคณิตศาสตร์ เช่น \(f(x,y) = x^2 + y^2\) บอกเราว่า f คือ function ที่โยงค่าจำนวนจริง 2 จำนวนแทนด้วย x,y ไปยังจำนวนจริงอีกจำนวนที่มีค่าเป็น \( x^2 + y^2\)
+          ถ้าเรานำเข้าตัวเลข \( x=1,y=2 \) สู่ function f จะได้เป็น \( f(1,2) = 5  \)
+        </p><br/>
+        <p>
+          การทำงานของคอมพิวเตอร์โปรแกรมก็มีหลักการทำงานเหมือนกัน และมักต้องอาศัยการทำงานหรือชุดคำสั่งบางชุดซ้ำๆ เช่น การคำนวณทางคณิตศาสตร์ แบบตัวอย่างที่กล่าวมา
+          ชุดคำสั่งที่ใช้งานในลักษณะนี้ควรถูกแยกออกมาไว้ต่างหาก เพื่อไม่ต้องเขียนชุดคำสั่งซ้ำๆ ชุคคำสั่งที่ทำงานเฉพาะด้านโดยอาจจะสงผลลัพธ์
+          เมื่อถูกเรียกใช้ เรียกว่า<b>"Function"</b>
+        </p><br/>
+        
+        <p>
+          ส่วนของโปรแกรมที่เป็น function เรียกว่า <b>"function definition"</b> เมื่อต้องการนำ function ที่ถุูกสร้างไว้มาใช้งานจะเรียกว่า <b>"call"</b> หรือ ""<b>invoke</b>" function
+        </p><br/>
+        <p>
+          Function อาจมีการรับค่าบางอย่างผ่านตัวแปร (input arguments)  หรือ ผลลัพธ์ (output parameters) ได้ เช่น function คำนวณค่าเฉลี่ย 
+          input arguments อาจเป็นคะแนนจากตัวอย่าง และ output paramters คือ ค่าเฉลี่ยที่จากการนำ input มาบวกกันแล้วหารด้วยจำนวน input เป็นต้น
+          ชุดคำสังภายใน function เรียกว่า <b>"body of the function"</b>
+        </p>
+        <br/>
+        <div class="columns">
+			<div class="column"></div>
+			<div class="column image">
+				<img src="./img/hello_python_function_1.png">
+			</div>
+			<div class="column"></div>
+        </div>
+        
+        <div class="divider" />
+      </section>
+      <!-- ################ การสร้าง Function ###################### -->
+      <section class="section content slide box">
+            <p class="title is-3">การสร้าง Function</p>
+            <p>
+              การสร้าง function ในภาษา Python มีมากกว่า 1 วิธี วิธีที่ใช้กันทั่วไปคือ การใช้ keyword "def" เพื่อระบุ funtion definition รูปแบบทั่วไปคือ
+            </p><br/>
+            
+            <pre  class="code Python">
+def function_name (argument1, argument2,...) :
+	# function description
+    statement 1 # statement comment
+    statement 2 # statement comment
+    ... 
+    return output parameters 
+            </pre>            
+            <br/>
+            <p>
+              จากโครงสร้าข้างบน มีองค์ประกอบหลัก 2 ส่วน
+            </p>
+            <dl>
+              <dt><b>1. Header </b>: ประกอบด้วย</dt>
+              <dd>
+                <ul>
+                  <li>keyword "def"</li>
+                  <li>ชื่อ function ซึ่งใช้หลักการเดียวกับการตั้งชื่อตัวแปร</li>
+                  <li>สัญญลักษณ์ "()" ในกรณีที่มี input argument จะนำมาไว้ในนี้</li>
+                  <li>สัญญลักษณ์ ":" </li>
+                </ul>                
+              </dd>
+              <dt><b>2. Function body</b> : ประกอบด้วย</dt>
+              <dd>
+                <ul>
+                  <li>description เป็น comment ที่อธิบายการทำงาน การรับค่า input การส่งค่า output หรืออื่นๆ เพื่อให้เกิดความเข้าใจ ผู้เขียนอาจจะทำหรือไม่ก็ได้  </li>
+                  <li>ชุดคำสั่ง (function statements)</li>
+                  <li>คำอธิบายชุดคำสั่ง ส่วนนี้อาจไม่จำเป็นต้องมี</li>
+                  <li>return parameters ส่วนนี้อาจจะมีหรือไม่ก็ได้  </li>
+                </ul>                
+              </dd>
+              <p>
+                ส่วนนี้จะต้องมีการย่อหน้า identation ถัดจากส่วน header 
+              </p>
+            </dl><br/>
+          <p>
+          เมื่อสร้าง function เสร็จแล้ว การเรียกใช้งานทำได้โดยการ พิมพ์ชื่อของ function หาก function นั้นต้องการ arguments ก็ต้องให้ค่า arguments ตามลำดับ ดังตัวอย่าง  
+          </p>  
+          <div>
+			<!--  
+            <p>
+            Shift-Enter to execute
+          </p>
+            <py-repl id="func-repl-1" 
+                   std-out="func-out-1" 
+                   std-err="func-out-1"
+                   >    
+            -->
+            <pre class="code Python">
+# function with return
+              
+def compute_average(x1,x2,x3,x4):
+  """
+  To do:            
+  This function computes average of 4 numbers given by users.
+              
+  Input arguments:              
+  x1,x2,x3 and x4 could be either floats or integers.
+              
+  Output :
+  return average in term of float.              
+  
+  """              
+  sum = x1 + x2 + x3 + x4 # compute summation
+  mean = sum / 4 # compute average
+  
+  return mean
+
+# call function
+v1 = 2
+v2 = 3
+v3 = 5
+v4 = 5
+m = compute_mean(v1,v2,v3,v4)
+print(f"Mean is {m}")    
+
+# function with no return  
+def print_name(name):
+  print(f"Your name is {name}")              
+            </pre>
+            <!--       
+            </py-repl>
+            <div id="func-out-1" onclick="clear_content(this)"></div>
+             -->
+        </div>
+        <br/>
+        <blockquote>
+        <p class="title is-5"><ion-icon name="school-outline"></ion-icon>&nbsp;Tip:</p>  
+          <ul>
+            <li>การตั้งชื่อ function ที่ดีควรใช้ชื่อที่สื่อความหมายได้ แต่ไม่ควรยาวเกินไป ใช้ _ แทนการเว้นวรรค และนิยมใช้อักษรตัวเล็ก </li>
+          </ul>
+        </blockquote>
+        <br/>
+        <p class="title is-5">Default value of argument</p>
+        <p>Argument ที่ส่งให้ function สามารถถูกกำหนดค่าไว้ล่วงหน้าหรือค่าปริยายได้ เช่น</p>
+        <pre class="code Python box">
+def greeting(name,msg="Good morning"):
+	print(f"{msg} {name}")
+        </pre>
+        <p>
+			function greeting ต้องการ argument 2 ตัวคือ name และ msg โดย msg ได้มีการกำหนด default value เป็น "Good morning" ในขณะที่ name ไม่ถูกกำหนด
+			argument ที่ไม่มี default value จะต้องถูกกำหนดค่าทุกครั้ง (mandatory) เมื่อ function ถูกเรียกใช้ ในขณะที่ argument ที่มี default value อาจไม่ต้องถูกกำหนด
+			ค่าให้ก็ได้ หากไม่มีการกำหนดค่าให้ตอน function ถูกเรียกใช้ ค่า default จะถูกนำมาใช้งาน เช่น
+         </p>
+        <pre class="code Python box">
+who = "Sam"
+msg = "Good afternoon"
+
+greeting(who)
+greeting(who,msg)
+        </pre>
+        <p>แบบแรกเป็นการเรียกใช้ function โดยใช้แต่ mandatory argument ซึ่ง default value จะถูกเรียกใช้ และแบบที่ 2 เป็นการกำหนดค่าทับ default value ผลลัพธ์ที่ได้คือ</p>
+        <pre class="code Python box">
+Good morning Sam
+Good afternoon Sam			
+		</pre>
+		<br/>
+		<blockquote class="box">
+		  <p class="title is-5"><ion-icon name="star-outline"></ion-icon> &nbsp Remember:</p>
+		  <p>
+			จะต้องกำหนด mandatory argument ทั้งหมดเสียก่อนจึงจะประกาศ default value argument ตัวอย่างแบบที่ถูกต้อง เช่น 
+		  </p>
+			<pre class="code Python box">
+def greeting(name,msg="Good morning"):
+	print(f"{msg} {name}")
+			</pre>
+			<br/>
+			<p>แบบที่ไม่ถูกต้อง เช่น </p>
+			<pre class="code Python box">
+def greeting(msg="Good morning",name):
+	print(f"{msg} {name}")
+			</pre>
+		  
+       
+			
+		</blockquote>
+        <div class="divider"></div>
+      </section>
+      <!-- ########## Local and Global Variables ############ -->
+      <section class="section slide box content">
+        <p class="title is-3">Local and Global Variables</p>
+        <p>
+          จากที่กล่าวไปก่อนหน้าว่าตัวแปรจะโยงกับตำแหน่งของข้อมูลที่จัดเก็บในหน่วยความจำคอมพิวเตอร์ การใช้ function ก็มีการกำหนดตำแหน่งในหน่วยความจำสำหรับตัวแปรของตัวเองเช่นกัน
+          ตัวแปรที่ใช้ภายใน function ใดๆจะไม่เกี่ยวข้องกัน เรียกตัวแปรแบบนี้ว่า <b>local variable</b> 
+          
+        </p>
+          <p>
+          มีตัวแปรอีกแบบหนึ่งที่ทุก function ในโปรแกรมเดียวกันสามารถจะเข้าถึงได้ เรียกว่า <b>global variable</b> 
+          เนื่องจากหน่วยความจำของแต่ละ function จะเปิดก็ต่อเมื่อ function นั้นถูกเรียกใช้งาน หากต้องการส่งค่าไปมาระหว่าง function
+          ก็สามารถนำข้อมูลไปพักไว้ที่ global variable ได้
+          
+        </p>
+        <br/>        
+        <div class="columns">
+          <div class="column"></div>
+          <div class="column is-halft image">
+            
+              <img 
+                src="./img/local_global_var.png"/>
+            
+          </div>
+          <div class="column"></div>
+        </div>
+        
+        <br/>
+        <p>
+          การประกาศตัวแปรทั้งแบบ global variable และ local variable ใช้วิธีการประกาศตัวแปรตามที่กล่าวมาแล้ว ต่างกันที่ตำแหน่งที่วาง โดย global variable จะต้องอยู่ข้างนอก function ในขณะที่ local variable จะอยู่ใน function 
+        </p><br/>
+        <pre  class="code Python box">
+# This is global variable
+var1 = "Hello "
+              
+def func1():
+  print(f"Value of global variable inside function is \"{var1}\" ")
+                       
+# access vaule outside function
+print(f"Value of global variable outside function is \"{var1}\" ")              
+
+# access vaule inside function
+func1()
+
+# chage value of global variable
+var1 = "I live in Bangkok."
+
+# test 
+func1()
+          
+        </pre>
+        <!--
+        <button class="button is-success" 
+           onclick="open_modal('branch-modal','branch-repl','branch-std-out','branch-err-out')">
+             Try it 
+          </button> 
+        -->  
+        <br/><br/>
+        <p>
+          จากตัวอย่าง code ข้างบน var1 เป็นตัวแปร global variable เพราะถูกประกาศไว้นอก function และ func1 เป็น function ที่ได้เข้าถึงตัวแปร var1 (บรรทัดที่ 5)
+          ในบรรทัดที่ 8 และ 11 ได้แสดงให้เห็นว่าค่าของ global variable จะมีค่าเท่ากันไม่ว่าจะเข้าถึงจากในหรือนอก function บรรทัดที่ 14 และ 17 แสดงให้เห็นถึงผลจากการเปลี่ยนแปลงค่าของ global variable 
+          
+        </p><br/>
+        <div>
+        
+        <pre  class="code Python box">
+            
+# This is global variable
+var1 = "Hello "
+              
+def func1():
+  # local variable
+  var1 = 10
+  print(f"Value of local variable inside function is \"{var1}\" ")
+
+def func2():    
+  # access global variable
+  print(f"Value of global variable inside function is \"{var1}\" ")              
+
+# access local variable 
+func1()
+# access local variable               
+func2()              
+              
+
+# chage value of global variable
+var1 = "I live in Bangkok."
+
+# test 
+func1()
+func2() 
+            
+         </pre>
+         <!--
+         <button class="button is-success" 
+           onclick="open_modal('branch-modal','branch-repl','branch-std-out','branch-err-out')">
+             Try it 
+          </button>-->
+        </div><br/>
+        <p>
+          <b>อธิบาย</b><br/>
+          <ul>
+            <li>บรรทัดที่ 2 มีการประกาศตัวแปรแบบ global ชื่อ var1 มีค่าเป็น "Hello "</li>
+            <li>บรรทัดที่ 6 มีการประกาศตัวแปรแบบ local ชื่อ var1 เหมือนกับ global variable </li>
+            <li>บรรทัดที่ 11 มีการเข้าถึงตัวแปร global ชื่อ var1 ภายใน func2</li>
+            <li>บรรทัดที่ 14,16 เรียก func1 และ func2 ขอสังเกตุว่าผลลัพธ์จะต่างกัน</li>
+            <li>บรรทัดที่ 20 มีการเปลี่ยนค่าของ global variable </li>
+            <li>บรรทัดที่ 23,24 ทดสอบผลลัพธ์</li>
+        </ul>          
+        </p><br/>
+      <p>
+      code ตัวอย่างข้างบน แสดงให้เห็นขอบเขตของ global variable ต่างจาก local variable อย่างไร การเปลี่ยนค่าของ local variable จะเกิดขึ้นภายใน function เท่านั้นจะไม่ส่งผลต่อ global variable แม้จะมีชื่อที่เหมือนกันก็ตาม
+        และขอให้สังเกตุว่า function จะเข้าถึง local variable ก่อน global variable ถ้าทั้งสองมีชื่อซ้ำกัน
+      </p><br/>
+      
+      <p class="title is-4">global keyword </p>
+      <p>
+        ใช้บอก Python ให้ทราบว่า global variable จะสามารถถูกปรับปรุงค่าได้ภายใน function ที่ใช้ keyword นี้
+      </p>
+            
+      <pre class="code Python">
+# This is global variable
+var1 = 100
+              
+def func1():
+  # try to modify global variable
+  var1 = var1 + 5
+  print(f"Value of local variable is \"{var1}\" ")
+
+#call function
+func1()  
+        
+      </pre>
+      <!--
+      <button class="button is-success" 
+           onclick="open_modal('branch-modal','branch-repl','branch-std-out','branch-err-out')">
+             Try it 
+          </button>
+          -->
+      <br/>
+      <p>
+        ถ้าทำการเรียก func1() จะสังเกตุว่ามีข้อความแสดงความผิดพลาดขึ้น และมีข้อความส่วนหนึ่งเป็น <b>UnboundLocalError: local variable 'var1' referenced before assignment</b> นั่นเพราะมีความพยายามจะปรับค่าของ global variable ใน function (บรรทัดที่ 6) โดยไม่มี keyword global
+      </p>
+      <p>
+        ทดลองกพิมพ์คำสั่ง <b>global var1</b> แทรกเข้าไปก่อนบรรทัดที่ 6 แล้วลอง run ชุดคำสั่งอีกครั้ง ผลที่ได้คราวนี้จะไม่พบความผิดพลาดแต่จะได้ผลลัพธ์ที่แสดงว่า var1 ได้เปลี่ยนค่าไปแล้ว 
+      </p>
+      <br/>
+       
+       
+      <div class="divider"/>
+      
+    </section>
+    
+    <!-- ##########  Lambda Function  ############ -->
+    <section class="section slide box content">
+      <p class="title is-">Lambda Function</p>
+      <p>
+       นีกถึงการเขียน function ทางคณิตศาสตร์ที่ถูกเขียนไว้ในบรรดเดียว เห็นแล้วเข้าใจได้ทันที เช่น
+        <ul>
+          <li>สมการหาพื้นที่วงกลมรัศมี r, \(f(r) = \pi r^2\)</li>
+          <li>square sum , \(f(x,y) = x^2+y^2 \)</li>
+      </ul>       
+      </p>
+      <p>
+        Python มีการสร้าง function อีกแบบหนึ่งที่มีโครงสร้างคล้ายกับตัวอย่างสมการที่ยกตัวอย่างมา ไม่จำเป็นต้องมีการตั้งชื่อแต่ต้องใช้ keyword <b>lambda</b> เขียนชุคคำสั่งเสร็จสิ้นในบรรทัดเดียว รับ argument ได้เหมือน function ปรกติ มีการ return ค่าทุกครั้งเรียกว่า <b>Lambda function</b> รูปแบบทั่วไปคือ
+      </p>
+      <pre class="code Python box">
+lambda argument : expression        
+      </pre>
+       <br/>
+       <pre class="code Python box">
+# declare lambda function
+circle_area = lambda r : 3.414 * r * r
+sqr_sum = lambda x,y : ( x * x) + (y * y)      
+concat_str = lambda x,y : x+y              
+
+# call lambda function
+print(f"Area of a circle with radius 3 units is {circle_area(3)}" )
+print(f"Square sum of 8,9 is {sqr_sum(8,9)}" )              
+print(concat_str("Ant"," man"))              
+         
+        </pre>
+        <!--
+        <button class="button is-success" 
+           onclick="open_modal('branch-modal','branch-repl','branch-std-out','branch-err-out')">
+             Try it 
+          </button> 
+          -->
+        <div class="divider"></div>
+    </section>
+    <!-- ##########  First class citizen ############ -->
+    <section class="section slide box content">
+      <p class="title is-3">
+        First class citizen
+      </p>
+      <p>
+      function ในภาษา Python จัดเป็น first-class citizen หมายความว่าสามารถใช้งานในรูปแบบ นอกจากรูปแบบที่กล่าวมาก่อนหน้าแล้ว ยังสามารถใช้งาน function ในรูปแบบอื่นดังนี้
+        <ol>
+          <li>รับหน้าที่เป็น arguments</li>         
+          <li>ถูก assigned ค่าให้กับตัวแปรได้</li>
+          <li>สร้างและทำงานภายใน function อื่น (nested function)</li>
+      </ol>
+      
+      </p><br/>
+      <p class="title is-4">
+        Nested function
+      </p>
+      
+      <pre class="code Python box">          
+def parent_function():
+  instruction
+  
+  def inner_function():
+    instrunctions
+        
+  inner_function # call inner_function
+  
+  return output
+            
+        </pre>
+       <br/>    
+       <pre class="code Python box">   
+def power(base,exponent):
+  # declare inner function        
+  def compute():
+    return base ** exponent
+
+  # call inner function
+  result = compute()
+  return result
+          
+print(power(2,3))
+          
+        </pre>
+        <!--
+        <button class="button is-success" 
+           onclick="open_modal('branch-modal','branch-repl','branch-std-out','branch-err-out')">
+             Try it 
+          </button> 
+        -->
+        <br/>
+        <p class="title is-4">
+          Function as argument  
+        </p>
+        <p>
+          Function สามารถทำหน้าที่เป็น function argument ได้ด้วย ดูตัวอย่าง   
+        </p>
+        
+    <pre class="code Python box">
+def decorator(input_func):
+  def wrapper():
+    print("Before input function.")
+    #call input function
+    input_func()
+    print("After input function. ")
+  wrapper()
+  
+          
+def standalone_func():
+    print("This is stand alone function.")
+  
+# pass function as argument
+decorator(standalone_func)       
+        
+      </pre>
+    <div class="divider"></div>
+    <!--
+    <button class="button is-success" 
+           onclick="open_modal('branch-modal','branch-repl','branch-std-out','branch-err-out')">
+             Try it 
+          </button> -->
+    </section>
+    <!-- ############   Summary ############### -->
+    <section class="section slide box content">
+      <p class="title is-3">
+        Summary
+      </p>
+  
+      <ol>
+        <li>Function คือชุดคำสั่งที่ถูกสร้างเพื่อใช้งานเฉพาะด้าน อาจรับ argument เข้าหรืออาจ return ผลลัพธ์ได้  </li>
+        <li>Function มีพื้นที่หน่วยความจำของตัวเอง เพื่อใช้สำหรับ  local variable  และ instruction  </li>
+        <li> Local variable  คือตัวแปรที่ใช้งานได้แ่ต่ภายใน  function ในขณที่  global variable สามารถเข้าถึงได้จากทุก function ในโปรแกรม
+        </li>
+        <li>ในกรณีที่ต้องมีการปรับแต่งค่า global variable  ภายใน  function  ต้องใช้ keyword global </li>
+         <li>lambda function  คือ function  ที่ไม่ต้องมีชื่อ ใช้ instruction เพียงบรรทัดเดียว</li>
+         <li> function สามารถถูกใช้เป็น  argument ของ function อื่น หรือถูกสร้างภายใน  function  อื่นได้</li>         
+      </ol>
+      <div class="divider"></div>
+    </section>
+    <!-- ###########  Exercise ########### -->
+	<section class="slide box section content">
+		<p class="title is-3"> Exercises</p>
+        <p>
+        1. ข้อใดคือผลลัพธ์จากชุดคำสั่งนี้
+			<pre class="code Python box">
+def func1(name):
+	print(f"Your name is {name}")
+                    
+	func1("Alexa")                    
+            </pre>                    
+              
+            <div class="control">
+                <label class="radio">
+                    <input type="radio" name="ans1" value="0" onchange="check1(this)" > Your name is Ammy
+                </label><br/>
+                <label class="radio">
+                    <input type="radio" name="ans1" value="1" onchange="check1(this)"> Your name is Alexa
+                </label>
+            </div>                
+        </p> <!-- exercise -->
+        <div class="divider"></div>           
+        <p>
+			2. ข้อใดแสดงผลลัพธ์ของชุดคำสั่งนี้ได้ถูกต้อง            
+            <pre class="code Python box">
+def func2(x1,x2):
+	return x1 * x2
+                    
+print(func2(3,3))                    
+            </pre>                    
+               
+            <div class="control">
+                <label class="radio">
+                  <input type="radio" name="ans1" value="1" onchange="check1(this)" > 9
+                </label><br/>
+                <label class="radio">
+                   <input type="radio" name="ans1" value="0" onchange="check1(this)"> 19
+                </label>
+            </div>
+        </p> <!-- exercise -->
+        <div class="divider"></div>
+        <p>
+            3. เขียน function เปลี่ยนค่ามุมจากหน่วย degree ไปเป็น radian เมื่อ 1 degree = 0.0174532925 radians
+                แล้วใช้ function เปลี่ยนค่ามุม 90 degree ให้เป็น radian 
+			<div class="buttons">
+				<!--
+				<button class="button is-success" 
+					onclick="open_modal('branch-modal','branch-repl','branch-std-out','branch-err-out',null)">
+					Try it 
+				</button>
+				-->
+				<button class="button is-success" 
+					onclick="go_to_code('b1_func:3','/beingpythonman_1/function.html')">Try it </button>    
+				<a class="has-text-danger-light" onclick="show_answer(3,1)">Hint</a>
+			</div>     
+			          
+			    
+        </p> <!-- exercise -->
+        <div class="divider"></div>	
+		<p>
+			4. สร้าง function แสดงข้อความทักทาย โดยรับค่าเป็น ชื่อคน และ ชื่อวัน เช่น  "Sammy","Tuesday" แล้วแสดงข้อความว่า "Good day Sammy, this is Tuesday" <br/>
+			-
+			<div class="buttons">
+				<!--
+				<button class="button is-success" 
+					onclick="open_modal('branch-modal','branch-repl','branch-std-out','branch-err-out',null)">
+					Try it 
+				</button>
+				-->
+				<button class="button is-success" 
+					onclick="go_to_code('b1_func:4','/beingpythonman_1/function.html')">Try it </button>        
+				<a class="has-text-danger-light" onclick="show_answer(4,1)">Hint</a>
+			</div>              
+		</p>
+		<div class="divider"></div>	
+		<p>
+			5. สร้าง function เพื่อใช้คำนวณหาพื้นที่ของสี่เหลี่ยมจตุรัส เมื่อทราบความยาวของด้าน 1 ด้าน <br/>
+			<div class="buttons">
+				<!--
+				<button class="button is-success" 
+					onclick="open_modal('branch-modal','branch-repl','branch-std-out','branch-err-out',null)">
+					Try it 
+				</button>
+				-->
+				<button class="button is-success" 
+					onclick="go_to_code('b1_func:5','/beingpythonman_1/function.html')">Try it </button>    
+					
+				<a class="has-text-danger-light" onclick="show_answer(5,1)">Hint</a>
+			</div>              
+		</p>		
+		<div class="divider"></div>	
+		<p>
+			6. สร้าง function เพื่อใช้คำนวณหาผลรวมและผลต่างของจำนวน 2 จำนวน  <br/>
+			<div class="buttons">
+				<!--
+				<button class="button is-success" 
+					onclick="open_modal('branch-modal','branch-repl','branch-std-out','branch-err-out',null)">
+					Try it 
+				</button>
+				-->
+				<button class="button is-success" 
+					onclick="go_to_code('b1_func:6','/beingpythonman_1/function.html')">Try it </button>    
+				
+				<a class="has-text-danger-light" onclick="show_answer(6,1)">Hint</a>
+			</div>              
+		</p>		
+		<div class="divider"></div>	
+		<p>
+			7. โปรแกรมนี้จะแสดงผลอะไรบนหน้าจอ    <br/>
+			<pre class="code Python">
+def func(a,b):
+    return (a + 4,b + 5)
+
+x = 3
+y = 2
+print(func(x,y))     				
+			</pre>
+			<div class="buttons">
+				<!--
+				<button class="button is-success" 
+					onclick="open_modal('branch-modal','branch-repl','branch-std-out','branch-err-out',null)">
+					Try it 
+				</button>
+				-->
+				<button class="button is-success" 
+					onclick="go_to_code('b1_func:7','/beingpythonman_1/function.html')">Try it </button>    
+				
+				<a class="has-text-danger-light" onclick="show_answer(7,1)">Hint</a>
+			</div>              
+		</p>		
+		<div class="divider"></div>	
+		<p>
+			8. โปรแกรมนี้จะแสดงผลอะไรบนหน้าจอ    <br/>
+			<pre class="code Python">
+def func(a,b=4):
+    return (a + 4,b + 5)
+
+x = 3
+y = 2
+print(func(x))     				
+			</pre>
+			<div class="buttons">
+				<!--
+				<button class="button is-success" 
+					onclick="open_modal('branch-modal','branch-repl','branch-std-out','branch-err-out',null)">
+					Try it 
+				</button>
+				-->
+				<button class="button is-success" 
+					onclick="go_to_code('b1_func:8','/beingpythonman_1/function.html')">Try it </button>    
+				<a class="has-text-danger-light" onclick="show_answer(8,1)">Hint</a>
+			</div>              
+		</p>		
+		<div class="divider"></div>	
+		<p>
+			9. โปรแกรมนี้จะแสดงผลอะไรบนหน้าจอ    <br/>
+			<pre class="code Python">
+def outer_func(a,b):
+	def inner_func(c,d):
+		return c + d
+	return inner_func(b,a)
+
+x = 3
+y = 2
+result = outer_func(x,y)
+print(result)     				
+			</pre>
+			<div class="buttons">
+				<!--
+				<button class="button is-success" 
+					onclick="open_modal('branch-modal','branch-repl','branch-std-out','branch-err-out',null)">
+					Try it 
+				</button>
+				-->
+				<button class="button is-success" 
+					onclick="go_to_code('b1_func:9','/beingpythonman_1/function.html')">Try it </button>    
+				<a class="has-text-danger-light" onclick="show_answer(9,1)">Hint</a>
+			</div>              
+		</p>		
+		<div class="divider"></div>	
+		<p>
+			10. ถ้าต้องการให้มีการแสดงผลลัพธ์ตามที่แสดงไว้ ท่านจะเขียนชุดคำสังอย่างไร โดยใช้ function   <br/>
+			<pre class="code Python">
+Input 1 = 14
+Inout 2 = 5
+Results are :
+Summation of 14 + 5 = 19
+Subtraction of 14 - 5 =  9
+			</pre>
+			<div class="buttons">
+				<!--
+				<button class="button is-success" 
+					onclick="open_modal('branch-modal','branch-repl','branch-std-out','branch-err-out',null)">
+					Try it 
+				</button>
+				-->
+				<button class="button is-success" 
+					onclick="go_to_code('b1_func:10','/beingpythonman_1/function.html')">Try it </button>    
+				<a class="has-text-danger-light" onclick="show_answer(10,1)">Hint</a>
+			</div>              
+		</p>		
+		<div class="divider"></div>	
+   
+	</section>
+   
+    <!-- ################ Navigator ###################### -->
+      <nav class="pagination is-centered" role="navigation" aria-label="pagination">
+        <a class="pagination-previous" href="./index.html"><ion-icon name="list-outline"></ion-icon>Contents</a>
+        <a class="pagination-next" href="./branching.html">Next <ion-icon name="chevron-forward-outline"></ion-icon></a>        
+        <ul class="pagination-list">
+          <li><a class="pagination-link" aria-label="Goto page First" onclick="currentDiv(1)">Motivation</a></li>
+          <li><a class="pagination-link" aria-label="Goto page Build function" onclick="currentDiv(2)">Build function</a></li>
+          <li><a class="pagination-link" aria-label="Goto page Local and Global variables" onclick="currentDiv(3)">Local, Global Variables</a></li>          
+          <li><a class="pagination-link" aria-label="Goto page Lambda function" onclick="currentDiv(4)">Lambda function</a></li>
+          <li><a class="pagination-link" aria-label="Goto page First class citizen" onclick="currentDiv(5)">First class citizen</a></li>
+          <li><a class="pagination-link" aria-label="Goto page Summary" onclick="currentDiv(6)">Summary</a></li>
+          <li><a class="pagination-link" aria-label="Goto page Exercises" onclick="currentDiv(7)">Exercises</a></li>
+        </ul>
+
+      </nav>
+    </div>
+    <footer class="footer box">
+      <div class="content has-text-centered">
+        <p>
+           โดย <a href="mailto:somchaisomph@gmail.com">สมชาย สมผดุง</a>. 
+        </p>
+        <p>
+          The source code is licensed
+          <a href="http://opensource.org/licenses/mit-license.php">MIT</a>. The website content
+            is licensed <a href="http://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY NC SA 4.0</a>.
+        </p>
+      </div>
+    </footer>
+    <!-- The Modal -->
+    <div class="modal" id="branch-modal">
+		<div class="modal-background"></div>
+		<div class="modal-card">
+			<header class="modal-card-head">
+				<p class="modal-card-title">Exercise</p>
+				<button class="delete" aria-label="close" 
+				onclick="close_modal('branch-modal','branch-repl','branch-std-out','branch-err-out')"
+				>
+				</button>
+			</header>
+			<section class="modal-card-body">
+				<!-- Content ... -->
+				<div class="columns is-multiline is-1">
+					<div class="column is-three-quarters box" id="branch-repl">
+						<p><b>Type your code in box below then press Shift-ENTER to evaluate.</b> </p>
+					</div>
+					<div class="column box is-light" id="branch-std-out" onclick="clear_content(this)" ></div>
+					<div class="column is-full" id="branch-err-out" onclick="clear_content(this)" ></div>
+				</div> <!--/columns-->
+			</section>
+			<footer class="modal-card-foot">			
+				<button class="button" 
+				onclick="close_modal('branch-modal','branch-repl','branch-std-out','branch-err-out')">
+				Close
+				</button>
+			</footer>
+		</div>
+	</div>
+	<!-- answer modul -->
+	<div class="modal" id="answer-modal">
+		<div class="modal-background"></div>
+		<div class="modal-content">
+			<p class="box content" id="answer-box">			
+			
+			</p>
+		</div>
+		<button class="modal-close is-large" aria-label="close" onclick="show_answer(0,0)"></button>
+	</div>
+    <!-- /answer modul -->
+    <!-- quickview -->
+	<div id="quickviewDefault" class="quickview box" style="background-color:rgba(230, 230, 230, 0.75);">
+		<header class="quickview-header is-primary">
+			<a data-dismiss="quickview">
+				<ion-icon src="../icons/chevron-forward-outline.svg" size="large"></ion-icon>
+			</a>
+			<p class="title is-2">Topics</p>
+			<!--span class="delete" data-dismiss="quickview"></span -->			
+		</header>
+		<div class="quickview-body">
+			<div class="quickview-block">
+				<div class="list">
+					<div class="list-item">
+						<a class="list-item-title" onclick="currentDiv(1)">Motivation</a>
+					</div>
+					<div class="list-item">
+						<a class="list-item-title" onclick="currentDiv(2)">การสร้าง Function</a>
+					</div>
+					<div class="list-item">
+						<a class="list-item-title" onclick="currentDiv(3)">Local, Global Variables</a>
+					</div>
+					<div class="list-item">
+						<a class="list-item-title" onclick="currentDiv(4)">Lambda function</a>
+					</div>
+					<div class="list-item">
+						<a class="list-item-title" onclick="currentDiv(5)">First class citizen</a>
+					</div>
+					<div class="list-item">
+						<a class="list-item-title" onclick="currentDiv(6)">Summary</a>
+					</div>
+					<div class="list-item">
+						<a class="list-item-title" onclick="currentDiv(7)">Exercises</a>
+					</div>
+					
+				</div>
+			</div>
+		</div>		
+		<footer class="quickview-footer">
+			<div class="buttons">
+				<a class="pagination-link" href="./operands_operators.html">
+					<ion-icon name="chevron-back-outline"></ion-icon>Prev
+				</a>
+				<a class="pagination-link" href="./index.html" alt="Home">
+					<ion-icon name="list-outline"></ion-icon>Contents
+				</a>
+				<a class="pagination-link" href="./branching.html">
+					Next <ion-icon name="chevron-forward-outline"></ion-icon>
+				</a>
+			</div>
+		</footer>		
+	</div>
+	<!-- /quickview --> 
+	<!--
+    <script defer src="https://pyscript.net/alpha/pyscript.js"></script>  
+    -->  
+    <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bulma-toast@2.4.1/dist/bulma-toast.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/11.5.1/highlight.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bulma-extensions@6.2.7/bulma-quickview/dist/js/bulma-quickview.min.js"></script>
+    <script src="/js/ans_b1_functions.js"></script>
+    <script>
+		var quickviews = bulmaQuickview.attach();
+		
+		function go_to_code(prob_text,caller_page){
+			localStorage.setItem('caller_page',caller_page);
+			localStorage.setItem('problem', prob_text);
+			window.location = "/code_editor/python_code_editor.html";
+	
+		}
+    </script>
+    <script src="../js/my_js.js"></script>
+  </body>
+</html>

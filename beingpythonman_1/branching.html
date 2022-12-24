@@ -1,0 +1,947 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>Decision Control and Branching</title>
+    <link rel="icon" type="image/png" href="https://cdn.glitch.global/cb61e7ff-aec7-49ac-884a-cea3cd4cd9da/favicon-32x32.png?v=1655545783728" />
+   <!--
+    <link rel="stylesheet" href="https://pyscript.net/alpha/pyscript.css" />
+    -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.9.3/css/bulma.min.css" 
+		integrity="sha512-IgmDkwzs96t4SrChW29No3NXBIBv8baW490zk5aXvhCD8vuZM3yUSkbyTBcXohkySecyzIrUwiF/qV0cuPcL3Q==" 
+		crossorigin="anonymous" referrerpolicy="no-referrer" />  
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@creativebulma/bulma-divider@1.1.0/dist/bulma-divider.min.css"/>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma-extensions@6.2.7/bulma-quickview/dist/css/bulma-quickview.min.css" />		
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@creativebulma/bulma-tooltip@1.2.0/dist/bulma-tooltip.min.css" />
+  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/11.5.1/styles/default.min.css">
+  <link rel="stylesheet" href="../css/my_css.css"> 
+  </head>  
+  <!--
+  <py-env>
+    - numpy
+    - matplotlib
+    - paths:
+      - ./antigravity.py
+  </py-env>
+-->
+  <body>
+	<nav class="navbar bg1" role="navigation" aria-label="main navigation">
+		<div class="navbar-brand">
+			<span class="navbar-item title is-2" >
+				Branching and Decision control
+			</span>				
+		</div>
+		<div class="navbar-end">
+			<div class="navbar-item" >
+				<a class="button is-primary has-tooltip-left" 
+					data-show="quickview" 
+					alt="subcontent"
+					data-target="quickviewDefault"  data-tooltip="Topics">
+					<ion-icon name="ellipsis-vertical"></ion-icon>
+			</a>
+		</div>	 
+	</nav>  
+    <div class="container is-widescreen" data-dismiss="quickview">		
+      <section class="section slide box content">
+        <p class="title is-3">
+          Motivation
+        </p>        
+        <p>
+        รูปแบบพื้นฐานการทำงานของชุดคำสั่งใน computer program คือการทำงานตามลำดับก่อนหลัง ในการทำงานแบบง่ายเช่น 
+          การแสดงเนื้อเพลง Happy Birth Day ให้แก่คนชื่อ Jimmy อาจทำได้ดังนี้
+          
+            <pre class="code Python box">
+print("Happy birth day to you.")
+print("Happy birth day to you.")
+print("Happy birth day to dear Jimmy.")
+print("Happy birth day to you.")
+            </pre>
+        </code>
+          แต่ถ้าปัญหาที่ซับซ้อนขึ้น เช่น การคำนวณ Body Mass Index (BMI) ต้องใช้ข้อมูลที่บอกความสูงและนำ้หนักตัวของผู้ถูกวัดมาคำนวณ
+          ตามสูตร \[ BMI = \frac{weight}{height^2}\] แต่หากข้อมูลที่ได้ใช้หน่วยวัดที่เป็น inches กับ pounds จะต้องใช้คูณ BMI ที่ได้ด้วย 703 ในขณะที่ถ้าใช้
+          หน่วยวัดแบบเมตริกไม่ต้องทำ
+        </p>
+        <p>
+          จากตัวอย่างการหาค่า BMI ถ้าหากต้องการให้โปรแกรทำงานคลอบคลุมหน่วยวัดทั้งแบบอังกฤษและเมตริก 
+          การทำงานจะใช้แบบการพิมพ์เนื้อเพลงข้างต้นไม่เพียงพอแล้ว จะต้องเพิ่มความสามารถในการควบคุมทิศทางของชุดคำสังได้
+          เรียกว่า <b>"control structure"</b> การที่โปรแกรมสามารถเลือกเส้นทางการทำงานที่เหมาะสมได้ ก็อาศัย "<b>conditional statement</b>" หรือ "<b>decision control</b>"
+        </p><br/>
+       
+       <div class="columns">
+         <div class="column"></div>
+         <div class="column is-two-thirds">
+           <p>
+           <img src="https://cdn.glitch.global/cb61e7ff-aec7-49ac-884a-cea3cd4cd9da/hello_python_decision.png?v=1655789232723"/>  
+           </p>
+           <p>
+             ทิศทางของชุดคำสังแบบทางเดียว (a) และ ทิศทางของชุดคำสั่งที่มีการแตกกิ่งด้วย decision control (b)
+           </p>
+         </div>
+         <div class="column"></div>
+       </div>
+        
+        <p class="title is-4">Decision control</p>
+        <p>
+          การตัดสินใจทำอะไรด้วยเงื่อนไขเป็นสิ่งที่คุ้นเคยกันในชีวิตประจำวันของเกือบทุกคน เช่น ถ้ารู้สึกไม่สบายแล้วต้องไปพบแพทย์ ถ้าสัญญาณไฟเป็นสีแดงแล้วต้องหยุดรถ ถ้ารู้สึกง่วงก็ไปนอน ฯลฯ ่ 
+          การตัดสินใจด้วยเงื่อนไขเมื่อนำมาใช้กับ computer programming จะช่วยให้โปรแกรมสามารถใช้แ้ปัญหาได้ดีขึ้น
+        </p><br/>
+        <p>
+          การตัดสินใจใน computer programming อาจแบ่งได้เป็น 3 รูปแบบ คือ
+          <ol>
+            <li>Simple decision pattern </li>
+            <li>2-way decision pattern ใช้ <b>if-else </b> statement</li>
+            <li>multi-way decision pattern ใช้ <b>if-elif-else</b> statement</li>
+        </ol>
+        </p>
+        <div class="divider"/>
+      </section>
+      <!-- ##########  Simple decision pattern ###############33 -->
+      <section class="section slide box content">       
+        <p class="title is-3">Simple decision pattern</p>
+      <p>
+        ใช้ <b>if</b> statement หรืออาจละไม่ต้องใช้ในบางกรณีได้
+        <pre class="code Python box">
+if condition :
+  statement 1
+  statement 2
+  ....
+          
+        </pre>
+        <br/>      
+      </p>
+    <!-- image -->
+        <div class="columns">
+         <div class="column"></div>
+         <div class="column is-two-thirds">
+           <p>
+           <img src="https://cdn.glitch.global/cb61e7ff-aec7-49ac-884a-cea3cd4cd9da/hello_python_simple_decision.png?v=1655876641246"/>  
+           </p>
+         </div>
+         <div class="column"></div>
+       </div><br/>
+       <!-- image -->
+    <p>
+      condition จะมีค่าความจริงอาจเป็น True (1) หรือ False (0) มีรูปแบบทั่วไป
+      
+        <pre class="code Python box">
+          &#60;expression&#62; &#60;relational operator &#62; &#60;expression&#62;
+        </pre>
+      
+    </p>
+    <p>
+      relational operator มีดังนี้
+      <table class="table">
+        <thead>
+          <tr>
+            <th>Operator</th>
+            <th>Description</th>
+            <th>Example</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>&#62;</td>
+            <td>Greater than to</td>
+            <td>4 &#62;3 </td>
+          </tr>
+          <tr>
+            <td>&#62;&#61;</td>
+            <td>Greater than or equals to</td>
+            <td>4 &#62;&#61; 3 </td>
+          </tr>
+          <tr>
+            <td>&#60;</td>
+            <td>Less than to</td>
+            <td>3 &#60; 4 </td>
+          </tr>
+          <tr>
+            <td>&#60;&#61;</td>
+            <td>Less than or equals to</td>
+            <td>3 &#60;&#61; 4 </td>
+          </tr>
+          <tr>
+            <td>&#61;&#61;</td>
+            <td>Equals to</td>
+            <td>3 &#61;&#61; 3 </td>
+          </tr>
+          <tr>
+            <td>&#33;&#61;</td>
+            <td>Not equals to</td>
+            <td>3 &#33;&#61; 4 </td>
+          </tr>
+          <tr>
+            <td>in</td>
+            <td>is in </td>
+            <td>3 in [1,2,3,4] </td>
+          </tr>
+        </tbody>
+  </table>
+  <blockquote>
+	   <p class="title is-5"><ion-icon name="school-outline"></ion-icon>&nbsp;Tip:</p>  
+	   <p>"==" ใช้กับ condition แต่ "=" ใช้ให้ค่ากับตัวแปร </p>
+  </blockquote>
+   
+  </p>
+  <p>
+    ดูตัวอย่าง condition โดยการพิมพ์ข้อความตัวอย่างเหล่านี้ลงในช่องว่างข้างล่างทีละข้อ แล้วสังเกตุผลลัพธ์จากการ run คำสั่ง 
+    <pre class="code Python box">
+1 &#60; 2
+1 == 2
+2 != 3
+1 &#62; 2
+"a" &#60; "b"
+"A" != "a"
+in [1,3,5,6,9]
+    </pre>    
+    <br/>
+    <!--
+    <button class="button is-success" 
+           onclick="open_modal('branch-modal','branch-repl','branch-std-out','branch-err-out')">
+     Try it 
+    </button>
+    -->
+  </p>
+  
+   <br/>
+   <p class="title is-5"> ตัวอย่าง: เลขคู่หรือคี่ </p>
+    <p>
+         ตัวอย่างปัญหานี้คือ การให้โปรแกรมสามารถบอกตัวเลขที่ผู้ใช้ป้อนเข้ามาเป็นเลขคู่หรือคี่ 
+        ทดสอบโดยการนำมาหารด้วย 2 หากได้เศษเป็น 0 คือเลขคู่ในทางตรงข้ามคือเลขคี่ 
+        operator ที่ใช้คือ "%" (modulo)
+    </p><br/>
+        <!-- image -->
+        <div class="columns">
+         <div class="column"></div>
+         <div class="column is-two-thirds">
+           <p>
+           <img src="https://cdn.glitch.global/cb61e7ff-aec7-49ac-884a-cea3cd4cd9da/hello_python_simple_decision.png?v=1655871997292"/>  
+           </p>
+         </div>
+         <div class="column"></div>
+       </div><br/>
+       <!-- image -->
+  <div>
+    <!-- <p>Shift-Enter to execute</p> -->
+     <pre class="code Python box">
+def even_or_odd(x):
+  # simple decision 
+  if x % 2 == 0 :
+    return "even"
+  return "odd"
+  
+# call function
+x = 12
+print(even_or_odd(x))
+
+x = 11
+print(even_or_odd(x))
+      
+     </pre>
+     <!--
+     <button class="button is-success" 
+            onclick="open_modal('branch-modal','branch-repl','branch-std-out','branch-err-out')">
+         Try it 
+     </button>
+     -->
+   </div><br/>
+   <p class="title is-5"> ตัวอย่าง  : จำนวนวันกับชื่อเดือน</p>
+    <p>
+     โปรแกรมรับจำนวนวันจากผู้ใช้เข้ามาแล้วรายงานออกไปเป็นชื่อย่อของเดือนที่มีจำนวนวันตรงกัน โดยที่
+    <ol>
+		<li> ถ้าจำนวนวันไม่อยูใน [28,29,30,31] ไม่ต้องรายงาน</li>
+		<li> ถ้าจำนวนวันคือ 31 ให้รายงาน ["Jan","March","May","July","Aug","Oct","Dec"]</li>
+		<li> จำนวนวันคือ 30 ให้รายงาน ["Apr","June","Sep","Nov"]</li>
+		<li> จำนวนวันคือ 28 หรือ 29 ให้รายงาน ["Feb"]</li>
+    </ol><br/>
+    <div class="columns">
+         <div class="column"></div>
+         <div class="column is-two-thirds">
+           <p>
+           <img src="https://cdn.glitch.global/cb61e7ff-aec7-49ac-884a-cea3cd4cd9da/hp_mn_small.png?v=1655864891520"/>  
+           </p>
+         </div>
+         <div class="column"></div>
+       </div><br/>
+     
+     <pre class="code Python box">
+def numb_to_month(d):
+  # check range
+  if d not in [28,29,30,31] :
+    return None
+    
+  # simple decision 
+  if d == 31 :
+    return ["Jan","March","May","July","Aug","Oct","Dec"]
+  if d == 30 :
+    return ["Apr","June","Sep","Nov"]
+  if  d in [28,29] :
+    return ["Feb"]
+  
+# call function
+d = 2
+print(numb_to_month(d))
+
+d = 31
+print(numb_to_month(d))
+
+d = 30
+print(numb_to_month(d))
+
+d = 29 
+print(numb_to_month(d))
+      
+     </pre>
+     <!--
+     <button class="button is-success" 
+            onclick="open_modal('branch-modal','branch-repl','branch-std-out','branch-err-out')">
+         Try it 
+     </button>
+     -->
+   <br/><br/>
+   <blockquote>
+     <p class="title is-5"><ion-icon name="school-outline"></ion-icon>&nbsp;Tip:</p> 
+     <ul>
+       <li>ตัวอย่างนี้แสดงให้เห็นการใช้มากกว่า 1 simple decision ในหนึ่งงาน</li>
+       <li>ในตัวอย่างแสดงการใช้ in และ list data structure มาใช้สร้าง condition ในบรรทัดที่ 3 และ 11</li>
+       <li>None เป็น keyword มีควาหมายว่า "no value at all"</li>
+     </ul>
+   </blockquote>
+   </p><br/>
+  
+
+    </section>
+      <!-- #########  Two-way decision ############# -->
+     
+    <section class="section slide box content">
+		<p class="title is-3">Two-way decision</p>
+        <p>
+          รูปแบบของ Two-way decision 
+        
+			<pre class="code Python box">                       
+if condition  :
+  statement
+  statement
+  ...
+else :
+  statement
+  statement
+  ...
+            </pre>        
+        </p>
+        <!-- image -->
+        <div class="columns">
+			<div class="column"></div>
+			<div class="column is-two-thirds image">
+				<img src="https://cdn.glitch.global/cb61e7ff-aec7-49ac-884a-cea3cd4cd9da/hello_python_2way_decision.png?v=1655876651669"/>  
+			</div>
+			<div class="column"></div>
+		</div><br/>
+       <!-- image -->
+        <p class="title is-5">
+        ตัวอย่าง : การคำนวณอายุสุนัข
+        </p>
+        <p>
+        โดยทั่วไปการเทียบปีของสุนัขกับปีของมนุษย์ จะใช้การเทียบเวลาแบบเส้นตรงโดย 1 ปีของมนุษย์เทียบได้ 7 ปีของสุนัข (ตัวคูณคือ 7) เช่น ถ้าสุนัขตัวหนึ่งเกิดมาได้ 3 ปีถ้าเปรียบเป็นมนุษย์ก็จะมีอายุได้ \( 3 \times 7 = 21 \) ปี เป็นต้น
+          แต่ก็มีบางความเห็นแย้งว่า การเทียบแบบนี้จะคลาดเคลื่อนเพราะสุนัขจะโตเร็วในช่วง 2 ปีแรก ดังนั้นควรแบ่งช่วง 2 ปีแรกให้คูณด้วย 10.5 ตั้งแต่ปีที่ 3 เป็นต้นไปให้คูณด้วย 4 ดังนั้นสุนัขตัวที่เกิดมาได้ 3 ปี จะคิดเป็น \(2 \times 10.5 + 4 = 25 \) ปี
+          ถ้านำการคำนวณแบบที่สองไปเขียนเป็นโปรแกรมคำนวณอายุสุนัขจะได้นี้
+        </p>
+        <pre class="code Python box">       
+def dog_year(hy):
+    dy = 0
+    if hy &#60;&#61; 2:
+      dy = 10.5 * hy
+    else :
+      diff = hy - 2
+      dy = 21 + diff * 4
+    return dy
+    
+#call function
+human_year = 1
+print(dog_year(human_year))
+
+human_year = 5
+print(dog_year(human_year))
+
+human_year = 10
+print(dog_year(human_year))
+
+        </pre><br/>
+       <!--<div>-->
+     <!--
+     <button class="button is-success" 
+            onclick="open_modal('branch-modal','branch-repl','branch-std-out','branch-err-out')">
+         Try it 
+     </button>
+     -->
+      <p class="title is-5">ตัวอย่าง : การหา root ของ Quadratic function </p>
+        <p>
+          Quadratic function คือ สมการที่เขียนอยู่ในรูปทั่วไปคือ \(f(x) = ax^2 + bx +c \) วิธีหนึ่งของการหา root ของ \(f(x)\) คือการใช้สูตร 
+          \[ x = \frac{-b \pm \sqrt{b^2 - 4ac}}{2a}\]
+          ภายใต้เงือนไข 
+          <ol>
+            <li>\(a \neq 0 \) เพราะการหารด้วย 0 ไม่นิยามทางคณิตศาสตร์</li>
+            <li>\(b^2 - 4ac \geq 0 \) เพราะภายใต้ระบบจำนวนจริง จำนวนที่จะหา square root ต้องมากกว่าหรือเท่ากับ 0 </li>
+          </ol>
+          ชุดคำสั่งที่ใช้หา root ของ Quadratic function ควรมีลักษณะดังนี้
+          <ol>
+            <li>รับ input เป็นค่าคงที่ a,b,c</li>  
+            <li>ตรวจสอบเงื่อนไขตามที่กล่าวมา</li>
+            <li>คำนวณหา root และส่งค่าออกมาเป็นแบบ list of floats </li>
+          </ol>
+        </p>
+        <pre class="code Python box">
+import math
+          
+def root_of_quardratic(a,b,c):
+  if a == 0 :
+    return []
+  if b**2 - 4*a*c &#60; 0 :
+    return []
+  else :
+    numerator_1 = -b + math.sqrt(b ** 2 - 4 * a * c)
+    numerator_2 = -b - math.sqrt(b ** 2 - 4 * a * c)                
+    denominator = 2 * a
+    root_1 = numerator_1 / denominator
+    root_2 = numerator_2 / denominator
+    return [root_1,root_2]
+                
+a = 6
+b = 11
+c = - 35                
+roots = root_of_quardratic(a,b,c)
+print(roots) # [1.6666666666666667, -3.5]
+        
+        </pre>
+        <blockquote>
+          <b><p class="title is-5"><ion-icon name="school-outline"></ion-icon>&nbsp;Tip:</p> s</b>
+          <ol>
+            <li>import math เป็นคำสั่งบอกให้ตัวแปลภาษา Python ทราบว่า จะมีการนำเอา module ชื่อ math เข้ามาใช้ในโปรแกรม </li>
+            <li>math คือ built-in module ของ Python ที่ประกอบไปด้วยชุดคำสั่งที่ใช้ทางคณิตศาสตร์ <a href="https://docs.python.org/3/library/math.html">อ่านรายละเอียดเพิ่มเติม</a></li>
+            <li>ในตัวอย่างมีการใช้ผสมกันทั้ง simple decision และ 2-way decision</li>
+          </ol>
+        </blockquote>
+        <!--
+        <button class="button is-success" 
+            onclick="open_modal('branch-modal','branch-repl','branch-std-out','branch-err-out')">
+         Try it 
+        </button>
+        -->
+        <div class="divider"/>
+      </section>
+      <!-- ########  Multi-way decision ########## -->
+      <section class="section box content slide">
+        <p class="title is-3" >Multi-way decision</p>
+        <p>
+          รูปแบบของ Two-way decision 
+          
+        <pre class="code Python box">
+if condition 1 :
+    statement
+    statement
+    ...
+elif condition 2 :
+    statement
+    statement
+    ...
+elif condition 3 :
+    statement
+    statement
+    ...  
+ .
+ .
+ .
+else :
+    statement
+    statement
+    ...
+
+        </pre>
+        
+        </p>
+        <!-- image -->
+        <div class="columns">
+         <div class="column"></div>
+         <div class="column is-two-thirds">
+           <p>
+           <img src="https://cdn.glitch.global/cb61e7ff-aec7-49ac-884a-cea3cd4cd9da/hello_python_mulway_decision.png?v=1655880663146"/>  
+           </p>
+         </div>
+         <div class="column"></div>
+       </div><br/>
+       <!-- image -->
+        <blockquote>
+			 <p class="title is-5"><ion-icon name="school-outline"></ion-icon>&nbsp;Tip:</p>  
+			<p>Python ไม่มีข้อจำกัดเรื่องจำนวนครั้งของ elif แตต้องระวัง เพราะ่การใช้มากครั้งเกินไปอาจทำให้เกิดปัญหาตามมาได้</p>
+        </blockquote>
+        <br/>
+        <p class="title is-5">
+        ตัวอย่าง : สีรุ้งกับความยาวคลื่น
+        </p>
+        <p>
+        สีรุ้งคือช่วงความยาวคลื่นแสงที่ตามนุษย์มองเห็นได้ (visible light) มีความอยู่ในช่วง 380 - 750 nanometers แบ่งได้เป็น 6 ช่วงดังนี้
+        <div class="columns">
+        <div class="column"></div>
+        <table class="table column">
+          <thead>
+            <tr><th>ช่วงความยาวคลื่น (nm)</th><th>ชื่อเรียกของสี</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>380 - 450 </td><td>Violet</td></tr>
+            <tr><td>450 - 495 </td><td>Blue</td></tr>
+            <tr><td>495 - 570 </td><td>Green</td></tr>
+            <tr><td>570 - 590 </td><td>Yellow</td></tr>
+            <tr><td>590 - 620 </td><td>Orange</td></tr>
+            <tr><td>620 - 750 </td><td>Red</td></tr>
+          </tbody>
+        </table>
+        <div class="column"></div>
+        </div>
+        ให้เขียนโปรแกรมที่รับค่าความยาวคลื่นเข้ามาในช่วงของ visible light แล้วรายงานชื่อสีออกไป
+        </p>
+        <pre class="code Python box">          
+def wl2cl(wl):
+  # wavelength should not be outside range
+  if (wl &#60; 380.00) or (wl &#62; 750.00) :
+    print("Wavelength is out of range.")
+    return
+  elif (wl &#60;= 380.00) and (wl &#62; 450.00) :
+    return "Violet"
+  elif (wl &#60;= 450.00) and (wl &#62; 495.00) :
+    return "Blue"    
+  elif (wl &#60;= 495.00) and (wl &#62; 570.00) :
+    return "Green"
+  elif (wl &#60;= 570.00) and (wl &#62; 590.00) :
+    return "Yellow"
+  elif (wl &#60;= 590.00) and (wl &#62; 620.00) :
+    return "Orange"
+  else :
+    return "Red"
+
+
+# call function
+print(wl2cl(1000.05)) # "Wavelength is out of range."
+print(wl2cl(444.00)) # "Violet"
+print(wl2cl(455.05)) # "Blue"
+print(wl2cl(550.15)) # "Green."
+print(wl2cl(588.00)) # "Yellow"
+print(wl2cl(615.05)) # "Orange."
+print(wl2cl(720.00)) # "Red"
+         
+        </pre>
+        <!--
+         <button class="button is-success" 
+            onclick="open_modal('branch-modal','branch-repl','branch-std-out','branch-err-out')">
+         Try it 
+        </button>
+        -->
+        <div class="divider" />
+      </section>
+      <!-- ########## Exercise ############ -->
+      <section class="section box slide content">
+      <p class="title is-3"> Exercise</p>
+      <p>
+		1. ข้อความที่จะแสดงบนหน้าจอเมื่อชุดคำสั่งนี้ทำงานเสร็จ คือข้อใด
+		<pre class="code Python box">
+car = "BMW"
+print(car == "Toyota")		
+		</pre>
+		<div class="control">
+            <label class="radio">
+                <input type="radio" name="ans1" value="0" onchange="check1(this)" > True
+            </label><br/>
+            <label class="radio">
+                <input type="radio" name="ans1" value="1" onchange="check1(this)"> False
+            </label><br/>
+            <label class="radio">
+                <input type="radio" name="ans1" value="0" onchange="check1(this)"> Syntax error
+            </label>
+        </div>     
+      </p>
+      <div class="divider"> </div>
+      <p>
+		2. ข้อความที่จะแสดงบนหน้าจอเมื่อชุดคำสั่งนี้ทำงานเสร็จ คือข้อใด
+		<pre class="code Python box">
+topping = "Mushroom"
+print(topping != "Mango")		
+		</pre>
+		<div class="control">
+            <label class="radio">
+                <input type="radio" name="ans1" value="1" onchange="check1(this)" > True
+            </label><br/>
+            <label class="radio">
+                <input type="radio" name="ans1" value="0" onchange="check1(this)"> False
+            </label><br/>
+            <label class="radio">
+                <input type="radio" name="ans1" value="0" onchange="check1(this)"> Syntax error
+            </label>
+        </div>     
+      </p>
+      <div class="divider"></div>
+      
+      <p>
+		3. ข้อความที่จะแสดงบนหน้าจอเมื่อชุดคำสั่งนี้ทำงานเสร็จ คือข้อใด
+		<pre class="code Python box">
+age = 20
+print(age > 10 )		
+		</pre>
+		<div class="control">
+            <label class="radio">
+                <input type="radio" name="ans1" value="1" onchange="check1(this)" > True
+            </label><br/>
+            <label class="radio">
+                <input type="radio" name="ans1" value="0" onchange="check1(this)"> False
+            </label><br/>
+            <label class="radio">
+                <input type="radio" name="ans1" value="0" onchange="check1(this)"> TypeError: '>' not supported between instances of 'int' and 'str'
+            </label>
+        </div>     
+      </p>
+      <div class="divider"></div>
+      <p>
+		4. ข้อความที่จะแสดงบนหน้าจอเมื่อชุดคำสั่งนี้ทำงานเสร็จ คือข้อใด
+		<pre class="code Python box">
+x = 10
+print(x > "Hello World")		
+		</pre>
+		<div class="control">
+            <label class="radio">
+                <input type="radio" name="ans1" value="0" onchange="check1(this)" > True
+            </label><br/>
+            <label class="radio">
+                <input type="radio" name="ans1" value="0" onchange="check1(this)"> False
+            </label><br/>
+            <label class="radio">
+                <input type="radio" name="ans1" value="1" onchange="check1(this)"> TypeError: '>' not supported between instances of 'int' and 'str'
+            </label>
+        </div>     
+      </p>
+      <div class="divider"></div>
+      <p>
+        5. เมื่อโปรแกรมนี้ทำงานเสร็จ x จะเป็นค่าใด ?
+			<pre class="code Python box">
+x = 10
+a = 5
+if a > 0 :
+    x = x + a
+print(x)
+            </pre>                    
+              
+            <div class="control">
+                <label class="radio">
+                    <input type="radio" name="ans1" value="0" onchange="check1(this)" > 10
+                </label><br/>
+                <label class="radio">
+                    <input type="radio" name="ans1" value="1" onchange="check1(this)"> 15
+                </label><br/>
+                <label class="radio">
+                    <input type="radio" name="ans1" value="0" onchange="check1(this)"> Syntax error
+                </label>
+            </div>                
+        </p> <!-- exercise -->
+        <div class="divider"></div> 
+     
+      <p>
+      6.ตารางที่กำหนดให้ เป็นการเทียบสัญญลักษณ์ตัวโน๊ตดนตรี (C4,D4,E4,F4,G4,A4,B4) กับ่ค่าความถี่เสียงในหน่วยของ Hz  จงสร้าง function ที่รับชือของตัวโน๊ด
+      เป็น input แล้วส่งค่าออกมาเป็นความถี่<br/>
+      <div class="columns">
+        <div class="column"></div>
+        <table class="table column">
+          <thead><tr><th>Note</th><th>Frequency(Hz)</th></tr></thead>
+          <tbody>
+            <tr><td>C4</td><td>261.63</td></tr>
+            <tr><td>D4</td><td>293.66</td></tr>
+            <tr><td>E4</td><td>329.63</td></tr>
+            <tr><td>F4</td><td>349.23</td></tr>
+            <tr><td>G4</td><td>392.00</td></tr>
+            <tr><td>A4</td><td>440.00</td></tr>
+            <tr><td>B4</td><td>493.88</td></tr>
+          </tbody>
+        </table>
+        <div class="column"></div>
+      </div>
+      <div class="buttons">
+		  <!--
+		<button class="button is-success" 
+			onclick="open_modal('branch-modal','branch-repl','branch-std-out','branch-err-out',null)">
+			Try it 
+		</button>
+		-->
+		<button class="button is-success" 
+					onclick="go_to_code('b1_branch:6','/beingpythonman_1/branching.html')">Try it </button>    
+		<a class="has-text-danger-light" onclick="show_answer(6,1)">Hint</a>
+	   </div>
+      </p>
+      <div class="divider"></div>
+      
+      <p>
+      7. ในโรงงานผลิตสินค้าแห่งหนึ่ง มีระบบควบคุมอุญหภูมิเครื่องจักรไม่ให้สูงเกินไปจนเกิดความเสียหาย โดยต้องทำการวัดค่าอุญหภูมิเครื่องจักรทุก  10 นาที
+      และมีการแบ่งระดับการเตือนไว้ 3 ระดับ คือ 
+      <ol>
+		<li>Green  คืออุญหภูมิไม่เกิน ึ70 degree Celsius</li>
+		<li>Orange คืออุญหภูมิไม่เกิน 90 ึdegree Celsius</li>
+		<li>Red คือ อุญหภูมิสูงเกว่า 90 ึdegree Celsius</li>
+      </ol>
+      จงเขียน function เพื่อใช้เป็นส่วนหนึ่งของระบบเตือนภัย โดยรับค่า input เป็นอุญหภูมิในหน่วย Celsious และ output เป็นข้อความสำหรับแจ้งเตือน
+      
+      <div class="buttons">
+		<!--
+		<button class="button is-success" 
+			onclick="open_modal('branch-modal','branch-repl','branch-std-out','branch-err-out',null)">
+			Try it 
+		</button>
+		-->
+		<button class="button is-success" 
+					onclick="go_to_code('b1_branch:7','/beingpythonman_1/branching.html')">Try it </button>   
+		<a class="has-text-danger-light" onclick="show_answer(7,1)">Hint</a>
+	   </div>      
+      </p>
+      <div class="divider"></div>
+      <p>
+      8. คำถามต่อไปนี้ จะอ้างอิงผลการศึกษาสมมุติการศึกษาหนึ่ง เพื่อหาความน่าจะเป็นที่ผู้ป่วยที่มีอาการ chest pain (เจ็บหน้าอก) จะป่วยเป็น 
+      Coronary Artory Diseases  (CAD) พิจารณาถ้อยคำที่กำหนดให้ แล้วแปลงให้เป็นชุดคำสั่งของภาษา Python
+      
+      <p>
+		  8.1 ถ้าผู้ป่วยมีอาการ chest pain และอายุไม่เกิน 56 ปี โอกาสที่จะเป็น CAD คือ 10%
+		  <div class="buttons">
+			 <!--
+		   <button class="button is-success" 
+			 onclick="open_modal('branch-modal','branch-repl','branch-std-out','branch-err-out',null)">
+			Try it 
+		   </button>
+		   -->
+		   <button class="button is-success" 
+					onclick="go_to_code('b1_branch:81','/beingpythonman_1/branching.html')">Try it </button>   
+		   <a class="has-text-danger-light" onclick="show_answer(82,1)">Hint</a>
+	   </div>      
+      </p>
+      <br/>
+      <p>
+		  8.2 ถ้าผู้ป่วยมีอาการ chest pain และอายุเกิน 56 ปี โอกาสที่จะเป็น CAD คือ 46%
+		  <div class="buttons">
+			  <!--
+		   <button class="button is-success" 
+			 onclick="open_modal('branch-modal','branch-repl','branch-std-out','branch-err-out',null)">
+			Try it 
+		   </button>
+		   -->
+		   <button class="button is-success" 
+					onclick="go_to_code('b1_branch:82','/beingpythonman_1/branching.html')">Try it </button>   
+		   <a class="has-text-danger-light" onclick="show_answer(83,1)">Hint</a>
+	   </div>      
+      </p>
+      <br/>
+      <p>
+		  8.3 ถ้าผู้ป่วยมีอาการ chest pain อายุเกิน 56 ปี และเป็นเพศชาย โอกาสที่จะเป็น CAD คือ 66%
+		  <div class="buttons">
+			  <!--
+		   <button class="button is-success" 
+			 onclick="open_modal('branch-modal','branch-repl','branch-std-out','branch-err-out',null)">
+			Try it 
+		   </button>
+		   -->
+		   <button class="button is-success" 
+					onclick="go_to_code('b1_branch:83','/beingpythonman_1/branching.html')">Try it </button>   
+		   <a class="has-text-danger-light" onclick="show_answer(84,1)">Hint</a>
+	   </div>      
+      </p>
+      <br/>
+      <p>
+		  8.4 ถ้าผู้ป่วยมีอาการ chest pain อายุเกิน 56 ปี และเป็นเพศหญิง โอกาสที่จะเป็น CAD คือ 20%
+		  <div class="buttons">
+			  <!--
+		   <button class="button is-success" 
+			 onclick="open_modal('branch-modal','branch-repl','branch-std-out','branch-err-out',null)">
+			Try it 
+		   </button>
+		   -->
+		   <button class="button is-success" 
+					onclick="go_to_code('b1_branch:84','/beingpythonman_1/branching.html')">Try it </button>   
+		   <a class="has-text-danger-light" onclick="show_answer(85,1)">Hint</a>
+	   </div>      
+      </p> 
+      </p>
+      <div class="divider"></div>
+       <p>
+      9. นำข้อมูลและชุดคำสั่งที่ได้จากข้อ 8 มาเขียนเป็น function เพื่อใช้ในการคาดการณ์ความน่าจะเป็นที่ผู้ป่วยจะเป็น CAD โดย 
+       มีคุณสมบัติดังนี้
+       <div class="title is-5">Input :</div>
+       <ul>
+		   <li>age เป็น datatype แบบ integer</li>
+		   <li>gener เป็น datatype แบบ String มีค่าเป็น "male" หรือ "female"</li>
+       </ul>
+       <div><span class="title is-5">Output </span>: เป็น datatype แบบ float แทนค่าความน่าจะเป็นของการเป็น CAD</div>
+			<div class="columns">
+				<div class="column"></div>
+				<div class="column image">
+					<img src="./img/CAD_function.png" />
+				</div>
+				<div class="column"></div>
+			</div>
+			
+      
+      
+      <div class="buttons">
+		 <!-- 
+		<button class="button is-success" 
+			onclick="open_modal('branch-modal','branch-repl','branch-std-out','branch-err-out',null)">
+			Try it 
+		</button>
+		-->
+		<button class="button is-success" 
+					onclick="go_to_code('b1_branch:9','/beingpythonman_1/branching.html')">Try it </button>   
+		<a class="has-text-danger-light" onclick="show_answer(9,1)">Hint</a>
+	   </div>      
+      </p>
+      <div class="divider"></div>
+      <p>
+		10. ใช้ function ที่ได้จากข้อ 9 เพื่อความน่าจะเป็นของคนไข้เพศหญิง อายุ 60 ปี จะเป็น CAD
+      </p>
+      <button class="button is-success" 
+					onclick="go_to_code('b1_branch:10','/beingpythonman_1/branching.html')">Try it </button>   
+       <div class="divider"></div>
+      </section>
+      <!-- ###################### -->
+      <br/>
+      <!-- ################ Navigator ###################### -->
+      <nav class="pagination is-centered" role="navigation" aria-label="pagination">
+        <a class="pagination-previous" href="./index.html" alt="Home"><ion-icon name="list-outline"></ion-icon>Contents</a>
+        <a class="pagination-next" href="./iteration.html" alt="Iteration">Next <ion-icon name="chevron-forward-outline"></ion-icon></a>
+        
+        <ul class="pagination-list">
+          <li><a class="pagination-link" aria-label="Goto page First" onclick="currentDiv(1)">Branching and Decision control</a></li>
+          <li><a class="pagination-link" aria-label="Goto page Simple Decision control" onclick="currentDiv(2)">Simple decision</a></li>
+          <li><a class="pagination-link" aria-label="Goto page 2-way decision" onclick="currentDiv(3)">2-way decision </a></li>          
+          <li><a class="pagination-link" aria-label="Goto page Multi-way decision" onclick="currentDiv(4)">Multi-way decision</a></li>
+          <li><a class="pagination-link" aria-label="Goto page Exercises" onclick="currentDiv(5)">Exercises</a></li>
+          
+        </ul>
+
+      </nav>
+    </div>
+    <footer class="footer box">
+      <div class="content has-text-centered">
+        <p>
+          โดย <a href="mailto:somchaisomph@gmail.com">สมชาย สมผดุง</a>. 
+        </p>
+        <p>
+          The source code is licensed
+          <a href="http://opensource.org/licenses/mit-license.php">MIT</a>. The website content
+            is licensed <a href="http://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY NC SA 4.0</a>.
+        </p>
+      </div>
+    </footer>
+    
+
+<!-- The Modal -->
+    <div class="modal" id="branch-modal">
+		<div class="modal-background"></div>
+		<div class="modal-card">
+		<header class="modal-card-head">
+			<p class="modal-card-title">Exercise</p>
+			<button class="delete" aria-label="close" 
+			onclick="close_modal('branch-modal','branch-repl','branch-std-out','branch-err-out')"
+			></button>
+		</header>
+		<section class="modal-card-body">
+			<!-- Content ... -->
+			<div class="columns is-multiline">
+				<div class="column is-three-quarters box is-light" id="branch-repl">
+					<p><b>Type your code in box below then press Shift-ENTER to evaluate.</b> </p>
+				</div>
+				<div class="column box" id="branch-std-out" onclick="clear_content(this)" >
+				</div>
+				<div class="column is-full" id="branch-err-out" onclick="clear_content(this)" ></div>
+			</div> <!--/columns-->
+		</section>
+		<footer class="modal-card-foot">
+			
+			<button class="button" 
+				onclick="close_modal('branch-modal','branch-repl','branch-std-out','branch-err-out')">
+				Close</button>
+		</footer>
+	</div>
+</div>
+    <!-- /The modal -->
+    <!-- answer modul -->
+	<div class="modal" id="answer-modal">
+		<div class="modal-background"></div>
+		<div class="modal-content">
+			<p class="box content" id="answer-box">			
+			
+			</p>
+		</div>
+		<button class="modal-close is-large" aria-label="close" onclick="show_answer(0,0)"></button>
+	</div>
+    <!-- /answer modul -->
+     <!-- quickview -->
+	<div id="quickviewDefault" class="quickview box" style="background-color:rgba(230, 230, 230, 0.75);">
+		<header class="quickview-header is-primary">
+			<a data-dismiss="quickview">
+				<ion-icon src="../icons/chevron-forward-outline.svg" size="large"></ion-icon>
+			</a>
+			<p class="title is-2">Topics</p>
+			<!--span class="delete" data-dismiss="quickview"></span -->			
+		</header>
+		<div class="quickview-body">
+			<div class="quickview-block">
+				<div class="list">
+					<div class="list-item">
+						<a class="list-item-title" onclick="currentDiv(1)">Branching and Decision control</a>
+					</div>
+					<div class="list-item">
+						<a class="list-item-title" onclick="currentDiv(2)">Simple decision</a>
+					</div>
+					<div class="list-item">
+						<a class="list-item-title" onclick="currentDiv(3)">2-way decision </a>
+					</div>
+					<div class="list-item">
+						<a class="list-item-title" onclick="currentDiv(4)">Multi-way decision</a>
+					</div>
+					<div class="list-item">
+						<a class="list-item-title" onclick="currentDiv(5)">Exercises</a>
+					</div>
+				</div>
+			</div>
+		</div>
+		
+		<footer class="quickview-footer">
+			<div class="buttons">
+				<a class="pagination-link" href="./function.html">
+					<ion-icon name="chevron-back-outline"></ion-icon>Prev
+				</a>
+				<a class="pagination-link" href="./index.html" alt="Home">
+					<ion-icon name="list-outline"></ion-icon>Contents
+				</a>
+				<a class="pagination-link" href="./iteration.html">
+					Next <ion-icon name="chevron-forward-outline"></ion-icon>
+				</a>
+			</div>
+		</footer>
+		
+	</div>
+	<!-- /quickview --> 
+	<!--
+    <script defer src="https://pyscript.net/alpha/pyscript.js"></script>
+    -->
+    <script src="https://cdn.jsdelivr.net/npm/bulma-toast@2.4.1/dist/bulma-toast.min.js"></script>
+	<script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/11.5.1/highlight.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bulma-extensions@6.2.7/bulma-quickview/dist/js/bulma-quickview.min.js"></script>
+    <script src="../js/ans_b1_branching.js" ></script>
+    <script>
+		var quickviews = bulmaQuickview.attach();   
+		  
+		function go_to_code(prob_text,caller_page){
+			localStorage.setItem('caller_page',caller_page);
+			localStorage.setItem('problem', prob_text);
+			window.location = "/code_editor/python_code_editor.html";
+	
+		}		  
+    </script>
+    <script src="../js/my_js.js"></script>
+  </body>
+</html>

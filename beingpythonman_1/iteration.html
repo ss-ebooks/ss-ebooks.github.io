@@ -1,0 +1,1232 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width,initial-scale=1" />
+		<title>Being Python Man : Iteration</title>
+		<link rel="icon" type="image/png" href="https://cdn.glitch.global/cb61e7ff-aec7-49ac-884a-cea3cd4cd9da/favicon-32x32.png?v=1655545783728" />
+		<!-- link rel="stylesheet" href="https://pyscript.net/alpha/pyscript.css" / -->
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.9.3/css/bulma.min.css" 
+			integrity="sha512-IgmDkwzs96t4SrChW29No3NXBIBv8baW490zk5aXvhCD8vuZM3yUSkbyTBcXohkySecyzIrUwiF/qV0cuPcL3Q==" 
+			crossorigin="anonymous" referrerpolicy="no-referrer" />  
+		<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma-extensions@6.2.7/bulma-quickview/dist/css/bulma-quickview.min.css" />		
+		<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@creativebulma/bulma-tooltip@1.2.0/dist/bulma-tooltip.min.css" />
+		<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@creativebulma/bulma-divider@1.1.0/dist/bulma-divider.min.css"/>  
+		<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/11.5.1/styles/default.min.css">
+		<link rel="stylesheet" href="../css/my_css.css">  
+	</head>  
+  <!--
+  <py-env>
+    - numpy
+    - matplotlib
+    - paths:
+      - ./antigravity.py
+  </py-env>
+-->
+	<body>
+	<nav class="navbar bg1" role="navigation" aria-label="main navigation">
+		<div class="navbar-brand">
+			<span class="navbar-item title is-2" >Iteration	</span>				
+		</div>
+		<div class="navbar-end">
+			<div class="navbar-item" >
+				<a class="button is-primary has-tooltip-left" 
+					data-show="quickview" 
+					alt="subcontent"
+					data-target="quickviewDefault"  data-tooltip="Topics">
+					<ion-icon name="ellipsis-vertical"></ion-icon>
+			</a>
+		</div>	
+	</nav>
+    <div class="container is-widescreen " data-dismiss="quickview">		
+      <section class="section slide box content">
+        <p class="title is-3"> Motivation</p>
+        <p>
+          Iteration หรือ การทำซ้ำ (repetition) เกิดขึ้นได้บ่อยในชีวิตจริง เช่น 
+			<ul>
+				<li>การไปทำงานนอกบ้าน การรับประทานอาหาร</li>
+				<li>การผลิตสินค้าในโรงงาน</li>
+				<li>Apple ออกสินค้าหลายรุ่นใน model เดิม</li>
+				<li>การร้องเพลงเดิม ในหลายสถานที่</li>
+				<li>ฯลฯ</li>
+			</ul>
+			กิจกรรมเหล่านี้แม้เป็นการทำซ้ำ แต่หากมองในรายละเอียดแล้ว แต่ละรอบของกิจกรรมจะแตกต่างกันไม่มากก็น้อย 
+        </p>
+        <p>
+          ในการสร้างโปรแกรมคอมพิวเตอร์ iteration ถือเป็นหัวใจหลักดวงหนึ่งของการสร้าง algorithms ถูกนิยามว่าเป็นกระบวนการทำงาน (process) ที่ต้องการให้ได้ผลลัพธ์ (outcome) แบบต่อเนื่องกัน (sequence of outcome)
+          โดยผลลัพธ์ที่ได้จากแต่ละรอบการทำงานจะเป็นจุดเริมต้นสำหรับการทำงานรอบต่อไป [1]  
+        </p>
+        <br/>
+        <p>
+          การทำ iteration ในภาษา Python มี 2 แบบคือ 
+			<ol>
+				<li><a href="javascript:currentDiv(2)">For loops</a></li>
+				<li><a href="javascript:currentDiv(3)">While loops</a> </li>
+			</ol>  
+        </p>
+        <div class="divider"> </div>        
+        <p class="title is-5">References</p>
+		<p>[1] <a href="https://en.wikipedia.org/wiki/Iteration">https://en.wikipedia.org/wiki/Iteration</a></p>
+        
+        <!--
+        <h1 class="title">Numbers</h1>
+        
+        <div>
+          <p>Shift-Enter to execute</p>
+          <py-repl id="numb-repl-1" 
+                   std-out="numb-out-1" 
+                   std-err="numb-out-1"
+                   >     
+          </py-repl>
+          <div id="numb-out-1" onclick="clear_content(this)"></div>
+        </div>
+        -->
+      </section>
+      
+    <!-- ##########  For Loops ############ -->    
+   
+      <section class="section box slide content">
+        <p class="title is-3">  For Loops  <p>
+          ต้องอาศัย iterable object ได้แก่ List, String, Tuple,Set, Dictionary (<a href="https://hello-python-101.glitch.me/hello_python_datatype.html">ดูเพิ่มเติมเรื่อง Variable and Data Types</a>)  
+          รูปแบบทั่วไปของชุดคำสั่งคือ
+        </p>
+        
+        <pre class="code Python box">
+for &#60;looping-variable&#62; in &#60;iterable object&#62; :
+  &#60;instructions block&#62;
+  ....      
+        </pre><br/>
+        <div class="columns">
+          <div class="column"></div>
+          <div class="column">
+            <figure class="image">
+              <img src="./img/hello_python_definite_looping.png"/>
+            </figure>
+          </div>
+          <div class="column"></div>          
+        </div>
+        <p>
+          ในแต่ละรอบของ iteration สมาชิกจาก iterable object จะถูกเข้าถึงทีละตัว แล้วนำค่าไปกำหนดให้กับ looping variable จนครบ ดังนั้นจำนวนรอบของ for-loop 
+          มีจำนวนเท่ากับจำนวนสมาชิกของ interable object เช่น [2,9,0,"a"] มีสมาชิก 4 ตัว เมื่อนำมาทำ iteration ก็จะได้ 4 รอบการทำงาน 
+          <ul>
+            <li>รอบ 1 : นำ 2 ออกไปไช้</li>  
+            <li>รอบ 2 : นำ 9 ออกไปไช้</li>  
+            <li>รอบ 3 : นำ 0 ออกไปไช้</li>  
+            <li>รอบ 4 : นำ "a" ออกไปไช้</li>  
+          </ul>
+        </p>
+        <blockquote>
+          <p class="title is-5"><ion-icon name="school-outline"></ion-icon>&nbsp;Tip:</p>  
+          <p>
+            For-loop คือ difinite loop เนื่องจากสามารถบอกจำนวนรอบของการทำซ้ำได้ชัดเจน
+          </p>
+        </blockquote>
+        <br/>
+         <!-- Exp 1 -->
+        <p class="title is-5">
+            ตัวอย่าง 1  : ใช้ String เป็น iteration object 
+        </p>
+         <pre class="code Python box">
+iter_obj = "Hello"            
+for c in iter_obj :
+	print(c)  
+        </pre> 
+        <blockquote>
+			<p class="title is-5"><ion-icon name="desktop-outline"></ion-icon>&nbsp;Output:</p>  
+			<pre class="code">
+H
+e
+l
+l
+o
+        </pre> 
+        </blockquote>
+        <!--
+        <button class="button is-success" 
+               onclick="open_modal('branch-modal','branch-repl','branch-std-out','branch-err-out')">
+             Try it 
+          </button><br/>
+        -->
+        <p>
+        อธิบาย
+          <ol>
+            <li>ได้กล่าวมาแล้วในเรื่อง Data type ว่า String มีเลข index ประจำในแต่ละตัวอักษรจัดเป็น iterable object </li>             
+            <li>ตัวแปร c เป็น looping variable ค่าของ c จะถูกกำหนดให้โดยอัตโนมัติด้วยตัวอักษรทีละตัวจาก  iter_obj เรืิมจากซ้ายไปขวา  </li>  
+            <li>เมื่อ c ได้รับค่าแล้ว ชุดคำสั่งที่ย่อหน้าถัดลงมาจะถูกเรียก ในตัวอย่างคือ print(c)  </li>
+            <li>หลังจากชุดคำสั่งทำงานครบแล้ว  c  ก็จะถูกกำหนดค่าด้วยตัวอักษรถัดไป</li>
+            <li>โปรแกรมทำงานซ้ำในข้อ 3 - 4 ไปจนกว่าอักษรตัวสุดท้ายจะถูกใช้</li >
+          </ol>
+        </p>
+        <br/>   
+        <!-- Exp 2 -->
+        <p class="title is-5">
+         ตัวอย่าง 2 : List เป็น iteration object
+        </p>
+        <pre class="code Python box">
+iter_obj = [0,1,2,3]
+for c in iter_obj :
+	print(f"Hello {c}")
+         </pre> 
+        <blockquote>
+			<p class="title is-5"><ion-icon name="desktop-outline"></ion-icon>&nbsp;Output:</p>  
+			<pre class="code">
+Hello 0
+Hello 1
+Hello 2
+Hello 3
+        </pre> 
+        </blockquote>  
+          <!--
+          <button class="button is-success" 
+           onclick="open_modal('branch-modal','branch-repl','branch-std-out','branch-err-out')">
+             Try it 
+          </button><br/><br/>
+          -->
+          <p>
+            อธิบาย
+          <ol>
+            <li>ในตัวอย่างนี้ ตัวแปร iter_obj เป็น data type แบบ List เป็น iterable object มีสมาชิกเป็นจำนวนเต็ม 4 จำนวน</li>  
+            <li>ตัวแปร c เป็น looping variable จะได้รับค่าเป็น 0,1,2,3 ตามลำดับ หมายถึงชุดคำสั่งภายใน for-loop จะถูกเรียกใช้ 4 รอบ </li>  
+            <li>ชุดคำสั่ง  print(f"Hello {c}") คือ การสั่งให้พิมพ์ข้อความ "Hello " และค่าของ c ในรอบการทำงานปัจจุบัน </li>
+          </ol>
+        </p>
+        <div class="divider"></div>
+        <!-- Exp 3 -->
+        <p class="title is-5">ตัวอย่าง 3 : Dictionary เป็น iteration object</p>
+        <pre class="code Python box">
+name_age = {"Andy": 20,"Sammy": 35,"Sora": 20}
+sum_age = 0
+
+for key in name_age.keys() :
+  sum_age = sum_age + name_age[key]
+avg_age = sum_age / len(name_age)
+print(f"Average of the three is {avg_age} years")
+        </pre> 
+        <blockquote>
+			<p class="title is-5"><ion-icon name="desktop-outline"></ion-icon>&nbsp;Output:</p>  
+			<pre class="code">
+Average of the three is 25.0 years
+            </pre> 
+        </blockquote>  
+          <!--
+          <button class="button is-success" 
+           onclick="open_modal('branch-modal','branch-repl','branch-std-out','branch-err-out')">
+             Try it 
+          </button><br/>
+          -->
+          <br/>
+        <br/>
+          <p>
+            อธิบาย
+          <ol>
+            <li>ตัวแปร name_age เป็น Dictionary มี key เป็นชือและ value คือตัวเลขอายุ   </li>
+            <li>ตัวแปร sum_age  ใช้เก็บผลบวกของอายุ กำหนดค่าเริ่มต้นเป็น 0 </li>
+            <li>ตัวแปร key เป็น looping variable รับค่าที่ได้จากคำสั่ง key() </li>  
+            <li>เมื่อรวมค่าอายุของสมาชิกครบแล้ว คำนวณหาค่าเฉลี่ยโดยนำค่าของ sum_age  มาหารด้วยจำนวนข้อมูลในชุดข้อมูล</li>
+          </ol>
+          <blockquote>
+            <p class="title is-5"><ion-icon name="school-outline"></ion-icon>&nbsp;Tip:</p>  
+            <p>
+            len(obj)  เป็น built-in function  ของ  Python ใช้บอกจำนวนสมาชิกของ obj โดยใ้ช้ได้กับ  String, List, 
+            Tuple, Set,Dictionary,byte, bytearray เช่น  len("Hello") จะมีค่าเท่ากับ  5  เป็นต้น
+            </p>
+          </blockquote>
+        </p>
+        <div class="divider"></div>
+        <!-- Exp 4 --->
+        <p class="title is-5">ตัวอย่าง 4 </p>
+        <p>
+          โปรแกรมหาค่าเฉลี่ยของตัวเลขชุดหนึ่ง [1,8,8,3,10] ด้วยสูตรหาค่าเฉลี่ย  \[average = \frac{\sum_{i=1}^n{x_i}} {n}\]
+        </p>
+        <pre class="code Python box">
+data = [1,8,8,3,10]
+sum = 0
+n = len(data)
+for x in data :
+  sum = sum + x
+average = sum / n
+print(f"Average is {average}")
+        </pre> 
+        <blockquote>
+			<p class="title is-5"><ion-icon name="desktop-outline"></ion-icon>&nbsp;Output:</p>  
+			<pre class="code">
+Average is 6.0
+            </pre> 
+        </blockquote>    
+          <!--
+          <button class="button is-success" 
+           onclick="open_modal('branch-modal','branch-repl','branch-std-out','branch-err-out')">
+             Try it 
+          </button>-->
+          <br/>
+          <div class="divider"></div>
+          <p class="title is-4">การใช้ range()</p>
+          <p>
+            range() คือ built-in function ใช้สร้างลำดับของตัวเลขจำนวนเต็ม โดยสามารถกำหนดให้เป็นลำดับแบบเพิ่มค่าหรือลดค่าก็ได้  มีรูปแบบคือ        
+          </p>
+          <pre class="code Python box">
+range(start,stop,step)            
+          </pre>
+        <p>
+        การสร้างชุดของตัวเลข (r) จะใช้สูตร \(r[i] = start + step \times i \) โดย \(i \geq 0 \) และ \( r[i] < stop \) ในกรณีที่ step เป็นค่าบวก หรือ \( r[i] > stop \) ในกรณี step เป็นค่าลบ  เช่น        
+          <dl>
+				<dt><span class="has-text-link has-text-bold">range(1,5,2)</span> หมายถึงการสร้างชุดของตัวเลข start =  1, stop &#60; 5 และ step = 2  ลำดับที่ได้จะเป็นลำดับแบบเพิ่มค่า เพราะค่า
+          step เป็นบวก </dt>
+				<dd>
+					<div class="columns">
+						<table class="table column">
+							<thead>
+								<tr><th>i</th><th>\(r[i] = start + step \times i \)</th></tr>
+							</thead>
+							<tbody>
+								<tr><td>0</td><td>\(1 + 2 \times 0 = 1\)</td></tr>
+								<tr><td>1</td><td>\(1 + 2 \times 1 = 3\)</td></tr>
+								<tr><td>2</td><td>\(1 + 2 \times 2 = 5\)</td></tr>
+							</tbody>
+						</table>
+						<div class="column"></div>
+					</div>
+					ค่า \( r[2] = 5 \) จะไม่นำมาใช้เพราะมีค่าเท่ากับ stop ดังนั้นจะได้ชุดของตัวเลขเป็น [1,3] 
+				</dd>
+				<br/>
+				<dt><span class="has-text-link has-text-bold">range(10,0,-2)</span> หมายถึงการสร้างชุดของตัวเลข start =  10, stop &#62; 0 และ step = -2  ลำดับที่ได้จะเป็นลำดับแบบลดค่า เพราะค่า
+          step เป็นลบ</dt>
+				<dd>
+					<div class="columns">
+						<table class="table column">
+							<thead>
+								<tr><th>i</th><th>\(r[i] = start + step \times i \)</th></tr>
+							</thead>
+							<tbody>
+								<tr><td>0</td><td>\(10 + (-2 \times 0) = 10 \)</td></tr>
+								<tr><td>1</td><td>\(10 + (-2 \times 1) = 8\)</td></tr>
+								<tr><td>2</td><td>\(10 + (-2 \times 2) = 6\)</td></tr>
+								<tr><td>3</td><td>\(10 + (-2 \times 3) = 4\)</td></tr>
+								<tr><td>4</td><td>\(10 + (-2 \times 4) = 2\)</td></tr>
+								<tr><td>5</td><td>\(10 + (-2 \times 5) = 0\)</td></tr>
+							</tbody>
+						</table>
+						<div class="column"></div>
+					</div>
+					ค่า \( r[5] = 0 \) จะไม่นำมาใช้เพราะมีค่าเท่ากับ stop ดังนั้นจะได้ชุดของตัวเลขเป็น [10,8,6,4,2] 
+				
+				</dd>
+          </dl>
+          </p>
+              
+          
+          <p>
+          
+          </p>
+          <p>
+          ชุดของตัวเลขที่สร้างจาก range() จะไม่แสดงให้เห็น หากต้องการเห็นชุดของตัวเลขให้ใช้ list()  เช่น 
+          <pre class="code Python box">
+r = range(1,10,2)
+print(list(r))
+          </pre>
+          <blockquote>
+			<p class="title is-5"><ion-icon name="desktop-outline"></ion-icon>&nbsp;Output:</p>  
+			<pre class="code">
+[1,3,5,7,9]
+            </pre> 
+        </blockquote>  
+          </p>         
+          <blockquote>
+			<p class="title is-5"><ion-icon name="star-outline"></ion-icon> &nbsp Remember : </p>
+			<ol>
+				<li>ค่าที่ต้องระบุ (mandotory) ใน range() คือ stop</li>
+				<li>หากไม่กำหนดค่า start จะใช้ค่าปริยาย (default) คือ 0</li>
+				<li>หากไม่กำหนดค่า step จะใช้ค่าปริยาย (default) คือ 1</li>
+			</ol>
+            เช่น range(10) มีความหมายเดียวกับ range(0,10,1) 
+            (<a href="https://docs.python.org/3.3/library/stdtypes.html?highlight=range">ดูเพิ่มเติม </a>)
+          </blockquote>
+        <div class="divider"></div>
+        <p class="title is-5"> ตัวอย่าง  5  :  การประมาณค่า  \(\pi\) </p>
+        <p>
+         การประมาณค่า  \(\pi\) สามารถทำได้โดยการคำนวณจาก infinite series :
+          \[\pi = 3 + \frac{4 (-1)^i}{(2+ 2i)(3+2i)(4+2i)}, 0 \leq i \leq \infty \]
+        </p>
+        <pre class="code Python box">
+def create_element(i):
+	dominator = (2+2*i)*(3+2*i)*(4+2*i)
+	numerator = 4 * math.pow(-1,i)
+	return numerator/dominator
+	
+def estimate_pi(l):
+	s = 3
+	for i in range(l):
+		s  = s + create_element(i)
+	return s
+
+iterations = 20 # 20 rounds is enough for test 
+est_pi = estimate_pi(iterations)
+print(est_pi)
+        </pre>
+        <blockquote>
+			<p class="title is-5"><ion-icon name="desktop-outline"></ion-icon>&nbsp;Output:</p> 
+			<pre class="code">
+3.1415
+			</pre>
+        </blockquote>
+        <!--
+        <button class="button is-success" 
+           onclick="open_modal('branch-modal','branch-repl','branch-std-out','branch-err-out')">
+             Try it 
+        </button><br/>
+        -->
+        <div class="divider"></div>
+        <p class="title is-5">ตัวอย่าง 6 : Caesar Cipher</p>
+        <p>          
+          Caesar Cipher คือ algorithm เข้ารหัส (encryption) ที่คิดขึ้นมาโดย Julius Ceasar เพื่อใช้ปกปิดข้อความในคำสั่งไม่ให้คนอื่นอ่านเข้าใจ
+          นอกจากคนที่รู้วิธีถอดรหัส (decryption) หลักการคือ ขยับตำแหน่งตัวษรไป 3 ตำแหน่ง เช่น ถ้าอักษรจริงคือ A อักษรที่จะถูกเขียนไปบนเอกสารจะ
+          เป็นอักษร D อักษร N จะเป็น Q อักษร T จะเป็น W ดังนั้นคำ "ANT" จะถูกเขียนเป็น "DQW" เป็นต้น 
+        </p>
+        <p>
+        ตัวอย่างในข้อนี่้จะแสดงการสร้าง look up table เพื่อโยงตัวอักษรต้นฉบับ A - Z กับอักษรที่จะใช้ในการเข้ารหัส 
+        </p>
+        <pre class="code Python box">
+def caesar_lookup_table():
+	# ord("A") = 65, ord("Z") = 90
+	lookup_tab = {}
+	for i in range(65,91,1):
+		org_chr = chr(i)
+		enc_chr = chr(i+3)		
+		lookup_tab[org_chr] = enc_chr
+  lookup_tab[chr(32)] = chr(35) 
+	return lookup_tab
+
+print(caesar_lookup_table()) 
+        </pre>
+        <blockquote>
+			<p class="title is-5"><ion-icon name="desktop-outline"></ion-icon>&nbsp;Output:</p> 
+			<pre class="code">
+{'A': 'D', 'B': 'E', 'C': 'F', 'D': 'G', 
+'E': 'H', 'F': 'I', 'G': 'J', 'H': 'K', 
+'I': 'L', 'J': 'M', 'K': 'N', 'L': 'O', 
+'M': 'P', 'N': 'Q', 'O': 'R', 'P': 'S', 
+'Q': 'T', 'R': 'U', 'S': 'V', 'T': 'W', 
+'U': 'X', 'V': 'Y', 'W': 'Z', 'X': '[', 'Y': '\\',
+'Z': ']', ' ': '#'}
+			</pre>
+        </blockquote>
+        <!--
+        <button class="button is-success" 
+           onclick="open_modal('branch-modal','branch-repl','branch-std-out','branch-err-out')">
+             Try it 
+        </button><br/>
+        -->
+        <br/>
+        <blockquote>
+        <p class="title is-5"><ion-icon name="school-outline"></ion-icon>&nbsp;Tip:</p>  
+          <ol>
+            <li>chr(i) เป็น Python built-in function ใช้เปลี่ยนจำนวนเต็ม i ไปเป็นอักษร <a href="https://en.wikipedia.org/wiki/List_of_Unicode_characters#Basic_Latin">Basic Latin</a></li>
+            <li>รหัส Unicode ของอักษร A - Z คือ 65 - 90 , วรรค (space) คือ  32 และ "#" คือ 35 </li>
+          </ol>
+        </blockquote>
+        <div class="divider"></div>
+        <p class="title is-5">ตัวอย่าง 7 Caesar encryptor</p>
+        <p>
+          สร้างตัวเข้ารหัสด้วย Caesar cipher อย่างง่าย
+        </p>
+        <pre class="code Python box">
+def caesar_encryptor(msg):
+	encrypted = ""
+	for x in msg :
+		next_3 =  ord(x) + 3 # encryption
+		encrypted = encrypted + chr(next_3)
+	return encrypted
+  
+  org_msg = "I LOVE YOU"
+  enc_msg = caesar_encryptor(org_msg)
+  print(f"Original message = '{org_msg}', ciphered message = '{enc_msg}'")
+        </pre>
+        <blockquote>
+			<p class="title is-5"><ion-icon name="desktop-outline"></ion-icon>&nbsp;Output:</p> 
+			<pre class="code">
+Original message = 'I LOVE YOU', encrypted message = 'L#ORYH#\RX'				
+			</pre>
+		</blockquote>	
+		<!--
+        <button class="button is-success" 
+           onclick="open_modal('branch-modal','branch-repl','branch-std-out','branch-err-out')">
+             Try it 
+        </button><br/><br/>
+        -->
+        <blockquote>
+         <p class="title is-5"><ion-icon name="school-outline"></ion-icon>&nbsp;Tip:</p>  
+          <p>
+            <span class="has-text-link">ord(c)</span> คือ Python built-in function ใช้เปลี่ยน charactor c ให้เป็นตัวเลขค่า Unicode  เช่น ord('A') คือ 65, ord("Z") = 90
+          </p>
+        </blockquote>
+        <div class="divider"></div>
+        <p class="title is-5">ตัวอย่าง 8 : Caesar decryptor</p>
+        <p>ในตัวอย่างนี้ ทำตรงข้ามกับตัวอย่างที่ 7 </p>
+        <pre class="code Python box">
+def caesar_decryptor(msg):
+	decrypted = ""
+	for x in msg :
+		decypted_code =  ord(x) - 3
+		decrypted = decrypted + chr(decypted_code)
+	return decrypted
+
+enc_msg = "L#ORYH#\RX"
+dec_msg = caesar_decryptor(enc_msg)
+print(f"Encrypted message = '{enc_msg}', original message = '{dec_msg}', ")
+        </pre>
+         <blockquote>
+			<p class="title is-5"><ion-icon name="desktop-outline"></ion-icon>&nbsp;Output:</p> 
+			<pre class="code">
+Encrypted message = 'L#ORYH#\RX', original message = 'I LOVE YOU', 
+         	</pre>
+        </blockquote>
+        <!--
+        <button class="button is-success" 
+           onclick="open_modal('branch-modal','branch-repl','branch-std-out','branch-err-out')">
+             Try it 
+        </button><br/>
+        -->
+      </section>
+      <!-- #######  While Loops ############### -->
+      <section class="section box slide content">
+        <p class="title is-3">
+          While Loops
+        </p>
+        <p>
+          While Loops ใช้ค่าความจริงของเงื่อนไข (condition) ที่กำหนดขึ้นแบบเดียวกับการใช้ if เป็นตัวชี้ว่าการทำซ้ำจะหยุดหรือดำเนินต่อ 
+          ทำให้ไม่สามารถกำหนดจำนวนรอบได้ชัดเจน จึงเรียกการทำซ้ำแบบนี้ว่า
+          <b>Indefinite loop</b> รูปแบบทั่วไปคือ
+          <pre class="code Python box">
+while &#60;condition&#62; :
+  &#60;instructions block&#62;
+        </pre>
+        
+        <div class="columns">
+          <div class="column"></div>
+          <div class="column">
+            <figure class="image">
+              <img src="./img/hello_python_while_loop.png"/>
+            </figure>
+          </div>
+          <div class="column"></div>
+        </div>
+        </p>
+        <br/>
+        <p class="title is-5">ตัวอย่าง 1 : ประมาณค่ารากที่ 2 ด้วย Newton-Raphson method</p>
+        <p>
+          <a href="https://math.mit.edu/~stevenj/18.335/newton-sqrt.pdf">Newton-Raphson method </a>
+          เป็น algorithm ใช้ประมาณค่ารากที่ 2 ของจำนวนจริงบวก a จากสูตร (สรุปจากเอกสารประกอบ)
+          \[x_{n+1} = \frac{1}{2}(x_n + \frac{a}{x_n})\]
+          เมื่อ \(x_{n+1} \) คือค่ารากที่ 2 ของ a โดยประมาณ
+        </p>
+        <p>
+          จะเห็นได้ว่า Algorithm นี้ต้องมีการคำนวณแบบ iteration จนกว่าจะได้ค่า \(x_{n+1} \) ที่เหมาะสม ซึ่งคำว่า "เหมาะสม" นั้นทำให้
+          ไม่สามารถระบุจำนวนรอบของการทำงานได้ชัดเจน ขึ้นกับเงื่อนไข (condition) ที่ตั้งขึ้น โดยในตัวอย่างจะให้ผู้ใช้กำหนดค่า threshold ขึ้นมาค่าหนึ่ง
+          และความเหมาะสมจะเกิดขึ้นเมื่อ \(|x_{n+1} - a |&#60; \text{threshold} \) 
+        </p>
+        <pre class="code Python box">
+def newton_method_sqrt(x,threshold=0.001):
+  # initialize guess, any real number which greater than 0 is ok.
+	guess = x/2   
+  
+	diff = x - guess*guess  
+	while abs(diff) &#62; threshold :
+		guess = (x/guess + guess) * 0.5 # update guess
+		diff = x - guess*guess
+		
+	return guess	 
+  
+# test 1
+threshold = 0.00001
+a = 9
+sqrt = newton_method_sqrt(a,threshold)
+print(f"Square root of {a} is {sqrt}")
+  
+# test 2
+threshold = 0.00001
+a = 50
+sqrt = newton_method_sqrt(a,threshold)
+print(f"Square root of {a} is {sqrt}")
+  
+# test 3
+threshold = 0.00001
+a = 12.56
+sqrt = newton_method_sqrt(a,threshold)
+print(f"Square root of {a} is {sqrt}")
+        </pre>
+        <blockquote>
+			<p class="title is-5"><ion-icon name="desktop-outline"></ion-icon>&nbsp;Output:</p> 
+			<pre class="code">
+Square root of 9 is 3.0000000000393214
+Square root of 50 is 7.071067928984419
+Square root of 12.56 is 3.5440090386179595
+			</pre>
+        </blockquote>
+        <!--
+        <button class="button is-success" 
+           onclick="open_modal('branch-modal','branch-repl','branch-std-out','branch-err-out')">
+             Try it 
+        </button><br/><br/>
+        -->
+        <br/>
+        <blockquote>
+         <p class="title is-5"><ion-icon name="school-outline"></ion-icon>&nbsp;Tip:</p>  
+            
+          <p>
+            <span class="has-text-link">abs(x)</span> เป็น Python built-in function ทางคณิตศาสตร์ จะส่งค่า absolute value ของจำนวนจริง x ออกมา เช่น abs(-5) = 5
+          </p>
+        </blockquote>
+        <div class="divider"></div>
+        <p class="title is-5">ตัวอย่าง 2 หา Greatest commond divisor ด้วยวิธีของ Euclidean</p>
+        <p>
+          Greatest commond divisor (GCD) ของสองจำนวน M,N คือจำนวนที่มีค่ามากที่สุดที่หาร M,N ลงตัว เช่น 12,6 จะมี GCD คือ 6 
+          ตัวอย่างนี้แสดงให้เห็นนำเอา <a href="https://www.khanacademy.org/computing/computer-science/cryptography/modarithmetic/a/the-euclidean-algorithm">Euclidean algorithm </a>มาใช้
+        </p>
+        <pre class="code Python box">
+def gcd(m,n):	
+	while not(m==0 or n ==0):		
+		mi = min(m,n)
+		mx = max(m,n)
+		r = mx % mi
+		m = mi
+		n = r
+
+	if m == 0 :
+		return n
+	if n == 0 :
+		return m
+		        
+print(gcd(10,12))
+print(gcd(192,270))        
+        </pre>
+        <blockquote>
+			<p class="title is-5"><ion-icon name="desktop-outline"></ion-icon>&nbsp;Output:</p> 
+			<pre class="code">
+2
+6
+			</pre>
+        </blockquote>
+        <!--
+        <button class="button is-success" 
+           onclick="open_modal('branch-modal','branch-repl','branch-std-out','branch-err-out')">
+             Try it 
+        </button><br/><br/>
+        -->
+        <br/>
+        <blockquote>
+          <p class="title is-5"><ion-icon name="school-outline"></ion-icon>&nbsp;Tip:</p>  
+          <ol>
+            <li><span class="has-text-link">min(x,y)</span> เป็น Python built-in function ทางคณิตศาสตร์ จะส่งค่าที่น้อยที่สุดระหว่าง x,y</li>
+            <li><span class="has-text-link">max(x,y)</span> เป็น Python built-in function ทางคณิตศาสตร์ จะส่งค่าที่มากทีสุดระหว่าง x,y</li>
+          </ol>
+        </blockquote>
+        <div class="divider"></div> 
+  
+      </section>
+      <!-- ########  Break and Continue ############## -->
+      <section class="section box slide content">
+		  <p class="title is-3">Break และ Continue </p>	  
+		  <p>เหตุการณ์ในชีวิตจริง เช่น การประชาสัมพันธ์ส่งเสริมการขายสินค้า A โดยจะทำการลดราคา 50 % จากราคาขายตลอดเดือนตุลาคมหรือจนกว่า สินค้าจะหมด ความคาดหวังคือจะ
+		  ทำการลดราคาตลอด 31 วัน แต่หากสินค้าหมดก่อนก็ต้องหยุด (break) หรือหากสามารถหาสินค้ามาเติมได้ก็จะดำเนินการต่อจนครบ (continue) การที่สินค้าหมดลงหรือ
+		  การมีสินค้ามาเพิ่มเป็นเงื่อนไขที่อาจเกิดขึ้นแล้วทำให้การดำเนินไปของกิจกรรมเปลี่ยนไป เหตุการณ์ทำนองนี้เกิดขึ้นได้ในการเขียนโปรแกรมคอมพิวเตอร์ด้วยเช่นกัน 
+		  ในบางกรณี การตรวจสอบเงื่อนไขภายใน iteration body เองอาจจะส่งผลให้การดำเนินไปของ loop ไม่เป็นไปตามปรกติ ในภาษา Python มีคำสั่งที่ใช้คือ <span class="has-text-link has-text-weight-bold ">break</span> และ <span class="has-text-link has-text-weight-bold ">continue</span>
+		  </p>
+		  <br/>
+		  <p class="title is-5">break statement</p>
+		  <p>
+			<span class="has-text-link has-text-weight-bold ">break</span> เป็นคำสั่งที่ใช้เพื่อหยุดการทำ iteration แล้วเรียกใช้คำสั่งชุดแรกที่อยู่ถัดออกไปจาก iteration loop 			
+		  </p>
+		  <div class="columns">
+			  <div class="column"></div>
+			  <div class="column">
+				  <figure class="image">
+					<img src="./img/break_loop.png" />
+				  </figure>
+			  </div>
+			  <div class="column"></div>			  
+		  </div>
+		  <pre class="code Python box">
+S = "Hello World"
+for c in S :
+	if c == "o" :
+		break
+	print(c)
+	
+# outside the loop
+print("Outside loop body")
+		  </pre>
+		  <blockquote>
+			  <p class="title is-5"><ion-icon name="desktop-outline"></ion-icon>&nbsp;Output:</p> 
+			  <pre class="code">
+H
+e
+l
+l
+Outside loop body
+			 </pre>
+          </blockquote>
+          <br/>
+          <pre class="code Python box">
+nn = 1
+while True  :
+	if n**2 > 50 :
+		break	
+	print(f"Square of {n} = {n**2}")
+	n = n + 1 	
+	
+# outside the loop
+print("Outside loop body")
+		  </pre>
+		  <blockquote>
+			  <p class="title is-5"><ion-icon name="desktop-outline"></ion-icon>&nbsp;Output:</p> 
+			  <pre class="code">
+Square of 1 = 1
+Square of 2 = 4
+Square of 3 = 9
+Square of 4 = 16
+Square of 5 = 25
+Square of 6 = 36
+Square of 7 = 49
+Outside loop body
+			 </pre>
+          </blockquote>
+          <p> การทำงานของ break statement อธิบายตามที่แสดงในรูปข้างล่างนี้</p>
+          <div class="columns">
+			  <div class="column">
+					<img src="./img/break_loop_code_3.png" />
+			  </div>			  
+			  <div class="column"></div>			  
+		  </div>
+          <br/>
+          <p class="title is-5">continue statement</p>        
+		  <p>
+			<span class="has-text-link has-text-weight-bold ">continue</span> เป็นคำสั่งที่ให้ข้ามชุดคำสั่งที่ตามหลังทั้งหมดใน iteration body แล้วเดินหน้าไปสู่การทำงานรอบถัดไป
+		  </p>
+		  		  <div class="columns">
+			  <div class="column"></div>
+			  <div class="column">
+				  <figure class="image">
+					<img src="./img/continue_loop.png" />
+				  </figure>
+			  </div>
+			  <div class="column"></div>			  
+		  </div>
+		 <pre class="code Python box">
+for x in range(0,5,1) :
+	print("before continue")
+	if x == 3 :
+	    # skip to next iteration
+		continue
+	print(x)		
+	print("----")
+# outside the loop
+print("Outside loop body")
+		  </pre>
+		  <blockquote>
+			  <p class="title is-5"><ion-icon name="desktop-outline"></ion-icon>&nbsp;Output:</p> 
+			  <pre class="code">
+before continue
+0
+----
+before continue
+1
+----
+before continue
+2
+----
+before continue
+before continue
+4
+----
+Outside loop body
+			 </pre>
+          </blockquote>
+          <p>
+			  ตัวอย่างนี้แสดงให้เห็นว่ามีการข้ามไม่ได้ทำชุดคำสั่งที่อยู่ตามหลัง continue เมื่อ x มีค่าเป็น 3 ตามเงื่อนไข การทำงานของ continue statement อธิบายตามที่แสดงในรูปข้างล่างนี้</p>
+          </p>
+          <div class="columns">
+			<div class="column">
+				<img src="./img/continue_code.png" />
+			</div>
+			<div class="column"></div>
+          </div>
+          <br/>
+          <pre class="code Python box">
+S = "1234*56789"
+i  = 0 
+while i < len(S) :	
+	if S[i] == "*" :
+		continue
+	print(S[i])
+	i = i+1			  
+          </pre>
+          <blockquote>
+				<p class="title is-5"><ion-icon name="desktop-outline"></ion-icon>&nbsp;Output:</p> 
+				<pre class="code">
+1
+2
+3
+4
+				</pre>
+			</blockquote>  
+			<p>
+				ตัวอย่างนี้แสดงให้เห็นจุดที่ต้องระวังในการใช้งาน <span class="has-text-link has-text-weight-bold ">continue</span> หลังจากที่การตรวจสอบเงื่อนไข
+			S[i] == "*"  เป็นจริง คำสั่งที่ตามหลังจะถูกข้ามทั้งหมด รวมทั้งคำสั่งที่เปลี่ยนค่าของ i ด้วย เมื่อค่า i ไม่เปลี่ยน ค่าของ S[i] ก็ไม่เปลี่ยนด้วย 	ผลก็คือชุดคำสั่งนี้จะทำงาน
+			ไม่รู้จบ (endless loop หรือ infinite loop)
+			</p>
+
+	  </section>
+      <!-- ########  Comprehension ############## -->
+      <section class="section box slide content">
+        <p class="title is-3">  List comprehension        </p>
+        <p>
+          การสร้าง Iteration ด้วยวิธีการ comprehension เป็นลักษณะพิเศษที่พบใน Python อาจเป็นวิธีการที่ได้รับความนิยมในกลุ่มผู้ใช้ภาษา Python ด้วยซ้ำ
+          หลักการทั่วไปคือ การสร้าง sequence object หนึ่งจาก sequence object หนึ่ง (sequence object ได้แก่ List,Dictionary) รูปแบบทั่วไปคือ
+          <pre class="code">
+[Output Input Condition]            
+          </pre>
+        </p><br/>
+        <p class="title is-5">
+          List comprehension
+        </p>
+        <p>
+        ยกตัวอย่าง ถ้ามี X = [1,2,3,4,5] และต้องการสร้าง List ที่เป็นกำลังสองของสมาชิกใน X โดยทั่วไปอาจเขียนแบบนี้
+          <pre class="code Python box">
+X = [1,2,3,4,5]
+Y = []
+for i in X:
+  Y.append(i**2)
+print(Y)
+          </pre>
+           <blockquote>
+			<p class="title is-5"><ion-icon name="desktop-outline"></ion-icon>&nbsp;Output:</p> 
+			<pre class="code">
+2
+			</pre>
+        </blockquote>
+        <br/>
+          หากเขียนด้วย comprehension จะได้เป็น
+          <pre class="code Python box">
+X = [1,2,3,4,5]
+Y = [i**2 for i in X]
+print(Y)
+          </pre>
+          <blockquote>
+			<p class="title is-5"><ion-icon name="desktop-outline"></ion-icon>&nbsp;Output:</p> 
+			<pre class="code">
+ [1,4,9,16,25]
+			</pre>
+        </blockquote>
+        <br/>
+          ให้สังเกตุชุดคำสั่ง Y = [i**2 for i in X] 
+            <ul>
+              <li>i**2 คือ output</li>  
+              <li>และ for i in X คือ input </li>
+              <li>ไม่มีการกำหนด condition</li>
+            </ul> <br/>
+            ทดลองเพิ่มเงื่อนไข เช่น ต้องการค่ากำลังสองเฉพาะที่เป็นเลขคี่ <br/>
+          <pre class="code Python box">
+X = [1,2,3,4,5]
+Y = [i**2 for i in X if i % 2 != 0]
+print(Y)          
+          </pre>
+          <blockquote>
+			<p class="title is-5"><ion-icon name="desktop-outline"></ion-icon>&nbsp;Output:</p> 
+			<pre class="code">
+ [1,9,25]  
+			</pre>
+        </blockquote>
+        <br/>
+          คราวนี้ชุดคำสังได้มีการเพิ่ม if i % 2 != 0 เข้าไปทำให้เลือกเอาแต่เลขคี่ไปทำงานต่อ
+        </p> <br/>
+        <p class="title is-5">
+          Dictionary comprehension
+        </p>
+        <p>
+        ใช้หลักการเดียวกันกับ List comprehension เช่น {"John":60,"Mark":40} คือ dictionary มี key เป็นชื่อคนและ value คืออายุมีหน่วยปี<br/>
+        ถ้าต้องการสร้าง dictionary ที่เก็บ ชื่อและอายุในหน่วยของเดือน ก็อาจเขียนได้เป็น  
+          <pre class="code Python box">
+DY = {"John":60,"Mark":40}
+DM = {key:val * 12 for key,val in DY.items()  }
+print(DM)
+          </pre>
+            <blockquote>
+			<p class="title is-5"><ion-icon name="desktop-outline"></ion-icon>&nbsp;Output:</p> 
+			<pre class="code">
+{'John': 720, 'Mark': 480}
+			</pre>
+        </blockquote>       
+        </p>
+        
+      </section>
+      <!-- ######### Exercise  ############# -->
+      <section class="section box slide content">
+        <p class="title is-3"> Exercises</p>
+        <p>
+         1. เมื่อชุดคำสั่งนี้ทำงานเสร็จแล้ว ค่าของ  y ที่แสดงบนหน้าจะเป็นเท่าใด ?
+          <pre class="code Python box">
+y = 0
+for i in range(1000):
+  y = y + 1
+          </pre>
+          <br/>
+        <div class="control">
+         <label class="radio">
+            <input type="radio" name="ans1" value="0" onchange="check1(this)" > 100
+        </label><br/>
+        <label class="radio">
+            <input type="radio" name="ans1" value="1" onchange="check1(this)">1000
+        </label><br/>
+        <label class="radio">
+            <input type="radio" name="ans1" value="0" onchange="check1(this)"> TypeError: '>' not supported between instances of 'int' and 'str'
+         </label>
+    </div>
+          <!--
+          <button class="button is-success" 
+           onclick="open_modal('branch-modal','branch-repl','branch-std-out','branch-err-out')">
+             Try it 
+          </button><br/><br/>
+          -->
+        </p>
+       <div class="divider"></div>
+        <p>
+         2. มื่อชุดคำสั่งนี้ทำงานเสร็จแล้ว ค่าของ  y ที่แสดงบนหน้าจอจะเป็นเท่าใด ?
+          <pre class="code Python box">
+y = 0
+for i in range(1000):
+  for j in range(1000):
+    y = y + 1
+print(y)          
+          </pre>
+          <!--
+          <br/><br/>
+          <button class="button is-success" 
+           onclick="open_modal('branch-modal','branch-repl','branch-std-out','branch-err-out')">
+             Try it 
+          </button>
+          -->
+		<div class="control">
+         <label class="radio">
+            <input type="radio" name="ans1" value="0" onchange="check1(this)" > 1,000
+        </label><br/>
+        <label class="radio">
+            <input type="radio" name="ans1" value="1" onchange="check1(this)">1,000,000
+        </label><br/>
+        <label class="radio">
+            <input type="radio" name="ans1" value="0" onchange="check1(this)"> TypeError: '>' not supported between instances of 'int' and 'str'
+         </label>
+    </div>
+        </p>
+        <div class="divider"></div>
+        <p>
+			3. เขียน for-loop เพื่อแสดงข้อความทักทายรายชือทุกใน list เช่น Hello Sammy
+			<pre class="code Python">
+van_halen = ["Eddy","Alex","Micheal","David","Sammy"]			
+			</pre>
+			<div class="buttons">
+				<!--
+				<button class="button is-success" 
+					onclick="open_modal('branch-modal','branch-repl','branch-std-out','branch-err-out',null)">
+					Try it 
+				</button>
+				-->
+				<button class="button is-success" 
+					onclick="go_to_code('b1_iter:3','/beingpythonman_1/iteration.html')">Try it </button>   
+				<a class="has-text-danger-light" onclick="show_answer(3,1)">Hint</a>
+			</div>
+        </p>
+        <div class="divider"></div>
+        <p>
+			4. เขียนชุดคำสั่งภาษา Python แสดงตัวอักษรทีละตัวในประโยค "I am Thai." บนหน้าจอ โดยใชั for-loop
+			<div class="buttons">
+				<!--
+				<button class="button is-success" 
+					onclick="open_modal('branch-modal','branch-repl','branch-std-out','branch-err-out',null)">
+					Try it 
+				</button>
+				-->
+				<button class="button is-success" 
+					onclick="go_to_code('b1_iter:4','/beingpythonman_1/iteration.html')">Try it </button>   
+				<a class="has-text-danger-light" onclick="show_answer(4,1)">Hint</a>
+			</div>
+        </p>
+        <div class="divider"></div>
+        <p>
+			5. เขียนชุดคำสั่งภาษา Python เพื่อหาผลรวมของเลขจำนวนเต็มคู่ (even natural number) ่ที่อยู่ระหว่าง 0 - 20
+			<div class="buttons">
+				<!--
+				<button class="button is-success" 
+					onclick="open_modal('branch-modal','branch-repl','branch-std-out','branch-err-out',null)">
+					Try it 
+				</button>
+				-->
+				<button class="button is-success" 
+					onclick="go_to_code('b1_iter:5','/beingpythonman_1/iteration.html')">Try it </button>   
+				<a class="has-text-danger-light" onclick="show_answer(5,1)">Hint</a>
+			</div>
+        </p>
+        <div class="divider"></div>
+        <p>
+			6. สร้างชุดคำสั่งภาษา Python เพื่อพิมพ์จำนวนนับ (natural number) ตั้งแต่ 100 ถึง 1 
+			<div class="buttons">
+				<!--
+				<button class="button is-success" 
+					onclick="open_modal('branch-modal','branch-repl','branch-std-out','branch-err-out',null)">
+					Try it 
+				</button>
+				-->
+				<button class="button is-success" 
+					onclick="go_to_code('b1_iter:6','/beingpythonman_1/iteration.html')">Try it </button>   
+				<a class="has-text-danger-light" onclick="show_answer(6,1)">Hint</a>
+			</div>
+        </p>
+        <div class="divider"></div>
+        <p>
+			7. สร้างชุดคำสั่งภาษา Python เพื่อพิมพ์ "Hello World" จำนวน 10 ครั้ง โดยใช้ while-loop
+			<div class="buttons">
+				<!--
+				<button class="button is-success" 
+					onclick="open_modal('branch-modal','branch-repl','branch-std-out','branch-err-out',null)">
+					Try it 
+				</button>
+				-->
+				<button class="button is-success" 
+					onclick="go_to_code('b1_iter:7','/beingpythonman_1/iteration.html')">Try it </button>   
+				<a class="has-text-danger-light" onclick="show_answer(7,1)">Hint</a>
+			</div>
+        </p>
+        <div class="divider"></div>
+        <p>
+			8. ฝึกหัดการสร้าง while-loop 
+			<blockquote>
+			There are many types of sentences, all with different structures and complexities.
+			</blockquote>
+			<p> 8.1 สร้างชุดคำสั่งภาษา  Python เพื่อใช้นับจำนวนตัวอักษร a ทั้งหมดที่มีในประโยคที่กำหนด
+			<div class="buttons">
+				<!--
+				<button class="button is-success" 
+					onclick="open_modal('branch-modal','branch-repl','branch-std-out','branch-err-out',null)">
+					Try it 
+				</button>
+				-->
+				<button class="button is-success" 
+					onclick="go_to_code('b1_iter:81','/beingpythonman_1/iteration.html')">Try it </button>   
+				<a class="has-text-danger-light" onclick="show_answer(81,1)">Hint</a>
+			</div>
+			</p>
+			<br/>
+			<p> 8.2 สร้างชุดคำสั่งภาษา  Python เพื่อนับจำนวนตัวอักษร a และ s ทั้งหมดที่มีในประโยคที่กำหนด
+			<div class="buttons">
+				<!--
+				<button class="button is-success" 
+					onclick="open_modal('branch-modal','branch-repl','branch-std-out','branch-err-out',null)">
+					Try it 
+				</button>
+				-->
+				<button class="button is-success" 
+					onclick="go_to_code('b1_iter:82','/beingpythonman_1/iteration.html')">Try it </button>   
+				<a class="has-text-danger-light" onclick="show_answer(82,1)">Hint</a>
+			</div>
+			</p>
+        </p>
+        <div class="divider"></div>
+        <p>
+         9. สมมุติว่าร้านสะดวกซื้อแห่งหนึ่งมีรายการสินค้าบางอย่างที่ลดราคาลงเหลือ 40% ของราคาปรกติดังนี้ 
+           <div class="columns">
+             <div class="column"></div>  
+             <div class="column">
+               <table class="table">
+                 <thead>
+                   <tr><th>รายการ</th><th>ราคาปรกติ</th></tr>
+                 </thead>  
+                 <tbody>
+                   <tr><td>Instant noodles</td><td>40</td></tr>
+                   <tr><td>Milk</td><td>50</td></tr>
+                   <tr><td>Orange juice</td><td>60</td></tr>
+                   <tr><td>Canned fish</td><td>30</td></tr>
+                 </tbody>
+               </table>
+             </div>  
+             <div class="column"></div>  
+           </div>          
+           สร้างชุดคำสั่งภาษา  Python เพื่อสร้างรายการสินค้าที่ปรับลดราคาแล้ว โดยใชัวิธีการ List comprehension <br/><br/>
+           <div class="buttons">
+			   <!--
+				<button class="button is-success" 
+					onclick="open_modal('branch-modal','branch-repl','branch-std-out','branch-err-out',null)">
+					Try it 
+				</button>
+				-->
+				<button class="button is-success" 
+					onclick="go_to_code('b1_iter:9','/beingpythonman_1/iteration.html')">Try it </button>   
+				<a class="has-text-danger-light" onclick="show_answer(9,1)">Hint</a>
+			</div>        
+        </p>
+        <div class="divider"></div>
+        <p>
+          10. การคำนวณหาเกรดเฉลี่ย (Grade Point Average, GPA) ได้จากสูตร \[ GPA = \frac{\sum_{i=1}^{n}G_iC_i}{\sum_{i=1}^{n}C_i} \]
+          เมื่อ 
+            <ul>
+              <li>\(G_i\) คือ เกรดของวิชาที่ i</li>
+               <li>\(C_i\) คือ จำนวนหน่วยกิตของวิชาที่ i</li>
+            </ul>
+            เช่น ถ้ามีชุดข้อมูลเป็นคู่อันดับของเกรดและเครดิตจำนวน 4 วิชาเป็น [(2.50,3),(3.75,2),(4.00,4),(2.75,3)] จะได้
+\[GPA = \frac{(2.50 \times 3) +(3.75 \times 2)+(4.00 \times 4)+(2.75 \times 3)}{3+2+4+3} = 3.27\]
+          <br/>
+          ใช้ความรู้นี้มาออกแบบชุดคำสั่งภาษา Python ที่ใช้คำนวน GPA ของนักเรียนแต่ละคน ในรูปแบบของ function และ looping<br/><br/>
+          <div class="buttons">
+			  <!--
+				<button class="button is-success" 
+					onclick="open_modal('branch-modal','branch-repl','branch-std-out','branch-err-out',null)">
+					Try it 
+				</button>
+				-->
+				<button class="button is-success" 
+					onclick="go_to_code('b1_iter:10','/beingpythonman_1/iteration.html')">Try it </button>   
+				<a class="has-text-danger-light" onclick="show_answer(10,1)">Hint</a>
+			</div>            
+        </p>
+        <div class="divider"></div>
+      </section>
+      <!-- ###################### -->
+      <br/>
+      <!-- ################ Navigator ###################### -->
+      <nav class="pagination is-centered" role="navigation" aria-label="pagination">
+        <a class="pagination-previous" href="./index.html" alt="Home"><ion-icon name="list-outline"></ion-icon>Contents</a>
+        <a class="pagination-next" href="./read_write_data.html">Next <ion-icon name="chevron-forward-outline"></ion-icon></a>
+        
+        <ul class="pagination-list">
+          <li><a class="pagination-link" aria-label="Goto page First" onclick="currentDiv(1)">Motivation</a></li>
+          <li><a class="pagination-link" aria-label="Goto page For-loops" onclick="currentDiv(2)">For Loops</a></li>
+          <li><a class="pagination-link" aria-label="Goto page While-loops" onclick="currentDiv(3)">While Loops</a></li>          
+          <li><a class="pagination-link" aria-label="Goto page Break and continue" onclick="currentDiv(4)">Break and Continue</a></li>          
+          <li><a class="pagination-link" aria-label="Goto page Comprehension" onclick="currentDiv(5)">Comprehensions</a></li>          
+          <li><a class="pagination-link" aria-label="Goto page Exercises" onclick="currentDiv(6)">Exercise</a></li>
+        </ul>
+      </nav>    
+      
+    </div>
+    <footer class="footer box">
+      <div class="content has-text-centered">
+        <p>
+          โดย <a href="mailto:somchaisomph@gmail.com">สมชาย สมผดุง</a>. 
+        </p>
+        <p>
+          The source code is licensed
+          <a href="http://opensource.org/licenses/mit-license.php">MIT</a>. The website content
+            is licensed <a href="http://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY NC SA 4.0</a>.
+        </p>
+      </div>
+    </footer>
+    
+    <!-- The Modal -->
+    <div class="modal" id="branch-modal">
+		<div class="modal-background"></div>
+		<div class="modal-card">
+			<header class="modal-card-head">
+				<p class="modal-card-title">Exercise</p>
+				<button class="delete" aria-label="close" 
+					onclick="close_modal('branch-modal','branch-repl','branch-std-out','branch-err-out')"></button>
+			</header>
+			<section class="modal-card-body">
+				<!-- Content ... -->
+				<div class="columns is-multiline">
+					<div class="column is-three-quarters box " id="branch-repl">
+						<p><b>Type your code in box below then press Shift-ENTER to evaluate.</b> </p>
+					</div>
+					<div class="column box is-light" id="branch-std-out" onclick="clear_content(this)" ></div>
+					<div class="column is-full" id="branch-err-out" onclick="clear_content(this)" ></div>
+				</div> <!--/columns-->
+			</section>
+			<footer class="modal-card-foot">				
+				<button class="button" 
+					onclick="close_modal('branch-modal','branch-repl','branch-std-out','branch-err-out')">
+				Close</button>
+			</footer>
+		</div>
+	</div>
+	<!-- answer modul -->
+	<div class="modal" id="answer-modal">
+		<div class="modal-background"></div>
+		<div class="modal-content">
+			<p class="box content" id="answer-box">
+			</p>
+		</div>
+		<button class="modal-close is-large" aria-label="close" onclick="show_answer(0,0)"></button>
+	</div>
+    <!-- /answer modul -->
+    <!-- quickview -->
+	<div id="quickviewDefault" class="quickview box" style="background-color:rgba(230, 230, 230, 0.75);">
+		<header class="quickview-header is-primary">
+			<a data-dismiss="quickview">
+				<ion-icon src="../icons/chevron-forward-outline.svg" size="large"></ion-icon>
+			</a>
+			<p class="title is-2">Topics</p>
+			<!--span class="delete" data-dismiss="quickview"></span -->			
+		</header>
+		<div class="quickview-body">
+			<div class="quickview-block">
+				<div class="list">
+					<div class="list-item">
+						<a class="list-item-title" onclick="currentDiv(1)">Motivation</a>
+					</div>
+					<div class="list-item">
+						<a class="list-item-title" onclick="currentDiv(2)">For Loops</a>
+					</div>
+					<div class="list-item">
+						<a class="list-item-title" onclick="currentDiv(3)">While Loops</a>
+					</div>
+					<div class="list-item">
+						<a class="list-item-title" onclick="currentDiv(4)">Break และ Continue</a>
+					</div>
+					<div class="list-item">
+						<a class="list-item-title" onclick="currentDiv(5)">List comprehensions</a>
+					</div>
+					<div class="list-item">
+						<a class="list-item-title" onclick="currentDiv(6)">Exercise</a>
+					</div>
+					
+				</div>
+			</div>
+		</div>
+		
+		<footer class="quickview-footer">
+			<div class="buttons">
+				<a class="pagination-link" href="./branching.html">
+					<ion-icon name="chevron-back-outline"></ion-icon>Prev
+				</a>
+				<a class="pagination-link" href="./index.html" alt="Home">
+					<ion-icon name="list-outline"></ion-icon>Contents
+				</a>
+				<a class="pagination-link" href="./read_write_data.html">
+					Next <ion-icon name="chevron-forward-outline"></ion-icon>
+				</a>
+			</div>
+		</footer>
+		
+	</div>
+	<!-- /quickview --> 
+	<!--
+	<script defer src="https://pyscript.net/alpha/pyscript.js"></script>
+	-->
+    <script src="https://cdn.jsdelivr.net/npm/bulma-toast@2.4.1/dist/bulma-toast.min.js"></script>
+	<script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/11.5.1/highlight.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bulma-extensions@6.2.7/bulma-quickview/dist/js/bulma-quickview.min.js"></script>
+    <script src="../js/ans_b1_iteration.js" ></script>
+    <script>
+		var quickviews = bulmaQuickview.attach();     
+
+		function go_to_code(prob_text,caller_page){
+			localStorage.setItem('caller_page',caller_page);
+			localStorage.setItem('problem', prob_text);
+			window.location = "/code_editor/python_code_editor.html";
+	
+		}			
+    </script>
+    <script src="../js/my_js.js"></script>
+  </body>
+</html>

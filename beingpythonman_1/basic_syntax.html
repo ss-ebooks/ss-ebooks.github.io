@@ -1,0 +1,427 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>Basic Syntax</title>
+    <link rel="icon" type="image/png" href="https://cdn.glitch.global/cb61e7ff-aec7-49ac-884a-cea3cd4cd9da/favicon-32x32.png?v=1655545783728" />
+    <!--
+    <link rel="stylesheet" href="https://pyscript.net/alpha/pyscript.css" />    
+    <script defer src="https://pyscript.net/alpha/pyscript.js"></script>
+    -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.9.3/css/bulma.min.css" 
+		integrity="sha512-IgmDkwzs96t4SrChW29No3NXBIBv8baW490zk5aXvhCD8vuZM3yUSkbyTBcXohkySecyzIrUwiF/qV0cuPcL3Q==" 
+		crossorigin="anonymous" referrerpolicy="no-referrer" />  
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@creativebulma/bulma-divider@1.1.0/dist/bulma-divider.min.css"/>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma-extensions@6.2.7/bulma-quickview/dist/css/bulma-quickview.min.css" />		
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@creativebulma/bulma-tooltip@1.2.0/dist/bulma-tooltip.min.css" />
+  
+  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/11.5.1/styles/default.min.css">
+  <!--
+  <link rel="stylesheet" href="../css/prism.css"/>
+  -->
+  <link rel="stylesheet" href="../css/my_css.css"/>
+  
+  
+  </head>  
+  <!--
+  <py-env>
+    - numpy
+    - matplotlib
+    - paths:
+      - ./antigravity.py
+  </py-env>
+-->
+  <body>
+	<nav class="navbar bg1" role="navigation" aria-label="main navigation">
+		<div class="navbar-brand">
+			<span class="navbar-item title is-2" >
+				Basic syntax
+			</span>
+				
+		</div>
+		<div class="navbar-end">
+			<div class="navbar-item" >
+				<a class="button is-primary has-tooltip-left" 
+					data-show="quickview" 
+					alt="subcontent"
+					data-target="quickviewDefault"  data-tooltip="Topics">
+					<ion-icon name="ellipsis-vertical"></ion-icon>
+				</a>
+			</div>	 
+	</nav>
+    <div class="container" data-dismiss="quickview">
+		
+      <section class="section slide box content">
+        <p class="title is-3">
+          Motivation
+        </p>
+        <p>
+          Python คือ hight level computer programming language ที่มีรูปแบบการสื่อสารใกล้เคียงกับภาษาเขียนในภาษาอังกฤษ<br/>
+          มี data structures พร้อมใช้งาน (built in) ใช้การแปลภาษาแบบ interpreter ทำให้ใช้งานง่ายแก่ผู้เริ่มต้นและเหมาะกับการสร้างโปรแกรมต้นแบบ<br/>
+          นอกจากนี้ยังสามารถเชื่อมต่อไปใช้งานร่วมกับภาษาอื่น เช่น C, Go ได้อีกด้วย งานที่นิยมนำ Python ไปใช้งานได้แก่ 
+        </p>
+        <p>
+         
+          <br/><ion-icon name="caret-forward-outline"></ion-icon>Web Application
+          <br/><ion-icon name="caret-forward-outline"></ion-icon>Software development
+          <br/><ion-icon name="caret-forward-outline"></ion-icon>Scientific, Mathematics
+          <br/><ion-icon name="caret-forward-outline"></ion-icon>Data Science and Machine Learning
+        </p>
+        <br/><div class="divider"></div><br/>
+        <blockquote class="box">
+          "<b>Statement</b>" คือชุดคำสั่งที่เขียนในโปรแกรมเพื่อจะนำไปสั่งการคอมพิวเตอร์
+        </blockquote>
+        <blockquote class="box">
+          "<b>Syntax</b>" คือกฏในการเขียนชุดคำสั่ง แต่ละ computer language จะมี syntax ต่างกัน ทำนองเดียวกับภาษามนุษย์ที่มีกฏการใช้ภาษา ต่างกันตรงที่
+           การผิดกฏในภาษามนุษย์ยังคงใช้สื่อสารได้ ในขณะที่ computer language จะไม่อนุญาตให้มีการทำผิด syntax เลย
+        </blockquote>
+        <br/><br/><div class="divider">&clubs;&clubs;&clubs;</div><br/>
+        
+        <!--
+        <h1 class="title">Numbers</h1>
+        <div>
+          <py-repl id="numb-repl-1" 
+                   std-out="numb-out-1" 
+                   std-err="numb-out-1"
+                   >     
+          </py-repl>
+          <div id="numb-out-1" onclick="clear_content(this)"></div>
+        </div>
+        -->
+      </section>     
+      <section class="section box content slide">
+        <p class="title is-3">
+          Code block
+        </p>
+        <p>
+          Python program ประกอบขึ้นจาก <b>code block</b> ตั้งแต่ 1 code block ขึ้นไป แต่ละ code block ประกอบด้วย statement 
+          ตั้งแต่ 1 statement ขึ้น ที่สร้างขึ้นมาเพื่อทำงานใน 1 หน่วยของงาน  
+          
+        </p>
+        <h3 >
+          การย่อหน้าและการแบ่งบรรทัด (indentation and line feed)
+        </h3>
+        <p>
+          computer programming language หลายภาษาใช้ "{}" เพื่อให้ทราบถึงการแยกกลุ่ม statement หรือ code block 
+          สำหรับ Python ใช้การย่อหน้า (indentation) ซึ่งเป็นลักษณะเฉพาะของ Python
+        </p><br/>
+        <div class="columns">
+          <div class="column"> </div>
+          <div class="column ">
+            <figure class="image is-4by5">
+              <img src="https://cdn.glitch.global/cb61e7ff-aec7-49ac-884a-cea3cd4cd9da/hello_python_code_block.png?v=1656685623557">
+            </figure>
+          </div>
+          <div class="column"></div>
+        </div>
+        <p>
+          จากภาพ กล่องแต่ละสีเปรียบได้กับ 1 code block กล่องเหล่านี้ถูกวางเยื้องกัน เทียบได้กับ 
+          code block ที่มีย่อหน้าต่างกันจะถือว่าอยู่กันคนละ code block ภายในแต่ละ code block 
+          จะต้องมี statement อย่างน้อย 1 statement การแยกแต่ละ statement ออกจากกันในภาษา Python
+          ใช้การขึ้นบรรทัดใหม่ (line feed) (เมื่อกดแป้น Enter)
+        </p>
+        <div class="columns">
+          <div class="column"></div>
+          <div class="column ">
+            <figure class="image">
+              <img src="https://cdn.glitch.global/cb61e7ff-aec7-49ac-884a-cea3cd4cd9da/hello_python_code_block2.png?v=1656732498215" />
+            </figure>
+          </div>
+          <div class="column"></div>
+        </div>
+        <!--
+        <table align="center">
+          <tr><td><img src="https://cdn.glitch.global/cb61e7ff-aec7-49ac-884a-cea3cd4cd9da/Screenshot%202022-06-15%2020%3A55%3A42.png?v=1655301854560" /></td></tr>
+          <tr><td halign="center"><b>รูปที่ 1</b> แสดงการใช้การขึ้นบรรทัดใหม่และการย่อหน้า ในภาษา Python </td></tr>
+        </table>
+        -->
+        <br/>
+        <p>
+          ตัวอย่าง Python code ข้างบนประกอบด้วย 4 code blocks ลำดับการทำงานตามลำดับดังนี้
+          <ol>
+            <li>block 1 จะถูกประมวลผลก่อน </li>  
+            <li>block 2 ถูกประมวลผลตามมา</li>
+            <li>เมื่อเข้ามาใน block 2 แล้ว block 3 จะถูกนำไปประมวลผล</li>
+            <li>ถายใน block 3 มี condition if หากเงื่อนไขเป็นจริง block 4 จะถูกเรียกใช้งาน หากเป็นเท็จ block 4 จะไม่ถูกเรียก</li>
+          </ol>
+        การใช้โครงสร้างแบบนี้ อาจทำให้เกิดความยุ่งยากสำหรับนักพัฒนาที่ต้องการกำหนดโครงสร้างแบบที่ตัวเองต้องการ แต่ก็ทำให้เกิดข้อดี 3 ข้อ
+        <ol>
+          <li>การอ่าน code จะเห็นการจบบรรทัดที่ชัดเจนว่าอยู่ตรงไหน</li>
+          <li>โครงสร้างของ code จะเหมือนกันไม่ว่าจะเปลี่ยนคนเขียนชุดคำสั่ง</li>
+          <li>ช่วยให้การอ่านชุดคำสั่งง่ายขึ้น</li>
+        </ol>
+        </p><br/>
+        <p>
+          ในบางครั้งอาจต้องมีการเขียุนชุดคำสั่งที่ยาวมากจนการเขียนไว้ในบรรทัดเดียวอาจไม่สะดวกในการอ่าน สามารถแยกชุดคำสั่งออกไปยังบรรทัดใหม่โดยที่ยังคงความต่อเนื่องได้โดยการใช้ "\"
+        </p>
+        <div>
+		<!--
+          <p>Shift-Enter to execute</p>
+         
+          <py-repl id="basic-repl-0" 
+                   std-out="basic-out-0" 
+                   std-err="basic-out-0"
+                   >   
+                     
+a = 20
+b = 30
+c = 15
+if (a != b) and (b != c) \
+    and (c!=a) :
+    print("This is an example.")
+
+          
+          </py-repl>
+          -->
+          <pre class="code python box">			 
+a = 20
+b = 30
+c = 15
+if (a != b) and (b != c) \
+    and (c!=a) :
+    print("This is an example.")             
+          </pre>
+          <!--
+          <div id="basic-out-0" onclick="clear_content(this)"></div>
+          -->
+        </div>  <br/>
+        <blockquote class="box">
+          <p class="title is-5">
+            <ion-icon name="school-outline"></ion-icon>&nbsp;Tips:
+          </p>
+          <ul>
+            <li>Python program ประกอบด้วย code block อย่างน้อย 1 code block  </li>
+            <li>Code block คือกลุ่มของ statement ที่ทำงาน 1 unit  </li>
+            <li>Python ใช้ line feed ในการแบ่ง statement ออกจากกัน และใช้ indentation แยก code block  </li>
+            
+          </ul>
+        
+        </blockquote>
+        <div class="divider">&clubs;&clubs;&clubs;</div>
+      </section>
+      <!-- ###################### -->
+      <section class="section box content slide">
+        <p class="title is-3">
+          การเขียนคำอธิบาย (comment)
+        </p>
+        <p>
+          การให้คำอธิบายมีความสำคัญในการเขียนชุดคำสั่งสำหรับคอมพิวเตอร์โปรแกรม นอกจากเป็นบันทึกช่วยจำได้แล้วยังช่วยให้คนอื่นเข้าใจเหตุผลว่าอะไรคือเหตุผลของการเขียนชุดคำสั่งนั้นขึ้นมา
+          ในการเขียนคำอธิบายที่มีบรรทัดเดียว ใช้ <b>#</b> และหากเขียนหลายบรรทัดใช้ <b>"""</b> หรือ <b>'''</b> ล้อมรอบ เช่น
+        </p><br/>
+        
+        <pre class="code Python box">
+# this is single line of comment  
+
+"""
+When you want to write long comment
+you should surrond  """ or '''
+"""
+          
+        </pre>
+        
+        <p>
+          ดูตัวอย่าง
+        </p> <br/>
+        <div>
+			<!--
+          <p>Shift-Enter to execute</p>
+          <py-repl id="basic-repl-1" 
+                   std-out="basic-out-1" 
+                   std-err="basic-out-1"
+                   >     
+          -->
+          <pre class="code python box" >
+			
+# Other style of comment
+            
+# the price will be increase 100%
+price = 20
+price = price * 2
+
+f = 300            
+f = f * 3 # f is increased by 3 folds
+            
+def increase(salary, percentage, rating):
+    """ increase salary base on rating and percentage
+    rating 1 - 2 no increase
+    rating 3 - 4 increase 5%
+    rating 4 - 6 increase 10%
+    """
+    pass
+			
+          </pre>          
+            
+          <!--
+          </py-repl>
+          <div id="basic-out-1" onclick="clear_content(this)"></div>
+          -->
+        </div>
+        <br/><br/><div class="divider">&clubs;&clubs;&clubs;</div><br/>    
+      </section>
+      
+      <!-- ###################### -->  
+      <section class="section box content slide">
+        <h1 class="title">
+          คำสงวน (Reserved words)
+        </h1>
+        <p>
+          หมายถึงคำที่ Python ได้กำหนดหน้าที่ไว้แล้ว ไม่สามารถนำไปใช้เป็อย่างอื่นได้ มีด้วยกันหลายคำ 
+        </p>
+        <br/>
+        <div>
+			<!--
+          <p>Shift-Enter to execute</p>
+          <py-repl id="basic-repl-2" 
+                   std-out="basic-out-2" 
+                   std-err="basic-out-2"
+                   >     
+           -->
+			<pre class="code Python box">
+import keyword
+print(keyword.kwlist)  
+			</pre>
+          <!--          
+          </py-repl>
+          <div id="basic-out-2" onclick="clear_content(this)"></div>
+          -->
+        </div>
+        <br/><br/><div class="divider">&clubs;&clubs;&clubs;</div><br/>
+      </section>
+      <!-- ###################### -->  
+      <br/>
+      <!-- ################ Navigator ###################### -->
+      <nav class="pagination is-centered" role="navigation" aria-label="pagination">
+        <a class="pagination-previous" href="./index.html"><ion-icon name="list-outline"></ion-icon>Contents
+        <a class="pagination-next" href="./datatype.html">Next <ion-icon name="chevron-forward-outline"></ion-icon></a>
+
+        <ul class="pagination-list">
+          <li><a class="pagination-link" aria-label="Goto page First" onclick="currentDiv(1)">Motivation</a></li>
+          <li><a class="pagination-link" aria-label="Goto page Number" onclick="currentDiv(2)">Code block</a></li>
+          <li><a class="pagination-link" aria-label="Goto page String" onclick="currentDiv(3)">Comment</a></li>          
+          <li><a class="pagination-link" aria-label="Goto page List" onclick="currentDiv(4)">Reserved words</a></li>
+        </ul>
+
+      </nav>
+    </div>
+     <footer class="footer box">
+      <div class="content has-text-centered">
+        <p>
+          โดย <a href="mailto:somchaisomph@gmail.com">สมชาย สมผดุง</a>. 
+        </p>
+        <p>
+          The source code is licensed
+          <a href="http://opensource.org/licenses/mit-license.php">MIT</a>. The website content
+            is licensed <a href="http://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY NC SA 4.0</a>.
+        </p>
+      </div>
+    </footer>
+
+    <!-- The Modal -->
+    <div class="modal" id="branch-modal">
+		<div class="modal-background"></div>
+		<div class="modal-card">
+		<header class="modal-card-head">
+			<p class="modal-card-title">Exercise</p>
+			<button class="delete" aria-label="close" 
+			onclick="close_modal('branch-modal','branch-repl','branch-std-out','branch-err-out')"
+			></button>
+		</header>
+		<section class="modal-card-body">
+			<!-- Content ... -->
+			<div class="columns is-multiline">
+				<div class="column is-three-quarters" id="branch-repl">
+					<p><b>Type your code in box below then press Shift-ENTER to evaluate.</b> </p>
+				</div>
+				<div class="column" id="branch-std-out" onclick="clear_content(this)" >
+				</div>
+				<div class="column is-full" id="branch-err-out" onclick="clear_content(this)" ></div>
+			</div> <!--/columns-->
+		</section>
+		<footer class="modal-card-foot">
+			
+			<button class="button" 
+				onclick="close_modal('branch-modal','branch-repl','branch-std-out','branch-err-out')">
+				Close</button>
+		</footer>
+	</div>
+</div>
+    <!-- /The modal -->
+     <!-- quickview -->
+	<div id="quickviewDefault" class="quickview box" style="background-color:rgba(230, 230, 230, 0.75);">
+		<header class="quickview-header is-primary">
+			<!--
+			<b class="title is-2">Topics</b>
+			<span class="delete" data-dismiss="quickview"></span>
+			-->
+			<a data-dismiss="quickview">
+				<ion-icon src="../icons/chevron-forward-outline.svg" size="large"></ion-icon>
+			</a>
+			<p class="title is-2">Topics</p>
+		</header>
+		<div class="quickview-body">
+			<div class="quickview-block">
+				<div class="list">
+					<div class="list-item">
+						<a class="list-item-title" onclick="currentDiv(1)">Motivation</a>
+					</div>
+					<div class="list-item">
+						<a class="list-item-title" onclick="currentDiv(2)">Code Block</a>
+					</div>
+					<div class="list-item">
+						<a class="list-item-title" onclick="currentDiv(3)">Comment</a>
+					</div>
+					<div class="list-item">
+						<a class="list-item-title" onclick="currentDiv(4)">Reserved words</a>
+					</div>
+					
+				</div>
+			</div>
+		</div>
+		
+		<footer class="quickview-footer">
+			<div class="buttons">
+				<!--
+				<a class="pagination-link" href="./read_write_data.html">
+					<ion-icon name="chevron-back-outline"></ion-icon>Prev
+				</a>
+				-->
+				<a class="pagination-link" href="./index.html" alt="Home">
+					<ion-icon name="list-outline"></ion-icon>Contents
+				</a>
+				<a class="pagination-link" href="./datatype.html">
+					Next <ion-icon name="chevron-forward-outline"></ion-icon>
+				</a>
+			</div>
+		</footer>
+		
+	</div>
+	<!-- /quickview --> 
+	<script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bulma-extensions@6.2.7/bulma-quickview/dist/js/bulma-quickview.min.js"></script>
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <!--
+    <script src="../js/prism.js">   </script>
+    -->
+    <!--
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    -->
+    
+    <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/11.5.1/highlight.min.js"></script>
+    
+    <script>
+	 var quickviews = bulmaQuickview.attach();	
+
+      // first, find all the div.code blocks
+      document.querySelectorAll('pre.code').forEach(el => {
+        // then highlight each
+        hljs.highlightElement(el);
+      });
+    
+    </script>
+    
+    <script src="../js/my_js.js">   </script>
+    
+  </body>
+</html>

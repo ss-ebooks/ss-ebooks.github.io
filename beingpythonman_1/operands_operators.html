@@ -1,0 +1,780 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>Being Python Man : Operands and Operators</title>
+    <link rel="icon" type="image/png" href="https://cdn.glitch.global/cb61e7ff-aec7-49ac-884a-cea3cd4cd9da/favicon-32x32.png?v=1655545783728" />
+    <!--
+    <link rel="stylesheet" href="https://pyscript.net/alpha/pyscript.css" />       
+    -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.9.3/css/bulma.min.css" 
+		integrity="sha512-IgmDkwzs96t4SrChW29No3NXBIBv8baW490zk5aXvhCD8vuZM3yUSkbyTBcXohkySecyzIrUwiF/qV0cuPcL3Q==" 
+		crossorigin="anonymous" referrerpolicy="no-referrer" />  
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@creativebulma/bulma-divider@1.1.0/dist/bulma-divider.min.css"/>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma-extensions@6.2.7/bulma-quickview/dist/css/bulma-quickview.min.css" />		
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@creativebulma/bulma-tooltip@1.2.0/dist/bulma-tooltip.min.css" />
+  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/11.5.1/styles/default.min.css">
+  <link rel="stylesheet" href="../css/my_css.css">
+
+  </head>  
+  <!--
+  <py-env>
+    - numpy
+    - matplotlib
+    - paths:
+      - ./antigravity.py
+  </py-env>
+-->
+  <body>
+	  <nav class="navbar bg1" role="navigation" aria-label="main navigation">
+			<div class="navbar-brand">
+				<span class="navbar-item title is-2" >
+					Operators และ Operands
+				</span>
+				
+			</div>
+			<div class="navbar-end">
+			<div class="navbar-item" >
+				<a class="button is-primary has-tooltip-left" 
+					data-show="quickview" 
+					alt="subcontent"
+					data-target="quickviewDefault"  data-tooltip="Topics">
+					<ion-icon name="ellipsis-vertical"></ion-icon>
+			</a>
+		</div> 
+		</nav>
+ <div class="container is-widescreen " data-dismiss="quickview">
+    <section class="section box slide content">
+      <p class="title is-2">
+        Motivation
+      </p>
+      <p>
+        Operator คือสัญญลักษณ์ที่ทำให้ทราบว่าการเปลี่ยนแปลงของ Operand เกิดขึ้นได้อย่างไร เช่น 9 + 6  
+        ใน expression นี้ 9 และ 6 คือ operands และ "+" คือ operator ทำให้ทราบว่าเป็นการเพิ่มค่าให้กับ 9 ไปอีก 6 หน่วย 
+      </p><br/>
+      <p>
+      Operator ใน Python ได้แก่
+        <ul>
+          <li><a href="javascript:currentDiv(2)">Arithmetic operators</a> </li>
+          <li><a href="javascript:currentDiv(3)">Assignment operators</a> </li>
+          <li><a href="javascript:currentDiv(4)">Comparison operators</a> </li>
+          <li><a href="javascript:currentDiv(5)">Logical operators</a> </li>
+          <li><a href="javascript:currentDiv(6)">Idenitity and membership operators</a> </li>
+          <li><a href="javascript:currentDiv(7)">Bitwise operators</a> </li>
+      </ul>
+      </p><br/>
+      <p>
+        
+        
+      </p>
+    </section>
+    <!-- ********************************* -->
+    <section class="section box slide content">
+      <h1>
+       Arithmetic Operators
+      </h1>       
+        
+            <table class="table">
+              <thead>
+                <tr>
+                  <th>Operatos</th>
+                  <th>ความหมาย</th>
+                  <th>ตัวอย่าง</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td><b>+</b></td>
+                  <td><b>Addition</b> : นำค่าของ operand ทางขวาไปเพิ่มให้กับค่าของ operand ทางซ้าย</td>
+                  <td>x + y นำค่าของ y ไปเพิ่มให้ x </td>
+                </tr>
+                <tr>
+                  <td><b>-</b></td>
+                  <td><b>Subtract</b> : นำค่าของ operand ทางขวาไปลบออกจากค่าของ operand ทางซ้าย</td>
+                  <td>x - y นำค่าของ y ไปลดจาก x </td>
+                </tr>
+                <tr>
+                  <td><b> * </b></td>
+                  <td><b>Multiplication</b> :  นำค่าของ operand ทางขวาไปคูณกับค่าของ operand ทางซ้าย</td>
+                  <td>x * y นำค่าของ y ไปคูณ x </td>
+                </tr>
+                <tr>
+                  <td><b> / </b></td>
+                  <td><b>Division</b> : นำค่าของ operand ทางขวาไปหารค่าของ operand ทางซ้าย</td>
+                  <td>x / y นำค่าของ y ไปหารออกจาก x </td>
+                </tr>
+                <tr>
+                  <td><b> // </b></td>
+                  <td><b>Floor Division</b> : นำค่าของ operand ทางขวาไปหารค่าของ operand ทางซ้าย แต่ไม่นำค่าเศษมาใช้ ถ้า operand ทางซ้ายมีค่าน้อยกว่า operand ทางขวา จะได้ค่า 0</td>
+                  <td> 
+                    <ul>
+                      <li>7 // 2 = 3 </li>
+                      <li>8 // 4 = 2 </li>
+                      <li>5 // 8 = 0 </li>
+                      
+                    </ul> </td>
+                </tr>
+                <tr>
+                  <td><b> % </b></td>
+                  <td><b>Modulus</b> : นำค่าของ operand ทางขวาไปหารค่าของ operand ทางซ้าย แต่นำเฉพาะค่าเศษมาใช้ หากหารได้ลงตัวจะได้ 0 และหาก operand ทางซ้ายมีค่าน้อยกว่า operand ทางขวามือผลลัพธ์คือค่าของ operand ทางซ้ายมือ</td>
+                  <td> 
+                    <ul>
+                      <li>7 % 2 = 1 </li>
+                      <li>8 % 4 = 0 </li>
+                      <li>5 % 8 = 5 </li>
+                      
+                    </ul> </td>
+                </tr>
+                <tr>
+                  <td><b> ** </b></td>
+                  <td><b>Exponent</b> : นำค่าของ operand ทางขวาไปเป็นเลขยกกำลังให้กับ operand ทางซ้าย </td>
+                  <td> 
+                    <ul>
+                      <li>7 ** 2 = 7 * 7  </li>
+                      <li>8 ** 4 = 8 * 8 * 8 * 8 </li>                     
+                    </ul> </td>
+                </tr>
+              </tbody>
+            </table><br/>
+    </section>
+    <!-- ********************************* -->
+    <section class="section box slide content">
+       <h1>
+          Assignment Opearators
+        </h1>
+        <table class="table">
+          <thead>
+            <tr>
+              <th>Operatos</th>
+              <th>ความหมาย</th>
+              <th>ตัวอย่าง</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><b> = </b></td>
+              <td>นำค่าของ operand ทางขวาไปให้ operand ทางซ้าย</td>
+              <td>x = 9  นำ 9 ไปกับ x </td>
+            </tr>
+            <tr>
+              <td><b> += </b></td>
+              <td><b>Add AND</b> : นำค่าของ operand ทางซ้ายและขวารวมกันแล้ว assign กลับไปที่ operand ทางซ้าย
+              </td>
+              <td>
+                x = 9 <br/>
+                x += 3<br/>
+                ค่าสุดท้ายของ x คือ 9 + 3 12
+              </td>
+            </tr>
+            <tr>
+              <td><b> -= </b></td>
+              <td><b>Subtract AND</b> : นำค่าของ operand ทางขวาลบออกจาก operand ทางซ้าย แล้ว assign กลับไปที่ operand ทางซ้าย
+              </td>
+              <td>
+                x = 9 <br/>
+                x -= 3<br/>
+                ค่าสุดท้ายของ x คือ 9 - 6 = 3
+              </td>
+            </tr>
+            <tr>
+              <td><b> *= </b></td>
+              <td><b>Multiply AND</b> :   ทำ Multiplication ก่อนแล้ว assign กลับไปที่ operand ทางซ้าย
+              </td>
+              <td>
+                x = 9 <br/>
+                x *= 3<br/>
+                ค่าสุดท้ายของ x คือ 9 * 3 = 27
+              </td>
+            </tr>
+            <tr>
+              <td><b> /= </b></td>
+              <td><b>Division AND</b> :  ทำ Division ก่อนแล้ว assign กลับไปที่ operand ทางซ้าย
+              </td>
+              <td>
+                x = 9 <br/>
+                x /= 3<br/>
+                ค่าสุดท้ายของ x คือ 9 / 3 = 3
+              </td>
+            </tr>
+            <tr>
+              <td><b> //= </b></td>
+              <td><b>Floor Division AND</b> :   ทำ Floor Division ก่อนแล้ว assign กลับไปที่ operand ทางซ้าย
+              </td>
+              <td>
+                x = 9 <br/>
+                x //= 2<br/>
+                ค่าสุดท้ายของ x คือ 9 // 2 = 4
+              </td>
+            </tr>
+            <tr>
+              <td><b> %= </b></td>
+              <td><b>Modulus AND</b> :   ทำ Modulus ก่อนแล้ว assign กลับไปที่ operand ทางซ้าย
+              </td>
+              <td>
+                x = 9 <br/>
+                x %= 2<br/>
+                ค่าสุดท้ายของ x คือ 9 // 2 = 1
+              </td>
+            </tr> 
+            <tr>
+              <td><b> **= </b></td>
+              <td><b>Exponent AND</b> :   ทำ Floor Division ก่อนแล้ว assign กลับไปที่ operand ทางซ้าย
+              </td>
+              <td>
+                x = 2 <br/>
+                x **= 3<br/>
+                ค่าสุดท้ายของ x คือ 2 ** 3 = 8
+              </td>
+            </tr>
+          </tbody>
+      </table>
+    </section>      
+    <!-- ********************************* -->
+    <section class="section box slide content">
+      <h1>
+        Comparison Operators
+      </h1>
+      <p>
+        ใช้เทียบค่าของ Operand ซ้ายและขวา ผลที่ได้จะมีได้ 2 ค่าคือ True (เป็นจริง) หรือ False (เป็นเท็จ) บางครั้งเรียก Relation Operators
+      </p>
+      <table class="table">
+        <thead>
+          <tr>
+            <th>Operatos</th>
+            <th>ความหมาย</th>
+            <th>ตัวอย่าง</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><b> == </b></td>
+            <td>ถ้าค่าของ operand ทั้งทางซ้ายและขวา<b>"เท่ากัน"</b> จะได้ค่า True ในทางตรงข้ามจะได้ False
+            </td>
+            <td>
+                3 == 2 (False) <br/>
+                "Ant" == "Ant" (True)<br/>
+              "Bangkok" == "bangkok" (False)<br/>
+
+            </td>
+          </tr>
+          <tr>
+            <td><b> !=,&#60;&#62; </b></td>
+            <td>ถ้าค่าของ operand ทั้งทางซ้ายและขวา<b>"ไม่เท่ากัน"</b> จะได้ค่า True ในทางตรงข้ามจะได้ False
+            </td>
+            <td>
+                3 != 2 (True) <br/>
+                "Ant" != "Ant" (False)<br/>
+              "Bangkok" &#60;&#62; "bangkok" (True)<br/>
+
+            </td>
+          </tr>
+          <tr>
+            <td><b> &#60; </b></td>
+            <td>ถ้าค่าของ operand ทั้งทางซ้าย <b>"น้อยกว่า"</b> ทางขวา จะได้ค่า True ในทางตรงข้ามจะได้ False
+            </td>
+            <td>
+                3 &#60; 2 (False) <br/>
+                "Ant" &#60; "Ant" (False)<br/>
+              5 &#60; 50 (True)<br/>
+
+            </td>
+          </tr>
+          <tr>
+            <td><b> &#62; </b></td>
+            <td>ถ้าค่าของ operand ทั้งทางซ้าย <b>"มากกว่า"</b> ทางขวา จะได้ค่า True ในทางตรงข้ามจะได้ False
+            </td>
+            <td>
+                3 &#62; 2 (True) <br/>
+                "Ant" &#62; "Ant" (False)<br/>
+              5 &#62; 50 (False)<br/>
+
+            </td>
+          </tr>
+          <tr>
+            <td><b> &#60;&#61; </b></td>
+            <td>ถ้าค่าของ operand ทั้งทางซ้าย <b>"น้อยกว่าหรือเท่ากับ"</b> ทางขวา จะได้ค่า True ในทางตรงข้ามจะได้ False
+            </td>
+            <td>
+                3 &#60;&#61; 3 (True) <br/>
+                "Ant" &#60;&#61; "Ant" (True))<br/>
+              5 &#60;&#61; 50 (True)<br/>
+
+            </td>
+          </tr>
+          <tr>
+            <td><b> &#62;&#61; </b></td>
+            <td>ถ้าค่าของ operand ทั้งทางซ้าย <b>"มากกว่าหรือเท่ากับ"</b> ทางขวา จะได้ค่า True ในทางตรงข้ามจะได้ False
+            </td>
+            <td>
+                0 &#62;&#61; 3 (False) <br/>
+                "Ant" &#62;&#61; "Ant" (True))<br/>
+              5 &#62;&#61; 50 (True)<br/>
+
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </section>  
+    <!-- ********************************* -->
+    <section class="section slide content box">
+      <h1>
+        Logical Operator
+      </h1>
+      <p>
+      คือ operator ที่ใช้เชื่อมประพจน์ (statements) เข้าด้วยกัน
+      </p>
+      <table class="table">
+        <thead>
+          <tr>
+            <th>Operatos</th>
+            <th>ความหมาย</th>
+            
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><b>and </b></td>
+            <td>ถ้าค่าความจริง operand ทั้งทางซ้ายและทางขวา เป็นจริงทั้งคู่ จะได้ค่า True กรณีอื่นเป็น False
+            </td>
+            
+          </tr>
+          <tr>
+            <td><b>or </b></td>
+            <td>ถ้าค่าความจริง operand ทางซ้ายและทางขวา เป็นเท็จทั้งคู่ จะได้ค่า False กรณีอื่นเป็น True
+            </td>
+            
+          </tr>
+          <tr>
+            <td><b>not </b></td>
+            <td>เปลี่ยนค่าความจริงของ statement หรือ operand ให้เป็นค่าตรงข้าม
+            </td>
+            
+          </tr>
+        </tbody>
+      </table>
+      
+    </section>  
+    <!-- ********************************* -->
+    <section class="section box content slide">
+      <h1>
+        Identity and membership operators
+      </h1><br/>
+      <h3>
+        Identity operators
+      </h3>
+      <p>
+         ใช้การเทียบตำแหน่งในหน่วยความจำของ 2 operands หรือ variables         
+      </p>
+      <table class="table">
+        <thead>
+          <tr>
+            <th>Operatos</th>
+            <th>ความหมาย</th>
+            <th>ตัวอย่าง</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><b> is </b></td>
+            <td>ให้ค่า True ถ้าตำแหน่งในหน่วยความจำของ operands ทั้งซ้ายและขวาอยู่ตำแหน่งเดียวกัน ถ้าไม่จะให้ค่า False
+            </td>
+            <td>
+                x = 3<br/>
+                y = 3<br/>
+                z = "Hello"<br/>
+                x is y (True)<br/>
+                y is x (True)<br/>
+                x is z (False)<br/>
+                y is z (False)
+
+            </td>
+          </tr>
+          <tr>
+            <td><b> is not</b></td>
+            <td>ให้ค่า True ถ้าตำแหน่งในหน่วยความจำของ operands ทั้งซ้ายและขวาไม่อยู่ตำแหน่งเดียวกัน ถ้าไม่จะให้ค่า False
+            </td>
+            <td>
+                x = 3<br/>
+                y = 3<br/>
+                z = "Hello"<br/>
+                x is not y (False)<br/>
+                y is not x (False)<br/>
+                x is not z (True)<br/>
+                y is not z (True)
+
+            </td>
+          </tr>
+          
+        </tbody>
+      </table>
+      <div class="divider">&clubs;&clubs;&clubs;</div>
+       <h3>
+        Membership operators
+      </h3>
+      <p>
+         ใช้ตรวจสอบการเป็นสมาชิกของ Sequence Data Types เช่น String, List, Tuple
+      </p>
+      <table class="table">
+        <thead>
+          <tr>
+            <th>Operatos</th>
+            <th>ความหมาย</th>
+            <th>ตัวอย่าง</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><b> in </b></td>
+            <td>ให้ค่า True เมื่อ operand ทางด้านซ้ายมือเป็นสมาชิกของ sequential data type , ในทางตรงข้ามจะให้ค่า False
+            </td>
+            <td>
+                x = 3<br/>
+                y = [1,2,3,4]<br/>
+                x in y (True)<br/>
+                90 in y (False)
+            </td>
+          </tr>
+          <tr>
+            <td><b> not in</b></td>
+            <td>ให้ค่า True เมื่อ operand ทางด้านซ้ายมือไม่เป็นสมาชิกของ sequential data type , ในทางตรงข้ามจะให้ค่า False
+            </td>
+            <td>
+                x = 30<br/>
+                y = [90,1,2,3,4]<br/>
+                x not in y (True)<br/>
+                90 not in y (False)
+            </td>
+          </tr>
+          
+        </tbody>
+      </table>
+    </section>    
+    <!-- ********************************* -->
+    <section class="section box content slide">
+      <h1>
+        Bitwise operators
+      </h1>
+      <p>
+        Bitwise operations คือ การคำนวณค่าของ variable แบบ bit by bit         
+      </p>
+      <table class="table">
+        <thead>
+          <tr>
+            <th>Operatos</th>
+            <th>ความหมาย</th>
+            <th>ตัวอย่าง</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><b> &#38; </b></td>
+            <td>Binary AND : ให้ค่าเป็น 1 เมื่อ operand ที่ตำแหน่งตรงกันเป็น 1 ทั้งคู่ นอกนั้นให้ค่า 0
+            </td>
+            <td >
+               <img src="./img/hello_pythonb_bw_and.png"/> 
+            </td>
+          </tr>
+          <tr>
+            <td><b> | </b></td>
+            <td>Binary OR : ให้ค่าเป็น 0 เมื่อ operand ที่ตำแหน่งตรงกันเป็น 0 ทั้งคู่ นอกนั้นให้ค่า 1
+            </td>
+            <td >
+               <img src="./img/hello_python-bw_or.png"/> 
+            </td>
+          </tr>
+          <tr>
+            <td><b> ^ </b></td>
+            <td>Binary XOR : ให้ค่าเป็น 0 เมื่อ operand ที่ตำแหน่งตรงกันมีค่าเท่ากัน ถ้ามีค่าต่างกันให้ค่า 1
+            </td>
+            <td >
+               <img src="./img/hello_python-bw_xor.png"/> 
+            </td>
+          </tr>
+          <tr>
+            <td><b> &#62;&#62; n </b></td>
+             <td><b>Binary right shift</b> : ขยับทุก bit ไปทางขวา n bit (เติม bit 0 ทางด้านซ้ายจำนวน n bit  )
+               การทำ shift right เทียบได้กับการหารด้วย \(2^n\) 
+            </td>
+            <td >
+               1010 &#62;&#62; 2  = 001010
+               <img src="./img/hello_python-bw_shift_right.png"/> 
+            </td>
+          </tr> 
+          <tr>
+            <td><b> &#60;&#60; n </b></td>
+             <td><b>Binary left shift</b> : ขยับทุก bit ไปทางซ้าย n bit (เติม bit 0 ทางด้านขวาจำนวน n bit  )
+               การทำ shift left เทียบได้กับการคูณด้วย \(2^n\) 
+            </td>
+            <td >
+               1010 &#60;&#60; 2  = 101000
+               <img src="./img/hello_python-bw_shift_left.png"/> 
+            </td>
+          </tr> 
+        </tbody>
+      </table>      
+    </section>    
+    <!-- ************  Exercise *************** -->
+    <section class="section content box slide">
+		<p class="title is-3">Exercise</p>  
+		<p>
+			1. เขียนชุดคำสั่งตามลำดับที่กำหนดให้เพื่อคำนวณหาพื้อนที่สี่เหลี่ยมจตุรัส
+			<ol>
+				<li>กำหนดให้แต่ละด้านมีความยาว 5 หน่วย</li>
+				<li>พื้นที่ = ความยาวของด้าน x ความยาวของด้าน</li>
+			</ol>
+			 <!-- 
+			<div class="buttons">
+				<button class="button is-success" 
+					onclick="open_modal('branch-modal','branch-repl','branch-std-out','branch-err-out',null)">
+					Try it 
+				</button>
+				<a class="has-text-danger-light" onclick="show_answer(1,1)">Hint</a>
+			</div>
+			-->
+			<button class="button is-success" 
+					onclick="go_to_code('b1_operators:1','/beingpythonman_1/operands_operators.html')">Try it </button>
+		</p>
+		<div class="divider"></div>		
+		<p>
+			2. จากรูป เราทราบว่า \( \angle AOB + \angle BOC = 180 \) จงแปลงข้อความนี้ให้เป็นชุดคำสั่ง
+			<div class="columns">				
+				<div class="column image"><img src="./img/exercise_angle.png" /></div>
+				<div class="column"></div>
+				<div class="column"></div>
+			</div>
+			<!--  
+			<div class="buttons">
+				<button class="button is-success" 
+					onclick="open_modal('branch-modal','branch-repl','branch-std-out','branch-err-out',null)">
+					Try it 
+				</button>
+				<a class="has-text-danger-light" onclick="show_answer(2,1)">Hint</a>
+			</div>
+			-->
+			<button class="button is-success" 
+					onclick="go_to_code('b1_operators:2','/beingpythonman_1/operands_operators.html')">Try it </button>
+		</p>
+		<div class="divider"></div>	
+		<p>
+			3. นาย A ไปตลาดซื้อปลามา 5 ตัว จ่ายเงินค่าปลาไปทั้งหมด 250 บาท จงเขียนชุดคำสั่งหาคำนวณหาราคาขายของปลาแต่ละตัว<br/>			  
+			<!--
+			<div class="buttons">
+				<button class="button is-success" 
+					onclick="open_modal('branch-modal','branch-repl','branch-std-out','branch-err-out',null)">
+					Try it 
+				</button>
+				<a class="has-text-danger-light" onclick="show_answer(3,1)">Hint</a>
+			</div>-->
+			<button class="button is-success" 
+					onclick="go_to_code('b1_operators:3','/beingpythonman_1/operands_operators.html')">Try it </button>
+		</p>
+		<div class="divider"></div>		
+		<p>
+			4. นาย A หลังจากได้รับเงินเดือนแล้ว จ่ายค่าหนังสือไป 800 บาท ให้แม่ใช้ส่วนตัว 16% ของเงินเดือน และนำเงินบริจาคการกุศล 4% ของเงินเดือน แต่พ่อของนาย A
+			ได้รับเงินค่าจ้างเป็น 160% ของเงินที่นาย A จ่ายไปตามที่กล่าวมา ถ้านาย A ได้รับเงินเดือน 20,000 บาท จงเขียนชุดคำสั่งใช้คำนวณหาเงินค่าจ้าง
+			ของพ่อของนาย A<br/>
+			<!--
+			<div class="buttons">
+				<button class="button is-success" 
+					onclick="open_modal('branch-modal','branch-repl','branch-std-out','branch-err-out',null)">
+					Try it 
+				</button>
+				<a class="has-text-danger-light" onclick="show_answer(4,1)">Hint</a>
+			</div>
+			-->
+			<button class="button is-success" 
+					onclick="go_to_code('b1_operators:4','/beingpythonman_1/operands_operators.html')">Try it </button>
+		</p>
+		<div class="divider"></div>
+		<p>
+			5. หนังสือจำนวน 110 เล่ม แบ่งได้ดังนี้
+			<ol>
+				<li>เป็นหนังสือเก่าจำนวน  20 % ที่เหลือเป็นหนังสือใหม่</li>
+				<li>10% ของหนังสือใหม่ และ 60% ของหนังสือเก่าเป็นหนังสือภาษาอังกฤษ ที่เหลือเป็นหนังสือภาษาไทย</li>
+			</ol>
+			เขียนชุดคำสั่งเพื่อคำนวณหาจำนวนหนังสือใหม่ หนังสือเก่า หนังสือภาษาไทย และหนังสือภาษาอังกฤษ<br/>
+			<!--
+			<div class="buttons">
+				<button class="button is-success" 
+					onclick="open_modal('branch-modal','branch-repl','branch-std-out','branch-err-out',null)">
+					Try it 
+				</button>
+				<a class="has-text-danger-light" onclick="show_answer(5,1)">Hint</a>
+			</div>
+			-->
+			<button class="button is-success" 
+					onclick="go_to_code('b1_operators:5','/beingpythonman_1/operands_operators.html')">Try it </button>
+		</p>
+		<div class="divider"></div>	
+			<p>
+			6. เขียนชุคำสั่งหาเศษของ \( 15 \div 4 \) <br/>
+			<!--
+			<div class="buttons">
+				<button class="button is-success" 
+					onclick="open_modal('branch-modal','branch-repl','branch-std-out','branch-err-out',null)">
+					Try it 
+				</button>
+				<a class="has-text-danger-light" onclick="show_answer(6,1)">Hint</a>
+			</div>
+			-->
+			<button class="button is-success" 
+					onclick="go_to_code('b1_operators:6','/beingpythonman_1/operands_operators.html')">Try it </button>
+		</p>
+		<div class="divider"></div>
+		  
+    </section>
+    <!-- ################ Navigator ###################### -->
+      <nav class="pagination is-centered" role="navigation" aria-label="pagination">
+        <a class="pagination-previous" href="./index.html" alt="Home"><ion-icon name="list-outline"></ion-icon>Contents</a>
+        <a class="pagination-next" href="./function.html">Next <ion-icon name="chevron-forward-outline"></ion-icon></a>
+
+        <ul class="pagination-list">
+          <li><a class="pagination-link" aria-label="Goto page Motivation" onclick="currentDiv(1)">Motivation</a></li>
+          <li><a class="pagination-link" aria-label="Goto page Arithmetic" onclick="currentDiv(2)">Arithmetic </a></li>
+          <li><a class="pagination-link" aria-label="Goto page Assigment" onclick="currentDiv(3)">Assignment </a></li>          
+          <li><a class="pagination-link" aria-label="Goto page Comparison" onclick="currentDiv(4)">Comparison</a></li>          
+          <li><a class="pagination-link" aria-label="Goto page Exercises" onclick="currentDiv(5)">Logical </a></li>
+          <li><a class="pagination-link" aria-label="Goto page Identity & membership" onclick="currentDiv(6)"> Identity and membership</a></li>
+          <li><a class="pagination-link" aria-label="Goto page Bitwise" onclick="currentDiv(7)"> Bitwise </a></li>
+          <li><a class="pagination-link" aria-label="Goto page Exercises" onclick="currentDiv(8)"> Exercise </a></li>
+        </ul>
+
+      </nav>
+    
+    <footer class="footer box">
+      <div class="content has-text-centered">
+        <p>
+           โดย <a href="mailto:somchaisomph@gmail.com">สมชาย สมผดุง</a>. 
+        </p>
+        <p>
+          The source code is licensed
+          <a href="http://opensource.org/licenses/mit-license.php">MIT</a>. The website content
+            is licensed <a href="http://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY NC SA 4.0</a>.
+        </p>
+      </div>
+    </footer>
+</div> <!-- /container -->
+<!-- The Modal -->
+    <div class="modal" id="branch-modal">
+		<div class="modal-background"></div>
+		<div class="modal-card">
+		<header class="modal-card-head">
+			<p class="modal-card-title">Exercise</p>
+			<button class="delete" aria-label="close" 
+			onclick="close_modal('branch-modal','branch-repl','branch-std-out','branch-err-out')"
+			></button>
+		</header>
+		<section class="modal-card-body">
+			<!-- Content ... -->
+			<div class="columns is-multiline">
+				<div class="column is-three-quarters box" id="branch-repl">
+					<p><b>Type your code in box below then press Shift-ENTER to evaluate.</b> </p>
+				</div>
+				<div class="column box is-light" id="branch-std-out" onclick="clear_content(this)" >
+				</div>
+				<div class="column is-full" id="branch-err-out" onclick="clear_content(this)" ></div>
+			</div> <!--/columns-->
+		</section>
+		<footer class="modal-card-foot">
+			
+			<button class="button" 
+				onclick="close_modal('branch-modal','branch-repl','branch-std-out','branch-err-out')">
+				Close</button>
+		</footer>
+	</div>
+</div>
+
+<!-- answer modul -->
+	<div class="modal" id="answer-modal">
+		<div class="modal-background"></div>
+		<div class="modal-content">
+			<p class="box content" id="answer-box">			
+			
+			</p>
+		</div>
+		<button class="modal-close is-large" aria-label="close" onclick="show_answer(0,0)"></button>
+	</div>
+   <!-- /answer modul -->
+    <!-- quickview -->
+	<div id="quickviewDefault" class="quickview box" style="background-color:rgba(230, 230, 230, 0.75);">
+		<header class="quickview-header is-primary">
+			<a data-dismiss="quickview">
+				<ion-icon src="../icons/chevron-forward-outline.svg" size="large"></ion-icon>
+			</a>
+			<p class="title is-2">Topics</p>
+			<!--span class="delete" data-dismiss="quickview"></span -->			
+		</header>
+		<div class="quickview-body">
+			<div class="quickview-block">
+				<div class="list">
+					<div class="list-item">
+						<a class="list-item-title" onclick="currentDiv(1)">Motivation</a>
+					</div>
+					<div class="list-item">
+						<a class="list-item-title" onclick="currentDiv(2)">Aritmetic</a>
+					</div>
+					<div class="list-item">
+						<a class="list-item-title" onclick="currentDiv(3)">Assignment </a>
+					</div>
+					<div class="list-item">
+						<a class="list-item-title" onclick="currentDiv(4)">Comparison</a>
+					</div>
+					<div class="list-item">
+						<a class="list-item-title" onclick="currentDiv(5)">Logical</a>
+					</div>
+					<div class="list-item">
+						<a class="list-item-title" onclick="currentDiv(6)">Identity and membership</a>
+					</div>
+					<div class="list-item">
+						<a class="list-item-title" onclick="currentDiv(7)">Bitwise</a>
+					</div>
+					<div class="list-item">
+						<a class="list-item-title" onclick="currentDiv(8)">Exercise</a>
+					</div>
+					
+				</div>
+			</div>
+		</div>
+		
+		<footer class="quickview-footer">
+			<div class="buttons">
+				<a class="pagination-link" href="./datatype.html">
+					<ion-icon name="chevron-back-outline"></ion-icon>Prev
+				</a>
+				<a class="pagination-link" href="./index.html" alt="Home">
+					<ion-icon name="list-outline"></ion-icon>Contents
+				</a>
+				<a class="pagination-link" href="./function.html">
+					Next <ion-icon name="chevron-forward-outline"></ion-icon>
+				</a>
+			</div>
+		</footer>
+		
+	</div>
+	<!-- /quickview --> 
+		
+	<!--script defer src="https://pyscript.net/alpha/pyscript.js"></script -->
+    <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bulma-extensions@6.2.7/bulma-quickview/dist/js/bulma-quickview.min.js"></script>
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/11.5.1/highlight.min.js"></script>
+    <script>	
+		var quickviews = bulmaQuickview.attach();
+		
+		function go_to_code(prob_text,caller_page){
+			localStorage.setItem('caller_page',caller_page);
+			localStorage.setItem('problem', prob_text);
+			window.location = "/code_editor/python_code_editor.html";
+	
+		}
+	</script>
+	<script src="../js/ans_b1_operators.js"></script>
+    <script src="../js/my_js.js"></script>	
+
+   
+  </body>
+</html>
+  

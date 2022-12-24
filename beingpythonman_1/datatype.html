@@ -1,0 +1,1761 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>Variable and Data types </title>
+    <link rel="icon" type="image/png" href="https://cdn.glitch.global/cb61e7ff-aec7-49ac-884a-cea3cd4cd9da/favicon-32x32.png?v=1655545783728" />
+    <!--
+    <link rel="stylesheet" href="https://pyscript.net/alpha/pyscript.css" />    
+    -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.9.3/css/bulma.min.css" 
+		integrity="sha512-IgmDkwzs96t4SrChW29No3NXBIBv8baW490zk5aXvhCD8vuZM3yUSkbyTBcXohkySecyzIrUwiF/qV0cuPcL3Q==" 
+		crossorigin="anonymous" referrerpolicy="no-referrer" />  
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@creativebulma/bulma-divider@1.1.0/dist/bulma-divider.min.css"/>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma-extensions@6.2.7/bulma-quickview/dist/css/bulma-quickview.min.css" />		
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@creativebulma/bulma-tooltip@1.2.0/dist/bulma-tooltip.min.css" />
+  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/11.5.1/styles/default.min.css">
+   <link rel="stylesheet"   href="../css/my_css.css">
+  </head>  
+  <!--
+  <py-env>
+    - numpy
+    - matplotlib
+    - paths:
+      - ./antigravity.py
+  </py-env>
+-->
+  <body>
+	<nav class="navbar bg1" role="navigation" aria-label="main navigation">
+		<div class="navbar-brand">
+			<span class="navbar-item title is-2" >
+				Variables และ Data type
+			</span>				
+		</div>
+		<div class="navbar-end">
+			<div class="navbar-item" >
+				<a class="button is-primary has-tooltip-left" 
+					data-show="quickview" 
+					alt="subcontent"
+					data-target="quickviewDefault"  data-tooltip="Topics">
+					<ion-icon name="ellipsis-vertical"></ion-icon>
+			</a>
+		</div>	 
+	</nav>
+    <div class="container is-widescreen " data-dismiss="quickview">
+	
+      <section class="section slide box content">
+        <p class="title is-3">
+          Variables
+        </p>
+        <p>
+         วัตถุประสงค์หลักในการสร้างคอมพิวเตอร์โปรแกรมคือการประมวลผลข้อมูล ดังนั้นการจัดเก็บข้อมูลในหน่วยความจำคอมพิวเตอร์เป็นสิ่งที่ต้องทำเสมอ
+          <b>ตัวแปร</b> (variable) เปรียบได้กับเครื่องมือบอกทางไปยังตำแหน่งของข้อมูลในหน่วยความจำ ถ้าเปรียบพื้นที่หน่วยความจำคอมพิวเตอร์คือเมือง 
+          ตัวแปรก็จะเปรียบได้กับบ้านเลขที่ หรือ ค่า Latitude และ Longitude ของบ้านหรือโกดังเก็บสินค้า การสร้างตัวแปรหรือเรียกว่าการประกาศตัวแปรประกอบด้วย
+          <ol>
+            <li><b>name</b> ชื่อของตัวแปร หลักการตั้งชื่อตัวแปรในภาษา Python มีดังนี้
+              <ol>
+                <li>ชื่อตัวแปรจะต้องเป็นตัวอักษร หรืออักษรผสมตัวเลข เช่น  addr, nc_1, nc_3  </li>
+                <li>อักษรตัวแรกของชื่อตัวแปรต้องเป็นตัวอักษรหรือ  _  เท่านั้น เช่น  _aaa, a12,___vx___</li>
+                <li>ไม่มีการเว้นวรรคในชื่อตัวแปร   </li>
+                <li>อักษรตัวใหญ่กับตัวเล็กถือว่าต่างกัน เ่ช่น   Ant เป็นตัวแปรคนละตัวกับ ant    </li>
+              </ol>
+            </li>
+            <li><b>assigment operator</b> เขียนแทนด้วย "="   </li>
+            <li><b>value</b> อาจเป็น ตัวเลข,ตัวอักษร,  expression,function name,  data structure, object   ที่ต้องการนำไปเก็บไว้ในหน่วยความจำ  </li>
+          </ol>
+          <div class="columns">
+            <div class="column"></div>
+            <div class="column">
+              <figure class="image">
+                <img src="https://cdn.glitch.global/cb61e7ff-aec7-49ac-884a-cea3cd4cd9da/hello_python_variable.png?v=1656736524872">
+              </figure>
+            </div>
+            <div class="column"></div>
+          </div>
+        </p>
+        
+        <p>
+          ตัวอย่างการประกาศตัวแปร
+        </p><br/>
+       
+        <pre class="code Python box">
+ x = 1
+ thai_capital = "Bangkok"
+ y = x + 3 
+        
+        </pre>
+ 
+        
+          <div class="divider"></div>
+        
+        <br/>
+        <p class="title is-4">
+          Data types
+        </p>
+        <p>
+          Data type คือ กลุ่มหรือประเภทของข้อมูล รวมไปถึง operation ที่ใช้กับ data type แต่ละชนิดด้วย
+          Data type เป็นเรื่องสำหรับทุก programming language ข้อมูลทุกข้อมูลที่ใช้ในโปรแกรมจะต้องเป็น 
+          data type แบบใดแบบหนึ่งเสมอ สำหรับภาษา Python มี standard data types ดังนี้
+          <ol>
+            <li><a href="javascript:currentDiv(2)">Numbers</a></li>  
+            <li><a href="javascript:currentDiv(3)">String</a></li>  
+            <li><a href="javascript:currentDiv(4)">List</a></li>  
+            <li><a href="javascript:currentDiv(5)">Tuple</a></li>  
+            <li><a href="javascript:currentDiv(6)">Dictionary</a></li>  
+            <li><a href="javascript:currentDiv(7)">Set</a></li>  
+            <li><a href="javascript:currentDiv(8)">Boolean</a></li>
+            <li><a href="javascript:currentDiv(9)">Binary</a></li>
+            
+          </ol>
+        </p>
+       
+      </section>
+      <!-- ###################### -->
+      <section class="section slide box content">
+        <p class="title is-3">Numbers</p>
+        <p>
+          คือ data type ที่ใช้เก็บข้อมูลตัวเลข ประเภทของข้อมูลตัวเลชมีดังนี้
+        </p>
+        <table class="table">
+          <thead>
+            <tr>
+              <th>Type</th>
+              <th>ความหมาย</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>int (signed integers)</td>
+              <td>จำนวนเต็มทั้งบวกและลบ เช่น  -10, 20 , -1000, 123 </td>
+            </tr>
+            <tr>
+              <td>float (floating point / real numbers)</td>
+              <td>จำนวนจริงหรือตัวเลขที่มีทศนิยมทั้งบวกและลบ เช่น 0.005, 15.239  </td>
+            </tr>
+            <tr>
+              <td>complex number </td>
+              <td>ระบบจำนวนที่อยู่ในรูปแบบ a+bj เมื่อ a,b คือ float และ j คือ \( \sqrt{-1} \) เช่น 3+4j</td>
+            </tr>
+
+          </tbody>
+        </table>
+        <br/><br/>
+        <div>
+		<!--
+          <p>Shift-Enter to execute</p>
+          <py-repl id="numb-repl-1" 
+                   std-out="numb-out-1" 
+                   std-err="numb-out-1"
+                   >     
+        -->
+			<pre class="code Python box">
+# declare integer
+var1 = 15        
+var2 = -30
+print(var1 + var2)
+
+# declare float
+var3 = -15.05        
+var4 = 30.125
+print(var3 + var4)
+            
+# declare complex
+var5 = complex(3,4)        
+var6 = complex(5,6)
+           
+print(var5)
+print(var6)            
+print(var5+var6)      
+			</pre>      
+          <!--  
+          </py-repl>
+          <div id="numb-out-1" onclick="clear_content(this)"></div>
+          -->
+			
+        </div>
+        <br/><br/>
+        <p>
+        
+        </p>
+      </section>
+      <!-- ######################## -->
+      <section class="section slide box content">
+        <p class="title is-3">String</p>
+       <p>
+         String คือลำดับของตัวอักษร (sequence of characters) โดยจะต้องมี " (double quote) หรือ ' (single quote) ล้อมรอบ เช่น "I love you", "สวัสดีตอนเช้า" 
+        </p>
+        <div>
+		  <!--	
+          <p>Shift-Enter to execute</p>
+          <py-repl id="str-repl-1" 
+                   std-out="str-out-1" 
+                   std-err="str-out-1"
+                   >  
+                   -->
+            <pre class="code Python box">
+var1 = "Hello World"            
+print(var1)
+var2 = "I said 'I love you'"
+print(var2)   
+			</pre>            
+		  <!--	
+          </py-repl>
+          <div id="str-out-1" onclick="clear_content(this)"></div>
+          -->
+        </div>
+        <br/><br/>
+        <p>
+       ตัวอักษรใน String มีตัวเลขเรียกว่า index ใช้ระบุตำแหน่ง อักษรตัวแรกมีเลข index คือ 0 ตัวถัดไปคือ 1,2,3,... เช่น "HAPPY" มีตัวอักษรทั้งหมด 5 ตัว 
+       </p>
+        <p>
+          <table class="table">
+            <tbody>
+              <tr><td><b>Character</b></td><td> H</td><td>  A  </td><td>   P </td><td>   P  </td><td>   Y </td></tr></tbody> 
+              <tr><td><b>Index</b>  </td><td>  0 </td><td>  1 </td><td>  2 </td><td>  3 </td><td>  4 </td> </tr>
+
+        </table>
+        </p>
+      <p>
+        การเข้าถึงอักษรแต่ละตัวทำได้โดยการระบุเลข index ไว้ใน "[]" เช่น 
+      </p>
+        <div>
+			<!--
+			<p>Shift-Enter to execute</p>
+			<py-repl id="str-repl-2" 
+                   std-out="str-out-2" 
+                   std-err="str-out-2"
+                   >     
+            -->
+            <pre class="code Python box">
+var1 = "Hello World"            
+print(var1)
+print(var1[0])            
+print(var1[2])            
+print(var1[4])                       
+			</pre>        
+		 <!--	
+          </py-repl>
+          <div id="str-out-2" onclick="clear_content(this)"></div>
+          -->
+        </div>
+        <br/><br/>
+        <h1 class="title">
+          String operators
+      </h1>
+      <table class="table">
+        <thead>
+          <tr><td>Operator</td><td>ความหมาย</td></tr>
+        </thead>
+        <tbody>
+          <tr><td>+</td><td>รวม (concatenate) 2 String เข้าด้วยกัน</td></tr>
+          <tr><td>*</td><td>ทำซ้ำ (repetition) String ตามจำนวนครั้งที่กำหนด </td></tr>
+          <tr><td>[]</td><td>เข้าถึงตัวอักษรใน String ตามตำแหน่งที่กำหนด </td></tr>
+          <tr><td>[:]</td><td>เข้าถึงตัวอักษรใน String ตามช่วงของตำแหน่งที่กำหนด  </td></tr>
+          <tr><td>in</td><td>ให้ค่า True เมื่อตัวอักษรหรือกลุ่มตัวอักษรที่กำหนดมีอยู่ใน String  </td></tr>
+        </tbody>
+      </table>
+      <br/>
+        <div>
+			<!--
+          <p>Shift-Enter to execute</p>
+          <py-repl id="str-repl-3" 
+                   std-out="str-out-3" 
+                   std-err="str-out-3"
+                   >     
+         -->
+         <pre class="code Python box">
+var1 = "Hello "
+var2 = "World"            
+
+# concatenation            
+concat = var1 + var2
+print(f"var1 + var2 = {concat}")
+
+# repetition            
+repet = var1 * 3            
+print(f"var1 * 3 = {repet}")
+
+# get new String contains characters ranging from 2 to 4
+c2_4 = concat[2:5]            
+print(f"concat[2:5] = {c2_4} ")
+		</pre>
+		<!--
+          </py-repl>
+          <div id="str-out-3" onclick="clear_content(this)"></div>
+          -->
+        </div>
+        <br/>
+      <blockquote class="box">
+		  <p class="title is-5"><ion-icon name="school-outline"></ion-icon>&nbsp;Tips:</p>
+       อ่านรายละเอียดการใช้ f-string ได้จาก
+        <a href="https://smarter-machine.blogspot.com/2022/06/python-f-string-format.html">ที่นี่</a>
+      </blockquote>
+      </section>
+      <!-- ################  List ###################### -->
+      <section class="section slide box content">
+        <p class="title is-3">List</p>        
+        <p>
+          List คือลำดับของรายการ (ordered items) นึกภาพเหมือนกับการนำเอาสิ่งของ เช่น หนังสือมาวางเรียงกัน เราจะทราบว่าตำแหน่งของหนังสือแต่ละเล่ม ทำให้เราสามารถหยิบหนังสือที่ต้องการด้วยระบุตำแหน่งได้
+        </p>
+         <p>
+           การระบุรายการของ List ในภาษา Python ให้เขียนไว้ใน "[]" และคั่นแรายการด้วย "," เช่น 
+        </p><br/>
+        
+          <pre class="code Python box">
+list_of_numbers = [1,2,3,4,5]
+          </pre>
+          <pre class="code Python box">
+list_of_text = ["book","cat","fish"]  
+          </pre>
+        
+        <p>
+          รายการของ List ไม่จำเป็นต้องเป็นชนิดเดียวกัน สามารถใช้ผสมผสานกันได้ เช่น 
+        </p><br/>
+        
+          <pre class="code Python box">
+list_of_combination = ["book","cat","fish",1,2,3,4,5]  
+          </pre>
+        
+        <p class="title is-4">
+          การประกาศตัวแปร
+        </h1>
+        <p>
+          โดยทั่วไปมี 2 รูปแบบคือ
+        </p>
+        <ol>
+          <li>แบบระบุรายการ 
+          <pre class="code Python box">
+list_of_combination = ["book","cat","fish",1,2,3,4,5]  
+          </pre>
+            </li>
+          <li>แบบไม่ระบุรายการ 
+          <pre class="code Python box">
+list_empty = []  
+list_empty = list()
+          </pre>
+            </li>
+        </ol>
+        <br/>
+        <!--
+        <article class="panel is-primary">
+         <p class="panel-heading"> <b>แบบฝึกหัด</b>  </p>
+        <p>
+          ประกาศตัวแปรแบบ List ที่บรรจุรายการของจำนวนเต็ม 0 ถึง10 และ List ที่บรรจุชื่อประเทศ 3 ชื่อ        </p>
+          
+       <p>Shift-Enter to execute</p>
+          <py-repl id="list-repl-0" 
+                   std-out="repl-out-0" 
+                   std-err="repl-out-0"
+                   >             
+          </py-repl>
+          <div id="repl-out-0" onclick="clear_content(this)"></div>
+       
+        </article>
+         -->  
+        <br/><br/>
+        <!-- #### -->
+        <p class="title is-4">Built in functions และ operators </p>
+        <table class="table">
+          <thead><tr><td>Function</td><td>ความหมาย</td></tr></thead>
+          <tbody>
+            <tr><td>append(x)</td><td>เพิ่มรายการ x เข้าไปใน List</td></tr>
+            <tr><td>extend(L)</td><td>เพิ่ม List L เข้าไปใน List</td></tr>
+            <tr><td>insert(i,x)</td><td>เพิ่มรายการ x เข้าไปใน List ในตำแหน่งที่ i</td></tr>
+            <tr><td>remove(x)</td><td>นำรายการ x ออกจาก List</td></tr>
+            <tr><td>pop(i)</td><td>นำรายการตำแหน่งที่ i ออกจาก List</td></tr>
+            <tr><td>clear()</td><td>นำทุกรายการออกจาก List</td></tr>
+            <tr><td>index(x)</td><td>แสดงตำแหน่งของ x ใน List</td></tr>
+            <tr><td>count(x)</td><td>แสดงจำนวนรายการ x ใน List</td></tr>
+            <tr><td>sort()</td><td>เรียงลำดับรายการใน  List</td></tr>
+            <tr><td>reverse()</td><td>กลับตำแหน่งรายการใน List</td></tr>
+            <tr><td>in</td><td>ให้ค่า True ถ้ารายการที่ต้องการอยู่ใน List</td></tr>
+          </tbody>          
+        </table>
+        <br/>
+        <p>
+          ตัวอย่างการเพิ่มรายการ
+        </p>
+        <div>
+		<!--	
+        <p>Shift-Enter to execute</p>
+        <py-repl id="list-repl-1" 
+                   std-out="list-out-1" 
+                   std-err="list-out-1"> 
+        -->
+			<pre class="code Python box">
+basket = ["oranges","eggs","milk","fish","bun","cola"]
+print(f"Items in basket = {basket}")
+
+# add chicken to basket
+basket.append("chicken")            
+print(f"Items in basket = {basket}")            
+
+# add list of seasoning
+seasoning = ['cooking oil','fish sauce','shrimp paste','sugar']
+basket.extend(seasoning)
+print(f"Items in basket = {basket}")   
+
+# insert ketchup to basket with index=2
+basket.insert(2,"ketchup")
+print(f"Items in basket = {basket}")   
+
+# Is mango in the basket
+result = "mango" in basket
+print(f"Is mango in basket = {result}")   
+		</pre>         
+            
+        <!--
+          </py-repl>
+          <div id="list-out-1" onclick="clear_content(this)"></div>
+        -->  
+        </div>
+        <br/>
+        <p>
+          ตัวอย่างการนำรายการออก
+        </p>
+        <div>
+		<!--	
+          <p>Shift-Enter to execute</p>
+          <py-repl id="list-repl-1-1" std-out="list-out-1-1" std-err="list-out-1-1" > 
+        -->  
+			<pre class="code Python box">
+basket = ["oranges","eggs","milk","fish","bun","cola",'cooking oil','fish sauce','shrimp paste','sugar']            
+
+# remove 'fish' 
+basket.remove('fish')
+print(f"Items in basket = {basket}")   
+
+# pop(3)            
+the_third = basket.pop(3)            
+print(f"3rd item in basket = {the_third}")   
+            
+# empty basket
+basket.clear()
+print(basket)
+			</pre> 
+         <!--
+          </py-repl>
+          <div id="list-out-1-1" onclick="clear_content(this)"></div>
+          -->
+        </div>
+        <br/>
+        <p>
+          ตัวอย่างการเรียงรายการ
+        </p>
+        <div>
+			<!--
+          <p>Shift-Enter to execute</p>
+          <py-repl id="list-repl-2" std-out="list-out-2" std-err="list-out-2" > 
+          -->
+          <pre class="code Python box">
+basket = ["oranges","eggs","milk","fish","bun","cola",'cooking oil','fish sauce','shrimp paste','sugar']            
+print(f"All items in List = {basket}")
+            
+# sort items
+basket.sort()
+print(f"Sorted items in List = {basket}")      
+            
+# reverse items
+basket.reverse()
+print(f"Reversed items in List = {basket}")      
+            </pre>
+         <!--   
+          </py-repl>
+          <div id="list-out-2" onclick="clear_content(this)"></div>
+          -->
+        </div>
+        <br/>
+        
+      <br/>    
+      <br/>
+      <p class="title is-4">
+          การเข้าถึงรายการใน List
+      </p>
+        <p>
+          หมายถึงการเข้าถึงรายการบางส่วนของ List โดยการใช้เลข index ช่วยระบุตำแหน่ง
+        </p>
+        <div>
+			<!--
+          <p>Shift-Enter to execute</p>
+          <py-repl std-out="list-out-3-3" std-err="list-out-3-3">
+          -->
+          <pre class="code Python box">
+list_of_pets = ["cat", "dog", "guinea pig", "budgie","parrot", "iguana", "snake", "turtle"]
+print(f"All items are ={list_of_pets}")
+            
+# mammals are first three elements            
+list_of_mammals = list_of_pets[:3]
+print(f"Mammals are {list_of_mammals}")
+            
+# birs are forth and fifth            
+list_of_birds = list_of_pets[3:5] 
+print(f"Birds are {list_of_birds}")
+            
+# reptiles are the rest            
+list_of_reptiles = list_of_pets[5:]
+print(f"Reptiles are {list_of_reptiles}") 
+			</pre>           
+		  <!--	
+          </py-repl>
+          <div id="list-out-3-3" onclick="clear_content(this)"></div>
+          -->
+        </div>
+        <br/>
+      <br/>
+        <p class="title is-4"> อื่นๆ   </p>
+        <p>
+           ทดลองทำแล้วดูผลลัพธ์
+        </p>
+         <div>
+		   <!--	 
+           <p>Shift-Enter to execute</p>
+          <py-repl id="list-repl-5" std-out="repl-out-5" std-err="repl-out-5"> 
+           -->
+           <pre class="code Python box">
+months_1 = ["Jan",'Feb','March','April',"May","June"]
+months_2 = ["July",'Aug','Sep','Oct',"Nov","Dec"]
+list_concat  = months_1 + months_2      
+print(list_concat) 
+			</pre>
+           <!--                       
+           </py-repl>
+           <div id="repl-out-5" onclick="clear_content(this)"></div>
+           -->
+         </div>
+        <br/>
+        <div>
+			<!--
+          <py-repl id="list-repl-6" std-out="repl-out-6" std-err="repl-out-6"> 
+          -->
+		 <pre class="code Python box">
+print(len(months_1)) 
+print(len(months_2)) 
+print(len(list_concat))                        
+		</pre>
+		<!--
+           </py-repl>
+          <div id="repl-out-6" onclick="clear_content(this)"></div>
+          -->
+         </div>
+        <br/>
+        <p>
+           เปลี่ยน Striุng ให้อยู่ในรูปของ  List
+        </p>
+        <div>
+			<!--
+          <p>Shift-Enter to execute</p>
+          <py-repl id="list-repl-7" std-out="repl-out-7" std-err="repl-out-7"> 
+          -->
+          <pre class="code Python box">
+string_var = "Hello World"
+list_var = list(string_var)
+print(list_var)
+		 </pre>
+		 <!--
+          </py-repl>
+          <div id="repl-out-7" onclick="clear_content(this)"></div>
+          -->
+         </div>
+        <br/><br/>
+<p>
+          สามารถใช้คำสั่ง del เพื่อลบรายการออกจาก List ได้ แต่ต้องระบุรายการด้วย index 
+        </p>
+        <div>
+		  <!--	
+          <p>Shift-Enter to execute</p>
+          <py-repl id="list-repl-3" std-out="list-out-3" std-err="list-out-3"> -->
+          <pre class="code Python box">
+pets = ("cat", "dog", "guinea pig", "budgie","parrot", "iguana", "snake", "turtle")
+print(pets)            
+            
+# to delete first element            
+del pets[0]
+print(pets) 
+
+# delete in range            
+del pets[0:5]    
+print(pets)            
+         </pre>
+         <!--   
+          </py-repl>
+          <div id="list-out-3" onclick="clear_content(this)"></div>
+         --> 
+        </div>        
+  
+        
+      </section>
+      <!-- ################  Tuples---- ###################### -->
+      <section class="section slide box content">
+        <p class="title is-3"> Tuples </p>
+         <p>
+        การใช้งาน Tuples เหมือนกับ List เกือบทุกอย่าง ยกเว้น 2 เรื่องคือ  
+        </p>
+        
+         <div class="icon-text">
+            <span class="icon has-text-success">
+              <i class="fas fa-check-square"></i>
+            </span>
+            <span>1. การประกาศใช้ "()"</span>
+          </div>
+          <div class="icon-text">
+            <span class="icon has-text-success">
+              <i class="fas fa-check-square"></i>
+            </span>
+            <span>2. ไม่สามารถเปลี่ยนแปลงรายการถายใน Tuples ได้</span>
+          </div>
+        <br/>
+        <p class="title is-4">การประกาศตัวแปร</p>
+        <div>
+			<!--
+          <p>Shift-Enter to execute</p>
+          <py-repl id="tp-repl-0" std-out="tp-out-0" std-err="tp-out-0"> 
+          -->
+          <pre class="code Python box">
+# empty tuple            
+empty_tuple = ()  
+print(empty_tuple)            
+            
+# tuple of text            
+tuple_of_pets = ("cat", "dog", "guinea pig", "budgie","parrot", "iguana", "snake", "turtle")
+print(tuple_of_pets)            
+
+# tuple of number            
+tuple_of_num = (1,2,3,4)
+print(tuple_of_num)
+            
+# tuple of mixed datatype            
+tuple_of_mixed = ("I","have", 1, "cat")
+print(tuple_of_mixed)            
+
+# nested tuple
+nested_tuple = (("Chicken",2),("Men",2),("Dog",4))
+print(nested_tuple)            
+         </pre>   
+         <!--
+           </py-repl>
+          <div id="tp-out-0" onclick="clear_content(this)"></div>
+          -->
+         </div>
+        <br/>
+        <p>
+          การประกาศตัวแปร Tuple สามารถทำได้โดยไม่ต้องใช้ "()" ก็ได้ เรียกว่า <b>tuple packing</b>
+        </p>
+        <br/>
+		<div>
+			<!--
+			<p>Shift-Enter to execute</p>
+			<py-repl id="tp-repl-1" > 
+			-->
+			<pre class="code Python box">
+# tuple packing           
+tuple_packing = "cat", "dog", "guinea pig", "budgie","parrot", "iguana", "snake", "turtle"
+print(tuple_packing)
+			</pre>
+			<!--
+			</py-repl>
+			-->
+         </div>
+        <br/>
+        <p>
+      การประกาศตัวแปร Tuple ที่มีรายการเดียว จะต้องเพิ่ม "," ไว้หลังรายการด้วยเสมอ ไม่เช่นนั้นจะถูกตีความเป็น data type ปรกติ
+        </p>
+        <div>
+          <!--<py-repl id="tp-repl-2" std-out="tp-out-2" err-out="tp-out-2"> -->
+          <pre class="code Python box">
+# single element tuple           
+wrong_declar = ("January")            
+print(type(wrong_declar))
+
+right_declar = ("January",)            
+print(type(right_declar))
+            </pre>
+           <!--</py-repl>
+          <div id="tp-out-2" onclick="clear_content(this)"></div>-->
+         </div>
+        <br/>
+        
+       <div>
+		 <!--  
+         <p>Shift-Enter to execute</p>
+          <py-repl id="tp-repl-3" std-out="tp-out-3" err-out="tp-out-3"> 
+          -->
+        <pre class="code Python box">
+day_of_week = ("Sunday","Monday","Tueday","Wednesday","Thursday","Friday","Saturday")            
+
+#try to insert new element
+day_of_week.append("January")            
+
+#try to change 
+day_of_week[0] ="One"            
+           </pre>   
+           <!-- 
+           </py-repl>
+          <div id="tp-out-3" onclick="clear_content(this)"></div>
+           -->
+           <blockquote class="box">
+			<p class="title is-5"><ion-icon name="star-outline"></ion-icon> &nbsp Remember : </p>
+			<p>
+          รายการที่อยู่ใน tuple ไม่สามารถแก้ไข เพิ่ม ลด ได้ ดังนั้น tuple จึงเหมาะกับการใช้เก็บค่าคงที่
+          </p>
+        </blockquote>
+         </div> 
+      </section>
+      <!-- ################  Dictionary ###################### -->
+      <section class="section slide box content">
+        <p class="title is-3">Dictionary</p>
+        
+         <p>
+         โครงสร้างของ   Dictionary ก็คล้ายกับ List ต่างกันที่ระบบ index ของ Dictionary ไม่ได้ใช้ตัวเลข แต่ใช้ key 
+           ซึ่งจะเป็นได้ทั้งตัวเลข ข้อความหรือแม้แต่  Tuples  เรียกรูปแบบนี้ว่า  <b>key-value pairs</b>
+        </p>
+        <br/>
+          <p class="title is-5">การประกาศตัวแปร</p>
+        <p>
+         คั่นรายการของ key-value pairs แล้วใช้ "{}" ล้อมรอบ
+        </p>
+        <div>
+          <p>Shift-Enter to execute</p>
+          <!--
+          <py-repl id="dict-repl-0" std-out="dict-out-0" err-out="dict-out-0"> 
+          -->
+          <pre class="code Python box">
+day_and_color = {"Sunday":"Red",
+            "Monday":"Yellow",
+            "Tueday":"Pink",
+            "Wednesday":"Green",
+            "Thursday":"Orange",
+            "Friday":"Light Blue",
+            "Saturday":"Purple"}
+print(day_and_color)
+			</pre>
+          <!--            
+           </py-repl>
+           <div id="dict-out-0" onclick="clear_content(this)"></div>
+           -->
+         </div>
+         <p>
+           ตัวอย่างข้างต้น key คือชื่อของวันในสัปดาห์และ value คือชื่อของสีของแต่ละวัน 
+        </p>
+        <br/>
+        <p>
+          รูปแบบอื่นที่ใช้ประกาศตัวแปร Dictionary ได้แก่
+        </p>
+        <div>
+			<!--
+          <p>Shift-Enter to execute</p>
+          <py-repl id="dict-repl-1" std-out="dict-out-1" std-err="dict-out-1"> 
+          -->
+          <pre class="code Python box">
+day_and_color_1 = dict([("Sunday","Red"),
+            ("Monday","Yellow"),
+            ("Tueday","Pink"),
+            ("Wednesday","Green"),
+            ("Thursday","Orange"),
+            ("Friday","Light Blue"),
+            ("Saturday","Purple")])
+print(day_and_color_1)            
+
+day_and_color_2 = dict( Sunday="Red",
+            Monday="Yellow",
+            Tueday="Pink",
+            Wednesday="Green",
+            Thursday="Orange",
+            Friday="Light Blue",
+            Saturday="Purple")
+print(day_and_color_2)         
+			</pre>
+           <!-- 
+           </py-repl>
+           <div id="dict-out-1" onclick="clear_content(this)"></div>
+           -->
+         </div>
+        <p>
+          ข้อสังเกตุคือ ทั้งสองรูปแบบแรกเป็นการสร้าง Dictionary โดยใช้คำสั่ง dict() ในรูปแบบแรกคือการสร้างจาก list ของ tuple ในรูปแบบที่สองคือการประกาศตัวแปรและกำหนดค่าแบบ String แล้วนำมาสร้างเป็น dictionary
+        </p>
+        <br/>
+        <p class="title is-5">การเข้าถึงรายการ</p>
+        <p>
+          รายการใน Dictionary ไม่ได้อ้างอิงด้วย index แต่ใช้การอ้างอิงจาก key 
+        </p>
+        <div>
+			<!--
+          <p>Shift-Enter to execute</p>
+          <py-repl id="dict-repl-2" std-out="dict-out-2" std-err="dict-out-2"> 
+          -->
+          <pre class="code Python box">
+day_and_color_1 = dict([("Sunday","Red"),
+            ("Monday","Yellow"),
+            ("Tueday","Pink"),
+            ("Wednesday","Green"),
+            ("Thursday","Orange"),
+            ("Friday","Light Blue"),
+            ("Saturday","Purple")])
+
+# the color of Tueday
+color_tueday= day_and_color_1["Tueday"]            
+print(color_tueday)            
+            </pre>
+            <!--
+           </py-repl>
+           <div id="dict-out-2" onclick="clear_content(this)"></div>-->
+         </div>
+        <br/>
+        <p class="title is-5">การปรับปรุงรายการ</p>
+        <p>
+          การเปลี่ยนแปลงค่า value ที่มีอยู่แล้วสามารถทำได้โดยตรง
+        </p>
+        <div>
+			<!--
+          <p>Shift-Enter to execute</p>
+          <py-repl id="dict-repl-3" std-out="dict-out-3" std-err="dict-out-3"> 
+          -->
+          <pre class="code Pytho">
+
+print(day_and_color_2["Monday"])
+
+# want to change color of Monday             
+day_and_color_2["Monday"] = "White"            
+            
+print(day_and_color_2["Monday"])                        
+            </pre>
+            <!--
+           </py-repl>
+           <div id="dict-out-3" onclick="clear_content(this)"></div>
+           -->
+         </div>
+        <br/>
+        <p>
+          การเพิ่มรายการเข้าไปใน Dictionary ก็สามารเพิ่มได้ในทำนองเดียวกับการประกาศตัวแปร
+        </p>
+        <div>
+			<!--
+          <p>Shift-Enter to execute</p>
+          <py-repl id="dict-repl-4" std-out="dict-out-4" std-err="dict-out-4"> 
+          -->
+          <pre class="code Python box">
+
+print(day_and_color)
+
+# want to add new one 
+day_and_color["April"] = "White"            
+            
+print(day_and_color)                        
+            </pre>
+            <!--
+           </py-repl>
+           <div id="dict-out-4" onclick="clear_content(this)"></div>
+           -->
+         </div>
+        <br/>
+        <p>
+          การลบรายการออกจาก Dictionary ทำได้โดยใช้คำสั่ง del 
+        </p>
+        <div>
+			<!--
+          <p>Shift-Enter to execute</p>
+          <py-repl id="dict-repl-5" std-out="dict-out-5" std-err="dict-out-5"> 
+          -->
+          <pre class="code Python box">
+print(day_and_color)
+
+# want to delete some 
+del day_and_color["April"] 
+            
+print(day_and_color)                        
+            </pre>
+            <!--
+           </py-repl>
+           <div id="dict-out-5" onclick="clear_content(this)"></div>
+           -->
+         </div>
+        <br/>
+        <p class="title is-5">
+          Built in functions
+        </p>
+        <p>
+          get(key) ใช้แสดงค่าของ value ที่โยงกับ key ที่ระบุ จะไม่แสดง  error message  แม้ key จะไม่มีอยู่
+        </p >
+        <div>
+			<!--
+          <p>Shift-Enter to execute</p>
+          <py-repl id="dict-repl-ุ6" std-out="dict-out-6" std-err="dict-out-6"> 
+          -->
+          <pre class="code Python box">
+day_and_color = {"Sunday":"Red",
+            "Monday":"Yellow",
+            "Tueday":"Pink",
+            "Wednesday":"Green",
+            "Thursday":"Orange",
+            "Friday":"Light Blue",
+            "Saturday":"Purple"}
+            
+print(day_and_color.get("Wednesday"))
+
+# when key does not exist
+print(day_and_color.get("Bangkok"))
+print(day_and_color["Bangkok"])
+          </pre>
+
+           <!--
+           </py-repl>
+           <div id="dict-out-6" onclick="clear_content(this)"></div>
+           -->
+         </div>
+        <br/>
+        <p>
+          <strong>items()</strong> แสดงรายการที่มีอยู่ใน Dictionary โดยจะแสดงเป็น List of key-value
+        </p >
+        <div>
+	    <!--		
+        <p>Shift-Enter to execute</p>
+          <py-repl id="dict-repl-ุ7" std-out="dict-out-7" std-err="dict-out-7"> 
+          -->
+		<pre class="code Python box">
+d = {0:"Sunday",
+        1:"Monday",
+        2:"Tueday",
+        3:"Wednesday",
+        4:"Thursday",
+        5:"Friday",
+        6:"Saturday"}
+# dump 
+print(d)
+
+# to see what items() returns
+print(d.items())            
+
+# convert to list makes more practical 
+print(list(d.items())) 
+			</pre>           
+		  <!--	
+           </py-repl>
+           <div id="dict-out-7" onclick="clear_content(this)"></div>
+           -->
+         </div>
+        <br/>
+        <p>
+          <strong>keys()</strong> แสดง keys ที่อยู่ใน Dictionary 
+        </p >
+        <div>
+			<!--
+        <p>Shift-Enter to execute</p>
+          <py-repl id="dict-repl-ุ8" std-out="dict-out-8" std-err="dict-out-8"> 
+          -->
+		<pre class="code Python>">
+d = {0:"Sunday",
+        1:"Monday",
+        2:"Tueday",
+        3:"Wednesday",
+        4:"Thursday",
+        5:"Friday",
+        6:"Saturday"}
+
+# to see what keys() returns
+print(d.keys())            
+
+# convert to list makes more practical 
+print(list(d.keys())) 
+		</pre>                     
+		<!--
+           </py-repl>
+           <div id="dict-out-8" onclick="clear_content(this)"></div>
+         -->  
+         </div>
+        <br/>
+        <p>
+          <strong>values()</strong> แสดง value ที่อยู่ใน Dictionary 
+        </p >
+        <div>
+		<!--	
+        <p>Shift-Enter to execute</p>
+          <py-repl id="dict-repl-ุ9" std-out="dict-out-9" std-err="dict-out-9"> 
+          -->
+          <pre class="code Python box">
+d = {0:"Sunday",
+        1:"Monday",
+        2:"Tueday",
+        3:"Wednesday",
+        4:"Thursday",
+        5:"Friday",
+        6:"Saturday"}
+
+# to see what values() returns
+print(d.values())            
+
+# convert to list makes more practical 
+print(list(d.values()))            
+			</pre>
+		  <!--	
+           </py-repl>
+           <div id="dict-out-9" onclick="clear_content(this)"></div>
+           -->
+         </div>
+        <br/>
+        <p>
+          <strong>pop(key)</strong> แสดง value ที่โยงกับ key ที่ระบุ และทำการนำ key-value นั้นออกจาก Dictionary 
+        </p >
+        <div>
+			<!--
+        <p>Shift-Enter to execute</p>
+          <py-repl id="dict-repl-ุ10" std-out="dict-out-10" std-err="dict-out-10"> 
+          -->
+          <pre class="code Python box">
+d = {0:"Sunday",
+        1:"Monday",
+        2:"Tueday",
+        3:"Wednesday",
+        4:"Thursday",
+        5:"Friday",
+        6:"Saturday"}
+# dump
+print(d)
+            
+# to see what pop(key) does
+v1 = d.pop(1)            
+v2 = d.pop(2)           
+v5 = d.pop(5)
+
+print(d)
+print(v1)            
+print(v2)
+print(v5)
+			</pre>
+			<!--
+           </py-repl>
+           <div id="dict-out-10" onclick="clear_content(this)"></div>
+           -->
+         </div>
+        <br/>
+        <p>
+          <strong>popitem()</strong> แสดง key-value คู่สุดท้าย แล้วนำออกจาก Dictionary
+        </p >
+        <div>
+			<!--
+          <p>Shift-Enter to execute</p>
+          <py-repl id="dict-repl-ุ11" std-out="dict-out-11" std-err="dict-out-11"> 
+          -->
+         <pre class="code Python box">
+d = {0:"Sunday",
+        1:"Monday",
+        2:"Tueday",
+        3:"Wednesday",
+        4:"Thursday",
+        5:"Friday",
+        6:"Saturday"}
+# dump
+print(d)
+            
+# to see what popitem() does
+last_pair = d.popitem()            
+print(last_pair)
+print(d)            
+print()            
+last_pair = d.popitem()            
+print(last_pair)
+print(d)            
+            </pre>
+            <!--
+           </py-repl>
+           <div id="dict-out-11" onclick="clear_content(this)"></div>
+           -->
+         </div>
+
+      </section>
+       <!--  ############  Set ################ -->
+       <section class="section slide box">
+         <p class="title is-3">เซต (Set)</p>        
+         <p>
+         ความหมายของ Set คือ กลุ่มของสมาชิกที่ไม่มีการเรียงลำดับ ไม่ซ้ำกันและไม่สามารถเปลี่ยนแปลงค่าได้ (เฉพาะที่ตัวสมาชิก) แต่ Set เองสามารถเพิ่ม-ลด สมาชิกได้ 
+        </p>
+        <p>
+         ในภาษา Python สามารถใช้ set operation บางอย่างได้ เช่น union, intersection
+        </p>
+         <br/>
+        <p class="title is-4">
+          การประกาศตัวแปร
+         </p>
+         <p>
+           เหมือนกับการประกาศตัวแปร List หรือ Tuple แต่ใช้เครื่องหมาย "{}" ล้อมรอบสมาชิก 
+         </p><br/>
+         <div>
+			 <!--
+           <p>Shift-Enter to execute</p>
+          <py-repl id="set-repl-ุ1" std-out="set-out-1" std-err="set-out-1"> 
+          -->
+          <pre class="code Python box">
+set_of_days = {"Sunday","Monday","Tueday","Wednesday","Thursday","Friday","Saturday"}
+set_of_evens = {0,2,4,6,8,10}
+set_of_mixed = {0.01,"Hello World",(1,4,5)}
+# dump
+print(set_of_days)
+print(set_of_evens)  
+print(set_of_mixed)      
+            </pre>
+            <!--
+           </py-repl>
+           <div id="set-out-1" onclick="clear_content(this)"></div>
+           -->
+         </div>
+         <br/>
+         <p>
+           Set จะทำการจัดการรายการที่ซ้ำซ้อนโดยอัตโนมัติ 
+         </p>
+         <br/>
+         <div>
+			 <!--
+           <p>Shift-Enter to execute</p>
+          <py-repl id="set-repl-ุ2" std-out="set-out-2" std-err="set-out-2"> 
+          -->
+          <pre class="code Python box">
+# set can eliminate duplicates
+dup_test = {"S","M","T","W","T","F","S","S","M"}
+print(dup_test)  
+		  </pre>          
+		  <!--
+           </py-repl>
+           <div id="set-out-2" onclick="clear_content(this)"></div>
+           -->
+         </div>
+         <br/>
+         <p>
+           Set สามารถถูกสร้างขึ้นมาจาก List ด้วยคำสั่ง <b>set()</b>
+         </p>
+         <div>
+			 <!--
+           <p>Shift-Enter to execute</p>
+          <py-repl id="set-repl-ุ3" std-out="set-out-3" std-err="set-out-3"> 
+          -->
+          <pre class="code Python box">
+# create set from list
+l = ["S","M","T","W","T","F","S","S","M"]            
+set_from_list = set(l)
+print(set_from_list)   
+			</pre>         
+			<!--
+           </py-repl>
+           <div id="set-out-3" onclick="clear_content(this)"></div>
+           -->
+         </div>
+        <br/>
+         <p>
+           <strong>Set ไม่สามารถมีสมาชิกที่เป็น List ได้</strong>
+         </p>
+         <div>
+			 <!--
+           <p>Shift-Enter to execute</p>
+          <py-repl id="set-repl-ุ4" std-out="set-out-4" std-err="set-out-4"> 
+          -->
+          <pre class="code Python box">
+# create set from list
+set_contain_list = {"S","M","T","W",[1,2,3]}            
+print(set_contain_list)            
+		  </pre>
+		  <!--
+           </py-repl>
+           <div id="set-out-4" onclick="clear_content(this)"></div>
+           -->
+         </div>
+        <br/><br/>
+         <p class="title is-4">
+          การเพิ่ม-ลดสมาชิกของ Set
+         </p>
+         <p>
+           การเพิ่มสมาชิกมีสองรูปแบบคือ การเพิ่มสมาชิกแบบเดี่ยว ใช้ <strong>add()</strong> และการพิ่มแบบกลุ่ม ใช้ <strong>update()</strong>
+         </p>
+         <div>
+			 <!--
+           <p>Shift-Enter to execute</p>
+          <py-repl id="set-repl-ุ5" std-out="set-out-5" std-err="set-out-5"> 
+          -->
+          <pre class="code Python box">
+# initiate a set 
+a_set = {0}            
+print(a_set)
+
+# add single element
+a_set.add(1)
+a_set.add(2)  
+print(a_set)
+            
+# add group of elements
+a_set.update([3,4,5])
+a_set.update([6,7,8])  
+print(a_set)            
+
+# add another set
+a_set.update({9,0})
+print(a_set)   
+			</pre>         
+			<!--
+           </py-repl>
+           <div id="set-out-5" onclick="clear_content(this)"></div>
+           -->
+         </div>
+        <br/><br/>
+         <p>
+           การลดสมาชิกทำได้โดยใช้ <strong>remove(element)</strong> หรือ <strong>discard(element)</strong> เพื่อนำเอาสมาชิกที่ระบุไว้ออกจาก Set และ <strong>pop()</strong> จะนำเอาสมาชิกออกแบบสุ่ม
+         </p>
+         <div>
+			 <!--
+           <p>Shift-Enter to execute</p>
+          <py-repl id="set-repl-ุ6" std-out="set-out-6" std-err="set-out-6"> 
+          -->
+          <pre class="code Python box">
+# initiate a set 
+a_set = {0,1,2,3,4,5,6,7,8,9,0}            
+print(a_set)
+
+# remove with remove() 
+a_set.remove(2)
+print(a_set)
+
+# what happends if element does not exists            
+a_set.remove(99)
+            
+# remove with discard()
+a_set.discard(3)
+print(a_set)            
+
+# remove with pop()
+removed = a_set.pop()
+print(removed)            
+print(a_set)   
+			</pre>         
+			<!--
+           </py-repl>
+           <div id="set-out-6" onclick="clear_content(this)"></div>
+           -->
+         </div>
+        <br/><br/>
+        <p>
+           หากต้องการล้างสมาชิกออกจาก Set ทั้งหมด ให้ใช้ <strong>clear()</strong> 
+         </p>
+       <br/><br/>
+        <p class="title is-4">
+       Set operation    
+        </p>
+         <table class="table">
+           <thead>
+             <tr><td>Function</td><td>Discription</td></tr>
+           </thead>
+           <tbody>
+             <tr><td>union()</td><td>สร้าง Set ใหม่ที่รวมสมาชิกจาก 2 setไว้ด้วยกัน </td></tr>
+             <tr><td>intersection()</td><td>สร้าง Set ใหม่ ที่สมาชิกคือส่วนที่ซ้ำกันจาก 2 set </td></tr>
+             <tr><td>difference()</td><td>สร้าง Set ใหม่ที่สมาชิกคือส่วนที่ต่างกันของ 2 set </td></tr>
+             <tr><td>isdisjoint()</td><td>ให้ค่า True เมื่อ 2 set ไม่มีสมาชิกซ้ำกัน </td></tr>
+             <tr><td>issubset()</td><td>ให้ค่า True เมื่อ set หนึ่งอยู่ในอีก set หนึ่ง</td></tr>
+           </tbody>
+         </table>
+         <div>
+			 <!--
+           <p>Shift-Enter to execute</p>
+          <py-repl id="set-repl-7" std-out="set-out-7" std-err="set-out-7"> 
+          -->
+          <pre class="code Python box">
+A = {2, 3, 5}
+B = {1, 3, 5}
+C = A.union(B)
+D = A.intersection(B)
+E = B.difference(A) 
+F = A.difference(B)                        
+G = A.isdisjoint(B)          
+H = A.issubset(B)            
+print("A union B = {}".format(C))           
+print("A intersection B = {}".format(D))
+print("A difference B = {}".format(E)) 
+print("B difference A = {}".format(F))                        
+print("A isdisjoint B = {}".format(G))
+print("A issubset B = {}".format(H))
+			</pre>                                    
+			<!--
+           </py-repl>
+           <div id="set-out-7" onclick="clear_content(this)"></div>
+           -->
+         </div>
+         
+      </section>
+      <!-- ################ Boolean ###################### -->
+      <section class="section slide box content">
+        <p class="title is-3">
+          Boolean
+        </p>
+        <p>
+         Boolean คือค่าความจริงของประโยค (expression) มีค่าที่เป็นไปได้เพียง 2 ค่าคือ <strong>True</strong> (จริง) หรือ <strong>False</strong> (ไม่จริง) ใช้ประโยชน์ในการควบคุมทิศทางของชุดคำสั่งในโปรแกรม
+        </p>
+        <div>
+		<!--			 
+                   <p>Shift-Enter to execute</p>
+          <py-repl id= "bool-repl-1" std-out="bool-out-1" std-err="bool-out-1"> 
+          -->
+          <pre class="code Python box">
+var1 = True
+var2 = False
+print(f"var1 is {var1} and var2 is {var2}")            
+
+# to compare number
+result = 20 == 10
+print(result)
+            
+# to compare string
+result = "Bangkok" == "ChiangMai"            
+print(result)
+
+			</pre>
+			<!--
+            </py-repl>
+           <div id="bool-out-1" onclick="clear_content(this)"></div>
+           -->
+         </div>
+        <br/><br/>
+        <p>
+        Python ได้กำหนดให้สิ่งเหล่านี้มีค่าความจริงเป็น False เสมอ ได้แก่
+          <ul>
+            <li>0</li>
+            <li>[] (empty list)</li>
+            <li>() (empty tuple)</li>
+            <li>{} (empty set or empty dictionary)</li>
+            <li>"",'' (empty string)</li>
+            <li>None</li>
+        </ul>
+        </p>
+        
+      </section>
+    <!-- ################ Binary ###################### -->
+      <section class="section slide box content">
+        <p class="title is-3">
+          Binary
+        </p>
+        <br/>
+        
+        <p class="title is-4">
+          Bytes type
+        </p> 
+        <p>
+          Bytes มีโครงสร้างเหมือน List มีขนาดคงที่ 8 bits หากเทียบค่าในรูปของจำนวนเต็มจะมีค่าระหว่าง 0 - 255 การสร้างตัวแปร bytes ทำได้โดยใ้ช้ bytes()
+        </p><br/>
+        <blockquote class="box">
+          <p>
+            <b>bytes</b>(source,encoding,errors)<br/>
+               source :  คือ data type  ที่ใช้เป็นต้นทางข้อมูล<br/>          
+             encoding :   การเข้ารหัส ใช้เมื่อ source เป็น String <br/>
+          
+            errors :  กำหนดการทำงานในกรณีที่ encoding เกิดผิดพลาด<br/> 
+          </p>
+        </blockquote>
+        
+        <div>
+			<!--
+          <p>Shift-Enter to execute</p>
+          <py-repl id= "bin-repl-1" std-out="bin-out-1" std-err="bin-out-1"> 
+          -->
+          <pre class="code Python box">
+# create bytes form integer
+src_int = 5
+var1 = bytes(src_int)
+print(f"var1 is {var1} ")            
+
+# create bytes from string
+src_string = "Hello World"
+var2 = bytes(src_string,"utf-8")
+print(f"var2 is {var2}")
+            
+# create bytes from list
+src_list = [1,2,3,4,5]
+var3 = bytes(src_list)
+print(f"var3 is {var3}")
+			</pre>
+			<!--
+            </py-repl>
+           <div id="bin-out-1" onclick="clear_content(this)"></div>
+           -->
+         </div>
+        <br/><br/>
+       <p class="title is-4">
+          Bytes Array type
+        </p> 
+        <p>
+          มีการใช้เหมือนกับ byte type
+        </p><br/>
+      </section>
+      <!-- ################ Exercise ###################### -->
+      <section class="section slide box content">  
+		  <p class="title is-3">Exercise</p>  
+			<p>
+			1. โปรแกรมนี้จะแสดงข้อความอะไรบนหน้าจอ
+			  <pre class="code Python box">
+X = "I love you"			  
+print(X)
+			  </pre>
+			  <div class="buttons">
+				  <!--
+				<button class="button is-success" 
+					onclick="open_modal('branch-modal','branch-repl','branch-std-out','branch-err-out',null)">
+					Try it 
+				</button>
+				-->
+				<button class="button is-success" 
+					onclick="go_to_code('b1:1','/beingpythonman_1/datatype.html')">Try it </button>
+				
+				<a class="has-text-danger-light" onclick="show_answer(1,1)">Hint</a>
+			</div>
+		  </p>
+		  <div class="divider"></div>
+		  <p>		
+		  	2. โปรแกรมนี้จะแสดงข้อความอะไรบนหน้าจอ
+			  <pre class="code Python box">
+X = 3
+Y= 10
+Z = X + Y
+print(Z)
+			  </pre>
+			  <div class="buttons">
+				 <!--
+				<button class="button is-success" 
+					onclick="open_modal('branch-modal','branch-repl','branch-std-out','branch-err-out',null)">
+					Try it 
+				</button>
+				-->
+				<button class="button is-success" 
+					onclick="go_to_code('b1:2','/beingpythonman_1/datatype.html')">Try it </button>
+				<a class="has-text-danger-light" onclick="show_answer(2,1)">Hint</a>
+			</div>
+		  </p>
+		  <div class="divider"></div>		  
+		  <p>
+			3.  โปรแกรมนี้จะแสดงข้อความอะไรบนหน้าจอ
+			  <pre class="code Python box">
+X = "The car turned"
+Y = " the corner." 			  
+print(f"{X + Y}")
+			  </pre>
+			  <!--
+			  <div class="buttons">
+				<button class="button is-success" 
+					onclick="open_modal('branch-modal','branch-repl','branch-std-out','branch-err-out',null)">
+					Try it 
+				</button>
+				<a class="has-text-danger-light" onclick="show_answer(3,1)">Hint</a>
+			</div>-->
+			<button class="button is-success" 
+					onclick="go_to_code('b1:3','/beingpythonman_1/datatype.html')">Try it </button>
+		  </p>
+		  <div class="divider"></div>
+		  <p>
+			4. num_of_books ควรมีค่าเป็นอะไร
+			  <pre class="code Python box">
+num_of_books = 			  
+print(f"I have read {num_of_books} yesterday.")
+			  </pre>
+			  <!--
+			  <div class="buttons">
+				<button class="button is-success" 
+					onclick="open_modal('branch-modal','branch-repl','branch-std-out','branch-err-out',null)">
+					Try it 
+				</button>
+				<a class="has-text-danger-light" onclick="show_answer(4,1)">Hint</a>
+			</div>
+			-->
+			<button class="button is-success" 
+					onclick="go_to_code('b1:4','/beingpythonman_1/datatype.html')">Try it </button>
+		  </p>
+		  <div class="divider"></div>
+		  <p>
+			5. โปรแกรมนี้จะแสดงข้อความอะไรบ้างบนหน้าจอ
+			  <pre class="code Python box">
+s = "She opened the door." 			  
+print(s[1])
+print(s[3:7ุ])
+print(s[2:])
+			  </pre>
+			  <!--
+			  <div class="buttons">
+				<button class="button is-success" 
+					onclick="open_modal('branch-modal','branch-repl','branch-std-out','branch-err-out',null)">
+					Try it 
+				</button>
+				<a class="has-text-danger-light" onclick="show_answer(5,1)">Hint</a>
+			</div>
+			-->
+			<button class="button is-success" 
+					onclick="go_to_code('b1:5','/beingpythonman_1/datatype.html')">Try it </button>
+		  </p>
+		  <div class="divider"></div>
+		  <p>
+			6. จงสร้าง List สำหรับเก็บรายชื่อของแต่ละวันในสัปดาห์ <br/>
+			<!--
+			  <div class="buttons">
+				<button class="button is-success" 
+					onclick="open_modal('branch-modal','branch-repl','branch-std-out','branch-err-out',null)">
+					Try it 
+				</button>
+				<a class="has-text-danger-light" onclick="show_answer(6,1)">Hint</a>
+			</div>
+			-->
+			<button class="button is-success" 
+					onclick="go_to_code('b1:6','/beingpythonman_1/datatype.html')">Try it </button>
+		  </p>
+		  <div class="divider"></div>
+		  <p>
+			7. จากคำตอบในข้อ 6 ชุดคำสั่งที่ใช้ลบรายการลำดับสุดท้ายคือ<br/>
+			<!--
+			  <div class="buttons">
+				<button class="button is-success" 
+					onclick="open_modal('branch-modal','branch-repl','branch-std-out','branch-err-out',null)">
+					Try it 
+				</button>
+				<a class="has-text-danger-light" onclick="show_answer(7,1)">Hint</a>
+			</div>
+			--><br/>
+			<button class="button is-success" 
+					onclick="go_to_code('b1:7','/beingpythonman_1/datatype.html')">Try it </button>
+		  </p>
+		  <div class="divider"></div>
+		  <p>
+			8. จากคำตอบในข้อ 6 ชุดคำสั่งที่ใช้แสดงรายการตำแหน่งที่ 4 คือ<br/>
+			<!--
+			  <div class="buttons">
+				<button class="button is-success" 
+					onclick="open_modal('branch-modal','branch-repl','branch-std-out','branch-err-out',null)">
+					Try it 
+				</button>
+				<a class="has-text-danger-light" onclick="show_answer(8,1)">Hint</a>
+			</div>
+			-->
+			<button class="button is-success" 
+					onclick="go_to_code('b1:8','/beingpythonman_1/datatype.html')">Try it </button>
+		  </p>
+		  <div class="divider"></div>
+		  <p>
+			9. สมมุติว่านาย A ขายผลไม้ รายชื่อผลไมที่จำหน่ายอยู่มีดังนี้ Grapefruit,Banana, Apricot, Avocados,Bluebery, Jackfruit,Kiwi,Mango
+			จงสร้างตัวแปรที่ใช้เก็บรายชื่อผลไม้เหล่านี้ โดยใช้ Tuple<br/>
+			<!--
+			  <div class="buttons">
+				<button class="button is-success" 
+					onclick="open_modal('branch-modal','branch-repl','branch-std-out','branch-err-out',null)">
+					Try it 
+				</button>
+				<a class="has-text-danger-light" onclick="show_answer(9,1)">Hint</a>
+			</div>
+			-->
+			<button class="button is-success" 
+					onclick="go_to_code('b1:9','/beingpythonman_1/datatype.html')">Try it </button>
+		  </p>
+		  <div class="divider"></div>
+		  <p>
+			10. จากข้อ 9 ถ้ามีราคาขายต่อกิโลกรัมของผลไม้แต่ละรายการดังนี้
+			<div class="columns">
+				<div class="column"></div>
+				<div class="column is-half">
+					<table class="table is-bordered">
+						<thead>
+							<tr>
+								<th>ผลไม้</th>
+								<th>ราคาขาย (บาท/กิโลกรัม)</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr><td>Grapefruit</td><td>400</td></tr>
+							<tr><td>Banana </td><td> 100</td></tr> 
+							<tr><td>Apricot </td><td> 350</td></tr> 
+							<tr><td>Avocados </td><td> 200</td></tr>
+							<tr><td>Bluebery </td><td>1000</td></tr> 
+							<tr><td>Jackfruitv</td><td>20</td></tr>
+							<tr><td>Kiwi </td><td> 1000</td></tr>
+							<tr><td>Mango </td><td> 65</td></tr>
+						</tbody>
+					</table>
+				</div>
+				<div class="column"></div>
+			</div><br/>			
+			จงสร้างตัวแปร Tuple ที่ใช้เก็บรายชื่อผลไม้พร้อมราคาขาย 
+			<!--
+			  <div class="buttons">
+				<button class="button is-success" 
+					onclick="open_modal('branch-modal','branch-repl','branch-std-out','branch-err-out',null)">
+					Try it 
+				</button>
+				<a class="has-text-danger-light" onclick="show_answer(10,1)">Hint</a>
+			</div>
+			-->
+			<button class="button is-success" 
+					onclick="go_to_code('b1:10','/beingpythonman_1/datatype.html')">Try it </button>
+		  </p>
+		  <div class="divider"></div>
+		  <p>
+			11. จากข้อมูลในข้อ 10 จงใช้ตัวแปรชนิด dictionary เพื่อใช้เก็บชื่อผลไม้และราคาขาย และเขียนชุดคำสั่งเพื่อแสดงราคาขายของ "Avocados"<br/>
+			<!--
+			  <div class="buttons">
+				<button class="button is-success" 
+					onclick="open_modal('branch-modal','branch-repl','branch-std-out','branch-err-out',null)">
+					Try it 
+				</button>
+				<a class="has-text-danger-light" onclick="show_answer(11,1)">Hint</a>
+			</div>
+			-->
+			<button class="button is-success" 
+					onclick="go_to_code('b1:11','/beingpythonman_1/datatype.html')">Try it </button>
+		  </p>
+		  <div class="divider"></div>
+	  </section>
+      <!-- ################ Navigator ###################### -->
+      <nav class="pagination is-centered" role="navigation" aria-label="pagination">
+        <a class="pagination-previous" href="./index.html"><ion-icon name="home-outline"></ion-icon>Home</a>
+        <a class="pagination-next" href="./operands_operators.html">Next</a>
+        <ul class="pagination-list">
+          <li><a class="pagination-link" aria-label="Goto page First" onclick="currentDiv(1)">Variable and Data Types</a></li>
+          <li><a class="pagination-link" aria-label="Goto page Number" onclick="currentDiv(2)">Number</a></li>
+          <li><a class="pagination-link" aria-label="Goto page String" onclick="currentDiv(3)">String</a></li>          
+          <li><a class="pagination-link" aria-label="Goto page List" onclick="currentDiv(4)">List</a></li>
+          <li><a class="pagination-link" aria-label="Goto page Tuple" onclick="currentDiv(5)">Tuple</a></li>
+          <li><a class="pagination-link" aria-label="Goto page Dictionary" onclick="currentDiv(6)">Dictionary</a></li>
+          <li><a class="pagination-link" aria-label="Goto page Set" onclick="currentDiv(7)">Set</a></li>
+          <li><a class="pagination-link" aria-label="Goto page Boolean" onclick="currentDiv(8)">Boolean</a></li> 
+          <li><a class="pagination-link" aria-label="Goto page Binary" onclick="currentDiv(9)">Binary</a></li>          
+          <li><a class="pagination-link" aria-label="Goto page Binary" onclick="currentDiv(10)">Exercise</a></li>          
+        </ul>
+      </nav>
+    </div>
+    
+    <br/>
+<footer class="footer box">
+      <div class="content has-text-centered">
+        <p>
+          โดย <a href="mailto:somchaisomph@gmail.com">สมชาย สมผดุง</a>. 
+        </p>
+        <p>
+          The source code is licensed
+          <a href="http://opensource.org/licenses/mit-license.php">MIT</a>. The website content
+            is licensed <a href="http://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY NC SA 4.0</a>.
+        </p>
+      </div>
+    </footer>
+   
+<!-- The Modal -->
+    <div class="modal" id="branch-modal">
+			<div class="modal-background"></div>
+			<div class="modal-card">
+			<header class="modal-card-head">
+				<p class="modal-card-title">Exercise</p>
+				<button class="delete" aria-label="close" 
+				onclick="close_modal('branch-modal','branch-repl','branch-std-out','branch-err-out')"></button>
+			</header>
+			<section class="modal-card-body">
+				<!-- Content ... -->
+				<div class="columns is-multiline">
+					<div class="column is-three-quarters" id="branch-repl">
+						<p><b>Type your code in box below then press Shift-ENTER to evaluate.</b> </p>
+					</div>
+					<div class="column" id="branch-std-out" onclick="clear_content(this)" ></div>
+					<div class="column is-full" id="branch-err-out" onclick="clear_content(this)" ></div>
+				</div> <!--/columns-->
+			</section>
+			<footer class="modal-card-foot">
+			
+				<button class="button" 
+				onclick="close_modal('branch-modal','branch-repl','branch-std-out','branch-err-out')">
+				Close</button>
+			</footer>
+		</div>
+	</div>
+	<!-- / -->
+	<!-- answer modul -->
+	<div class="modal" id="answer-modal">
+		<div class="modal-background"></div>
+		<div class="modal-content">
+			<p class="box content" id="answer-box">			
+			
+			</p>
+		</div>
+		<button class="modal-close is-large" aria-label="close" onclick="show_answer(0,0)"></button>
+	</div>
+   <!-- /answer modul -->
+    <!-- quickview -->
+	<div id="quickviewDefault" class="quickview box" style="background-color:rgba(230, 230, 230, 0.75);">
+		<header class="quickview-header is-primary">
+			<!--
+			<b class="title is-2">Topics</b>
+			<span class="delete" data-dismiss="quickview"></span>
+			-->
+			<a data-dismiss="quickview">
+				<ion-icon src="../icons/chevron-forward-outline.svg" size="large"></ion-icon>
+			</a>
+			<p class="title is-2">Topics</p>
+		</header>
+		
+		<div class="quickview-body">
+			<div class="quickview-block">
+				<div class="list">
+					<div class="list-item">
+						<a class="list-item-title" onclick="currentDiv(1)">Variable and Data Types</a>
+					</div>
+					<div class="list-item">
+						<a class="list-item-title" onclick="currentDiv(2)">Number</a>
+					</div>
+					<div class="list-item">
+						<a class="list-item-title" onclick="currentDiv(3)">String</a>
+					</div>
+					<div class="list-item">
+						<a class="list-item-title" onclick="currentDiv(4)">List</a>
+					</div>
+					<div class="list-item">
+						<a class="list-item-title" onclick="currentDiv(5)">Tuple</a>
+					</div>
+					<div class="list-item">
+						<a class="list-item-title" onclick="currentDiv(6)">Dictionary</a>
+					</div>
+					<div class="list-item">
+						<a class="list-item-title" onclick="currentDiv(7)">Set</a>
+					</div>
+					<div class="list-item">
+						<a class="list-item-title" onclick="currentDiv(8)">Boolean</a>
+					</div>
+					<div class="list-item">
+						<a class="list-item-title" onclick="currentDiv(9)">Binary</a>
+					</div>
+					<div class="list-item">
+						<a class="list-item-title" onclick="currentDiv(10)">Exercise</a>
+					</div>
+				</div>
+			</div>
+		</div>		
+		<footer class="quickview-footer">
+			<div class="buttons">
+				<a class="pagination-link" href="./basic_syntax.html">
+					<ion-icon name="chevron-back-outline"></ion-icon>Prev
+				</a>
+				<a class="pagination-link" href="./index.html" alt="Home">
+					<ion-icon name="list-outline"></ion-icon>Contents
+				</a>
+				<a class="pagination-link" href="./operands_operators.html">
+					Next <ion-icon name="chevron-forward-outline"></ion-icon>
+				</a>
+			</div>
+		</footer>
+		
+	</div>
+	<!-- /quickview --> 
+	<!--
+	<script defer src="https://pyscript.net/alpha/pyscript.js"></script>
+	-->
+	 <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/11.5.1/highlight.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bulma-extensions@6.2.7/bulma-quickview/dist/js/bulma-quickview.min.js"></script>
+    <script src="../js/ans_b1_datatype.js"></script>
+    <script>		
+		var quickviews = bulmaQuickview.attach();	
+		
+		function go_to_code(prob_text,caller_page){
+			localStorage.setItem('caller_page',caller_page);
+			localStorage.setItem('problem', prob_text);
+			window.location = "/code_editor/python_code_editor.html";
+	
+		}
+		
+    </script>
+    <script src="/js/my_js.js">   </script>
+	 </body>
+</html>

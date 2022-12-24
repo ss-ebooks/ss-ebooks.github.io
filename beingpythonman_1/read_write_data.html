@@ -1,0 +1,589 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width,initial-scale=1" />
+		<title>Being Python Man : Reading and Writing Data</title>
+		<link rel="icon" type="image/png" href="https://cdn.glitch.global/cb61e7ff-aec7-49ac-884a-cea3cd4cd9da/favicon-32x32.png?v=1655545783728" />
+		<link rel="stylesheet" href="https://pyscript.net/alpha/pyscript.css" />
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.9.3/css/bulma.min.css" 
+			integrity="sha512-IgmDkwzs96t4SrChW29No3NXBIBv8baW490zk5aXvhCD8vuZM3yUSkbyTBcXohkySecyzIrUwiF/qV0cuPcL3Q==" 
+			crossorigin="anonymous" referrerpolicy="no-referrer" />  
+		<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma-extensions@6.2.7/bulma-quickview/dist/css/bulma-quickview.min.css" />		
+		<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@creativebulma/bulma-tooltip@1.2.0/dist/bulma-tooltip.min.css" />
+		<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@creativebulma/bulma-divider@1.1.0/dist/bulma-divider.min.css"/>  
+		<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/11.5.1/styles/default.min.css">
+		<link rel="stylesheet" href="../css/my_css.css">
+	</head>  
+  <!--
+  <py-env>
+    - numpy
+    - matplotlib
+    - paths:
+      - ./antigravity.py
+  </py-env>
+-->
+	<body>
+		<nav class="navbar bg1" role="navigation" aria-label="main navigation">
+			<div class="navbar-brand">
+				<span class="navbar-item title is-2" >Reading and writing data</span>				
+			</div>
+			<div class="navbar-end">
+				<div class="navbar-item" >
+					<a class="button is-primary has-tooltip-left" 
+						data-show="quickview" 
+						alt="subcontent"
+						data-target="quickviewDefault"  data-tooltip="Topics">
+						<ion-icon name="ellipsis-vertical"></ion-icon>
+					</a>
+				</div>	
+		</nav>  
+		<div class="container is-widescreen " data-dismiss="quickview"> <!-- page container -->
+			<section class="section box slide content">
+				<p class="title is-3"> Data file (แฟ้มข้อมูล)</p>
+				<p>
+			หน่วยความจำในคอมพิวเตอร์แบ่งเป็น 2 ประเภทหลักคือ <span class="has-text-link has-text-weight-bold ">primary memory</span> ได้แก่ ROM, RAM
+        และ <span class="has-text-link has-text-weight-bold ">secondary memory</span> ได้แก่ Hard Disk, Flash Drive ฯลฯ </p>
+        <p>        
+			data file คือพื้นที่ที่ใช้จัดเก็บข้อมูลไว้ที่ <span class="has-text-link has-text-weight-bold ">secondary memory </span> 
+        ซึ่งโดยปรกติแล้ว ข้อมูลที่อยู่ใน data file จะไม่ใช่ชุดคำสั่งหรือ computer program และในระหว่างที่โปรแกรมทำงานกับ data file  
+        ข้อมูลจะถูกนำจาก <span class="has-text-link has-text-weight-bold ">secondary memory</span> 
+        ไปไว้ใน <span class="has-text-link has-text-weight-bold ">primary memory </span> ก่อน จากนั้น Python จะเข้าถึงข้อมูลได้ก็โดยอาศัยสิ่งที่เรียกว่า 
+        <span class="has-text-link has-text-weight-bold ">file object </span> (บางแห่งใช้ file handler ) 
+				</p>  
+				<div class="columns">
+					<div class="column"></div>
+					<div class="column image">
+						<img src="./img/hello_python-data-file.png" />
+					</div>
+					<div class="column"></div>
+				</div>
+				<br/>
+				<p class="title is-5"> ประเภทของ data file </p>
+				<p>
+					การแบ่งประเภทมีหลายมุมมอง ในตอนนี้จะใช้การแบ่ง data file ออกเป็น 2 กลุ่มคือ
+					<dl>
+						<dt><span class="has-text-link title is-6 ">Text files</span></dt>
+						<dd>คือ file ที่บรรจุข้อมูลที่เรียกว่า <span class="has-text-link has-text-weight-bold ">ข้อความธรรมดา (plain text)</span> ที่ถูกเข้ารหัสด้วย <a href="https://en.wikipedia.org/wiki/List_of_Unicode_characters">international character encding standard</a> (เรียกแบบสั้นว่า Unicode) ข้อมูลแบบข้อความเป็นข้อมูลที่
+						ใช้กันทั่วไป มนุษย์สามารถอ่านได้ เช่น ข้อความใน แฟ้มงาน, Email, Social media  ฯลฯ </dd>
+						<dt><span <span class="has-text-link title is-6 ">Binary files</span></dt>
+						<dd>คือ file ที่บรรจุข้อมูลที่อยู่ในรูปแบบ <a href="https://en.wikipedia.org/wiki/Binary_data">binary data</a> มนุษย์ไม่สามารถอ่านได้โดยตรง binray file ที่พบบ่อยได้แก่ รูปภาพ วิดีโอ เพลง ฯลฯ</dd>
+					</dl>        
+				</p>
+				<br/>
+				<p class="title is-5">การระบุตำแหน่งของไฟล์ด้วย file path </p>
+				<p>
+					File path  มีส่วนประกอบสำคัญ  2  ส่วน คือ
+				</p>
+				
+				<dl>
+					<dt><span class="has-text-link title is-6 ">Directory (folder path)</span> </dt>
+					<dd>ประกอบขึ้นจากชื่อของตำแหน่งที่นำมาเรียต่อกัน คั่นด้วยเครื่องหมาย  "/"  หรือ  "\"  ขึ้นกับระบบปฏิบัติการที่ใช้งาน เช่น /home/somchai/workspace  หมายความว่า path นี้ประกอบไปด้วย directory ที่ชื่อว่า home,somchai และ workspace </dd>
+					<dt><span class="has-text-link title is-6 ">File name</p></dt>   
+					<dd> ข้อความที่กำหนดเพื่อใช้อ้างถึง file แบ่งออกได้เป็น 2  ส่วนคือ  file name  และ  file extension  คั่นด้วยเครื่องหมาย  "."  เช่น  dob.jpg  ส่วน filename คือ "dob" และ file extension คือ ".jpg"</dd>
+				</dl>
+				<div class="columns">
+					<div class="column"></div>
+					<div class="column image">
+						<img src="./img/hello_python_dir.png" />
+					</div>
+					<div class="column"></div>
+				</div>
+				<p>การอ้าง file path มีสองแบบคือ</p>
+				<dl>
+					<dt><span class="has-text-link title is-6 ">Absolute path</span></dt>
+					<dd>
+						คือ file path ที่ระบุรายละเอียดครบ เริ่มตั้งแต่ root path (ต่างกันไปตามระบบปฏิบัติการที่ใช้)  ไปจนถึง file name 
+						<div class="columns">
+							<div class="column"></div>
+							<div class="column image">
+								<img src="./img/hello_python-absolute_path.png" />
+							</div>
+							<div class="column"></div>
+						</div>
+					</dd>
+					<dt><span class="has-text-link title is-6 ">Relative path</span></dt>
+					<dd>
+						คือ file path ที่ระบุรายละเอียดเริ่มตั้งแต่ตำแหน่งปัจจุบัน ไปจนถึง file name เช่น ถ้า current directory คือ "somchai" จะเขียนแทนด้วย "." (บางทีอาจละไว้ก็ได้) แล้วเขียน
+						file path ่ส่วนที่เหลือต่อไป
+						<div class="columns">
+							<div class="column"></div>
+							<div class="column image">
+								<img src="./img/hello_python-relative_path.png" />
+							</div>
+							<div class="column"></div>
+						</div>
+					</dd>
+				</dl>      
+				<br/>
+				<blockquote>
+					<p class="title is-5"><ion-icon name="school-outline"></ion-icon>&nbsp;Tip:</p>  
+					<ul>
+						<li>ระบบปฏิบัติการ Windows ใช้ชื่อของ Drive เป็น root directory เช่น C:, D: และใช้ "\" คั่นระหว่าง directory name   </li>
+						<li>ระบบปฏิบัติการ Linux หรือ Linux-like ใช้ "/" เป็น root directory และใช้ "/" คั่นระหว่าง directory name  </li> 
+					</ul>
+				</blockquote>
+				<br/>
+				<p class="title is-3"> File extension </p>
+				<p>
+					File extension บางครั้งเรียกว่า "นามสกุลของไฟล์" เป็นสิ่งที่บอกถึงคุณลักษณะของข้อมูที่อยู่ภายใน file ซึ่งจะโยงไปถึง เป้าหมาย วิธีการใช้งาน เข้าถึงตัวข้อมูลด้วย เช่น 
+					<dl>
+						<dt><span class="has-text-link title is-6 ">dog.jpeg</span> </dt>  
+						<dd>มี jpeg เป็น file extension บอกให้ทราบว่า ไฟล์นี้เป็นประเภท binary file ข้อมูลภายในถูกเข้ารหัสด้วยเทคนิค Discrete Cosine Trasform เป็นรูปแบบที่ใช้ทั่วไปในงานกลุ่ม Digital Photography </dd>
+						<dt><span class="has-text-link title is-6 ">index.html</span></dt>
+						<dd>มี html เป็น extension บอกให้ทราบว่า เป็นประเภท Text file ข้อมูลภายในเป็นข้อความ ใช้งานด้าน web </dd>
+						<dt><span class="has-text-link title is-6 ">ฯลฯ</span></dt>
+					</dl>
+				</p>
+			<br/>
+			</section>
+			<!-- ###########  File Object ################ -->
+			<section class="section box content slide">
+				<p class="title is-3">File Object</p>
+				<p>
+					File object ถูกสร้างขึ้นมาช่วยในการเข้าถึงข้อมูลใน file ดูแลเรื่องข้อผิดพลาดที่อาจเกิดขึ้นระหว่างการทำงาน โดยมี functions ที่จะกล่าวถึงในตอนนี้ได้แก่
+					<ul>
+						<li>open()</li>  
+						<li>close()</li>  
+						<li>read(),readline(),readlines()</li>  
+						<li>write(),writelines()</li>  
+						<li>tell()</li>
+						<li>seek()</li> 
+						<li>flush()</li>  
+					</ul>
+				</p>
+				<br/>
+				<p class="title is-5">open()</p>
+				<p> function นี้ใช้สร้าง file object ที่โยงกับตำแหน่งของ file ใน secondary memory และ mode การเข้าถึง รูปแบบทั่วไปคือ</p>
+				<pre class="code Python box">
+fo = <b>open</b>(file path, mode[, buffering=-1][, encoding=None][, errors=None][, newline=None][, closefd=True][, opener=None])</p>                  
+				</pre> 
+				<p class="title is-6">Parameters:</p>
+				<ul>
+					<li><span class="has-text-link has-text-weight-bold ">fo</span> คือ file object ที่ถูกสร้างขึ้น</li>
+					<li><span class="has-text-link has-text-weight-bold ">file path</span> คือตำแหน่งและชื่อของ file</li>
+					<li><span class="has-text-link has-text-weight-bold ">mode</span> คือ วิธีการเข้าถึง file การระบุ mode ใช้การระบุด้วยตัวอักษร ดังนี้
+						<div class="columns">          
+							<div class="column is-half">
+								<table class="table">
+									<thead>
+										<tr><th>mode</th><th>ความหมาย</th></tr>
+									</thead>
+									<tbody>
+										<tr><td>'r'</td><td>read mode เปิด file เพื่อใช้อ่านข้อมูล ถ้า file ไม่มีจะแจ้งว่าผิดพลาด จัดเป็นค่าปริยาย (default mode)  </td></tr>
+										<tr><td>'r+'</td><td>read and write mode ถ้า file ไม่มีจะแจ้งว่าผิดพลาด</td></tr>
+										<tr><td>'w'</td><td>write mode เปิด file เพื่อใช้เขียนข้อมูล หาก file ไม่มีอยู่จะถูกสร้างขึ้นใหม่</td></tr>
+										<tr><td>'w+'</td><td>read and write mode หาก file ไม่มีอยู่จะสร้างขึ้นใหม่</td></tr>
+										<tr><td>'a'</td><td>append mode เปิด file เพื่อใช้เขียนข้อมูล โดยการนำข้อมูลไปต่อท้าย ถ้าหาก file ไม่มีอยู่จะถูกสร้างขึ้นใหม่</td></tr>
+										<tr><td>'a+'</td><td>เหมือนกับ 'w+' ต่างกันที่ใช้วิธีการ append ข้อมูลต่อที่ท้าย file</td></tr>
+										<tr><td>'wb'</td><td>เปิด binary file เพื่อเขียนข้อมูล </td></tr>
+										<tr><td>'rb'</td><td>เปิด binary file เพื่ออ่านข้อมูล </td></tr>
+									</tbody>
+								</table>
+							</div>
+							<div class="column"></div>
+							<div class="column"></div>
+						</div>            
+					</li>
+					<li><span class="has-text-link has-text-weight-bold ">buffering </span>(option) ใช้กำหนดนโยบายการใช่้ buffer </li>
+					<li><span class="has-text-link has-text-weight-bold ">encoding </span>(option) ใช้กำหนดการเข้ารหัส </li>
+					<li><span class="has-text-link has-text-weight-bold ">errors</span> (option) กำหนดข้อความที่จะแสดงเมื่อเกิดข้อผิดพลาดในขั้นตอน encoding/decoding </li>
+					<li><span class="has-text-link has-text-weight-bold ">newline</span> (option) กำหนดอักษรพิเศษของ newline</li>
+					<li><span class="has-text-link has-text-weight-bold ">closefd</span> (option) มีค่าเป็น True เสมอ</li>
+					<li><span class="has-text-link has-text-weight-bold ">opener</span> (option) file opener ที่ผู้ใช้กำหนดเอง </li>
+				</ul> 
+				<p>ตัวอย่างการใช้งาน</p>
+				<pre class="code Python  box">
+# open file for writing only       
+file1 = open("myfile1.txt","w")      
+file2 = open("myfile2.txt","a")
+
+# open file for reading 
+file3 = open("myfile3.txt","r")
+
+# open file for reading and writing        
+file4 = open("myfile4.txt","r+")      
+file5 = open("myfile5.txt","w+")      
+file6 = open("myfile6.txt","a+")     
+
+# open binary file
+bin_file = open("dog.jpg",'b')
+				</pre>
+				<br/>
+				<!-- close file -->	
+				<p class="title is-5">close()</p>      
+				<p>
+					function นี้จะทำการปิด file ที่กำลังเปิดอยู่ นำข้อมูลใน internal buffer ลงสู่ secondary memory หลังจากปิดแล้วจะไม่สามารถเข้าถึงได้อีก จนกว่าจะมี
+					การใช้ open() อีกครั้ง 
+				</p>
+				<pre class="code Python box">
+bin_file = open("dog.jpg",'b')
+bin_file.close()				
+				</pre>     
+				<br/>
+				 <!-- read file -->
+				<p class="title is-5">read([size]) </p>
+				<ul>
+					<li>อ่านข้อมูลจาก file ขนาดเท่ากับ size มีหน่วยเป็น Byte </li>
+					<li>ถ้าไม่กำหนดค่าของ size หรือ size มีค่าน้อยกว่า 0 จะทำการอ่านข้อมูลจากไฟล์จนกว่าจะพบเครื่องหมาย EOF  </li>  
+				</ul>
+				<br/>
+				<!-- readline -->
+				<p class="title is-5">readline([size]) </p>
+				<ul>
+					<li>อ่านข้อมูลความยาวเท่ากับ size หรือจนกว่าจะพบ EOL  </li>  
+					<li>หากไม่กำหนดค่าของ size จะอ่านข้อมูลจาก file ทีละบรรทัด (จนกว่าจะพบ EOL)  </li>  
+					<li>หากข้อมูลที่อ่านพบเป็น EOF จะส่งค่า None</li>
+				</ul>
+				<br/>
+				<!-- readlines -->
+				<p class="title is-5">readlines([size]) </p>
+				<ul>
+					<li>ส่งข้อมูลออกมาเป็น List of String </li>
+					<li>อ่านข้อมูลทุกบรรทัดจาก file โดยที่ความยาวรวมไม่เกินค่า size ที่กำหนด  </li>  
+					<li>หากไม่กำหนดค่าของ size จะอ่านข้อมูลจาก file ทุกบรรทัด (จนกว่าจะพบ EOF)  </li> 
+				</ul>
+				<p>ตัวอย่างการใช้งาน read(),readline() และ readlines()</p>
+				<pre class="code Python box">
+# open file for reading 
+file3 = open("myfile3.txt","r")
+
+# read the whold file
+whole_file = file3.read()
+
+# read first 100 bytes from file
+some_part = file3.read(100)
+
+# read first line
+first_line = file3.readline()
+
+# read 10 bytes from first line
+first_line_10 = file3.readline(10)
+
+# read every lines 
+every_lines = file3.readlines()
+
+# read some lines
+every_lines = file3.readlines(500)        
+				</pre>
+				<br/>
+				<!-- write() -->
+				<p class="title is-5">write(String)</p>
+				<ul>
+					<li>บรรทึกข้อความ String ลงไปใน file</li>
+				</ul>
+				<br/>
+				<!-- writelines -->
+				<p class="title is-5">writelines(Sequence)</p>
+				<ul>
+					<li>บรรทึกข้อความ String ใน Sequence ลงไปใน file</li>
+				</ul>
+				<p>ตัวอย่างการใช้งาน write() และ writelines()</p>
+				<pre class="code Python box">
+# open file for reading 
+file3 = open("myfile3.txt","r")
+
+# write single line 
+data = "I wanna be a Python man after reading this book.\n"
+file3.write(data)
+
+# write multiple lines from a sequence.
+sequence = ["I wanna be a Python man\n", " after reading this book.\n"]
+file3.writelines(sequence)
+				</pre>
+				<blockquote>
+					<p class="title is-5"><ion-icon name="school-outline"></ion-icon>&nbsp;Tip:</p>  
+					<p><span class="has-text-link has-text-weight-bold ">"\n"</span> เป็นอักขระพิเศษสำหรับการพิมพ์ข้อความ หมายถึงการจบบรรทัดแล้วขึ้นบรรทัดใหม่</p>
+				</blockquote>
+				<br/>
+				<!-- seek() -->
+				<p class="title is-5">seek(offset,start)</p>      
+				<ul>
+					<li>ใช้เลื่อนตำแหน่ง file pointer</li>
+					<li><b>offset</b> คือจำนวน byte ที่ต้องการให้ pointer เคลื่อนไป</li>
+					<li><b>start</b> คือตำแหน่งเริ่มต้นของการเคลื่อน pointer ค่าที่เป็นไปได้คือ
+						<ul>
+							<li>0 : เริ่มต้นจากต้น file (beginning of file)  เป็นค่าปริยาย (default) </li>
+							<li>1 : ใช้ตำแหน่งของ file pointer ณ ขณะน้้น</li>
+							<li>2 : เริ่มต้นที่ท้ายสุดของ file (end of file)</li>						
+						</ul>
+					</li>
+				</ul>
+				<br/>
+				<p>ตัวอย่างการใช้งาน seek()</p>
+				<pre class="code Python box">
+# open file for reading 
+file3 = open("myfile3.txt","r")
+
+# move file pointer to beginning of file
+file3.seek(0)        
+
+# move file pointer to 20 bytes ahead from beginning of file
+file3.seek(20)        
+
+# move file pointer 20 bytes ahead from current position
+file3.seek(20,1)        
+
+# move file pointer 20 bytes behind from current position
+file3.seek(-20,1)        
+
+# move file pointer to end of file
+file.seek(0,2)
+
+# move file pointer 20 bytes behind from end of file
+file3.seek(-20,0)       
+				</pre>
+				<br/>
+				<!-- tell() -->
+				<p class="title is-5">tell()</p>
+				<ul>
+					<li>ใช้ระบุตำแหน่ง file pointer</li>      
+				</ul>
+				<div class="columns">				
+					<div class="column image">
+						<img src="./img/hello_python-file-pointer.png" style="max-width:300px;max-height:300px;"/>
+					</div>
+					<div class="column"></div>
+				</div>
+				<br/>
+				<p class="title is-5">flush()</p>
+				<p>
+					เพื่อลดภาระงานบางอย่าง และเพิ่มประสิทธิภาพการทำงาน Python จะสร้าง internal buffer เพื่อใช้เป็นพักข้อมูล ในการเขียนข้อมูลลง file ก็ใช้การ
+					เขียนข้อมูลลงใน internal buffer ก่อน function flush() ใช้ในกรณีที่ต้องการให้ Python ทำการส่งข้อมูลออกจาก internal buffer ไปยัง 
+					secondary memory ก่อนที่จะทำการ close() ในทางปฏิบัติแล้วการ flushing จะทำโดยอัติโนมัติอยู่แล้ว ดังนั้นอาจไม่จำเป็นต้องใช้คำสั่งนี้เลยก็ได้
+				</p>
+			</section>
+			<!-- ######### steps of work with file -->
+			<section class="section box content slide">
+				<p class="title is-3">   สรุปขั้นตอนการทำงานกับ File </p>
+				<p>
+					ภาพสรุปขั้นตอนการทำงานกับ data file ทั้งการอ่านและการเขียนข้อมูล 
+				</p>
+				<div class="columns">          
+					<div class="column"></div>
+					<div class="column is-half image">
+						<img src="./img/hello_python-step_work_with_filepng.png"/>
+					</div>
+					<div class="column"></div>
+				</div>
+				<p>1. ใช้ os.getcwd() เพื่อให้ทราบ current directory และ os.listdir() เพื่อค้นหาหรือตรวจสอบว่าไฟล์ที่ต้องการมีอยู่หรือไม่</p>					
+				<pre class="code Python box">					     
+import os            
+# get current directory
+cur_dir =  os.getcwd()          
+print(cur_dir)
+
+# search for file
+req_file = "logscale.png"
+
+# list all files
+file_list = os.listdir(cur_dir)
+print(req_file in file_list)
+				</pre> 
+				<br/>
+				<p>2. ใช้ open() เพื่อเปิด file  </p>
+				<br/>
+				<p>3. ใช้ file_object.read(), file_object.write() เพื่ออ่าน/เขียนข้อมูล </p><br/>
+				<p> 4. ใช้ file_object.close() เพื่อปิด file <span class="has-text-danger has-text-weight-bold ">"หลังจากใช้งาน file แล้วต้องทำการปิดทุกครั้ง"</span> </p>
+			</section>
+			<!-- ############ Examples  #############33 -->
+			 <section class="section box content slide">      
+				<p>
+					ตัวอย่างการ Read / Write ในตอนนี้จะใช้ตัวอย่างเป็น text file  ลักษณะของ text file คือ
+				</p>	
+				<ul>
+					<li>ข้อมูลใน text file เป็นข้อมูลตัวอักษร (character) ที่ถูกเข้ารหัสด้วย <a href="https://en.wikipedia.org/wiki/List_of_Unicode_characters">Unicode</a></li>
+					<li>Text file บางครั้งถูกเรียกว่า flat file และ ข้อมูลใน text file บางครั้งถูกเรียกว่า plain text</li>
+					<li>ข้อมูลใน text file แบ่งออกเป็นส่วนๆเรียกว่า line แต่ละ line ถูกคั่นด้วยสัญญลักษณ์พิเศษ เช่น '\n', '\r\n', ''\r' เรียกสัญญลักษณ์เหล่านี้ว่า End of Line (EOL) (บางแห่งใช้คำว่า new line ,line feed หรือ line break) </li>
+					<li>มี <a href="https://en.wikipedia.org/wiki/End-of-file">End of file (EOF)</a> เป็นสัญญลักษณ์พิเศษที่บอกให้ทราบว่าไม่มีข้อมูลอีกแล้ว</li>
+				</ul>
+				<div class="columns">
+					<div class="column"></div>
+					<div class="column is-half">
+						<figure class="image">
+							<img src="./img/hello_python_text_file.png">
+						</figure>  
+					</div>
+					<div class="column"></div>
+				</div>
+				<p>ตัวอย่างการเขียนข้อมูลลง text file</p>
+				<pre class="code Python box">
+# open file to write
+file_obj = open("Lorem_Ipsum.txt","w")
+
+# data to write
+lines = [ 
+  "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.\n", 
+  "Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.\n", 
+  "Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.\n ",
+  "Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.\n"
+]
+
+# write sequence to file
+file_obj.writelines(lines)
+
+# important, do not forget
+file_obj.close()
+				</pre>
+				<div class="buttons">
+					<button class="button is-success" 
+						onclick="open_modal('branch-modal','branch-repl','branch-std-out','branch-err-out',null)">
+					Try it 
+					</button>				
+				</div>        
+				<br/>
+				<p> ตัวอย่างการอ่านข้อมูลจาก text file</p>
+				<pre class="code Python box">
+import os
+
+file_name = "Lorem_Ipsum.txt"
+file_list = os.listdir("./") # use relative path
+
+# does file  exist ?
+if file_name in file_list :
+	# open file
+	file_obj = open(file_name,"r")
+	
+	# read line by line
+	line = file_obj.readline()
+	while line  :
+		print(line)
+		line = file_obj.readline()
+	file_obj.close()
+else:
+	print(f"{file_name} dose not exist!")                
+				</pre>
+				<div class="buttons">
+					<button class="button is-success" 
+						onclick="open_modal('branch-modal','branch-repl','branch-std-out','branch-err-out',null)">
+					Try it 
+					</button>				
+				</div>        
+				<br/>
+			</section>
+			<!-- ################ Navigator ###################### -->
+			<nav class="pagination is-centered" role="navigation" aria-label="pagination">
+				<a class="pagination-previous" href="./index.html" alt="Home"><ion-icon name="list-outline"></ion-icon>Contents</a>
+				<a class="pagination-next" href="./writing_a_program.html">Next <ion-icon name="chevron-forward-outline"></ion-icon></a>        
+				<ul class="pagination-list">         
+					<li><a class="pagination-link" aria-label="Goto page Data File" onclick="currentDiv(1)">Data file</a></li>
+					<li><a class="pagination-link" aria-label="Goto page File Object" onclick="currentDiv(2)">File Object</a></li>
+					<li><a class="pagination-link" aria-label="Goto page Steps of work" onclick="currentDiv(3)">Steps of work</a></li>
+					<li><a class="pagination-link" aria-label="Goto page Text file" onclick="currentDiv(4)">Example</a></li>
+				</ul>
+			</nav>
+		</div><!-- /page container -->
+		<!-- Footer -->
+		<footer class="footer box">
+			<div class="content has-text-centered">
+				<p>
+				โดย <a href="mailto:somchaisomph@gmail.com">สมชาย สมผดุง</a>. 
+				</p>
+				<p>
+					The source code is licensed
+					<a href="http://opensource.org/licenses/mit-license.php">MIT</a>. The website content
+					is licensed <a href="http://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY NC SA 4.0</a>.
+				</p>
+			</div>
+		</footer>
+	<!-- Modals -->
+	<div class="modal" id="branch-modal">
+		<div class="modal-background"></div>
+		<div class="modal-card">
+		<header class="modal-card-head">
+			<p class="modal-card-title">Exercise</p>
+			<button class="delete" aria-label="close" 
+			onclick="close_modal('branch-modal','branch-repl','branch-std-out','branch-err-out')"
+			></button>
+		</header>
+		<section class="modal-card-body">
+			<!-- Content ... -->
+			<div class="columns is-multiline">
+				<div class="column is-three-quarters box" id="branch-repl">
+					<p><b>Type your code in box below then press Shift-ENTER to evaluate.</b> </p>
+				</div>
+				<div class="column box is-light" id="branch-std-out" onclick="clear_content(this)" >
+				</div>
+				<div class="column is-full" id="branch-err-out" onclick="clear_content(this)" ></div>
+			</div> <!--/columns-->
+		</section>
+		<footer class="modal-card-foot">
+			
+			<button class="button" 
+				onclick="close_modal('branch-modal','branch-repl','branch-std-out','branch-err-out')">
+				Close</button>
+		</footer>
+	</div>
+</div>
+	<!-- answer modul -->
+	<div class="modal" id="answer-modal">
+		<div class="modal-background"></div>
+		<div class="modal-content">
+			<p class="box content" id="answer-box">
+			</p>
+		</div>
+		<button class="modal-close is-large" aria-label="close" onclick="show_answer(0,0)"></button>
+	</div>
+    <!-- /answer modul -->
+    <!-- quickview -->
+	<div id="quickviewDefault" class="quickview box" style="background-color:rgba(230, 230, 230, 0.75);">
+		<header class="quickview-header is-primary">
+			<a data-dismiss="quickview">
+				<ion-icon src="../icons/chevron-forward-outline.svg" size="large"></ion-icon>
+			</a>
+			<p class="title is-2">Topics</p>
+			<!--span class="delete" data-dismiss="quickview"></span -->			
+		</header>
+		<div class="quickview-body">
+			<div class="quickview-block">
+				<div class="list">					
+					<div class="list-item">
+						<a class="list-item-title" onclick="currentDiv(1)">Data file</a>
+					</div>
+					<div class="list-item">
+						<a class="list-item-title" onclick="currentDiv(2)">File Object</a>
+					</div>
+					<div class="list-item">
+						<a class="list-item-title" onclick="currentDiv(3)">Steps of work</a>
+					</div>
+					<div class="list-item">
+						<a class="list-item-title" onclick="currentDiv(4)">Example</a>
+					</div>
+					
+				</div>
+			</div>
+		</div>
+		
+		<footer class="quickview-footer">
+			<div class="buttons">
+				<a class="pagination-link" href="./iteration.html">
+					<ion-icon name="chevron-back-outline"></ion-icon>Prev
+				</a>
+				<a class="pagination-link" href="./index.html" alt="Home">
+					<ion-icon name="list-outline"></ion-icon>Contents
+				</a>
+				<a class="pagination-link" href="./writing_a_program.html">
+					Next <ion-icon name="chevron-forward-outline"></ion-icon>
+				</a>
+			</div>
+		</footer>
+		
+	</div>
+	<!-- /quickview --> 
+	<!--
+	<script defer src="https://pyscript.net/alpha/pyscript.js"></script>
+	-->
+    <script src="https://cdn.jsdelivr.net/npm/bulma-toast@2.4.1/dist/bulma-toast.min.js"></script>
+	<script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/11.5.1/highlight.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bulma-extensions@6.2.7/bulma-quickview/dist/js/bulma-quickview.min.js"></script>    
+    <script>
+		var quickviews = bulmaQuickview.attach();     
+    </script>
+    <script src="../js/my_js.js"></script>   
+  </body>
+</html>
+  

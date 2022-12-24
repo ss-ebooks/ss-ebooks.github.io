@@ -1,0 +1,528 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>Being Python Man : Writing a computer program</title>
+    <link rel="icon" type="image/png" href="https://cdn.glitch.global/cb61e7ff-aec7-49ac-884a-cea3cd4cd9da/favicon-32x32.png?v=1655545783728" />
+		<link rel="stylesheet" href="https://pyscript.net/alpha/pyscript.css" />
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.9.3/css/bulma.min.css" 
+			integrity="sha512-IgmDkwzs96t4SrChW29No3NXBIBv8baW490zk5aXvhCD8vuZM3yUSkbyTBcXohkySecyzIrUwiF/qV0cuPcL3Q==" 
+			crossorigin="anonymous" referrerpolicy="no-referrer" />  
+		<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma-extensions@6.2.7/bulma-quickview/dist/css/bulma-quickview.min.css" />		
+		<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@creativebulma/bulma-tooltip@1.2.0/dist/bulma-tooltip.min.css" />
+		<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@creativebulma/bulma-divider@1.1.0/dist/bulma-divider.min.css"/>  
+		<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/11.5.1/styles/default.min.css">
+		<link rel="stylesheet" href="../css/my_css.css">
+  </head>  
+  <!--
+  <py-env>
+    - numpy
+    - matplotlib
+    - paths:
+      - ./antigravity.py
+  </py-env>
+-->
+	<body>
+		<nav class="navbar" role="navigation" aria-label="main navigation">
+			<div class="navbar-brand">
+				<span class="navbar-item title is-2" >
+					การสร้างโปรแกรม (Writing a program)
+				</span>				
+			</div>
+			<div class="navbar-end">
+				<div class="navbar-item" >
+					<a class="button is-primary has-tooltip-left" 
+						data-show="quickview" 
+						alt="subcontent"
+						data-target="quickviewDefault"  data-tooltip="Topics">
+						<ion-icon name="ellipsis-vertical"></ion-icon>
+					</a>
+				</div>	 
+			</div>	
+		</nav>
+		<div class="container is-widescreen " data-dismiss="quickview">
+			<!-- #######  Software Development Process ##### -->	
+			<section class="section box slide content">
+				<p class="title is-3"> ขั้นตอนการพัฒนาซอฟต์แวร์ (Software Development Process)</p>
+				<p>
+					เนื้อหาในตอนนี้จะกล่าวถึงภาพรวมของขั้นตอนการพัฒนาซอฟต์แวร์ เพื่อใช้เป็นพื้นฐานในการศึกษาในรายละเอียดที่มากกว่าได้ง่ายขึ้น โดยทั่วไปขั้นตอนแบ่งได้เป็น 6 ขั้นตอน
+				</p>
+				<br/>	
+				<p class="title is-5">1. วิเคราะห์และทำความเข้าใจปัญหา (Analyze and understand problem)</p>
+				<p>
+				ทำความเข้าใจว่าอะไรคือปัญหาที่จะแก้ ไม่จำเป็นต้องเข้าใจอย่างถ่องแท้แต่อย่างน้อยก็ให้เห็นภาพรวม
+				</p>
+				<br/>
+				<p class="title is-5">2. กำหนดขอบเขตการทำงาน (Determine specification)</p>
+				<ul>
+					<li>กำหนดว่าโปรแกรมที่จะสร้างต้อง<b>ทำอะไร</b> ไม่จำเป็นต้องกังวลถึงเรื่องขั้นตอนการทำงาน</li>
+					<li>กำหนด input และ output ของโปรแกรม</li>
+				</ul>
+				<br/>
+				<p class="title is-5">3. ออกแบบขั้นตอนการแก้ปัญหา (Create a design)</p>
+				<p>ออกแบบโครงสร้างของโปรแกรม</p>
+				<ul>
+					<li>ลงรายละเอียดการทำงาน</li>
+					<li>เลือกใช้หรือสร้าง algorithm </li>
+				</ul>
+				<br/>
+				<p class="title is-5">4. การพัฒนาโปรแกรมคอมพิวเตอร์(Implement the design / Create a program)</p>
+				<p></p>แปลสิ่งทีออกแบบไว้เป็น computer program ด้วย computer language (ในที่นี้ใช้ Python) </p>
+				<br/>
+				<p class="title is-5">5. ทดสอบ แก้ไข (Test and Debug the program)</p>
+				<ul>
+					<li>ทดสอบการทำงานของโปรแกรม</li>
+					<li>"Debugging" คือกระบวนการหาข้อผิดพลาดในโปรแกรมแล้วทำการแก้ไข</li>              
+				</ul>
+				<br/>
+				<p class="title is-5">6. ดูแล ปรับปรุง(Maintain the program)</p>
+				<p>
+					ในโลกของความเป็นจริง โปรแกรมที่พัฒนาจนใช้งานได้จริงมักไม่เคยจบสิ้นการดูแลและปรับปรุง เพราะความต้องการมีการเปลี่ยนแปลงได้เสมอ
+				</p>					
+				<br/>
+				<div class="columns">
+					<div class="column"></div>  
+					<div class="column">
+						<img src="./img/hello_python-sdlc.png" />
+					</div>  
+					<div class="column"></div>  
+				</div>      
+			</section>
+			<!-- #######  Example ##### -->	
+			<section class="section box slide content">
+				<p class="title is-3"> ตัวอย่าง 1 โปรแกรมเข้ารหัส Morse </p>
+				<p class="title is-5">
+					1. วิเคราะห์และทำความเข้าใจปัญหา (Analyze and understand problem)
+				</p>
+				<p>ศึกษาข้อมูลจาก Wikipedia เรื่อง <a href="https://en.wikipedia.org/wiki/Morse_code">Morse code</a> สรุปได้ว่า</p>
+				<ol>
+					<li>Samoel Morse ได้พัฒนาเข้ารหัสข้อความที่เรียกว่า "Morse Code" เพื่อใช้ในการสื่อสารทางไกลผ่านโทรเลข 
+						โดยการเปลี่ยนอักษรภาษาอังกฤษและตัวเลขให้เป็นเครื่องหมาย "." (dot) และ "-" (dash) บางแห่งเรียก "dit" กับ "dah"</li>
+					<li>Internatioal Morse code ใช้กับอักษรภาษาอังกฤษ 26 ตัว และตัวเลข 10 ตัว</li>          
+					<li>ไม่มีความแตกต่างกันระหว่างอักษรตัวใหญ่ (upper case)) กับตัวเล็ก (lower case)</li>
+					<li>อักษรแต่ละตัวถูกคั่นด้วยช่องว่าง 1 ช่อง </li>
+					<li>International Morse code สามารถสรุปได้ดังตาราง 						
+							<table class="table">
+								<tr><th>Letter</th><th>Code</th><th>Letter</th><th>Code</th><th>Letter</th><th>Code</th><th>Number</th><th>Code</th></tr>    
+								<tr><td>A</td><td> .-</td><td> J</td><td> .- - - </td><td>S</td><td> ...</td><td> 1</td><td> .- - - -</td></tr>
+								<tr><td>B</td><td> -...</td><td> K</td><td> -.- </td><td>T</td><td> -</td><td> 2</td><td> ..- - -</td></tr>
+								<tr><td>C</td><td> -.-.</td><td> L</td><td> .-.. </td><td>U</td><td> ..-</td><td> 3</td><td> ...- -</td></tr>
+								<tr><td>D</td><td> -..</td><td> M</td><td> - - </td><td>V</td><td> ...-</td><td> 4</td><td> ....-</td></tr>
+								<tr><td>E</td><td> .</td><td> N</td><td> -. </td><td>W</td><td> .- -</td><td> 5</td><td> .....</td></tr>
+								<tr><td>F</td><td> ..-.</td><td> O</td><td> ---</td><td> X</td><td> -..-</td><td> 6</td><td> -....</td></tr>
+								<tr><td>G</td><td> - -.</td><td> P</td><td> .- -.</td><td> Y</td><td> -.- -</td><td> 7</td><td> - -...</td></tr>
+								<tr><td>H</td><td> ....</td><td> Q</td><td> - -.-</td><td> Z</td><td> - -..</td><td> 8</td><td> - - -..</td></tr>
+								<tr><td>I</td><td> .. </td><td>R</td><td> .-.</td><td> 0</td><td> -----</td><td> 9</td><td> - - - -.</td></tr>
+						</table>					
+						<p>
+							เช่นคำ "HELLO" แปลงเป็นรหัส Morse เป็น <strong>.... . .-.. .-.. ---</strong> 
+						</p>
+					</li>
+				</ol>             
+			</section>
+		</div><!-- /page container -->
+    
+    <section class="section box slide content">
+      
+      
+      <p>
+        ใช้ข้อมูลจาก Wikipedia เรื่อง <a href="https://en.wikipedia.org/wiki/Morse_code">Morse code</a> ทำให้ทราบว่า
+        
+      </p>
+      <div class="divider"></div>
+     <p class="title is-3"> กำหนดขอบเขตการทำงาน (Determine specification)</p>
+      <p>
+        <dl>
+          <dt><b>What does program do</b></dt>
+          <dd>เปลี่ยนข้อความที่เขียนด้วยอักษรภาษาอังกฤษให้เป็น International Morse code</dd>
+          <dt><b>Input</b></dt>
+          <dd>ข้อความภาษาอังกฤษหรือตัวเลชอาราบิก</dd>
+          <dt><b>Output</b></dt>
+          <dd>ชุดของ String ที่แสดงด้วย dot และ dash ตามแบบ International Morse Code </dd>
+          <dd></dd>
+        </dl>
+        
+      </p>
+      <div class="divider">&clubs;&clubs;&clubs;</div>
+      <h3>
+        ออกแบบ (Create a design)
+      </h3>
+      <p>
+        ออกแบบขั้นตอนการทำงาน
+        <div class="columns">                   
+          <div class="column">
+            <p>
+              Psuedocode
+            </p>
+            <ol>
+              <li>Create lookup table for mapping English letters to Morse code</li>
+              <li>Split user's sentence to list of words</li>
+              <li>Map each letter in word to Morse code, word by word  </li>
+              
+            </ol>
+          </div>  
+           <div class="column">
+            <img src="https://cdn.glitch.global/cb61e7ff-aec7-49ac-884a-cea3cd4cd9da/hello_python-morse_encoder.png?v=1657269529714" />
+          </div>  
+        </div>
+      </p>
+      <div class="divider">&clubs;&clubs;&clubs;</div>
+      <h3>       
+        สร้าง program (Create a program : convert the design to Python)
+      </h3>
+      <p>
+      สร้าง lookup table<br/>
+      <pre>
+        <div class="code Python">
+morse_lookup = {
+'A':'.-','J':'.---','S':'...','1':'.----',
+'B':'-...','K':'-.-','T':' -','2':'..---',
+'C':'-.-.','L':'.-..','U':' ..-','3':'...- -',
+'D':'-..','M':'--','V':'...-','4':'....-',
+'E':'.','N':'-.','W':'--','5':'.....',
+'F':'..-.','O':'---','X':'-..-','6':' -....',
+'G':'--.','P':'.--.','Y':' -.- -','7':'--...',
+'H':'....','Q':'- -.-','Z':' - -..','8':'---..',
+'I':'..','R':'.-.','0':'-----','9':'----.'
+}       
+        </div>
+      </pre>  
+      <br/>
+       Split English sentence <br/>
+      <pre>
+        <div class="code Python">
+def spliter(sentence):
+  # to upper case
+  sentence = sentence.upper()
+  
+  # split 
+  word_list = sentence.split(" ")
+  
+  return word_list
+        </div>
+      </pre>  
+      <br/>
+       Map word to Morse Code <br/>
+      <pre>
+        <div class="code Python">
+def Morse_encoder(a_word):	
+	result = ""
+	for l in a_word:
+		mc = morse_lookup[l]
+		result = result + mc + " " 
+
+	return result
+        </div>
+      </pre>  
+
+      </p>
+      <div class="divider">&clubs;&clubs;&clubs;</div>
+      <h3>
+        ทดสอบและหาข้อผิดพลาด (Test and debug the program)
+      </h3>
+        ทดสอบด้วยประโยคสำเร็จ
+      <pre>
+        <div class="code Python">
+def main():
+	test_sent = "THIS IS MORSE CODE"
+	words = spliter(test_sent)
+	result = ""
+	for w in words :
+		result = result + Morse_encoder(w) + " "
+	print(result)	
+
+main()        
+        </div>
+      </pre>  
+      ผลลัพธ์ที่แสดงบนหน้าจอ
+      <div class="columns">        
+        <div class="column">
+          <img src="https://cdn.glitch.global/cb61e7ff-aec7-49ac-884a-cea3cd4cd9da/Screenshot%202022-07-08%2019%3A48%3A22.png?v=1657284524181" />
+        </div>
+        <div class="column"></div>
+      </div>
+      <br/>
+      ทดสอบเติมอักษรภาษาไทยเข้าไปในประโยค
+      <pre>
+        <div class="code Python">
+def main():
+	test_sent = "THIS IS MORSEก CODE"
+	words = spliter(test_sent)
+	result = ""
+	for w in words :
+		result = result + Morse_encoder(w) + " "
+	print(result)	
+
+main()        
+        </div>
+      </pre>  
+        จะพบกับการแจ้งข้อผิดพลาดว่า <font color="red">KeyError: ก</font> และโปรแกรหยุดทำงาน<br/>
+      <h3>แก้ไขข้อผิดพลาด</h3>  
+        ถ้ากลับไปดูใน Morse_encoder() การทำงานคือใช้อักษรภาษาอังกฤษหรือตัวเลขเป็น key ในการสืบค้นหา Morse code ที่ตรงกับอักษรนั้นออกมา 
+        ถ้าไม่มี key ดังกล่าว interpreter จึงฟ้องข้อผิดพลาดออกมาและหยุดทำงาน<br/>
+        การแก้ไขอาจทำได้หลายกรณี แต่ในตัวอย่างจะใช้การข้ามอักษรดังกล่าวไป โดยอาศัยคำสั่ง continue  ชุดคำสั่งใหม่ของ  Morse_encoder() จะเป็น
+      <pre>
+        <div class="code Python">
+def Morse_encoder(a_word):	
+	result = ""
+	for l in a_word:
+    if l not in morse_lookup.keys() :
+      continue
+		mc = morse_lookup[l]
+		result = result + mc + " " 
+
+	return result
+        </div>
+      </pre>  
+
+      <div class="divider">&clubs;&clubs;&clubs;</div>
+      <h3>
+        บำรุงรักษา ปรับปรุง (Maintain the program)
+      </h3>
+      <p>
+        จากผลลัพธ์ที่เห็นแสดงว่าโปรแกรมสามารถทำงานได้แล้วในภาพรวม แต่ถ้าพิจารณาดูจะพบว่าโปรแกรมยังสามารถพัฒนาต่อได้ในอีกหลายจุด ได้แก่
+        <ul>
+          <li>การลดความผิดพลาดจากการข้อมูลของผู้ใช้</li>  
+          <li>การแสดงผลที่เข้าใจและนำไปใช้งานง่ายขึ้น</li>  
+          <li>การสร้างระบบ User Interface</li>  
+          <li>การทำงานเชื่อมโยงไปยังระบบอื่น เช่น ระบบไฟกระพริบผ่านสาย fiber optics</li>  
+          <li>ฯลฯ</li>  
+        </ul>
+      </p>
+      <p>
+      ในตัวอย่างนี้ขอยกกรณีการปรับปรุงอย่างง่ายคือการสร้างส่วน user interface ใ้ห้ทำงานวนมารับประโยคจากผู้ใช้แล้วพิมพ์ Morse code บนหน้าจอไปเรื่อยๆ จนกว่า
+        ผู้ใช้จะพิมพ์อักษร # เพื่อยุติการทำงาน ชุดคำสั่งใน main() จะถูกปรับปรุงไปเป็น
+      </p>
+      <pre>
+        <div class="code Python">
+def main():	
+	test_sent = input("Enter sentence (press Enter to process) &#62;&#62; ")	
+	while test_sent != "#" :
+		words = spliter(test_sent)
+		result = ""
+		for w in words :
+			result = result + Morse_encoder(w) + " "
+		print(f"Morse Code is {result}")
+		test_sent = input("Enter sentence (press Enter to process) &#62;&#62; ")
+	print("Good bye ")		
+        </div>
+      </pre>  
+      <p>
+      เมือเรียกใช้โปรแกรมจะได้ผลตามรูป
+      <div class="columns">
+        <div class="column">
+          <img src="https://cdn.glitch.global/cb61e7ff-aec7-49ac-884a-cea3cd4cd9da/Screenshot%202022-07-08%2021%3A01%3A24.png?v=1657288926857"/>
+        </div>
+        <div class="column"></div>
+      </div>          
+      </p>
+      <p>
+      ชุดคำสั่งทั้งหมดในโปรแกรม  
+      <pre>
+        <div class="code Python">
+# Write your code down below.
+# Press shift-enter to run
+def spliter(sentence):
+  '''
+  convert sentence to list of words       
+  input : String 
+  output : a list of String
+  '''
+	# to upper case
+  sentence = sentence.upper()
+  
+   # split 
+  word_list = sentence.split(" ")
+  
+  return word_list
+
+
+def Morse_encoder(a_word):	
+    '''
+    To Encode a word with Morse Code
+    input : String 
+    output : String
+    '''
+    result = ""
+    for l in a_word:
+        if l not in morse_lookup.keys() :
+            continue
+        mc = morse_lookup[l]
+        result = result + mc + " " 
+
+    return result
+
+
+# lookup table map from Latin letters and number to Morse code
+morse_lookup = {
+'A':'.-','J':'.---','S':'...','1':'.----',
+'B':'-...','K':'-.-','T':'-','2':'..---',
+'C':'-.-.','L':'.-..','U':'..-','3':'...- -',
+'D':'-..','M':'--','V':'...-','4':'....-',
+'E':'.','N':'-.','W':'--','5':'.....',
+'F':'..-.','O':'---','X':'-..-','6':' -....',
+'G':'--.','P':'.--.','Y':'-.--','7':'--...',
+'H':'....','Q':'--.-','Z':'--..','8':'---..',
+'I':'..','R':'.-.','0':'-----','9':'----.'
+}
+
+def main():	
+	test_sent = input("Enter sentence (press Enter to process) &#62;&#62; ")	
+	while test_sent != "#" :
+		words = spliter(test_sent)
+		result = ""
+		for w in words :
+			result = result + Morse_encoder(w) + " "
+		print(f"Morse Code is {result}")
+		test_sent = input("Enter sentence (press Enter to process) &#62;&#62; ")
+	print("Good bye ")		
+
+main()        </div>
+      </pre>  
+      <button class="button is-success" 
+           onclick="open_modal('branch-modal','branch-repl','branch-std-out','branch-err-out')">
+             Try it 
+      </button><br/><br/>  
+      </p>
+
+    </section>
+    <!-- ***************************************** -->
+    <section class="section content slide box">
+      <h1>
+        Exercise
+      </h1>
+      <p>
+        สมมุติมีเจ้าของร้านอาหารแ่ห่งหนึ่งต้องการโปรแกรมช่วยคำนวณจำนวนเงินรวมทั้งหมดที่ลูกค้าจะต้องจ่าย โดยที่ค่าใช้จ่ายประกอบไปด้วย
+        ค่าอาหาร ค่าภาษีมูลค่าเพิ่ม (VAT) ซึ่งคิดในอัตรา 7% ของค่าอาหาร และค่าบริการ (service charge) ซึ่งคิดในอัตรา 10 % จากค่าอาหาร
+        โดยโปรแกรมจะรับ input เป็นค่าอาหาร แล้วแสดงค่า 4 ค่าบนหน้าจอคือ 
+        <ol>
+          <li>ค่าอาหาร </li>
+          <li>VAT </li>
+          <li>Service charge </li>
+          <li>จำนวนเงินที่ต้องจ่ายทั้งหมด </li>
+        </ol>
+      <button class="button is-success" 
+           onclick="open_modal('branch-modal','branch-repl','branch-std-out','branch-err-out')">
+             Try it 
+      </button><br/><br/>
+      </p>
+    </section>
+  
+    <!-- ################ Navigator ###################### -->
+      <nav class="pagination is-centered" role="navigation" aria-label="pagination">
+        <a class="pagination-previous" href="./index.html" alt="Home"><ion-icon name="home-outline"></ion-icon>Home</a>
+        <a class="pagination-next" href="./index.html">Next <ion-icon name="chevron-forward-outline"></ion-icon></a>
+        
+        <ul class="pagination-list">
+          <li><a class="pagination-link" aria-label="Goto page Writing and Reading data on screen" 
+                 onclick="currentDiv(1)">Software Development Process</a></li>      
+          <li><a class="pagination-link" aria-label="Goto page Data File" onclick="currentDiv(2)">Example</a></li>
+          <li><a class="pagination-link" aria-label="Goto page Data File" onclick="currentDiv(3)">Exercise</a></li>
+          
+          
+        </ul>
+
+      </nav>
+    
+    <footer class="footer box">
+      <div class="content has-text-centered">
+        <p>
+          <strong>Being Python Man</strong> โดย <a href="mailto:somchaisomph@gmail.com">สมชาย สมผดุง</a>. 
+        </p>
+        <p>
+          The source code is licensed
+          <a href="http://opensource.org/licenses/mit-license.php">MIT</a>. The website content
+            is licensed <a href="http://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY NC SA 4.0</a>.
+        </p>
+      </div>
+    </footer>
+
+ 
+
+    <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bulma-extensions@6.2.7/bulma-quickview/dist/js/bulma-quickview.min.js"></script>
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/11.5.1/highlight.min.js"></script>
+    <script>
+		var quickviews = bulmaQuickview.attach();
+      //hljs.highlightAll();
+      // first, find all the div.code blocks
+      //document.querySelectorAll('div.code').forEach(el => {
+        // then highlight each
+      //  hljs.highlightElement(el);
+      //});
+    </script>
+    <script src="../js/my_js.js">   </script>
+<!-- The Modal -->
+    <div class="modal" id="branch-modal">
+		<div class="modal-background"></div>
+		<div class="modal-card">
+		<header class="modal-card-head">
+			<p class="modal-card-title">Exercise</p>
+			<button class="delete" aria-label="close" 
+			onclick="close_modal('branch-modal','branch-repl','branch-std-out','branch-err-out')"
+			></button>
+		</header>
+		<section class="modal-card-body">
+			<!-- Content ... -->
+			<div class="columns is-multiline">
+				<div class="column is-three-quarters box" id="branch-repl">
+					<p><b>Type your code in box below then press Shift-ENTER to evaluate.</b> </p>
+				</div>
+				<div class="column box is-light" id="branch-std-out" onclick="clear_content(this)" >
+				</div>
+				<div class="column is-full" id="branch-err-out" onclick="clear_content(this)" ></div>
+			</div> <!--/columns-->
+		</section>
+		<footer class="modal-card-foot">
+			
+			<button class="button" 
+				onclick="close_modal('branch-modal','branch-repl','branch-std-out','branch-err-out')">
+				Close</button>
+		</footer>
+	</div>
+</div>
+    <!-- quickview -->
+	<div id="quickviewDefault" class="quickview box" style="background-color:rgba(230, 230, 230, 0.75);">
+		<header class="quickview-header is-primary">
+			<b class="title is-2">Topics</b>
+			<span class="delete" data-dismiss="quickview"></span>
+		</header>
+		<div class="quickview-body">
+			<div class="quickview-block">
+				<div class="list">
+					<div class="list-item">
+						<a class="list-item-title" onclick="currentDiv(1)">Software Development Process</a>
+					</div>
+					<div class="list-item">
+						<a class="list-item-title" onclick="currentDiv(2)">Example</a>
+					</div>					
+					<div class="list-item">
+						<a class="list-item-title" onclick="currentDiv(3)">Exercise</a>
+					</div>
+					
+				</div>
+			</div>
+		</div>
+		
+		<footer class="quickview-footer">
+			<div class="buttons">
+				<a class="pagination-link" href="./read_write_data.html">
+					<ion-icon name="chevron-back-outline"></ion-icon>Prev
+				</a>
+				<a class="pagination-link" href="./index.html" alt="Home">
+					<ion-icon name="home-outline"></ion-icon>Home
+				</a>
+				
+			</div>
+		</footer>
+		
+	</div>
+	<!-- /quickview --> 
+   
+  </body>
+</html>
+  
