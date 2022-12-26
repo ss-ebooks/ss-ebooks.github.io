@@ -91,7 +91,7 @@
 			</section>
 			<!-- #######  Example ##### -->	
 			<section class="section box slide content">
-				<p class="title is-3"> ตัวอย่าง 1 โปรแกรมเข้ารหัส Morse </p>
+				<p class="title is-3"> ตัวอย่าง โปรแกรมเข้ารหัส Morse </p>
 				<p class="title is-5">
 					1. วิเคราะห์และทำความเข้าใจปัญหา (Analyze and understand problem)
 				</p>
@@ -119,62 +119,46 @@
 							เช่นคำ "HELLO" แปลงเป็นรหัส Morse เป็น <strong>.... . .-.. .-.. ---</strong> 
 						</p>
 					</li>
-				</ol>             
-			</section>
-		</div><!-- /page container -->
-    
-    <section class="section box slide content">
-      
-      
-      <p>
-        ใช้ข้อมูลจาก Wikipedia เรื่อง <a href="https://en.wikipedia.org/wiki/Morse_code">Morse code</a> ทำให้ทราบว่า
-        
-      </p>
-      <div class="divider"></div>
-     <p class="title is-3"> กำหนดขอบเขตการทำงาน (Determine specification)</p>
-      <p>
-        <dl>
-          <dt><b>What does program do</b></dt>
-          <dd>เปลี่ยนข้อความที่เขียนด้วยอักษรภาษาอังกฤษให้เป็น International Morse code</dd>
-          <dt><b>Input</b></dt>
-          <dd>ข้อความภาษาอังกฤษหรือตัวเลชอาราบิก</dd>
-          <dt><b>Output</b></dt>
-          <dd>ชุดของ String ที่แสดงด้วย dot และ dash ตามแบบ International Morse Code </dd>
-          <dd></dd>
-        </dl>
-        
-      </p>
-      <div class="divider">&clubs;&clubs;&clubs;</div>
-      <h3>
-        ออกแบบ (Create a design)
-      </h3>
-      <p>
-        ออกแบบขั้นตอนการทำงาน
-        <div class="columns">                   
-          <div class="column">
-            <p>
-              Psuedocode
-            </p>
-            <ol>
-              <li>Create lookup table for mapping English letters to Morse code</li>
-              <li>Split user's sentence to list of words</li>
-              <li>Map each letter in word to Morse code, word by word  </li>
-              
-            </ol>
-          </div>  
-           <div class="column">
-            <img src="https://cdn.glitch.global/cb61e7ff-aec7-49ac-884a-cea3cd4cd9da/hello_python-morse_encoder.png?v=1657269529714" />
-          </div>  
-        </div>
-      </p>
-      <div class="divider">&clubs;&clubs;&clubs;</div>
-      <h3>       
-        สร้าง program (Create a program : convert the design to Python)
-      </h3>
-      <p>
-      สร้าง lookup table<br/>
-      <pre>
-        <div class="code Python">
+				</ol>         
+				 <div class="divider">&clubs;&clubs;&clubs;</div>
+				 <!-- 2 -->   
+				 <p class="title is-5">
+					2. กำหนดขอบเขตการทำงาน (Determine specification)
+				</p>
+				<dl>
+					<dt><b>What does program do</b></dt>
+					<dd>เปลี่ยนข้อความที่เขียนด้วยอักษรภาษาอังกฤษให้เป็น International Morse code</dd>
+					<dt><b>Input</b></dt>
+					<dd>ข้อความภาษาอังกฤษหรือตัวเลชอาราบิก</dd>
+					<dt><b>Output</b></dt>
+					<dd>ชุดของ String ที่แสดงด้วย dot และ dash ตามแบบ International Morse Code </dd>
+					<dd></dd>
+				</dl>
+				<div class="divider">&clubs;&clubs;&clubs;</div>
+				<!-- 3 -->   
+				<p class="title is-5">
+					3. ออกแบบขั้นตอนการทำงาน (Create a design)
+				</p>
+				<div class="columns">                   
+					<div class="column">
+						<p> เขียนขั้นตอนในการทำงานแบบคร่าว (Psuedocode)  </p>
+						<ol>
+							<li>สร้างตารางเทียบระหว่างอักษรและตัวเลขกับ Morse code</li>
+							<li>แยกคำหรือตัวเลขจากประโยคที่รับจากผู้ใช้ออกเป็นส่วนๆ</li>
+							<li>นำคำหรือตัวเลขที่ได้จากข้อ 2 ไปเทียบหา Mors code จากตารางในข้อ 1</li>             
+						</ol>
+					</div>  
+					<div class="column">
+						<img src="./img/hello_python-morse_encoder.png" />
+					</div>  
+				</div>
+				<div class="divider">&clubs;&clubs;&clubs;</div>
+				<!-- 4 --> 
+				<p class="title is-5">      
+					4. แปลงสิ่งที่ได้จากข้อ 3 ให้เป็นชุดคำสั่ง หรือการสร้างโปรแกรม (Create a program : convert the design to Python)
+				</p>
+				<p>4.1 สร้าง lookup table  โดยใช้ data type แบบ dictionary </p>
+				<pre class="code Python box">
 morse_lookup = {
 'A':'.-','J':'.---','S':'...','1':'.----',
 'B':'-...','K':'-.-','T':' -','2':'..---',
@@ -186,12 +170,10 @@ morse_lookup = {
 'H':'....','Q':'- -.-','Z':' - -..','8':'---..',
 'I':'..','R':'.-.','0':'-----','9':'----.'
 }       
-        </div>
-      </pre>  
-      <br/>
-       Split English sentence <br/>
-      <pre>
-        <div class="code Python">
+        
+				</pre>  
+				<p>4.2 การแยกคำ (Split English sentence)  function ที่สร้างทำงานโดยนำเข้าประโยค 1 ประโยค เปลี่ยนอักษรให้เป็น capital letter ทั้งหมด แล้วทำการแยกคำออกจากประโยค   </p>				
+				<pre class="code Python box">
 def spliter(sentence):
   # to upper case
   sentence = sentence.upper()
@@ -200,12 +182,10 @@ def spliter(sentence):
   word_list = sentence.split(" ")
   
   return word_list
-        </div>
-      </pre>  
-      <br/>
-       Map word to Morse Code <br/>
-      <pre>
-        <div class="code Python">
+        
+				</pre>  
+				<p>4.3  เทียบคำกับ Morse Code โดย function ที่สร้างจะนำเข้าเป็นคำโดด นำอักษรของคำไปเทียบกับอักษรในตารางทีละอักษรเพื่อให้ทราบถึง Morse code แล้วนำเอา Morse code ที่ได้มาเรียงต่อกันในลำดับเดียวกันกับการเรียงของอักษรในคำ</p>
+				<pre class="code Python">
 def Morse_encoder(a_word):	
 	result = ""
 	for l in a_word:
@@ -213,89 +193,72 @@ def Morse_encoder(a_word):
 		result = result + mc + " " 
 
 	return result
-        </div>
-      </pre>  
 
-      </p>
-      <div class="divider">&clubs;&clubs;&clubs;</div>
-      <h3>
-        ทดสอบและหาข้อผิดพลาด (Test and debug the program)
-      </h3>
-        ทดสอบด้วยประโยคสำเร็จ
-      <pre>
-        <div class="code Python">
-def main():
-	test_sent = "THIS IS MORSE CODE"
-	words = spliter(test_sent)
-	result = ""
-	for w in words :
-		result = result + Morse_encoder(w) + " "
-	print(result)	
-
-main()        
-        </div>
-      </pre>  
-      ผลลัพธ์ที่แสดงบนหน้าจอ
-      <div class="columns">        
-        <div class="column">
-          <img src="https://cdn.glitch.global/cb61e7ff-aec7-49ac-884a-cea3cd4cd9da/Screenshot%202022-07-08%2019%3A48%3A22.png?v=1657284524181" />
-        </div>
-        <div class="column"></div>
-      </div>
-      <br/>
-      ทดสอบเติมอักษรภาษาไทยเข้าไปในประโยค
-      <pre>
-        <div class="code Python">
-def main():
-	test_sent = "THIS IS MORSEก CODE"
-	words = spliter(test_sent)
-	result = ""
-	for w in words :
-		result = result + Morse_encoder(w) + " "
-	print(result)	
-
-main()        
-        </div>
-      </pre>  
-        จะพบกับการแจ้งข้อผิดพลาดว่า <font color="red">KeyError: ก</font> และโปรแกรหยุดทำงาน<br/>
-      <h3>แก้ไขข้อผิดพลาด</h3>  
-        ถ้ากลับไปดูใน Morse_encoder() การทำงานคือใช้อักษรภาษาอังกฤษหรือตัวเลขเป็น key ในการสืบค้นหา Morse code ที่ตรงกับอักษรนั้นออกมา 
-        ถ้าไม่มี key ดังกล่าว interpreter จึงฟ้องข้อผิดพลาดออกมาและหยุดทำงาน<br/>
-        การแก้ไขอาจทำได้หลายกรณี แต่ในตัวอย่างจะใช้การข้ามอักษรดังกล่าวไป โดยอาศัยคำสั่ง continue  ชุดคำสั่งใหม่ของ  Morse_encoder() จะเป็น
-      <pre>
-        <div class="code Python">
+				</pre>  
+				<!-- 5 -->
+				<p class="title is-5">
+					5. ทดสอบและหาข้อผิดพลาด (Test and debug the program)
+				</p>
+				<p>5.1 ทดสอบด้วยประโยคสำเร็จ ใช้อักษรภาษาอังกฤษหรืออาจมีตัวเลขอาราบิกปน เพื่อทดสอบการทำงานก่อน</p>
+				<pre class="code Python  box">
+test_sent = "THIS IS MORSE CODE"
+words = spliter(test_sent)
+result = ""
+for w in words :
+	result = result + Morse_encoder(w) + " "
+print(result)	
+				</pre>
+				<p>ผลลัพธ์ที่แสดงบนหน้าจอ บอกว่าการทำงานของโปรแกรมถูกต้อง สามารถใช้งานได้</p>
+				<div class="columns">        
+					<div class="column">
+						<img src="./img/output_morse_code.png" />
+					</div>
+					<div class="column"></div>
+				</div>
+				 <p>5.2 ทดสอบการจัดการกับข้อผิดพลาดที่อาจเกิดขึ้นได้ เช่น การเผลอพิมพ์อักษรที่ไม่ใช่ภาษาอังกฤษแทรกในประโยค เช่น </p>
+				 <pre class="code Python box">
+test_sent = "THIS IS MORSEก CODE"
+words = spliter(test_sent)
+result = ""
+for w in words :
+	result = result + Morse_encoder(w) + " "
+print(result)        
+				</pre>  
+				<p>Python interpreter แจ้งข้อผิดพลาดว่า <font color="red">KeyError: ก</font> และโปรแกรหยุดทำงาน ทั้งนี้ เนื่องจากการทำงานของโปรแกรมคือใช้อักษรภาษาอังกฤษหรือตัวเลขเป็น key ในการสืบค้นหา Morse code ที่ตรงกับอักษรนั้นออกมา 
+        ถ้าไม่มี key ดังกล่าว interpreter จึงฟ้องข้อผิดพลาดออกมาและหยุดทำงาน การแก้ไขอาจทำได้หลายกรณี แต่ในตัวอย่างจะใช้การข้ามอักษรดังกล่าวไป โดยอาศัยคำสั่ง continue  ชุดคำสั่งใหม่ของ  Morse_encoder() 
+               </p>
+               <pre class="code Python  box">
 def Morse_encoder(a_word):	
 	result = ""
 	for l in a_word:
-    if l not in morse_lookup.keys() :
-      continue
+		if l not in morse_lookup.keys() :
+			continue
 		mc = morse_lookup[l]
 		result = result + mc + " " 
 
 	return result
-        </div>
-      </pre>  
-
-      <div class="divider">&clubs;&clubs;&clubs;</div>
-      <h3>
-        บำรุงรักษา ปรับปรุง (Maintain the program)
-      </h3>
-      <p>
+   
+				</pre>  
+				<div class="divider">&clubs;&clubs;&clubs;</div>
+				<!-- 6 -->
+				<p class="title is-5">
+					6. บำรุงรักษา ปรับปรุง (Maintain the program)
+				</p>
+				<p>
         จากผลลัพธ์ที่เห็นแสดงว่าโปรแกรมสามารถทำงานได้แล้วในภาพรวม แต่ถ้าพิจารณาดูจะพบว่าโปรแกรมยังสามารถพัฒนาต่อได้ในอีกหลายจุด ได้แก่
-        <ul>
-          <li>การลดความผิดพลาดจากการข้อมูลของผู้ใช้</li>  
-          <li>การแสดงผลที่เข้าใจและนำไปใช้งานง่ายขึ้น</li>  
-          <li>การสร้างระบบ User Interface</li>  
-          <li>การทำงานเชื่อมโยงไปยังระบบอื่น เช่น ระบบไฟกระพริบผ่านสาย fiber optics</li>  
-          <li>ฯลฯ</li>  
-        </ul>
-      </p>
-      <p>
+					<ul>
+						<li>การลดความผิดพลาดจากการข้อมูลของผู้ใช้</li>  
+						<li>การแสดงผลที่เข้าใจและนำไปใช้งานง่ายขึ้น</li>  
+						<li>การสร้างระบบ User Interface</li>  
+						<li>การทำงานเชื่อมโยงไปยังระบบอื่น เช่น ระบบไฟกระพริบผ่านสาย fiber optics</li>  
+						<li>ฯลฯ</li>  
+					</ul>
+				</p>
+				<p>
       ในตัวอย่างนี้ขอยกกรณีการปรับปรุงอย่างง่ายคือการสร้างส่วน user interface ใ้ห้ทำงานวนมารับประโยคจากผู้ใช้แล้วพิมพ์ Morse code บนหน้าจอไปเรื่อยๆ จนกว่า
         ผู้ใช้จะพิมพ์อักษร # เพื่อยุติการทำงาน ชุดคำสั่งใน main() จะถูกปรับปรุงไปเป็น
-      </p>
-      <pre>
-        <div class="code Python">
+				</p>
+				<pre class="code Python  box">
 def main():	
 	test_sent = input("Enter sentence (press Enter to process) &#62;&#62; ")	
 	while test_sent != "#" :
@@ -305,22 +268,19 @@ def main():
 			result = result + Morse_encoder(w) + " "
 		print(f"Morse Code is {result}")
 		test_sent = input("Enter sentence (press Enter to process) &#62;&#62; ")
-	print("Good bye ")		
-        </div>
-      </pre>  
-      <p>
-      เมือเรียกใช้โปรแกรมจะได้ผลตามรูป
-      <div class="columns">
-        <div class="column">
-          <img src="https://cdn.glitch.global/cb61e7ff-aec7-49ac-884a-cea3cd4cd9da/Screenshot%202022-07-08%2021%3A01%3A24.png?v=1657288926857"/>
-        </div>
-        <div class="column"></div>
-      </div>          
-      </p>
-      <p>
-      ชุดคำสั่งทั้งหมดในโปรแกรม  
-      <pre>
-        <div class="code Python">
+	print("Good bye ")
+				</pre>  
+				<p>
+					เมือเรียกใช้โปรแกรมจะได้ผลตามรูป
+					<div class="columns">
+						<div class="column">
+							<img src="./img/ui_mors_code.png"/>
+						</div>
+						<div class="column"></div>
+					</div>          
+				</p>
+				<p>ชุดคำสั่งทั้งหมดในโปรแกรม  
+				<pre class="code Python box">
 # Write your code down below.
 # Press shift-enter to run
 def spliter(sentence):
@@ -378,52 +338,78 @@ def main():
 		test_sent = input("Enter sentence (press Enter to process) &#62;&#62; ")
 	print("Good bye ")		
 
-main()        </div>
-      </pre>  
-      <button class="button is-success" 
-           onclick="open_modal('branch-modal','branch-repl','branch-std-out','branch-err-out')">
-             Try it 
-      </button><br/><br/>  
-      </p>
-
-    </section>
-    <!-- ***************************************** -->
-    <section class="section content slide box">
-      <h1>
-        Exercise
-      </h1>
-      <p>
-        สมมุติมีเจ้าของร้านอาหารแ่ห่งหนึ่งต้องการโปรแกรมช่วยคำนวณจำนวนเงินรวมทั้งหมดที่ลูกค้าจะต้องจ่าย โดยที่ค่าใช้จ่ายประกอบไปด้วย
-        ค่าอาหาร ค่าภาษีมูลค่าเพิ่ม (VAT) ซึ่งคิดในอัตรา 7% ของค่าอาหาร และค่าบริการ (service charge) ซึ่งคิดในอัตรา 10 % จากค่าอาหาร
-        โดยโปรแกรมจะรับ input เป็นค่าอาหาร แล้วแสดงค่า 4 ค่าบนหน้าจอคือ 
-        <ol>
-          <li>ค่าอาหาร </li>
-          <li>VAT </li>
-          <li>Service charge </li>
-          <li>จำนวนเงินที่ต้องจ่ายทั้งหมด </li>
-        </ol>
-      <button class="button is-success" 
-           onclick="open_modal('branch-modal','branch-repl','branch-std-out','branch-err-out')">
-             Try it 
-      </button><br/><br/>
-      </p>
-    </section>
-  
-    <!-- ################ Navigator ###################### -->
-      <nav class="pagination is-centered" role="navigation" aria-label="pagination">
-        <a class="pagination-previous" href="./index.html" alt="Home"><ion-icon name="home-outline"></ion-icon>Home</a>
-        <a class="pagination-next" href="./index.html">Next <ion-icon name="chevron-forward-outline"></ion-icon></a>
+main()    
+				</pre>  				
+			</section>
+			<!-- ***************************************** -->
+			<section class="section content slide box">
+				<h1>Exercise  </h1>
+				<p>
+				สมมุติมีเจ้าของร้านอาหารแ่ห่งหนึ่งต้องการโปรแกรมช่วยคำนวณจำนวนเงินรวมทั้งหมดที่ลูกค้าจะต้องจ่าย โดยที่ค่าใช้จ่ายประกอบไปด้วย
+				ค่าอาหาร ค่าภาษีมูลค่าเพิ่ม (VAT) ซึ่งคิดในอัตรา 7% ของค่าอาหาร และค่าบริการ (service charge) ซึ่งคิดในอัตรา 10 % จากค่าอาหาร
+				โดยโปรแกรมจะรับ input เป็นค่าอาหาร แล้วแสดงค่า 4 ค่าบนหน้าจอคือ 
+					<ol>
+						<li>ค่าอาหาร </li>
+						<li>VAT </li>
+						<li>Service charge </li>
+						<li>จำนวนเงินที่ต้องจ่ายทั้งหมด </li>
+					</ol>
+					<br/>
+					<button class="button is-success" 
+						onclick="go_to_code('b1_write_prog:1','/beingpythonman_1/writing_a_program.html')">Try it </button>  
+					<!--
+					<button class="button is-success" 
+						onclick="open_modal('branch-modal','branch-repl','branch-std-out','branch-err-out')">
+						Try it 
+					</button><br/><br/>
+					-->
+				</p>
+			</section>
+			
+			<!-- ################ Navigator ###################### -->
+			<nav class="pagination is-centered" role="navigation" aria-label="pagination">
+				<a class="pagination-previous" href="./index.html" alt="Home"><ion-icon name="home-outline"></ion-icon>Home</a>
+				<a class="pagination-next" href="./index.html">Next <ion-icon name="chevron-forward-outline"></ion-icon></a>
+                <ul class="pagination-list">
+					<li><a class="pagination-link" aria-label="Goto page Writing and Reading data on screen" 
+						onclick="currentDiv(1)">Software Development Process</a></li>      
+					<li><a class="pagination-link" aria-label="Goto page Data File" onclick="currentDiv(2)">Example</a></li>
+					<li><a class="pagination-link" aria-label="Goto page Data File" onclick="currentDiv(3)">Exercise</a></li>
+				</ul>
+			</nav>
+		</div><!-- /page container -->          
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
         
-        <ul class="pagination-list">
-          <li><a class="pagination-link" aria-label="Goto page Writing and Reading data on screen" 
-                 onclick="currentDiv(1)">Software Development Process</a></li>      
-          <li><a class="pagination-link" aria-label="Goto page Data File" onclick="currentDiv(2)">Example</a></li>
-          <li><a class="pagination-link" aria-label="Goto page Data File" onclick="currentDiv(3)">Exercise</a></li>
-          
-          
-        </ul>
+        
+      
+      
+      
+        
+      
 
-      </nav>
+      
+      
+      
+      
+      
+      
+      
+
+    
+    
+  
+    <
     
     <footer class="footer box">
       <div class="content has-text-centered">
@@ -521,7 +507,16 @@ main()        </div>
 		</footer>
 		
 	</div>
-	<!-- /quickview --> 
+	<script>
+		var quickviews = bulmaQuickview.attach();     
+
+		function go_to_code(prob_text,caller_page){
+			localStorage.setItem('caller_page',caller_page);
+			localStorage.setItem('problem', prob_text);
+			window.location = "/code_editor/python_code_editor.html";
+	
+		}			
+    </script>
    
   </body>
 </html>
