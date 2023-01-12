@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="icon" type="image/png" href="https://cdn.glitch.global/cb61e7ff-aec7-49ac-884a-cea3cd4cd9da/favicon-32x32.png?v=1655545783728" />
+    <title>C Programming Language 01 : Chapter 1</title> 
+   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.9.3/css/bulma.min.css" 
+		integrity="sha512-IgmDkwzs96t4SrChW29No3NXBIBv8baW490zk5aXvhCD8vuZM3yUSkbyTBcXohkySecyzIrUwiF/qV0cuPcL3Q==" 
+		crossorigin="anonymous" referrerpolicy="no-referrer" />  
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@creativebulma/bulma-divider@1.1.0/dist/bulma-divider.min.css"/>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.0.0/animate.min.css" />  
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma-extensions@6.2.7/bulma-quickview/dist/css/bulma-quickview.min.css" />		
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@creativebulma/bulma-tooltip@1.2.0/dist/bulma-tooltip.min.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.5.1/styles/default.min.css">
+  <link rel="stylesheet" href="/css/my_css.css" />  
+  </head>
+  <body>
+	<!-- ######################### -->  	
+	<nav class="navbar bg-nasa" role="navigation" aria-label="main navigation">
+		<div class="navbar-brand">
+			<span class="navbar-item title is-2 has-text-white" >รู้จักกับ C programming language</span>				
+		</div>
+		<div class="navbar-end">
+			<div class="navbar-item" >
+				<a class="button is-primary has-tooltip-left" 
+					data-show="quickview" 
+					alt="subcontent"
+					data-target="quickviewDefault"  data-tooltip="Topics">
+					<ion-icon name="ellipsis-vertical"></ion-icon>
+				</a>
+			</div>	 
+	</nav>
+	<!-- ######################### -->
+	<div class="container" data-dismiss="quickview">
+		<!-- topic section -->
+		
+		<section class="section slide box content">
+			<p class="title is-3">คุณลักษณะทั่วไป (Features)</p><!-- /topic title -->
+			
+			<p>C เป็น programming language.พัฒนาขึ้นโดย Dennis Ritchie  ในปี ค.ศ. 1972มีเป้าหมายในตอนแรกเพื่อใช้เป็น system programming language เพื่อใช้สร้างซอฟต์แวร์ระบบปฏิบัติการ (operating system) มีคุณสมบัติที่สำคัญดังนี้</p><!-- /topic content -->
+			
+			<p><dl><dt><b>Procedural language</b></dt><dd>ในโปรแกรม 1 โปรแกรมอาจถูกแบ่งออกเป็นการทำงานย่อยได้มากกว่า 1 งาน  แต่ละงานมีเป้าหมายเดียว เรียกว่าแต่ละงานว่า procedure หรือ function</dd><dt><b>ความรวดเร้วในการทำงาน</b></dt><dd>C programming language จัดเป็น middle-level language ช่วยให้ programmers เข้าถึงการทำงานของ computer hardware โดยตรง ในขณะที่ higher-level languages เช่น Python ไม่สามารถทำได้.</dd></dl></p><!-- /topic content -->
+			
+		</section><!-- /topic section -->	
+		<div class="divider">&clubs;&clubs;&clubs;</div> <!-- /topic separate line -->
+		
+		<section class="section slide box content">
+			<p class="title is-3"></p><!-- /topic title -->
+			
+		</section><!-- /topic section -->	
+		<div class="divider">&clubs;&clubs;&clubs;</div> <!-- /topic separate line -->
+		
+		<section class="section slide box content">
+			<p class="title is-3"></p><!-- /topic title -->
+			
+		</section><!-- /topic section -->	
+		<div class="divider">&clubs;&clubs;&clubs;</div> <!-- /topic separate line -->
+		
+		<section class="section slide box content">
+			<p class="title is-3"></p><!-- /topic title -->
+			
+		</section><!-- /topic section -->	
+		<div class="divider">&clubs;&clubs;&clubs;</div> <!-- /topic separate line -->
+		
+		<!-- topic section -->
+		<!-- footer -->
+		<footer class="quickview-footer">
+			<div class="buttons">
+				<a class="pagination-link" href='/index.html' alt="Home">
+					<ion-icon name="list-outline"></ion-icon>Contents
+				</a>
+				<a class="pagination-link" href=''>
+					Next <ion-icon name="chevron-forward-outline"></ion-icon>
+				</a>
+			</div>
+		</footer>
+		
+	</div>
+		<!-- /footer -->
+	</div>  <!-- /container -->	
+	
+	<!-- quick view -->
+	<div id="quickviewDefault" class="quickview box" style="background-color:rgba(230, 230, 230, 0.75);">
+		<header class="quickview-header is-primary">
+			<a data-dismiss="quickview">
+				<ion-icon src="/icons/chevron-forward-outline.svg" size="large"></ion-icon>
+			</a>
+			<p class="title is-2">Topics</p>
+		</header>
+		<div class="quickview-body">
+			<div class="quickview-block">
+				<div class="list">
+					
+					<div class="list-item">
+						<a class="list-item-title" onclick="currentDiv(1)">คุณลักษณะทั่วไป (Features)</a>
+					</div>
+					
+					<div class="list-item">
+						<a class="list-item-title" onclick="currentDiv(2)"></a>
+					</div>
+					
+					<div class="list-item">
+						<a class="list-item-title" onclick="currentDiv(3)"></a>
+					</div>
+					
+					<div class="list-item">
+						<a class="list-item-title" onclick="currentDiv(4)"></a>
+					</div>
+										
+				</div><!-- /list -->
+			</div><!--/block -->
+		</div><!--/body-->	
+	</div>
+	<!-- /quick view -->
+	
+	<script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+	<script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+	<script src="https://cdn.jsdelivr.net/npm/bulma-toast@2.4.1/dist/bulma-toast.min.js"></script>   
+	<script src="https://cdn.jsdelivr.net/npm/bulma-extensions@6.2.7/bulma-quickview/dist/js/bulma-quickview.min.js"></script>
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.5.1/highlight.min.js"></script> 
+	<script>
+	 var quickviews = bulmaQuickview.attach();	
+
+      // first, find all the div.code blocks
+      document.querySelectorAll('pre.code').forEach(el => {
+        // then highlight each
+        hljs.highlightElement(el);
+      });
+    
+    </script>
+	<script src="../js/my_js.js">   </script>
+  </body>
+</html>
