@@ -1,13 +1,10 @@
----
-title: Chapter 1
----
 <!DOCTYPE html>
 <html lang="en">
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <link rel="icon" type="image/png" href="https://cdn.glitch.global/cb61e7ff-aec7-49ac-884a-cea3cd4cd9da/favicon-32x32.png?v=1655545783728" />
-    <title>C Programming Language 01 : {{ page.title }}</title> 
+    <title>C Programming Language 01 : Chapter 1</title> 
    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.9.3/css/bulma.min.css" 
 		integrity="sha512-IgmDkwzs96t4SrChW29No3NXBIBv8baW490zk5aXvhCD8vuZM3yUSkbyTBcXohkySecyzIrUwiF/qV0cuPcL3Q==" 
 		crossorigin="anonymous" referrerpolicy="no-referrer" />  
@@ -22,7 +19,7 @@ title: Chapter 1
 	<!-- ######################### -->  	
 	<nav class="navbar bg-nasa" role="navigation" aria-label="main navigation">
 		<div class="navbar-brand">
-			<span class="navbar-item title is-2 has-text-white" >{{ site.data.chapter_1["title"] }}</span>				
+			<span class="navbar-item title is-2 has-text-white" >รู้จักกับ C programming language</span>				
 		</div>
 		<div class="navbar-end">
 			<div class="navbar-item" >
@@ -37,24 +34,89 @@ title: Chapter 1
 	<!-- ######################### -->
 	<div class="container" data-dismiss="quickview">
 		<!-- topic section -->
-		{% for topic in site.data.chapter_1["topics"] %}
+		
 		<section class="section slide box content">
-			<p class="title is-3">{{ topic["title"] }}</p><!-- /topic title -->
-			{% for p in topic["contents"] %}
-			<p>{{ p }}</p><!-- /topic content -->
-			{% endfor %}
+			<p class="title is-3">บทนำ (Introduction)</p><!-- /topic title -->
+			
+			<p>C เป็น programming language.พัฒนาขึ้นโดย Dennis Ritchie  ในปี ค.ศ. 1972มีเป้าหมายในตอนแรกเพื่อใช้เป็น system programming language เพื่อใช้สร้างซอฟต์แวร์ระบบปฏิบัติการ (operating system) ปัจจุบัน International Standardization Organization (ISO) เป็นผู้กำหนดมาตรฐานสำหรับภาษา C  เรียกว่า C Standard  ล่าสุดคือ <a href='https://www.iso-9899.info/wiki/The_Standard'>C17</a> (บางครั้งอาจเรียกว่า C18)C Standard รุ่นก่อนหน้าคือ C11 </p><!-- /topic content -->
+			
+			<p>ข้อกำหนดที่สร้างขึ้นจะเป็นตัวกำหนดรูปแบบการทำงานของโปรแกรมและวิธีการเขียนชุดคำสั่ง ยกตัวอย่างเช่น <pre class='box'>The function called at program startup is named main. The implementation
+declares no prototype for this function. It shall be defined with a return
+type of int and with no parameters:
+int main(void) { /* ... */ }
+or with two parameters (referred to here as argc and argv, though any names
+may be used, as they are local to the function in which they are declared):
+int main(int argc, char *argv[]) { /* ... */ }
+or equivalent;10) or in some other implementation-defined manner.</pre></p><!-- /topic content -->
+			
+			<p>ข้อความนี้กำหนดว่า โปรแกรมที่เขียนด้วย C language จะตัองมี function ชื่อ main() เสมอ เพราะพฤติกรรมของโปรแกรมจะเริ่มต้นการทำงานจาก function นี้ซึ่ง main สามารถเขียนได้ใน 2 รูปแบบคือ แบบมี 2 parameters และไม่มี parameters เป็นต้น</p><!-- /topic content -->
+			
+			<p>C language อาจถูกมองว่าเป็นภาษาที่ค่อนข้างยากสำหรับผู้เริ่มต้น แต่หากมองอีกมุมคือ C language ถูกใช้งานมาระยะยาวนานแล้ว มีภาษารุ่นใหม่หลายภาษาได้ยืม Syntax ของ C language ไปใช้ เช่น Java, JavaScript, PHP ฯล และมีหลายภาษาที่ใช้ C ในการพัฒนา library เช่น Python นอกจากนี้ C++ language ซ่งเป็น superset ของ C ก็มีการใช้งานแพร่หลายมากในปัจจุบัน Machine Learning Framework อย่าง TensorFlow ก็ใช้ C++ language ในการพัฒนา ดังนั้นการเริ่มต้นด้วย C language น่าจะเป็นผลดีในระยะยาว ช่วยให้การศึกษาภาษาอื่นง่ายขึ้น</p><!-- /topic content -->
+			
 			<div class="divider">&clubs;&clubs;&clubs;</div> <!-- /topic separate line -->
 		</section><!-- /topic section -->	
 		
-		{% endfor %}
+		
+		<section class="section slide box content">
+			<p class="title is-3">โครงสร้างของ C program</p><!-- /topic title -->
+			
+			<p>โครงสร้างหลักของ C program มี 3 องค์ประกอบหลักคือ<ul class='list'><li>Headers</li><li>Functions</li><li>main function</li></ul><div class='columns'><div class='column'></div><div class='column'><img src='./img/c-lang-structure.png' /></div><div class='column'></div></div></p><!-- /topic content -->
+			
+			<p><span class="title is-5">Headers</span> <br/> เป็นพืนที่ของสิ่งที่เรียก่ว่า <a href='https://en.wikibooks.org/wiki/C_Programming/Preprocessor_directives_and_macros'>pre-processor directives</a>ชุดคำสั่งของส่วนนี้จะถูกจัดเก็บแยกออกจากโปรแกรมที่กำลังใช้งาน และจะถูกนำมาประมวลผลก่อนส่วนอื่น แต่ละบรรทัดจะมีเครื่องหมาย  <span class='has-text-link has-text-weight-bold '># </span>เป็นอักษรตัวแรกและไม่มี <span class='has-text-link has-text-weight-bold '>;</span> ปิดท้ายบรรทัด ที่มักพบบ่อยได้แก่<ul><li>#include</li><li>#define</li><li>#ifdef</li><li>#endif</li><li>#if</li><li>#else</li></ul></p><!-- /topic content -->
+			
+			<p>Pre-processor แบ่งได้ 3 ประเภทได้แก่<dl><dt><span class='has-text-link has-text-weight-bold '>File inclusion</span></dt><dd>รูปแบบการเขียน  <br/><pre class='box'>
+#include “filename” หรือ #include &#60;filename&#62
+</pre> <br/> เช่น <br/><pre class='box'>
+#include “stdio.h”
+#include &#60;opencv4/higui.h&#62;
+</pre> <br/></dd><dt><span class='has-text-link has-text-weight-bold '>Macro</span></dt><dd>รูปแบบการเขียน  <br/><pre class='box'>
+#define identifier string
+</pre> <br/> เช่น <br/><pre class='box'>
+#define  MAX_NUM 2000
+#define sqrt(x) x*x 
+</pre> <br/></dd><dt><span class='has-text-link has-text-weight-bold '>Compiler Control</span></dt><dd>ใช้กำหนดเงื่อนไขในการ compile โปรแกรม จะขอข้ามเรื่องนี้ไปก่อน ในระดับของการเริ่มต้นไม่จำเป็นต้องทราบในรายละเอียดเรื่องนี้<br/></dd></dl></p><!-- /topic content -->
+			
+			<p><span class="title is-5">Functions</span> <br/>เป็นพืนที่ของการกำหนดหน้าที่ต่างๆ ในโปรแกรม ซึ่งจะกล่าวถึงต่อไป</p><!-- /topic content -->
+			
+			<p><span class="title is-5">Main Function</span> <br/>เป็นจุดเริ่มต้นการทำงานของโปรแกรมใน C language มีจุดสำคัญคือ<ul><li>ชื่อของ function ต้องใช้ main()</li><li>ต้อง return ค่าออกมาเป็น integer </li><li>หากรับ parameters จะใช้ int argc และ char *argv[] (จะอธิบายความหมายภายหลัง) หากไม่มีการรับ parameter ให้ใช้ void</li></ul>ตัวอย่างเช่น <br/><pre class='box code'>
+int main(void){
+printf("Hello World");
+return 0;
+}
+
+
+int main(int argc, char *argv[]){
+printf("Hello World");
+return 0;
+}
+</pre> <br/></p><!-- /topic content -->
+			
+			<div class="divider">&clubs;&clubs;&clubs;</div> <!-- /topic separate line -->
+		</section><!-- /topic section -->	
+		
+		
+		<section class="section slide box content">
+			<p class="title is-3"></p><!-- /topic title -->
+			
+			<div class="divider">&clubs;&clubs;&clubs;</div> <!-- /topic separate line -->
+		</section><!-- /topic section -->	
+		
+		
+		<section class="section slide box content">
+			<p class="title is-3"></p><!-- /topic title -->
+			
+			<div class="divider">&clubs;&clubs;&clubs;</div> <!-- /topic separate line -->
+		</section><!-- /topic section -->	
+		
+		
 		<!-- topic section -->
 		<!-- footer -->
 		<footer class="quickview-footer">
 			<div class="buttons">
-				<a class="pagination-link" href='{{ site.data.chapter_1["prev_page"] }}' alt="Home">
+				<a class="pagination-link" href='./index.html' alt="Home">
 					<ion-icon name="list-outline"></ion-icon>Main Contents
 				</a>
-				<a class="pagination-link" href='{{ site.data.chapter_1["next_page"] }}'>
+				<a class="pagination-link" href=''>
 					Next <ion-icon name="chevron-forward-outline"></ion-icon>
 				</a>
 			</div>
@@ -75,11 +137,23 @@ title: Chapter 1
 		<div class="quickview-body">
 			<div class="quickview-block">
 				<div class="list">
-					{% for item in site.data.chapter_1.topics %}
+					
 					<div class="list-item">
-						<a class="list-item-title" onclick="currentDiv({{ item.order }})">{{ item.title }}</a>
+						<a class="list-item-title" onclick="currentDiv(1)">บทนำ (Introduction)</a>
 					</div>
-					{% endfor %}					
+					
+					<div class="list-item">
+						<a class="list-item-title" onclick="currentDiv(2)">โครงสร้างของ C program</a>
+					</div>
+					
+					<div class="list-item">
+						<a class="list-item-title" onclick="currentDiv(3)"></a>
+					</div>
+					
+					<div class="list-item">
+						<a class="list-item-title" onclick="currentDiv(4)"></a>
+					</div>
+										
 				</div><!-- /list -->
 			</div><!--/block -->
 		</div><!--/body-->	
