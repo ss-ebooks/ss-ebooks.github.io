@@ -96,7 +96,21 @@ return 0;
 		
 		
 		<section class="section slide box content">
-			<p class="title is-3"></p><!-- /topic title -->
+			<p class="title is-3">C Tokens</p><!-- /topic title -->
+			
+			<p>Token หมายถึงองค์ประกอบที่เล็กที่สุดแต่ยังคงมีความหมายสำหรับ compiler สำหรับ C language แบ่ง tokes ออกได้ 6 ประเภท ได้แก่<ol><li>Keywords (Reserved words)</li><li>Identifiers</li><li>Constants</li><li>Strings</li><li>Special symbols</li><li>Operators</li></ol></p><!-- /topic content -->
+			
+			<p><span class="title is-4">Keywords</span> <br/>หมายถึงคำที่ถูกระบุความหมายหรือหน้าที่ไว้แล้ว ไม่สามารถนำไปใช้เป็นชื่อสำหรับตัวแปรได้ ไม่สามารถกำหนดความหมายหรือหน้าที่ได้แต่สามารถที่จะหาคำมาทดแทนได้ โดยการใช้ประโยชน์จาก compile control directive ที่กล่าวไว้ในตอนก่อนหน้า keywords ใน C language มี 32 keywords คือ<table class='table'><tr><td>auto</td><td>double</td><td>int</td><td>struct</td></tr><tr><td>break</td><td>else</td><td>long</td><td>switch</td></tr><tr><td>case</td><td>enum</td><td>register</td><td>typedef</td></tr><tr><td>char</td><td>extern</td><td>return</td><td>union</td></tr><tr><td>const</td><td>float</td><td> short</td><td>unsigned</td></tr><tr><td>continue</td><td>for</td><td>signed</td><td>void</td></tr><tr><td>default</td><td>goto</td><td>sizeof</td><td>volatile</td></tr><tr><td>do</td><td>if</td><td>static</td><td>while </td></tr></table></p><!-- /topic content -->
+			
+			<p><span class="title is-4">Identifiers</span> <br/>หมายถึงคำที่นำมาใช้เป็นชื่อของตัวแปร หรือ function กฏในการใช้ identifier มีดังนี้<ul><li>อักษรตัวแรกต้องเป็นอักษรในภาษาอังกฤษ หรือ  underscore(_)</li><li>สามารถใช้ตัวอักษรภาษาอังกฤษ ตัวเลข (0-9) และ underscore(_) ร่วมกันได้ ห้ามใช้ตัวอักษรพิเศษ</li><li>ต้องไม่ใช่่ keywords</li><li>ไม่ควรมีความยาวมากกว่า  31 ตัวอักษร </li></ul></p><!-- /topic content -->
+			
+			<p><span class="title is-4">Constants</span> <br/>บางครั้งถูกเรียก่ว่า literal คือตัวแปรที่ไม่สามารถเปลี่ยนแปลงค่าที่กำหนดให้ตั้งแต่แรกได้ การประกาศจะใช้ <span class='has-text-link has-text-weight-bold '>const</span> นำหน้าชื่อ</p><!-- /topic content -->
+			
+			<p><span class="title is-4">String</span> <br/>คือชุดของตัวอักษรที่มีอักขระพิเศษปิดท้าย และต้องถูกล้อมด้วย "" เช่น "Hello World" </p><!-- /topic content -->
+			
+			<p><span class="title is-4">Special symbols</span> <br/>คืออักขระพิเศษที่มีความหมายในตัว ได้แก่<table class='table'><thead><tr><th>สัญญลักษณ์</th><th>ความหมาย</th></tr></thead><tbody><tr><td>Brackets [ ] </td><td>ใช้ระบุค่าของตัวแปร array</td></tr><tr><td>Parentheses ()</td><td>function call</td></tr><tr><td>Braces {}</td><td>code block</td></tr><tr><td>Comma (, )</td><td>แยกชุดคำสั่ง</td></tr><tr><td>Semicolor ; </td><td>จบบรรทัดของชุดคำสั่่ง</td></tr><tr><td>Asterisk * </td><td>สร้างตัวแปรประเภท poiter (กล่าวถึงภายหลัง)</td></tr><tr><td>Pre-processor  # </td><td>กล่าวถึงในตอนก่อนหน้า</td></tr></tbody></table></p><!-- /topic content -->
+			
+			<p><span class="title is-4">Operators</span> <br/>แบ่งได้ 3 ประเภท<dl><dt><span class='has-text-link has-text-weight-bold '>Unary operator</span></dt><dd>Operator ที่ต้องการเพียง 1 operand เช่น a++ , ++b  เป็นการสั่งให้เพิ่มค่าของ a และ b ขึ้น 1 โดย a และ b คือ operand และ ++ คือ operator </dd><dt><span class='has-text-link has-text-weight-bold '>Binary operator</span></dt><dd>Operator ที่ต้องการ 2 operands เช่น a = 5, b = 6 เป็นการกำหนดค่าให้ a,b โดย a,b,5,6 คือ operands และ = คือ operator</dd><dt><span class='has-text-link has-text-weight-bold '>Ternary operator</span></dt><dd>มักรู้จักในชื่อ condition operator สัญญลักษณ์คือ ? รูปแบบการใช้งาน <pre class='code box'>expression 1 ? expression 2 : expression 3</pre></dd></dl></p><!-- /topic content -->
 			
 			<div class="divider">&clubs;&clubs;&clubs;</div> <!-- /topic separate line -->
 		</section><!-- /topic section -->	
@@ -147,7 +161,7 @@ return 0;
 					</div>
 					
 					<div class="list-item">
-						<a class="list-item-title" onclick="currentDiv(3)"></a>
+						<a class="list-item-title" onclick="currentDiv(3)">C Tokens</a>
 					</div>
 					
 					<div class="list-item">
