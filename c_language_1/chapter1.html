@@ -1,10 +1,13 @@
+---
+title: Chapter 1
+---
 <!DOCTYPE html>
 <html lang="en">
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <link rel="icon" type="image/png" href="https://cdn.glitch.global/cb61e7ff-aec7-49ac-884a-cea3cd4cd9da/favicon-32x32.png?v=1655545783728" />
-    <title>C Programming Language 01 : Chapter 1</title> 
+    <title>C Programming Language 01 : {{ page.title }}</title> 
    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.9.3/css/bulma.min.css" 
 		integrity="sha512-IgmDkwzs96t4SrChW29No3NXBIBv8baW490zk5aXvhCD8vuZM3yUSkbyTBcXohkySecyzIrUwiF/qV0cuPcL3Q==" 
 		crossorigin="anonymous" referrerpolicy="no-referrer" />  
@@ -19,7 +22,7 @@
 	<!-- ######################### -->  	
 	<nav class="navbar bg-nasa" role="navigation" aria-label="main navigation">
 		<div class="navbar-brand">
-			<span class="navbar-item title is-2 has-text-white" >รู้จักกับ C programming language</span>				
+			<span class="navbar-item title is-2 has-text-white" >{{ site.data.chapter_1["title"] }}</span>				
 		</div>
 		<div class="navbar-end">
 			<div class="navbar-item" >
@@ -34,43 +37,24 @@
 	<!-- ######################### -->
 	<div class="container" data-dismiss="quickview">
 		<!-- topic section -->
-		
+		{% for topic in site.data.chapter_1["topics"] %}
 		<section class="section slide box content">
-			<p class="title is-3">คุณลักษณะทั่วไป (Features)</p><!-- /topic title -->
-			
-			<p>C เป็น programming language.พัฒนาขึ้นโดย Dennis Ritchie  ในปี ค.ศ. 1972มีเป้าหมายในตอนแรกเพื่อใช้เป็น system programming language เพื่อใช้สร้างซอฟต์แวร์ระบบปฏิบัติการ (operating system) มีคุณสมบัติที่สำคัญดังนี้</p><!-- /topic content -->
-			
-			<p><dl><dt><b>Procedural language</b></dt><dd>ในโปรแกรม 1 โปรแกรมอาจถูกแบ่งออกเป็นการทำงานย่อยได้มากกว่า 1 งาน  แต่ละงานมีเป้าหมายเดียว เรียกว่าแต่ละงานว่า procedure หรือ function</dd><dt><b>ความรวดเร้วในการทำงาน</b></dt><dd>C programming language จัดเป็น middle-level language ช่วยให้ programmers เข้าถึงการทำงานของ computer hardware โดยตรง ในขณะที่ higher-level languages เช่น Python ไม่สามารถทำได้.</dd></dl></p><!-- /topic content -->
-			
+			<p class="title is-3">{{ topic["title"] }}</p><!-- /topic title -->
+			{% for p in topic["contents"] %}
+			<p>{{ p }}</p><!-- /topic content -->
+			{% endfor %}
+			<div class="divider">&clubs;&clubs;&clubs;</div> <!-- /topic separate line -->
 		</section><!-- /topic section -->	
-		<div class="divider">&clubs;&clubs;&clubs;</div> <!-- /topic separate line -->
 		
-		<section class="section slide box content">
-			<p class="title is-3"></p><!-- /topic title -->
-			
-		</section><!-- /topic section -->	
-		<div class="divider">&clubs;&clubs;&clubs;</div> <!-- /topic separate line -->
-		
-		<section class="section slide box content">
-			<p class="title is-3"></p><!-- /topic title -->
-			
-		</section><!-- /topic section -->	
-		<div class="divider">&clubs;&clubs;&clubs;</div> <!-- /topic separate line -->
-		
-		<section class="section slide box content">
-			<p class="title is-3"></p><!-- /topic title -->
-			
-		</section><!-- /topic section -->	
-		<div class="divider">&clubs;&clubs;&clubs;</div> <!-- /topic separate line -->
-		
+		{% endfor %}
 		<!-- topic section -->
 		<!-- footer -->
 		<footer class="quickview-footer">
 			<div class="buttons">
-				<a class="pagination-link" href='/index.html' alt="Home">
-					<ion-icon name="list-outline"></ion-icon>Contents
+				<a class="pagination-link" href='{{ site.data.chapter_1["prev_page"] }}' alt="Home">
+					<ion-icon name="list-outline"></ion-icon>Main Contents
 				</a>
-				<a class="pagination-link" href=''>
+				<a class="pagination-link" href='{{ site.data.chapter_1["next_page"] }}'>
 					Next <ion-icon name="chevron-forward-outline"></ion-icon>
 				</a>
 			</div>
@@ -91,23 +75,11 @@
 		<div class="quickview-body">
 			<div class="quickview-block">
 				<div class="list">
-					
+					{% for item in site.data.chapter_1.topics %}
 					<div class="list-item">
-						<a class="list-item-title" onclick="currentDiv(1)">คุณลักษณะทั่วไป (Features)</a>
+						<a class="list-item-title" onclick="currentDiv({{ item.order }})">{{ item.title }}</a>
 					</div>
-					
-					<div class="list-item">
-						<a class="list-item-title" onclick="currentDiv(2)"></a>
-					</div>
-					
-					<div class="list-item">
-						<a class="list-item-title" onclick="currentDiv(3)"></a>
-					</div>
-					
-					<div class="list-item">
-						<a class="list-item-title" onclick="currentDiv(4)"></a>
-					</div>
-										
+					{% endfor %}					
 				</div><!-- /list -->
 			</div><!--/block -->
 		</div><!--/body-->	
