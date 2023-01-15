@@ -60,7 +60,11 @@ or equivalent;10) or in some other implementation-defined manner.</pre></p><!-- 
 		<section class="section slide box content">
 			<p class="title is-3">โครงสร้างของ C program</p><!-- /topic title -->
 			
-			<p>โครงสร้างหลักของ C program มี 3 องค์ประกอบหลักคือ<ul class='list'><li>Headers</li><li>Functions</li><li>main function</li></ul><div class='columns'><div class='column'></div><div class='column'><img src='./img/c-lang-structure.png' /></div><div class='column'></div></div></p><!-- /topic content -->
+			<p><br/><span class="title is-4">Statements</span> <br/>ในมุมมองหนึ่ง โปรแกรมคอมพิวเตอร์คือกลุ่มของ statments ที่ถูกจัดลำดับเพื่อกำหนดให้คอมพิวเตอร์ทำงานเพื่อบรรลุเป้าหมายอย่างใดอย่างหนึ่ง ดังนั้น statements จึงถูกจัดว่าเป็นชุดคำสั่งแบบหนึ่ง statements ในคอมพิวเตอร์โปรแกรมทำหน้าที่เหมือนกับ statments ในภาษาธรรมชาติ (natural language) C language กำหนดให้ใช้เครื่องหมาย   " ;" เพื่อแสดงการจบ statment เช่นกับ "." ใช้จบ statement ในภาษาอังกฤษ</p><!-- /topic content -->
+			
+			<p>Statement ใน C language แบ่งออกได้หลายชนิด (รายละเอียดจะกล่าวถึงตอนหลัง) ได้แก่<ul><li>Declaration statements</li><li>Jump statements</li><li>Expression statements</li><li>Compound statements</li><li>Selection statements (conditionals)</li><li>Iteration statements (loops)</li><li>Try blocks</li></ul></p><!-- /topic content -->
+			
+			<p>เช่นเดียวกับการเขียนเรียงความ โครงสร้างหลักของ C program มี 3 องค์ประกอบหลักคือ<ul class='list'><li>Headers</li><li>Functions</li><li>main function</li></ul><div class='columns'><div class='column'></div><div class='column'><img src='./img/c-lang-structure.png' /></div><div class='column'></div></div></p><!-- /topic content -->
 			
 			<p><span class="title is-5">Headers</span> <br/> เป็นพืนที่ของสิ่งที่เรียก่ว่า <a href='https://en.wikibooks.org/wiki/C_Programming/Preprocessor_directives_and_macros'>pre-processor directives</a>ชุดคำสั่งของส่วนนี้จะถูกจัดเก็บแยกออกจากโปรแกรมที่กำลังใช้งาน และจะถูกนำมาประมวลผลก่อนส่วนอื่น แต่ละบรรทัดจะมีเครื่องหมาย  <span class='has-text-link has-text-weight-bold '># </span>เป็นอักษรตัวแรกและไม่มี <span class='has-text-link has-text-weight-bold '>;</span> ปิดท้ายบรรทัด ที่มักพบบ่อยได้แก่<ul><li>#include</li><li>#define</li><li>#ifdef</li><li>#endif</li><li>#if</li><li>#else</li></ul></p><!-- /topic content -->
 			
@@ -76,7 +80,7 @@ or equivalent;10) or in some other implementation-defined manner.</pre></p><!-- 
 #define sqrt(x) x*x 
 </pre> <br/></dd><dt><span class='has-text-link has-text-weight-bold '>Compiler Control</span></dt><dd>ใช้กำหนดเงื่อนไขในการ compile โปรแกรม จะขอข้ามเรื่องนี้ไปก่อน ในระดับของการเริ่มต้นไม่จำเป็นต้องทราบในรายละเอียดเรื่องนี้<br/></dd></dl></p><!-- /topic content -->
 			
-			<p><span class="title is-5">Functions</span> <br/>เป็นพืนที่ของการกำหนดหน้าที่ต่างๆ ในโปรแกรม ซึ่งจะกล่าวถึงต่อไป</p><!-- /topic content -->
+			<p><br/><span class="title is-5">Functions</span> <br/>เป็นพืนที่ของการกำหนดหน้าที่ต่างๆ ในโปรแกรม ซึ่งจะกล่าวถึงต่อไป</p><!-- /topic content -->
 			
 			<p><span class="title is-5">Main Function</span> <br/>เป็นจุดเริ่มต้นการทำงานของโปรแกรมใน C language มีจุดสำคัญคือ<ul><li>ชื่อของ function ต้องใช้ main()</li><li>ต้อง return ค่าออกมาเป็น integer </li><li>หากรับ parameters จะใช้ int argc และ char *argv[] (จะอธิบายความหมายภายหลัง) หากไม่มีการรับ parameter ให้ใช้ void</li></ul>ตัวอย่างเช่น <br/><pre class='box code'>
 int main(void){
@@ -90,6 +94,8 @@ printf("Hello World");
 return 0;
 }
 </pre> <br/></p><!-- /topic content -->
+			
+			<p><div class='box has-background-info-light'><p class="title is-5"><ion-icon name="school-outline"></ion-icon>&nbsp;Tip:</p>โปรแกรมทุกโปรแกรมใน C langauge จะต้องมี main() เสมอ โปรแกรมจะเริ่มทำงานใน statement แรกและจบการทำงานหลังจากทำงาน statement สุดท้ายใน main() เสร็จ</div></p><!-- /topic content -->
 			
 			<div class="divider">&clubs;&clubs;&clubs;</div> <!-- /topic separate line -->
 		</section><!-- /topic section -->	
@@ -117,7 +123,43 @@ return 0;
 		
 		
 		<section class="section slide box content">
-			<p class="title is-3"></p><!-- /topic title -->
+			<p class="title is-3">Data Types</p><!-- /topic title -->
+			
+			<p>Data type หมายถึงกลุ่มหรือชนิดของค่าที่สามารถใช้กับตัวแปร มีนัยถึงจำนวนพื้นที่ในหน่วยความจำ และค่าที่เป็นไปได้ของต้วแปร</p><!-- /topic content -->
+			
+			<p><br/><span class="title is-4">Basic data type</span> <br/><table class='table'><thead><tr><th>Data type</th><th>Value Range</th><th>Storage Size</th></tr></thead><tbody><tr><td>unsigned int</td><td>	0 to 65,535</td><td>2 bytes</td></tr><tr><td>Int (signed int)</td><td>-32,768 to 32,767</td><td>2 bytes</td></tr><tr><td>long int (signed long int)</td><td>	-2,147,483,648 to 2,147,483,647</td><td>	4 bytes</td></tr><tr><td>short int (signed short int)</td><td>	-32,768 to 32,767</td><td>	2 bytes</td></tr><tr><td>unsigned long int</td><td>0 to 4,294,967,295</td><td>	4 bytes</td></tr><tr><td>double</td><td>2.3E-308 to 1.7E+308 </td><td>	8 bytes</td></tr><tr><td>long double</td><td>	3.4E-4932 to 1.1E+4932 </td><td>	10 bytes</td></tr><tr><td>float</td><td>1.2E-38 to 3.4E+38</td><td>	4 bytes</td></tr><tr><td>char (signed char)</td><td>	-128 to 127</td><td>	1 byte</td></tr><tr><td>unsigned char</td><td>0 to 255</td><td>	1 byte</td></tr><tr><td>void</td><td>No meaning</td><td>	0 byte</td></tr></tbody></table></p><!-- /topic content -->
+			
+			<p><br/><span class="title is-4">Derived data type</span> <br/>เกิดจากการนำเอา basic data type มาขยายขอบเขตการใช้งาน ไม่ใช่เป็น data type ชนิดใหม่ <dl><dt><span class='has-text-link has-text-weight-bold '>Array</span></dt><dd>ordered sequence ของ data type ชนิดเดียวกัน โดยใช้ identifier เดียวกัน</dd><dt><span class='has-text-link has-text-weight-bold '>Pointer</span></dt><dd>ค่าของ addess (ตำแหน่งในหน่วยความจำ) ของตัวแปร</dd><dt><span class='has-text-link has-text-weight-bold '>Structure</span></dt><dd>กลุ่มของ data type หลายชนิด</dd><dt><span class='has-text-link has-text-weight-bold '>Union</span></dt><dd>คล้ายกับ Structure</dd></dl></p><!-- /topic content -->
+			
+			<p><br/><span class="title is-4">Enumerate data type</span> <br/></p><!-- /topic content -->
+			
+			<p><br/><br/><span class="title is-4"> เอกสารอ้างอิง</span> <br/><ul><li>https://pubs.opengroup.org/onlinepubs/009604599/basedefs/stdint.h.html</li><li>https://sites.uclouvain.be/SystInfo/usr/include/stdint.h.html</li></ul></p><!-- /topic content -->
+			
+			<div class="divider">&clubs;&clubs;&clubs;</div> <!-- /topic separate line -->
+		</section><!-- /topic section -->	
+		
+		
+		<section class="section slide box content">
+			<p class="title is-3">การประกาศตัวแปร (Varaiable Declaration)</p><!-- /topic title -->
+			
+			<div class="divider">&clubs;&clubs;&clubs;</div> <!-- /topic separate line -->
+		</section><!-- /topic section -->	
+		
+		
+		<section class="section slide box content">
+			<p class="title is-3">Compiler, Linker, Libraries</p><!-- /topic title -->
+			
+			<p>พิจารณาขั้นตอนการพัฒนาโปรแกรมด้วย C language</p><!-- /topic content -->
+			
+			<p><div class='columns'><div class='column'></div><div class='column is-half'><figure class='image'><img src='./img/how_c-lang_dev.jpg' /></figure></div><div class='column'></div></div></p><!-- /topic content -->
+			
+			<p>ในขั้นตอน compile programm คือการแปลงชุดคำสั่ง C language ที่เขียนขึ้นไปเป็นภาษาเครื่อง "<a href='https://www.computerhope.com/jargon/m/machlang.htm'>machain language "</a>สิ่งที่ต้องใช้คือ <a href='https://www.techtarget.com/whatis/definition/compiler'>" ตัวแปรภาษา" (compiler)</a> โดย compiler จะทำการตรวจสอบ statement ทีละ statement ซึ่งประกอบด้วยกิจกรรมหลัก 2 อย่างคือ<ol><li>ตรวจสอบความถูกต้องของการเขียน statement ว่าตรงตามกฏของภาษา (syntax) หรือไม่ หากพบความผิดพลาดจะบันทึกไว้ แล้วทำการรายงานออกมาหลังจากการตรวจสอบ statement สุดท้ายเสร็จ ในขั้นตอนนี้ยังไม่มีการแปลงภาษา</li><li>หากไม่พบข้อผิดพลาดใด จะทำการแปลง statements ให้เป็น machine language รูปแบบที่เรียกว่า <a href='https://en.wikipedia.org/wiki/Object_file'>object file</a> โดยทั่วไป object file คือ file ที่มีชื่อเดียวกับไฟล์ชุดคำสั่ง แต่มีนามสกุล ".o" หรือ ".obj "  เช่น abc.c หลังจาก compile แล้ว compiler จะสร้าง object file ชื่อ abc.o ออกมา</li> </p><!-- /topic content -->
+			
+			<p><div class='columns'><div class='column'></div><div class='column is-half'><figure class='image'><img src='./img/c-lang-compiler.jpg' /></figure></div><div class='column'></div></div></p><!-- /topic content -->
+			
+			<p>ขั้นตอนต่อไปคือการทำงานของ software ที่เรียกว่า <a href='https://en.wikipedia.org/wiki/Linker_(computing)'>linker</a> งานที่ linker ทำมี 3 ขั้นตอนคือ<ol><li>ทำการรวบ object file(s) ที่ถูกสร้างขึ้นรวมเป็น 1 ไฟล์ เรียกว่า executable file </li><li>ทำการเชื่อมโยง external library files หากมีการร้องขอในโปรแกรมชุดคำสั่ง</li><li>แก้ไชปัญหาการเกิดความขัดแย้งของการใช้ libraries (จะกล่าวถึงภายหลัง)</li></ol></p><!-- /topic content -->
+			
+			<p><div class='columns'><div class='column'></div><div class='column is-half'><figure class='image'><img src='./img/c-lang-linker.jpg' /></figure></div><div class='column'></div></div></p><!-- /topic content -->
 			
 			<div class="divider">&clubs;&clubs;&clubs;</div> <!-- /topic separate line -->
 		</section><!-- /topic section -->	
@@ -165,7 +207,15 @@ return 0;
 					</div>
 					
 					<div class="list-item">
-						<a class="list-item-title" onclick="currentDiv(4)"></a>
+						<a class="list-item-title" onclick="currentDiv(4)">Data Types</a>
+					</div>
+					
+					<div class="list-item">
+						<a class="list-item-title" onclick="currentDiv(5)">การประกาศตัวแปร (Varaiable Declaration)</a>
+					</div>
+					
+					<div class="list-item">
+						<a class="list-item-title" onclick="currentDiv(6)">Compiler, Linker, Libraries</a>
 					</div>
 										
 				</div><!-- /list -->
