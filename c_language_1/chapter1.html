@@ -11,8 +11,8 @@
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@creativebulma/bulma-divider@1.1.0/dist/bulma-divider.min.css"/>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.0.0/animate.min.css" />  
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma-extensions@6.2.7/bulma-quickview/dist/css/bulma-quickview.min.css" />		
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@creativebulma/bulma-tooltip@1.2.0/dist/bulma-tooltip.min.css" />
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.5.1/styles/default.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@creativebulma/bulma-tooltip@1.2.0/dist/bulma-tooltip.min.css" />  
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/styles/default.min.css">
   <link rel="stylesheet" href="/css/my_css.css" />  
   </head>
   <body>
@@ -84,14 +84,14 @@ or equivalent;10) or in some other implementation-defined manner.</pre></p><!-- 
 			
 			<p><span class="title is-5">Main Function</span> <br/>เป็นจุดเริ่มต้นการทำงานของโปรแกรมใน C language มีจุดสำคัญคือ<ul><li>ชื่อของ function ต้องใช้ main()</li><li>ต้อง return ค่าออกมาเป็น integer </li><li>หากรับ parameters จะใช้ int argc และ char *argv[] (จะอธิบายความหมายภายหลัง) หากไม่มีการรับ parameter ให้ใช้ void</li></ul>ตัวอย่างเช่น <br/><pre class='box code'>
 int main(void){
-printf("Hello World");
-return 0;
+&nbsp;&nbsp;&nbsp;&nbsp;printf("Hello World");
+&nbsp;&nbsp;&nbsp;&nbsp;return 0;
 }
 
 
 int main(int argc, char *argv[]){
-printf("Hello World");
-return 0;
+&nbsp;&nbsp;&nbsp;&nbsp;printf("Hello World");
+&nbsp;&nbsp;&nbsp;&nbsp;return 0;
 }
 </pre> <br/></p><!-- /topic content -->
 			
@@ -189,6 +189,44 @@ return 0;
 		</section><!-- /topic section -->	
 		
 		
+		<section class="section slide box content">
+			<p class="title is-3">First program : Area of a circle</p><!-- /topic title -->
+			
+			<p>เปิดหน้า <a href="javascript:open_window('https://ss-ebooks.github.io/compiler/')">Code editor and compiler </a> แล้วพิมพ์ชุดคำสั่งตามตัวอย่าง</p><!-- /topic content -->
+			
+			<p><pre class='code box'>
+#include "stdio.h"
+
+float process(int r){
+&nbsp;&nbsp;&nbsp;&nbsp;const float pi = 3.1416;
+&nbsp;&nbsp;&nbsp;&nbsp;float area = pi * r * r;
+&nbsp;&nbsp;&nbsp;&nbsp;return area;
+}
+
+int main() {
+&nbsp;&nbsp;&nbsp;&nbsp;int r  = 10;
+&nbsp;&nbsp;&nbsp;&nbsp;float area = process(r);
+&nbsp;&nbsp;&nbsp;&nbsp;printf("area of circle = %7.2f",area);
+&nbsp;&nbsp;&nbsp;&nbsp;return 0;
+}
+</pre></p><!-- /topic content -->
+			
+			<p>กดปุ่ม Run แล้วสังเกตุผลที่ได้</p><!-- /topic content -->
+			
+			<p>จากเรื่องโครงสร้างของโปรแกรม จะเห็นว่าโปรแกรมนี้ทั้ง 3 ส่วนคือ headers, functions และ main function ตามภาพข้างล่าง</p><!-- /topic content -->
+			
+			<p><div class='columns'><div class='column'></div><div class='column is-half'><figure class='image'><img src='./img/c-lang-01-structure.png' /></figure></div><div class='column'></div></div></p><!-- /topic content -->
+			
+			<p>ส่วน header มี pre-processor directive แบบ include file สั่งให้นำเนื้อหาหรือชุดคำสั่งใน stdio.h เข้ามา stdio มาจากคำว่า " standard input output" ภายในบรรจุคำสั่งที่ใช้สำหรับการแสดงผลและรับค่าจากผู้ใช้ ในตัวอย่างได้นำ <span class='has-text-link has-text-weight-bold'>prinf()</span> มาใช้แสดงผล</p><!-- /topic content -->
+			
+			<p>ถัดลงมาเป็นส่วนของ functions ในตัวอย่างมี 1 function ชื่อ process() รับ 1 parameter เป็น data type แบบ integer ให้ชื่อตัวแปรเป็น r ภายใน process เป็นชุดคำสั่งสำหรับคำนวณหาพื้นที่วงกลม โดยนำค่า r ที่ได้มาคำนวณ แล้วส่งค่าออกไปจาก function ด้วยคำสั่ง return ค่าที่ส่งออกไปเป็นdata type แบบ float เพราะเมื่อนำค่า pi มาคูณกับค่า r แล้วผลลัพธ์จะต้องเป็นตัวเลขที่มีจุดทศนิยม จึ่งต้องกำหนด datat type ให้เป็น float หรือ double </p><!-- /topic content -->
+			
+			<p>ส่วนสุดท้ายคือ main function ซึ่งบรรจุลำดับการทำงานของโปรแกรมทั้งหมดไว้ เริ่มจากกำหนดค่า r ให้เป็น 10 แล้วนำไปคำนวณหาพื้นที่ด้วยการส่ง r ไปให้ process() จากนั้นนำค่าที่ได้มาแสดงผลด้วยคำสั่ง printf()</p><!-- /topic content -->
+			
+			<div class="divider">&clubs;&clubs;&clubs;</div> <!-- /topic separate line -->
+		</section><!-- /topic section -->	
+		
+		
 		<!-- topic section -->
 		<!-- footer -->
 		<footer class="quickview-footer">
@@ -241,21 +279,25 @@ return 0;
 					<div class="list-item">
 						<a class="list-item-title" onclick="currentDiv(6)">Compiler, Linker, Libraries</a>
 					</div>
+					
+					<div class="list-item">
+						<a class="list-item-title" onclick="currentDiv(7)">First program : Area of a circle</a>
+					</div>
 										
 				</div><!-- /list -->
 			</div><!--/block -->
 		</div><!--/body-->	
 	</div>
 	<!-- /quick view -->
-	
+	<script id="MathJax-script" async 
+     src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>	
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/highlight.min.js"></script>	
 	<script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
 	<script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
 	<script src="https://cdn.jsdelivr.net/npm/bulma-toast@2.4.1/dist/bulma-toast.min.js"></script>   
 	<script src="https://cdn.jsdelivr.net/npm/bulma-extensions@6.2.7/bulma-quickview/dist/js/bulma-quickview.min.js"></script>
     <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
-    <script id="MathJax-script" async 
-     src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.5.1/highlight.min.js"></script> 	
+    
 	
 	<script>
 	 var quickviews = bulmaQuickview.attach();	
@@ -265,7 +307,7 @@ return 0;
         // then highlight each
         hljs.highlightElement(el);
       });
-    
+     
     </script>
 	<script src="../js/my_js.js">   </script>
   </body>
