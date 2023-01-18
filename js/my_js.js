@@ -136,6 +136,11 @@ function close_modal(modal_id,repl_container,std_out_id,std_err_id){
   md.style.display = "none"; 
     
 }
+
+function open_window(url){
+	options = "location=0,menubar=0,resizable=1,scrollbars=1,status=0,toolbar=0,top=50,width=500";
+	window.open(url,options,"popup");
+}
 /*
 function run_code(){
 	
