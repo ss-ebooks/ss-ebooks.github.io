@@ -150,7 +150,7 @@ int main(int argc, char *argv[]){
 			
 			<p><div class='box code has-background-info-light'><i>&#60;datatype&#62; &#60;variable name&#62; = &#60;initializing value&#62;</i></div></p><!-- /topic content -->
 			
-			<p>การประกาศตัวแปรใน C language ้ทำได้ 2 แบบคือ<ol><li>การประกาศแบบไม่มีค่าเริ่มต้น (without iniitializing value)</li><li>การประกาศแบบมีค่าเริ่มต้น (with iniitializing value)</li></ol></p><!-- /topic content -->
+			<p>การประกาศตัวแปรทำได้ใน 2 รูปแบบคือ<ol><li>การประกาศแบบไม่มีค่าเริ่มต้น (without iniitializing value)</li><li>การประกาศแบบมีค่าเริ่มต้น (with iniitializing value)</li></ol></p><!-- /topic content -->
 			
 			<p>เช่น</p><!-- /topic content -->
 			
@@ -163,6 +163,8 @@ int main(int argc, char *argv[]){
 			<p><div class='box code has-background-info-light'>int y ;</div></p><!-- /topic content -->
 			
 			<p>การประกาศแบบนี้ ตัวแปร y ยังไม่มีค่าในตัวเทียบได้กับกระดาษเปล่า ยังไม่มีเลขหน้า ก่อนนำไปใช้งานต้องทำการให้ค่าเสียก่อน เมื่อตัวแปรได้รับค่าแล้วก็จะเหมือนกับกระดาษที่มีข้อความและมีเลขหน้า</p><!-- /topic content -->
+			
+			<p><div class='box code has-background-info-light'><p class="title is-5"><ion-icon name="school-outline"></ion-icon>&nbsp;Tip:</p>C อนุญาตให้สามารถประกาศตัวแปรหลายตัวที่มี datatype เดียวกันในบรรทัดเดียวกันได้ เช่น<br/> int a=2,b=3,c=5;</div><br/></p><!-- /topic content -->
 			
 			<p><div class='box code has-background-info-light'><p class="title is-5"><ion-icon name="star-outline"></ion-icon> &nbsp Remember : </p>กฏการประกาศตัวแปร<ol><li>ตัวแปรจะต้องไม่มีชื่อซ้ำกันในโปรแกรมเดียวกัน</li><li>ตัวแปรจะเป็นได้เพียง 1 datatype เท่านั้น</li><li>ตัวแปรจะไม่สามารถเปลี่ยนชนิดของ datatype ได้ ตลอดการทำงานของโปรแกรม</li></div></p><!-- /topic content -->
 			
@@ -227,6 +229,13 @@ int main() {
 		</section><!-- /topic section -->	
 		
 		
+		<section class="section slide box content">
+			<p class="title is-3">Main Content</p><!-- /topic title -->
+			
+			<div class="divider">&clubs;&clubs;&clubs;</div> <!-- /topic separate line -->
+		</section><!-- /topic section -->	
+		
+		
 		<!-- topic section -->
 		<!-- footer -->
 		<footer class="quickview-footer">
@@ -234,7 +243,7 @@ int main() {
 				<a class="pagination-link" href='./index.html' alt="Home">
 					<ion-icon name="list-outline"></ion-icon>Main Contents
 				</a>
-				<a class="pagination-link" href=''>
+				<a class="pagination-link" href='./chapter2.html'>
 					Next <ion-icon name="chevron-forward-outline"></ion-icon>
 				</a>
 			</div>
@@ -255,34 +264,54 @@ int main() {
 		<div class="quickview-body">
 			<div class="quickview-block">
 				<div class="list">
-					
+										
 					<div class="list-item">
+						
 						<a class="list-item-title" onclick="currentDiv(1)">บทนำ (Introduction)</a>
-					</div>
-					
+						
+					</div>					
+										
 					<div class="list-item">
+						
 						<a class="list-item-title" onclick="currentDiv(2)">โครงสร้างของ C program</a>
-					</div>
-					
+						
+					</div>					
+										
 					<div class="list-item">
+						
 						<a class="list-item-title" onclick="currentDiv(3)">C Tokens</a>
-					</div>
-					
+						
+					</div>					
+										
 					<div class="list-item">
+						
 						<a class="list-item-title" onclick="currentDiv(4)">Data Types</a>
-					</div>
-					
+						
+					</div>					
+										
 					<div class="list-item">
+						
 						<a class="list-item-title" onclick="currentDiv(5)">การประกาศตัวแปร (Varaiable Declaration)</a>
-					</div>
-					
+						
+					</div>					
+										
 					<div class="list-item">
+						
 						<a class="list-item-title" onclick="currentDiv(6)">Compiler, Linker, Libraries</a>
-					</div>
-					
+						
+					</div>					
+										
 					<div class="list-item">
+						
 						<a class="list-item-title" onclick="currentDiv(7)">First program : Area of a circle</a>
-					</div>
+						
+					</div>					
+										
+					<div class="list-item">
+						
+						<a class="list-item-title" href="./index.html">Main Content</a>
+						
+					</div>					
 										
 				</div><!-- /list -->
 			</div><!--/block -->
