@@ -19,7 +19,7 @@
 	<!-- ######################### -->  	
 	<nav class="navbar bg-nasa" role="navigation" aria-label="main navigation">
 		<div class="navbar-brand">
-			<span class="navbar-item title is-2 has-text-white" >รู้จัก Pointer, Array และ Strings</span>				
+			<span class="navbar-item title is-2 has-text-white" >รู้จัก Derived Data Type</span>				
 		</div>
 		<div class="navbar-end">
 			<div class="navbar-item" >
@@ -36,7 +36,90 @@
 		<!-- topic section -->
 		
 		<section class="section slide box content">
-			<p class="title is-3">Pointer คืออะไร</p><!-- /topic title -->
+			<p class="title is-3">บทนำ</p><!-- /topic title -->
+			
+			<p>Derived Data Type คือ data type ที่เกิดจากการนำเอา basic data type ประยุกต์ ได้แก่<ol><li>pointer</li><li>array</li><li>struct</li><li>union</li></ol></p><!-- /topic content -->
+			
+			<br/>
+			
+			
+			<a class="list-item-title button" 
+				onclick='currentDiv(2)'>Next Topic</a>
+			
+			<div class="divider">&clubs;&clubs;&clubs;</div> <!-- /topic separate line -->
+		</section><!-- /topic section -->	
+		
+		
+		<section class="section slide box content">
+			<p class="title is-3">Pointer </p><!-- /topic title -->
+			
+			<p>จาก Chapter 1 เรื่อง datatype ได้มีการอ้างถึง pointer ซึ่งอยู่ในกลุ่ม derived datatype และได้ขยายความไว้ว่าpointer ช่วยในการจัดเก็บ address ของตัวแปรอื่น pointer ถูกใช้งานค่อนข้างบ่อยในภาษา C หรือ C++ (superset ของ C) ถื่อเป็นจุดเด่นหนึ่งก็ได้ ดังนั้นการทำความใจเรื่อง pointer จึงเป็นสิ่งที่จำเป็น เพื่อให้เกิดความใจมากขึ้น ขอเริ่มจากชุดคำสั่งนี้</p><!-- /topic content -->
+			
+			<p><pre class='code box has-background-info-light'>int demo_var = 1234;</pre></p><!-- /topic content -->
+			
+			<p>ชุดคำสั่งนี้ทำให้มีการสร้างพื้นที่ในหน่วยความจำขึ้นมาเพื่อใช้เก็บตัวเลขจำนวนเต็ม (datatype int ขนาด 2 bytes) และจัดเก็บค่า <span class="has-text-link has-text-weight-bold">1234</span> พื้นที่ส่วนนี้มีชือเรียกว่า "<span class="has-text-link has-text-weight-bold">demo_var</span>"</p><!-- /topic content -->
+			
+			<p>ถ้าเปรียบหน่วยความจำเป็นพื้นที่ว่างขนาดใหญ่แห่งหนึ่ง พื้นที่นี้ถูกแบ่งพื้นที่ออกพื้นที่ขนาดเล็กขนาดเท่ากันหมด เรียกพื้นที่ขนาดเล็กนี้ว่า 1 byte ตัวแปร demo_var อาจถูกจัดวางไว้ตามรูป (แรเงาสีแดง)</p><!-- /topic content -->
+			
+			<p><div class='columns'>
+<div class='column'></div>
+<div class='column is-half'>
+<figure class='image'>
+<img src='./img/c-lang-pointer-1.png' />
+</figure>
+</div>
+<div class='column'></div>
+</div></p><!-- /topic content -->
+			
+			<p>การจะเข้าถึงค่า 1234 ในหน่วยความจำ คอมพิวเตอร์จะสร้างตัวเลขที่ใช้ระบุตำแหน่งในหน่วยความจำขึ้นมาเช่นเดียวกันกับการใช้เลขที่บ้าน แต่ตัวเลขนั้นไม่สะดวกในการจำของมนุษย์เพราะมีความยาวและเป็นเลขสุ่มเปลี่ยนไปทุกครั้งที่โปรแกรมทำงานเช่น ตัวเลขตำแหน่งของตัวแปร demo_var คือ 633036660 ในครั้งแรก เมื่อโปรแกรมถูกเรียกใช้งานอีกครั้งก็เปลี่ยนเป็น 979323284 แต่ไม่ว่าจะเปลี่ยนไปอย่างไร สำหรับมนุษย์แล้วก็ยังคงหมายถึงตัวแปรที่ชื่อ demo_var ที่มีค่าเป็ฯ 1234 เช่นเดิม (จนกว่าจะมีการเปลี่ยนแปลง)</p><!-- /topic content -->
+			
+			<p>เราสามารถเรียกดูเลขที่แสดงตำแหน่งของ demo_var ได้ด้วย operator <span class="has-text-link has-text-weight-bold">&</span>(เรียก address_of)เขียนนำหน้าชื่อตัวแปรนั้นๆ เช่น </p><!-- /topic content -->
+			
+			<p><pre class='code box has-background-info-light'>&demo_var</pre></p><!-- /topic content -->
+			
+			<p>หมายถึงตำแหน่งในหน่วยความจำของ demo_var ในหน่วยความจำ(ไม่ใช่ค่าของตัวแปร demo_var)</p><!-- /topic content -->
+			
+			<p>หากพิจารณาดูตัวเลขบอกตำแหน่ง จะเห็นว่าเป็นเลขจำนวนเต็ม นั่นหมายความว่าค่านี้ถูกจัดเก็บไว้ในตัวแปรอื่นได้เช่นกัน ย้อนกลับไปหาความหมายของ pointer อีกครั้ง นั่นคือต้องสร้างตัวแปรประเภท pointer ขึ้นมา เพื่อใช้จัดเก็บเลขตำแหน่งในหน่วยความจำของ demo_var การสร้างตัวแปรประเภท pointer ด้วยสัญญลักษณ์ <span class="has-text-link has-text-weight-bold">*</span> รูปแบบการใช้งาน</p><!-- /topic content -->
+			
+			<p><pre class='code box has-background-info-light'>&#60;basic data type &#62; * &#60;variable name &#62; </pre></p><!-- /topic content -->
+			
+			<p>เช่น ถ้าต้องการประกาศตัวแปรชื่อ addr_of_demo_var ให้เป็นตัวแปรประเภท pointer ใช้เก็บค่าของ address ของตัวแปร demo_var สามารถประกาศได้ดังนี้</p><!-- /topic content -->
+			
+			<p><pre class='code box has-background-info-light'>int demo_var = 1234;
+int* addr_of_demo_var = &demo_var;
+</pre></p><!-- /topic content -->
+			
+			<p><div class='columns'>
+<div class='column'></div>
+<div class='column is-half'>
+<figure class='image'>
+<img src='./img/c-lang-pointer-2.png' />
+</figure>
+</div>
+<div class='column'></div>
+</div></p><!-- /topic content -->
+			
+			<p>เมื่อประกาศตัวแปรแบบ pointer เพื่อจัดเก็บที่อยู่ของตัวแปรชนิดใดแล้วจะไม่สามารถใช้กับตัวแปรชนิดอื่นได้ เช่น</p><!-- /topic content -->
+			
+			<p><pre class='code box has-background-info-light'>int demo_var = 1234;
+char char_var = 'a';
+int* addr_of_var = &char_var;
+</pre></p><!-- /topic content -->
+			
+			<p>ชุดคำสั่งตัวอย่างนี้เมื่อนำไป compile จะเกิด error เพราะ addr_of_var ถูกประกาศว่าใช้กับ address ของตัวแปรชนิด int เท่านั้น แต่กลับไปให้ค่าที่เป็น address ของตัวแปรชนิด char</p><!-- /topic content -->
+			
+			<p><div class='box has-background-info-light'><p class="title is-5"><ion-icon name="school-outline"></ion-icon>&nbsp;Tip:</p><ul><li>ตัวแปรประเถท pointer ที่ถูกประกาศไว้แต่ยังไม่ได้รับค่าจะเรียกว่า <span class="has-text-link has-text-weight-bold">wild pionter</span></li><li>ในทางปฏิบัติ ไม่ควรปล่อยให้มี wild pointer เพราะอาจเสี่ยงต่อนำเอาพืนที่หน่วยความจำที่สำรองไว้สำหรับทำงานอื่นมาใช้ ซึ่งอาจสร้างความเสียหายได้ จึงมักให้ค่า NULL กับ wild pointer แทนที่จะปล่อยว่างไว้ เช่น <span class="has-text-link has-text-weight-bold">int* not_wild = NULL;</span></li><li>เรียก pointer ที่ถูกให้ค่าเป็น NULL ว่า <span class="has-text-link has-text-weight-bold">NULL pointer</span></li><li>pointer สามารถใช้กับ void ได้ เรียกว่า <span class="has-text-link has-text-weight-bold">Void pointer</span> หรือ <span class="has-text-link has-text-weight-bold">Generic pointer</span>เช่น <span class="has-text-link has-text-weight-bold">void* void_pointer = NULL;</span> </li></ul></div></p><!-- /topic content -->
+			
+			<p><br/><div class='box has-background-info-light'><p class="title is-5"><ion-icon name="star-outline"></ion-icon> &nbsp Remember : </p><ul><li>ตัวแปรประเภท pointer คือตัวแปรที่ใช้เก็บ address ในหน่วยความจำของตัวแปรอื่น</li><li>การประกาศตัวแปรประเภท pointer ต้องใช้สัญญลักษณ์ * นำหน้าชื่อตัวแปร เช่น int *x, char *y, float *z เป็นต้น </li><li>แสดงค่า address ของตัวแปรได้โดยใช้ & นำหน้าชื่อตัวแปรที่ต้องการ เช่น &x, &y เป็นต้น </li><li>ประโยชน์ของการตัวแปรประเภท pointer จะกล่าวถึงในตอนต่อไป</li></ul></div></p><!-- /topic content -->
+			
+			<br/>
+			
+			<a class="list-item-title button" 
+				onclick='currentDiv(1)'>Previous Topic</a>
+			
+			
+			<a class="list-item-title button" 
+				onclick='currentDiv(3)'>Next Topic</a>
 			
 			<div class="divider">&clubs;&clubs;&clubs;</div> <!-- /topic separate line -->
 		</section><!-- /topic section -->	
@@ -45,12 +128,46 @@
 		<section class="section slide box content">
 			<p class="title is-3">Array</p><!-- /topic title -->
 			
+			<p>ตัวแปรประเภท Array ใช้ในกรณีที่ต้องการเก็บข้อมูลไว้เป็นชุดโดยใช้ตัวแปรเดียว เช่น ชุดของตัวเลขจำนวนเต็ม ชุดของตัวอักษร ฯล รูปแบบการประกาศตัวแปร array คือ</p><!-- /topic content -->
+			
+			<p><div class='box has-background-success-light'>&#60;data type&#62 &#60;variable name&#62 [&#60;size#62] = {value1,value2,value3,...}</div></p><!-- /topic content -->
+			
+			<p>ตัวอย่าง</p><!-- /topic content -->
+			
+			<p>ประกาศตัวแปรแบบ array ของชุดตัวเลขจำนวนเต็ม 1 ถึง 10 (size = 10)</p><!-- /topic content -->
+			
+			<p><pre class='code box has-background-info-light'>int one2ten[10] = {1,2,3,4,5,6,7,8,9,10}; </pre></p><!-- /topic content -->
+			
+			<p>ประกาศตัวแปรแบบ array ของชุดตัวอักษร 'a' ถึง 'f' (size=6)</p><!-- /topic content -->
+			
+			<p><pre class='code box has-background-info-light'>char a2f[6] = {'a','b','c','d','e','f'}; </pre></p><!-- /topic content -->
+			
+			<p>ในการประกาศตัวแปร array อาจไม่ระบุ size ก็ได้ เช่น </p><!-- /topic content -->
+			
+			<p><pre class='code box has-background-info-light'>int one2ten[] = {1,2,3,4,5,6,7,8,9,10};
+char a2f[] = {'a','b','c','d','e','f'};
+ </pre></p><!-- /topic content -->
+			
+			<p>สมาชิก (element)แต่ละตัวใน array จะมี index number ประจำตัวสำหรับใช้อ้างอิง index number โดยที่<ul><li>เริ่มจาก 0 ไปจนถึง size - 1</li><li>เริ่มนับจากซ้ายไปขวา</li></ul></p><!-- /topic content -->
+			
+			<br/>
+			
+			<a class="list-item-title button" 
+				onclick='currentDiv(2)'>Previous Topic</a>
+			
+			
+			<a class="list-item-title button" 
+				onclick='currentDiv(4)'>Next Topic</a>
+			
 			<div class="divider">&clubs;&clubs;&clubs;</div> <!-- /topic separate line -->
 		</section><!-- /topic section -->	
 		
 		
 		<section class="section slide box content">
 			<p class="title is-3">Main Content</p><!-- /topic title -->
+			
+			<br/>
+			
 			
 			<div class="divider">&clubs;&clubs;&clubs;</div> <!-- /topic separate line -->
 		</section><!-- /topic section -->	
@@ -61,10 +178,10 @@
 		<footer class="quickview-footer">
 			<div class="buttons">
 				<a class="pagination-link" href='./chapter1.html' alt="Home">
-					<ion-icon name="chevron-back-outline"></ion-icon>Prev
+					<ion-icon name="chevron-back-outline"></ion-icon>Previous Chapter
 				</a>
 				<a class="pagination-link" href=''>
-					Next <ion-icon name="chevron-forward-outline"></ion-icon>
+					Next Chapter <ion-icon name="chevron-forward-outline"></ion-icon>
 				</a>
 			</div>
 		</footer>
@@ -87,13 +204,19 @@
 										
 					<div class="list-item">
 						
-						<a class="list-item-title" onclick="currentDiv(1)">Pointer คืออะไร</a>
+						<a class="list-item-title" onclick="currentDiv(1)">บทนำ</a>
 						
 					</div>					
 										
 					<div class="list-item">
 						
-						<a class="list-item-title" onclick="currentDiv(2)">Array</a>
+						<a class="list-item-title" onclick="currentDiv(2)">Pointer </a>
+						
+					</div>					
+										
+					<div class="list-item">
+						
+						<a class="list-item-title" onclick="currentDiv(3)">Array</a>
 						
 					</div>					
 										
