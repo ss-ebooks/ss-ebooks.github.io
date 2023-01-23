@@ -53,8 +53,9 @@ or equivalent;10) or in some other implementation-defined manner.</pre></p><!-- 
 			
 			<p>C language อาจถูกมองว่าเป็นภาษาที่ค่อนข้างยากสำหรับผู้เริ่มต้น แต่หากมองอีกมุมคือ C language ถูกใช้งานมาระยะยาวนานแล้ว มีภาษารุ่นใหม่หลายภาษาได้ยืม Syntax ของ C language ไปใช้ เช่น Java, JavaScript, PHP ฯล และมีหลายภาษาที่ใช้ C ในการพัฒนา library เช่น Python นอกจากนี้ C++ language ซ่งเป็น superset ของ C ก็มีการใช้งานแพร่หลายมากในปัจจุบัน Machine Learning Framework อย่าง TensorFlow ก็ใช้ C++ language ในการพัฒนา ดังนั้นการเริ่มต้นด้วย C language น่าจะเป็นผลดีในระยะยาว ช่วยให้การศึกษาภาษาอื่นง่ายขึ้น</p><!-- /topic content -->
 			
+			<br/><br/>
 			
-			<br/>
+			
 			
 			<a class="list-item-title button" 
 				onclick='currentDiv(2)'>Next Topic</a>
@@ -101,13 +102,16 @@ int main(int argc, char *argv[]){
 }
 </pre> <br/></p><!-- /topic content -->
 			
-			<p><div class='box has-background-info-light'><p class="title is-5"><ion-icon name="school-outline"></ion-icon>&nbsp;Tip:</p>โปรแกรมทุกโปรแกรมใน C langauge จะต้องมี main() เสมอ โปรแกรมจะเริ่มทำงานใน statement แรกและจบการทำงานหลังจากทำงาน statement สุดท้ายใน main() เสร็จ</div></p><!-- /topic content -->
+			<p></p><!-- /topic content -->
 			
+			<p><div class='box has-background-warning-light'><p class="title is-5"><ion-icon name="school-outline"></ion-icon>&nbsp;Tip:</p>โปรแกรมทุกโปรแกรมใน C langauge จะต้องมี main() เสมอ โปรแกรมจะเริ่มทำงานใน statement แรกและจบการทำงานหลังจากทำงาน statement สุดท้ายใน main() เสร็จ</div></p><!-- /topic content -->
+			
+			<br/><br/>
 			
 			<a class="list-item-title button" 
 				onclick='currentDiv(1)'>Previous Topic</a>
 			
-			<br/>
+			
 			
 			<a class="list-item-title button" 
 				onclick='currentDiv(3)'>Next Topic</a>
@@ -133,11 +137,12 @@ int main(int argc, char *argv[]){
 			
 			<p><span class="title is-4">Operators</span> <br/>แบ่งได้ 3 ประเภท<dl><dt><span class='has-text-link has-text-weight-bold '>Unary operator</span></dt><dd>Operator ที่ต้องการเพียง 1 operand เช่น a++ , ++b  เป็นการสั่งให้เพิ่มค่าของ a และ b ขึ้น 1 โดย a และ b คือ operand และ ++ คือ operator </dd><dt><span class='has-text-link has-text-weight-bold '>Binary operator</span></dt><dd>Operator ที่ต้องการ 2 operands เช่น a = 5, b = 6 เป็นการกำหนดค่าให้ a,b โดย a,b,5,6 คือ operands และ = คือ operator</dd><dt><span class='has-text-link has-text-weight-bold '>Ternary operator</span></dt><dd>มักรู้จักในชื่อ condition operator สัญญลักษณ์คือ ? รูปแบบการใช้งาน <pre class='code box'>expression 1 ? expression 2 : expression 3</pre></dd></dl></p><!-- /topic content -->
 			
+			<br/><br/>
 			
 			<a class="list-item-title button" 
 				onclick='currentDiv(2)'>Previous Topic</a>
 			
-			<br/>
+			
 			
 			<a class="list-item-title button" 
 				onclick='currentDiv(4)'>Next Topic</a>
@@ -151,7 +156,7 @@ int main(int argc, char *argv[]){
 			
 			<p>Data type หมายถึงกลุ่มหรือชนิดของค่าที่สามารถใช้กับตัวแปร มีนัยถึงจำนวนพื้นที่ในหน่วยความจำ และค่าที่เป็นไปได้ของต้วแปร</p><!-- /topic content -->
 			
-			<p><br/><span class="title is-4">Basic data type</span> <br/><table class='table'><thead><tr><th>Data type</th><th>Value Range</th><th>Storage Size</th></tr></thead><tbody><tr><td>unsigned int</td><td>	0 to 65,535</td><td>2 bytes</td></tr><tr><td>Int (signed int)</td><td>-32,768 to 32,767</td><td>2 bytes</td></tr><tr><td>long int (signed long int)</td><td>	-2,147,483,648 to 2,147,483,647</td><td>	4 bytes</td></tr><tr><td>short int (signed short int)</td><td>	-32,768 to 32,767</td><td>	2 bytes</td></tr><tr><td>unsigned long int</td><td>0 to 4,294,967,295</td><td>	4 bytes</td></tr><tr><td>double</td><td>2.3E-308 to 1.7E+308 </td><td>	8 bytes</td></tr><tr><td>long double</td><td>	3.4E-4932 to 1.1E+4932 </td><td>	10 bytes</td></tr><tr><td>float</td><td>1.2E-38 to 3.4E+38</td><td>	4 bytes</td></tr><tr><td>char (signed char)</td><td>	-128 to 127</td><td>	1 byte</td></tr><tr><td>unsigned char</td><td>0 to 255</td><td>	1 byte</td></tr><tr><td>void</td><td>No meaning</td><td>	0 byte</td></tr></tbody></table></p><!-- /topic content -->
+			<p><br/><span class="title is-4">Basic data type</span> <br/><table class='table'><thead><tr><th>Data type</th><th>Value Range</th><th>Storage Size</th></tr></thead><tbody><tr><td>unsigned int</td><td>	0 to 65,535</td><td>2 bytes</td></tr><tr><td>int </td><td>-32,768 to 32,767</td><td>2 to 4 bytes</td></tr><tr><td>long int (signed long int)</td><td>	-2,147,483,648 to 2,147,483,647</td><td>	4 bytes</td></tr><tr><td>short int (signed short int)</td><td>	-32,768 to 32,767</td><td>	2 bytes</td></tr><tr><td>unsigned long int</td><td>0 to 4,294,967,295</td><td>	4 bytes</td></tr><tr><td>double</td><td>2.3E-308 to 1.7E+308 </td><td>	8 bytes</td></tr><tr><td>long double</td><td>	3.4E-4932 to 1.1E+4932 </td><td>	10 bytes</td></tr><tr><td>float</td><td>1.2E-38 to 3.4E+38</td><td>	4 bytes</td></tr><tr><td>char (signed char)</td><td>	-128 to 127</td><td>	1 byte</td></tr><tr><td>unsigned char</td><td>0 to 255</td><td>	1 byte</td></tr><tr><td>void</td><td>No meaning</td><td>	0 byte</td></tr></tbody></table></p><!-- /topic content -->
 			
 			<p><br/><span class="title is-4">Derived data type</span> <br/>เกิดจากการนำเอา basic data type มาขยายขอบเขตการใช้งาน ไม่ใช่เป็น data type ชนิดใหม่ <dl><dt><span class='has-text-link has-text-weight-bold '>Array</span></dt><dd>ordered sequence ของ data type ชนิดเดียวกัน โดยใช้ identifier เดียวกัน</dd><dt><span class='has-text-link has-text-weight-bold '>Pointer</span></dt><dd>ค่าของ addess (ตำแหน่งในหน่วยความจำ) ของตัวแปร</dd><dt><span class='has-text-link has-text-weight-bold '>Structure</span></dt><dd>กลุ่มของ data type หลายชนิด</dd><dt><span class='has-text-link has-text-weight-bold '>Union</span></dt><dd>คล้ายกับ Structure</dd></dl></p><!-- /topic content -->
 			
@@ -159,11 +164,12 @@ int main(int argc, char *argv[]){
 			
 			<p><br/><br/><span class="title is-4"> เอกสารอ้างอิง</span> <br/><ul><li>https://pubs.opengroup.org/onlinepubs/009604599/basedefs/stdint.h.html</li><li>https://sites.uclouvain.be/SystInfo/usr/include/stdint.h.html</li></ul></p><!-- /topic content -->
 			
+			<br/><br/>
 			
 			<a class="list-item-title button" 
 				onclick='currentDiv(3)'>Previous Topic</a>
 			
-			<br/>
+			
 			
 			<a class="list-item-title button" 
 				onclick='currentDiv(5)'>Next Topic</a>
@@ -197,15 +203,18 @@ int main(int argc, char *argv[]){
 			
 			<p>การประกาศแบบนี้ ตัวแปร y ยังไม่มีค่าในตัวเทียบได้กับกระดาษเปล่า ยังไม่มีเลขหน้า ก่อนนำไปใช้งานต้องทำการให้ค่าเสียก่อน เมื่อตัวแปรได้รับค่าแล้วก็จะเหมือนกับกระดาษที่มีข้อความและมีเลขหน้า</p><!-- /topic content -->
 			
-			<p><div class='box code has-background-info-light'><p class="title is-5"><ion-icon name="school-outline"></ion-icon>&nbsp;Tip:</p>C อนุญาตให้สามารถประกาศตัวแปรหลายตัวที่มี datatype เดียวกันในบรรทัดเดียวกันได้ เช่น<br/> int a=2,b=3,c=5;</div><br/></p><!-- /topic content -->
+			<p>ตัวอย่างการประกาศตัวแปรของ data type ต่างๆ<table class='table'><thead><tr><th>Data type</th><th>ตัวอย่าง</th></tr></thead><tbody><tr><td>unsigned int</td><td>unsigned int x = 9; </td></tr><tr><td>int </td><td>int x = -2 ;</td></tr><tr><td>long int</td><td>long int long_x =2147483647</td></tr><tr><td>short int </td><td>short int short_x =-32,768</td></tr><tr><td>double</td><td>double d_x =3.2325467;</td></tr><tr><td>float</td><td>float x = 0.414</td></tr><tr><td>char</td><td>char x = '2';<br/>char x = 127;</td></tr><tr><td>unsigned char</td><td>unsigned char x = 255</td></tr></tbody></table></p><!-- /topic content -->
 			
-			<p><div class='box code has-background-info-light'><p class="title is-5"><ion-icon name="star-outline"></ion-icon> &nbsp Remember : </p>กฏการประกาศตัวแปร<ol><li>ตัวแปรจะต้องไม่มีชื่อซ้ำกันในโปรแกรมเดียวกัน</li><li>ตัวแปรจะเป็นได้เพียง 1 datatype เท่านั้น</li><li>ตัวแปรจะไม่สามารถเปลี่ยนชนิดของ datatype ได้ ตลอดการทำงานของโปรแกรม</li></div></p><!-- /topic content -->
+			<p><br/><div class='box code has-background-warning-light'><p class="title is-5"><ion-icon name="school-outline"></ion-icon>&nbsp;Tip:</p>C อนุญาตให้สามารถประกาศตัวแปรหลายตัวที่มี datatype เดียวกันในบรรทัดเดียวกันได้ เช่น<br/> int a=2,b=3,c=5;</div><br/></p><!-- /topic content -->
 			
+			<p><div class='box code has-background-danger-light'><p class="title is-5"><ion-icon name="star-outline"></ion-icon> &nbsp Remember : </p>กฏการประกาศตัวแปร<ol><li>ตัวแปรจะต้องไม่มีชื่อซ้ำกันในโปรแกรมเดียวกัน</li><li>ตัวแปรจะเป็นได้เพียง 1 datatype เท่านั้น</li><li>ตัวแปรจะไม่สามารถเปลี่ยนชนิดของ datatype ได้ ตลอดการทำงานของโปรแกรม</li></div></p><!-- /topic content -->
+			
+			<br/><br/>
 			
 			<a class="list-item-title button" 
 				onclick='currentDiv(4)'>Previous Topic</a>
 			
-			<br/>
+			
 			
 			<a class="list-item-title button" 
 				onclick='currentDiv(6)'>Next Topic</a>
@@ -229,11 +238,12 @@ int main(int argc, char *argv[]){
 			
 			<p><div class='columns'><div class='column'></div><div class='column is-half'><figure class='image'><img src='./img/c-lang-linker.jpg' /></figure></div><div class='column'></div></div></p><!-- /topic content -->
 			
+			<br/><br/>
 			
 			<a class="list-item-title button" 
 				onclick='currentDiv(5)'>Previous Topic</a>
 			
-			<br/>
+			
 			
 			<a class="list-item-title button" 
 				onclick='currentDiv(7)'>Next Topic</a>
@@ -276,11 +286,12 @@ int main() {
 			
 			<p>ส่วนสุดท้ายคือ main function ซึ่งบรรจุลำดับการทำงานของโปรแกรมทั้งหมดไว้ เริ่มจากกำหนดค่า r ให้เป็น 10 แล้วนำไปคำนวณหาพื้นที่ด้วยการส่ง r ไปให้ process() จากนั้นนำค่าที่ได้มาแสดงผลด้วยคำสั่ง printf()</p><!-- /topic content -->
 			
+			<br/><br/>
 			
 			<a class="list-item-title button" 
 				onclick='currentDiv(6)'>Previous Topic</a>
 			
-			<br/>
+			
 			
 			<div class="divider">&clubs;&clubs;&clubs;</div> <!-- /topic separate line -->
 		</section><!-- /topic section -->	
@@ -289,8 +300,9 @@ int main() {
 		<section class="section slide box content">
 			<p class="title is-3">Main Content</p><!-- /topic title -->
 			
+			<br/><br/>
 			
-			<br/>
+			
 			
 			<div class="divider">&clubs;&clubs;&clubs;</div> <!-- /topic separate line -->
 		</section><!-- /topic section -->	
