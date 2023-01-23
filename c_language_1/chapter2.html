@@ -40,7 +40,7 @@
 			
 			<p>Derived Data Type คือ data type ที่เกิดจากการนำเอา basic data type ประยุกต์ ได้แก่<ol><li>pointer</li><li>array</li><li>struct</li><li>union</li></ol></p><!-- /topic content -->
 			
-			<br/>
+			<br/><br/>
 			
 			
 			<a class="list-item-title button" 
@@ -81,7 +81,7 @@
 			
 			<p>หากพิจารณาดูตัวเลขบอกตำแหน่ง จะเห็นว่าเป็นเลขจำนวนเต็ม นั่นหมายความว่าค่านี้ถูกจัดเก็บไว้ในตัวแปรอื่นได้เช่นกัน ย้อนกลับไปหาความหมายของ pointer อีกครั้ง นั่นคือต้องสร้างตัวแปรประเภท pointer ขึ้นมา เพื่อใช้จัดเก็บเลขตำแหน่งในหน่วยความจำของ demo_var การสร้างตัวแปรประเภท pointer ด้วยสัญญลักษณ์ <span class="has-text-link has-text-weight-bold">*</span> รูปแบบการใช้งาน</p><!-- /topic content -->
 			
-			<p><pre class='code box has-background-info-light'>&#60;basic data type &#62; * &#60;variable name &#62; </pre></p><!-- /topic content -->
+			<p><pre class='code box has-background-success-light'>&#60;basic data type &#62; * &#60;variable name &#62; </pre></p><!-- /topic content -->
 			
 			<p>เช่น ถ้าต้องการประกาศตัวแปรชื่อ addr_of_demo_var ให้เป็นตัวแปรประเภท pointer ใช้เก็บค่าของ address ของตัวแปร demo_var สามารถประกาศได้ดังนี้</p><!-- /topic content -->
 			
@@ -108,11 +108,19 @@ int* addr_of_var = &char_var;
 			
 			<p>ชุดคำสั่งตัวอย่างนี้เมื่อนำไป compile จะเกิด error เพราะ addr_of_var ถูกประกาศว่าใช้กับ address ของตัวแปรชนิด int เท่านั้น แต่กลับไปให้ค่าที่เป็น address ของตัวแปรชนิด char</p><!-- /topic content -->
 			
-			<p><div class='box has-background-info-light'><p class="title is-5"><ion-icon name="school-outline"></ion-icon>&nbsp;Tip:</p><ul><li>ตัวแปรประเถท pointer ที่ถูกประกาศไว้แต่ยังไม่ได้รับค่าจะเรียกว่า <span class="has-text-link has-text-weight-bold">wild pionter</span></li><li>ในทางปฏิบัติ ไม่ควรปล่อยให้มี wild pointer เพราะอาจเสี่ยงต่อนำเอาพืนที่หน่วยความจำที่สำรองไว้สำหรับทำงานอื่นมาใช้ ซึ่งอาจสร้างความเสียหายได้ จึงมักให้ค่า NULL กับ wild pointer แทนที่จะปล่อยว่างไว้ เช่น <span class="has-text-link has-text-weight-bold">int* not_wild = NULL;</span></li><li>เรียก pointer ที่ถูกให้ค่าเป็น NULL ว่า <span class="has-text-link has-text-weight-bold">NULL pointer</span></li><li>pointer สามารถใช้กับ void ได้ เรียกว่า <span class="has-text-link has-text-weight-bold">Void pointer</span> หรือ <span class="has-text-link has-text-weight-bold">Generic pointer</span>เช่น <span class="has-text-link has-text-weight-bold">void* void_pointer = NULL;</span> </li></ul></div></p><!-- /topic content -->
+			<p><div class='box has-background-warning-light'><p class="title is-5"><ion-icon name="school-outline"></ion-icon>&nbsp;Tip:</p><ul><li>ตัวแปรประเถท pointer ที่ถูกประกาศไว้แต่ยังไม่ได้รับค่าจะเรียกว่า <span class="has-text-link has-text-weight-bold">wild pionter</span></li><li>ในทางปฏิบัติ ไม่ควรปล่อยให้มี wild pointer เพราะอาจเสี่ยงต่อนำเอาพืนที่หน่วยความจำที่สำรองไว้สำหรับทำงานอื่นมาใช้ ซึ่งอาจสร้างความเสียหายได้ จึงมักให้ค่า NULL กับ wild pointer แทนที่จะปล่อยว่างไว้ เช่น <span class="has-text-link has-text-weight-bold">int* not_wild = NULL;</span></li><li>เรียก pointer ที่ถูกให้ค่าเป็น NULL ว่า <span class="has-text-link has-text-weight-bold">NULL pointer</span></li><li>pointer สามารถใช้กับ void ได้ เรียกว่า <span class="has-text-link has-text-weight-bold">Void pointer</span> หรือ <span class="has-text-link has-text-weight-bold">Generic pointer</span>เช่น <span class="has-text-link has-text-weight-bold">void* void_pointer = NULL;</span> </li></ul></div></p><!-- /topic content -->
 			
-			<p><br/><div class='box has-background-info-light'><p class="title is-5"><ion-icon name="star-outline"></ion-icon> &nbsp Remember : </p><ul><li>ตัวแปรประเภท pointer คือตัวแปรที่ใช้เก็บ address ในหน่วยความจำของตัวแปรอื่น</li><li>การประกาศตัวแปรประเภท pointer ต้องใช้สัญญลักษณ์ * นำหน้าชื่อตัวแปร เช่น int *x, char *y, float *z เป็นต้น </li><li>แสดงค่า address ของตัวแปรได้โดยใช้ & นำหน้าชื่อตัวแปรที่ต้องการ เช่น &x, &y เป็นต้น </li><li>ประโยชน์ของการตัวแปรประเภท pointer จะกล่าวถึงในตอนต่อไป</li></ul></div></p><!-- /topic content -->
+			<p><br/><p class='title is-5'>Dereferencing</p></p><!-- /topic content -->
 			
-			<br/>
+			<p>คือการเข้าถึงค่าที่เก็บไว้ในหน่วยความจำ ณ ตำแหน่งที่จัดเก็บไว้ในตัวแปรประเภท pointer จากตัวอย่างข้างบน addr_of_var จัดเก็บ address ของ char_var หากต้องการทราบค่าของ char_var ผ่าน addr_of_var สามารถเขียนได้ดังนี้ <pre class='code box has-background-info-light'>
+*(addr_of_var)
+หรือ
+*(&char_var)
+</pre>การเข้าถึงค่าของตัวแปรแบบนี้ บางครั้งเรียกว่า "<span class='has-text-link has-text-weight-bold'>value at address</span>" หรือ "<span class='has-text-link has-text-weight-bold '>indirection</span>"</p><!-- /topic content -->
+			
+			<p><br/><div class='box has-background-danger-light'><p class="title is-5"><ion-icon name="star-outline"></ion-icon> &nbsp Remember : </p><ul><li>ตัวแปรประเภท pointer คือตัวแปรที่ใช้เก็บ address ในหน่วยความจำของตัวแปรอื่น</li><li>การประกาศตัวแปรประเภท pointer ต้องใช้สัญญลักษณ์ * นำหน้าชื่อตัวแปร เช่น int *x, char *y, float *z เป็นต้น </li><li>แสดงค่า address ของตัวแปรได้โดยใช้ & นำหน้าชื่อตัวแปรที่ต้องการ เช่น &x, &y เป็นต้น </li><li>ประโยชน์ของการตัวแปรประเภท pointer จะกล่าวถึงในตอนต่อไป</li></ul></div></p><!-- /topic content -->
+			
+			<br/><br/>
 			
 			<a class="list-item-title button" 
 				onclick='currentDiv(1)'>Previous Topic</a>
@@ -130,7 +138,7 @@ int* addr_of_var = &char_var;
 			
 			<p>ตัวแปรประเภท Array ใช้ในกรณีที่ต้องการเก็บข้อมูลไว้เป็นชุดโดยใช้ตัวแปรเดียว เช่น ชุดของตัวเลขจำนวนเต็ม ชุดของตัวอักษร ฯล รูปแบบการประกาศตัวแปร array คือ</p><!-- /topic content -->
 			
-			<p><div class='box has-background-success-light'>&#60;data type&#62 &#60;variable name&#62 [&#60;size#62] = {value1,value2,value3,...}</div></p><!-- /topic content -->
+			<p><pre class='box has-background-success-light code'>&#60;data_type&#62 &#60;variable_name&#62; [&#60;size&#62;] = {value1,value2,value3,...}</pre></p><!-- /topic content -->
 			
 			<p>ตัวอย่าง</p><!-- /topic content -->
 			
@@ -138,19 +146,120 @@ int* addr_of_var = &char_var;
 			
 			<p><pre class='code box has-background-info-light'>int one2ten[10] = {1,2,3,4,5,6,7,8,9,10}; </pre></p><!-- /topic content -->
 			
-			<p>ประกาศตัวแปรแบบ array ของชุดตัวอักษร 'a' ถึง 'f' (size=6)</p><!-- /topic content -->
+			<p>ประกาศตัวแปรแบบ array ของชุดตัวอักษรของคำ "Hello"  (size=5)</p><!-- /topic content -->
 			
-			<p><pre class='code box has-background-info-light'>char a2f[6] = {'a','b','c','d','e','f'}; </pre></p><!-- /topic content -->
+			<p><pre class='code box has-background-info-light'>char hello_world[5] = {'H','e','l','l','o'}; </pre></p><!-- /topic content -->
 			
 			<p>ในการประกาศตัวแปร array อาจไม่ระบุ size ก็ได้ เช่น </p><!-- /topic content -->
 			
 			<p><pre class='code box has-background-info-light'>int one2ten[] = {1,2,3,4,5,6,7,8,9,10};
-char a2f[] = {'a','b','c','d','e','f'};
+char hello_world[] = {'H','e','l','l','o'};
  </pre></p><!-- /topic content -->
+			
+			<p><br/><p class="title is-5">การเข้าถึงสมาชิกใน Array</p></p><!-- /topic content -->
 			
 			<p>สมาชิก (element)แต่ละตัวใน array จะมี index number ประจำตัวสำหรับใช้อ้างอิง index number โดยที่<ul><li>เริ่มจาก 0 ไปจนถึง size - 1</li><li>เริ่มนับจากซ้ายไปขวา</li></ul></p><!-- /topic content -->
 			
-			<br/>
+			<p><div class='columns'>
+<div class='column'></div>
+<div class='column is-half'>
+<figure class='image'>
+<img src='./img/c-lang-01-array-1.png' />
+</figure>
+</div>
+<div class='column'></div>
+</div>
+</p><!-- /topic content -->
+			
+			<p>การเข้าถึงสมาชิกแต่ละตัวจะใช้ index number เป็นตัวระบุ โดยเขียนไว้ใน <span class="has-text-link has-text-weight-bold">[]</span> เช่น<ul><li>one2ten[0] หมายถึง 1</li><li>one2ten[9] หมายถึืง 10</li><li>hello_world[0] หมายถึืง 'H'</li><li>hello_world[2] หมายถึืง 'l'</li></ul></p><!-- /topic content -->
+			
+			<p>การปรับปรุงค่าของสมาชิกสามารถทำได้ในแต่ละตัวแยกจากกันโดยอาศัย index number เช่น </p><!-- /topic content -->
+			
+			<p><pre class='code box has-background-info-light'>hello_world[5] = 'A'; /* เปลี่ยนค่าจาก 'o' ไปเป็น 'A' */
+hello_world[5] = 'B'; /* เปลี่ยนค่าจาก 'A' ไปเป็น 'B' */
+one2ten[0] = 20; /* เปลี่ยนค่าจาก 1 ไปเป็น 20 */
+</pre></p><!-- /topic content -->
+			
+			<p><div class='box has-background-danger-light'><p class='title is-5'><ion-icon name='star-outline'></ion-icon> &nbsp Remember : </p><ul>
+<li>Array ใช้กับ data type ชนิดใดชนิดหนึ่งเท่านั้น</li>
+<li>ลำดับของสมาชิกใน array มีความสำคัญ</li>
+<li>ไม่สามารถเปลี่ยน data type ของสมาชิกใน array ได้</li>
+</ul>
+</div></p><!-- /topic content -->
+			
+			<p><br/><p class="title is-5">Array กับ Pointer</p></p><!-- /topic content -->
+			
+			<p>Array และ Pointer มีความเชื่อมโยงกันอย่างใกล้ชิด ขอให้พิจารณาตัวอย่างต่อไปนี้</p><!-- /topic content -->
+			
+			<p><pre class='code box has-background-info-light'>unsigned int x[4] = {11,24,13,37};</pre></p><!-- /topic content -->
+			
+			<p>ตัวแปร x เป็น array ชอง unsigned int มีสมาชิก 4 ตัว แต่ละตัวใช้พื้นที่ในหน่วยความจำ 4 bytes ดังนั้นตัวแปร x จะใช้พื้นที่รวม 16 bytes ภาพจำลองในหน่วยความจำแสดงดังภาพข้างล่าง</p><!-- /topic content -->
+			
+			<p><div class='columns'>
+<div class='column'></div>
+<div class='column is-half'>
+<figure class='image'>
+<img src='./img/c-lang-array-2.png' />
+</figure>
+</div>
+<div class='column'></div>
+</div></p><!-- /topic content -->
+			
+			<p>หากใช้คำสั่งให้พิมพ์ค่า address ดังนี้ (printf() คือคำสั่งให้ทำการแสดงผลทางหน้าจอ) จะได้ผลลัพธ์คือ address ที่มีค่าเท่ากันหมด <pre class='code box has-background-info-light'>printf("%d\n",x);
+printf("%d\n",&x);
+printf("%d\n",&x[0]);
+
+
+194418256
+194418256
+194418256
+</pre></p><!-- /topic content -->
+			
+			<p>จะเห็นว่าค่าตัวเลขที่ได้ทั้ง 3 ค่าเป็นตัวเลขเดียวกัน เราทราบจากเรื่องก่อนหน้านี้ว่า&x หรือ &x[0] หมายถึงค่า address ของตัวแปร และตัวแปรที่เก็บค่า address ของตัวแปรเรียกว่า pointer  ดังนั้น x ซึ่งเป็นตัวแปรประเภท array ใน C language จึงเป็นตัวแปรประเภท pointer นั่นเอง<div class='columns'>
+<div class='column'></div>
+<div class='column is-half'>
+<figure class='image'>
+<img src='./img/c-lang-array-3.png' />
+</figure>
+</div>
+<div class='column'></div>
+</div></p><!-- /topic content -->
+			
+			<p><br/><div class='box has-background-danger-light'>
+<p class='title is-5'><ion-icon name='star-outline'></ion-icon> &nbsp Remember : </p>
+ใน C language การประกาศตัวแปรแบบ array คือการประกาศตัวแปรแบบ pointer ที่เก็บ address ของสมาชิกตัวแรก
+</div></p><!-- /topic content -->
+			
+			<p>ต่อไปจะดูว่า address ของสมาชิกตัวอื่นใน x มี address เป็นอย่างไร</p><!-- /topic content -->
+			
+			<p><pre class='code box has-background-info-light'>printf("%d\n",&x[0]);
+printf("%d\n",&x[1]);
+printf("%d\n",&x[2]);
+printf("%d\n",&x[3]);
+
+
+194418256
+194418260
+194418264
+194418268
+</pre></p><!-- /topic content -->
+			
+			<p>จะเห็นว่าค่าของ address เรียงลำดับต่อกันและขยับเพิ่มขึ้นครั้งละ 4 bytes ซึ่งเป็นขนาดในหน่วยความจำของ basic data type แบบ int นี่คือคุณสมบัติสำคัญอีกข้อของ array คือสมาชิกจะมี address เรียงต่อกัน ด้วยคุณสมบัตินี้เมือนำเอาการทำ dereferencing มาใช้ก็จะทำให้การเข้าถึงค่าของสมาชิกทำได้โดยไม่ต้องใช้ index number เช่น</p><!-- /topic content -->
+			
+			<p><pre class='code box has-background-info-light'>printf("%d\n",*(x));
+printf("%d\n",*(x+1));
+printf("%d\n",*(x+2));
+printf("%d\n",*(x+3));
+</pre></p><!-- /topic content -->
+			
+			<p>ด้วยวิธีการนี้ มีความเร็วในการเข้าถึงค่าของสมาชิกใน array มากกว่าการใช้ index number</p><!-- /topic content -->
+			
+			<p><br/><div class='box has-background-warning-light'>
+<p class='title is-5'><ion-icon name='school-outline'></ion-icon>&nbsp;Tip:</p>
+การใช้ dereferencing เข้าถึงค่าของสมาชิกใน array มีความเร็วมากกว่าการใช้ index number
+</div></p><!-- /topic content -->
+			
+			<br/><br/>
 			
 			<a class="list-item-title button" 
 				onclick='currentDiv(2)'>Previous Topic</a>
@@ -166,7 +275,7 @@ char a2f[] = {'a','b','c','d','e','f'};
 		<section class="section slide box content">
 			<p class="title is-3">Main Content</p><!-- /topic title -->
 			
-			<br/>
+			<br/><br/>
 			
 			
 			<div class="divider">&clubs;&clubs;&clubs;</div> <!-- /topic separate line -->
