@@ -98,6 +98,17 @@ margin-top: 15px;
   }
 
 /* multiple tones */
+.bg-mine-1 {
+    color: #fff;
+    background: -webkit-linear-gradient(-70deg, #fa7c30 30%, rgba(1, 1, 1, 0.4) 30%), url('/icons/modern_reading_room.png');
+    background: -o-linear-gradient(-70deg, #fa7c30 30%, rgba(1, 1, 1, 0.4) 30%), url('/icons/modern_reading_room.png');
+    background: -moz-linear-gradient(-70deg, #fa7c30 30%, rgba(1, 1, 1, 0.4) 30%), url('/icons/modern_reading_room.png');
+    background: linear-gradient(-70deg, #fa7c30 30%, rgba(1, 1,1, 0.4) 30%), url('/icons/modern_reading_room.png');
+	background-size: cover;
+	background-position: 50% 21%;
+	text-align: right;
+}
+
 .bg-nasa{
     color: #fff;
     background: -webkit-linear-gradient(-70deg, #fa7c30 30%, rgba(0, 0, 0, 0) 30%), url('https://images-assets.nasa.gov/image/carina_nebula/carina_nebula~medium.jpg');
