@@ -11,39 +11,50 @@
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@creativebulma/bulma-divider@1.1.0/dist/bulma-divider.min.css"/>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.0.0/animate.min.css" />
   <link rel="stylesheet" href="/css/my_css.css" />
+  <style>
+  body, html {
+  height: 100%;
+  }
+  .bg {
+  background: url(./img/C_1_cover.png);
+  /* Full height */
+  height: 100%;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+.bg-trans{
+	background-color:rgba(220,220,220,0.3) ;
+}
+  </style>
   
   </head>
-  <body>
-	<section class="hero is-small is-light">		
+  <body class="bg">
+	
+	<section class="hero is-small bg-trans">		
 		<div class="hero-body">
-			<p class="title is-1 has-text-centered">
-					C for beginners
+			<p class="title is-1 has-text-centered ss-font-otto">
+				C for beginners
 			</p>
 		</div>
-		<nav class="navbar">
-			<div id="navbarMenuHeroA" class="navbar-menu">
-				<div class="navbar-begin">
-					<a class="navbar-item is-active" href="../index.html">
-						<ion-icon name="return-up-back-outline"></ion-icon> Back to book shelf
-					</a>
-				</div>
-			</div>
-		</nav>		
+		
     </section> 
-    
+  
 	 <div class="container">  
-		 <div class="columns bg-nasa">			 
-			 <div class="column"></div>			 
-			 <div class="column has-text-right ">
-				 <b class="title is-3">Contents</b>
+		 <div class="columns ">			 
+			<div class="column is-half"></div>			 
+			<div class="column  has-text-right ">
+				 <b class="title is-3"><font color="white">Contents</font></b>
 				<div class="list">	
 					<ul>
 						
-						<li class="list-item "><a  href="chapter1.html" >
-							<font color="#fff">รู้จักกับ C programming language</font></a></li>
+						<li class="list-item">
+							<a  href="chapter1.html" >
+							<font color="white"><b>รู้จักกับ C programming language</b></font></a></li>
 						
-						<li class="list-item "><a  href="chapter2.html" >
-							<font color="#fff">รู้จัก Derived Data Type</font></a></li>
+						<li class="list-item">
+							<a  href="chapter2.html" >
+							<font color="white"><b>รู้จัก Derived Data Type</b></font></a></li>
 							
 					</ul>			
 				</div>
@@ -51,11 +62,13 @@
 				<a class="button is-link has-text-centered" href="../index.html">
 					<ion-icon name="return-up-back-outline"></ion-icon> Back to book shelf
 				</a>
-			 </div>			
+			</div>			
+			<div class="column is-2"></div>			 
 		 </div>
-	</div>
+	</div> 
+	<!--
 	<footer class="footer">
-      <div class="content has-text-centered box">
+      <div class="content has-text-centered ">
         <p>
           <strong>C for beginners</strong> โดย <a href="mailto:somchaisomph@gmail.com">สมชาย สมผดุง</a>. 
         </p>
@@ -65,7 +78,8 @@
             is licensed <a href="http://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY NC SA 4.0</a>.
         </p>
       </div>
-    </footer>   	  	
+    </footer> 
+    --> 	  	
 <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
 <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/bulma-toast@2.4.1/dist/bulma-toast.min.js"></script>    
