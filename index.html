@@ -15,15 +15,21 @@
   <link rel="stylesheet" href="../css/my_css.css" />
   <style>  
 	  
-body {
+html,body {
    height: 100%;
-  /*background-color: lch(93% 44 255);*/
+  
 }	  
  .shadow {
 	  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
   }
 	 
-  
+  .bg {
+  background: url(./icons/modern_library.png);  
+  height: 100%;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
   </style>
   
 <!-- ############  analytic ########### -->
@@ -36,14 +42,14 @@ body {
 </script>
 <!-- ############  analytic ########### -->	  
   </head>
-  <body class="ss-main-bg">
+  <body class="bg">
 	  <!-- Hero -->
-      <section class="hero is-light is-small">
+      <section class="hero is-small ss-font-otto">
         <div class="hero-body">
-          <p class="title is-1  has-text-centered">
+          <p class="title is-1  has-text-centered has-text-light">
             SS EBooks 
           </p>
-          <p class="title is-4 has-text-centered" >
+          <p class="title is-4 has-text-centered has-text-light" >
             Learn every day
           </p>
         </div>
