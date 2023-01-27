@@ -1,13 +1,10 @@
----
-title: Chapter 1
----
 <!DOCTYPE html>
 <html lang="en">
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <link rel="icon" type="image/png" href="https://cdn.glitch.global/cb61e7ff-aec7-49ac-884a-cea3cd4cd9da/favicon-32x32.png?v=1655545783728" />
-    <title>C Programming Language 01 : {{ page.title }}</title> 
+    <title>C Programming Language 01 : Chapter 1</title> 
    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.9.3/css/bulma.min.css" 
 		integrity="sha512-IgmDkwzs96t4SrChW29No3NXBIBv8baW490zk5aXvhCD8vuZM3yUSkbyTBcXohkySecyzIrUwiF/qV0cuPcL3Q==" 
 		crossorigin="anonymous" referrerpolicy="no-referrer" />  
@@ -35,7 +32,7 @@ title: Chapter 1
 	<nav class="navbar bg" role="navigation" aria-label="main navigation">
 		<div class="navbar-brand">
 			<span class="navbar-item title is-2 has-text-white ss-font-otto">
-				{{ site.data.chapter_1["title"] }}
+				รู้จักกับ C programming language
 			</span>				
 		</div>
 		<div class="navbar-end">
@@ -51,34 +48,288 @@ title: Chapter 1
 	<!-- ######################### -->
 	<div class="container" data-dismiss="quickview">
 		<!-- topic section -->
-		{% for topic in site.data.chapter_1["topics"] %}
+		
 		<section class="section slide box content">
-			<p class="title is-3">{{ topic["title"] }}</p><!-- /topic title -->
-			{% for p in topic["contents"] %}
-			<p>{{ p }}</p><!-- /topic content -->
-			{% endfor %}
-			<br/><br/>
-			{% if topic["prev"] %}
-			<a class="list-item-title button" 
-				onclick='currentDiv({{ topic["prev"] }})'>Previous Topic</a>
-			{% endif %}
+			<p class="title is-3">บทนำ (Introduction)</p><!-- /topic title -->
 			
-			{% if topic["next"] %}
+			<p>C เป็น programming language.พัฒนาขึ้นโดย Dennis Ritchie  ในปี ค.ศ. 1972มีเป้าหมายในตอนแรกเพื่อใช้เป็น system programming language เพื่อใช้สร้างซอฟต์แวร์ระบบปฏิบัติการ (operating system) ปัจจุบัน International Standardization Organization (ISO) เป็นผู้กำหนดมาตรฐานสำหรับภาษา C  เรียกว่า C Standard  ล่าสุดคือ <a href='https://www.iso-9899.info/wiki/The_Standard'>C17</a> (บางครั้งอาจเรียกว่า C18)C Standard รุ่นก่อนหน้าคือ C11 </p><!-- /topic content -->
+			
+			<p>ข้อกำหนดที่สร้างขึ้นจะเป็นตัวกำหนดรูปแบบการทำงานของโปรแกรมและวิธีการเขียนชุดคำสั่ง ยกตัวอย่างเช่น <pre class='box'>The function called at program startup is named main. The implementation
+declares no prototype for this function. It shall be defined with a return
+type of int and with no parameters:
+int main(void) { /* ... */ }
+or with two parameters (referred to here as argc and argv, though any names
+may be used, as they are local to the function in which they are declared):
+int main(int argc, char *argv[]) { /* ... */ }
+or equivalent;10) or in some other implementation-defined manner.</pre></p><!-- /topic content -->
+			
+			<p>ข้อความนี้กำหนดว่า โปรแกรมที่เขียนด้วย C language จะตัองมี function ชื่อ main() เสมอ เพราะพฤติกรรมของโปรแกรมจะเริ่มต้นการทำงานจาก function นี้ซึ่ง main สามารถเขียนได้ใน 2 รูปแบบคือ แบบมี 2 parameters และไม่มี parameters เป็นต้น</p><!-- /topic content -->
+			
+			<p>C language อาจถูกมองว่าเป็นภาษาที่ค่อนข้างยากสำหรับผู้เริ่มต้น แต่หากมองอีกมุมคือ C language ถูกใช้งานมาระยะยาวนานแล้ว มีภาษารุ่นใหม่หลายภาษาได้ยืม Syntax ของ C language ไปใช้ เช่น Java, JavaScript, PHP ฯล และมีหลายภาษาที่ใช้ C ในการพัฒนา library เช่น Python นอกจากนี้ C++ language ซ่งเป็น superset ของ C ก็มีการใช้งานแพร่หลายมากในปัจจุบัน Machine Learning Framework อย่าง TensorFlow ก็ใช้ C++ language ในการพัฒนา ดังนั้นการเริ่มต้นด้วย C language น่าจะเป็นผลดีในระยะยาว ช่วยให้การศึกษาภาษาอื่นง่ายขึ้น</p><!-- /topic content -->
+			
+			<br/><br/>
+			
+			
+			
 			<a class="list-item-title button" 
-				onclick='currentDiv({{ topic["next"] }})'>Next Topic</a>
-			{% endif %}
+				onclick='currentDiv(2)'>Next Topic</a>
+			
 			<div class="divider">&clubs;&clubs;&clubs;</div> <!-- /topic separate line -->
 		</section><!-- /topic section -->	
 		
-		{% endfor %}
+		
+		<section class="section slide box content">
+			<p class="title is-3">โครงสร้างของ C program</p><!-- /topic title -->
+			
+			<p><br/><span class="title is-4">Statements</span> <br/>ในมุมมองหนึ่ง โปรแกรมคอมพิวเตอร์คือกลุ่มของ statments ที่ถูกจัดลำดับเพื่อกำหนดให้คอมพิวเตอร์ทำงานเพื่อบรรลุเป้าหมายอย่างใดอย่างหนึ่ง ดังนั้น statements จึงถูกจัดว่าเป็นชุดคำสั่งแบบหนึ่ง statements ในคอมพิวเตอร์โปรแกรมทำหน้าที่เหมือนกับ statments ในภาษาธรรมชาติ (natural language) C language กำหนดให้ใช้เครื่องหมาย   " ;" เพื่อแสดงการจบ statment เช่นกับ "." ใช้จบ statement ในภาษาอังกฤษ</p><!-- /topic content -->
+			
+			<p>Statement ใน C language แบ่งออกได้หลายชนิด (รายละเอียดจะกล่าวถึงตอนหลัง) ได้แก่<ul><li>Declaration statements</li><li>Jump statements</li><li>Expression statements</li><li>Compound statements</li><li>Selection statements (conditionals)</li><li>Iteration statements (loops)</li><li>Try blocks</li></ul></p><!-- /topic content -->
+			
+			<p>เช่นเดียวกับการเขียนเรียงความ โครงสร้างหลักของ C program มี 3 องค์ประกอบหลักคือ<ul class='list'><li>Headers</li><li>Functions</li><li>main function</li></ul><div class='columns'><div class='column'></div><div class='column'><img src='./img/c-lang-structure.png' /></div><div class='column'></div></div></p><!-- /topic content -->
+			
+			<p><span class="title is-5">Headers</span> <br/> เป็นพืนที่ของสิ่งที่เรียก่ว่า <a href='https://en.wikibooks.org/wiki/C_Programming/Preprocessor_directives_and_macros'>pre-processor directives</a>ชุดคำสั่งของส่วนนี้จะถูกจัดเก็บแยกออกจากโปรแกรมที่กำลังใช้งาน และจะถูกนำมาประมวลผลก่อนส่วนอื่น แต่ละบรรทัดจะมีเครื่องหมาย  <span class='has-text-link has-text-weight-bold '># </span>เป็นอักษรตัวแรกและไม่มี <span class='has-text-link has-text-weight-bold '>;</span> ปิดท้ายบรรทัด ที่มักพบบ่อยได้แก่<ul><li>#include</li><li>#define</li><li>#ifdef</li><li>#endif</li><li>#if</li><li>#else</li></ul></p><!-- /topic content -->
+			
+			<p>Pre-processor แบ่งได้ 3 ประเภทได้แก่<dl><dt><span class='has-text-link has-text-weight-bold '>File inclusion</span></dt><dd>รูปแบบการเขียน  <br/><pre class='box'>
+#include “filename” หรือ #include &#60;filename&#62
+</pre> <br/> เช่น <br/><pre class='box'>
+#include “stdio.h”
+#include &#60;opencv4/higui.h&#62;
+</pre> <br/></dd><dt><span class='has-text-link has-text-weight-bold '>Macro</span></dt><dd>รูปแบบการเขียน  <br/><pre class='box'>
+#define identifier string
+</pre> <br/> เช่น <br/><pre class='box'>
+#define  MAX_NUM 2000
+#define sqrt(x) x*x 
+</pre> <br/></dd><dt><span class='has-text-link has-text-weight-bold '>Compiler Control</span></dt><dd>ใช้กำหนดเงื่อนไขในการ compile โปรแกรม จะขอข้ามเรื่องนี้ไปก่อน ในระดับของการเริ่มต้นไม่จำเป็นต้องทราบในรายละเอียดเรื่องนี้<br/></dd></dl></p><!-- /topic content -->
+			
+			<p><br/><span class="title is-5">Functions</span> <br/>เป็นพืนที่ของการกำหนดหน้าที่ต่างๆ ในโปรแกรม ซึ่งจะกล่าวถึงต่อไป</p><!-- /topic content -->
+			
+			<p><span class="title is-5">Main Function</span> <br/>เป็นจุดเริ่มต้นการทำงานของโปรแกรมใน C language มีจุดสำคัญคือ<ul><li>ชื่อของ function ต้องใช้ main()</li><li>ต้อง return ค่าออกมาเป็น integer </li><li>หากรับ parameters จะใช้ int argc และ char *argv[] (จะอธิบายความหมายภายหลัง) หากไม่มีการรับ parameter ให้ใช้ void</li></ul>ตัวอย่างเช่น <br/><pre class='box code'>
+int main(void){
+&nbsp;&nbsp;&nbsp;&nbsp;printf("Hello World");
+&nbsp;&nbsp;&nbsp;&nbsp;return 0;
+}
+
+
+int main(int argc, char *argv[]){
+&nbsp;&nbsp;&nbsp;&nbsp;printf("Hello World");
+&nbsp;&nbsp;&nbsp;&nbsp;return 0;
+}
+</pre> <br/></p><!-- /topic content -->
+			
+			<p></p><!-- /topic content -->
+			
+			<p><div class='box has-background-warning-light'><p class="title is-5"><ion-icon name="school-outline"></ion-icon>&nbsp;Tip:</p>โปรแกรมทุกโปรแกรมใน C langauge จะต้องมี main() เสมอ โปรแกรมจะเริ่มทำงานใน statement แรกและจบการทำงานหลังจากทำงาน statement สุดท้ายใน main() เสร็จ</div></p><!-- /topic content -->
+			
+			<br/><br/>
+			
+			<a class="list-item-title button" 
+				onclick='currentDiv(1)'>Previous Topic</a>
+			
+			
+			
+			<a class="list-item-title button" 
+				onclick='currentDiv(3)'>Next Topic</a>
+			
+			<div class="divider">&clubs;&clubs;&clubs;</div> <!-- /topic separate line -->
+		</section><!-- /topic section -->	
+		
+		
+		<section class="section slide box content">
+			<p class="title is-3">C Tokens</p><!-- /topic title -->
+			
+			<p>Token หมายถึงองค์ประกอบที่เล็กที่สุดแต่ยังคงมีความหมายสำหรับ compiler สำหรับ C language แบ่ง tokes ออกได้ 6 ประเภท ได้แก่<ol><li>Keywords (Reserved words)</li><li>Identifiers</li><li>Constants</li><li>Strings</li><li>Special symbols</li><li>Operators</li></ol></p><!-- /topic content -->
+			
+			<p><span class="title is-4">Keywords</span> <br/>หมายถึงคำที่ถูกระบุความหมายหรือหน้าที่ไว้แล้ว ไม่สามารถนำไปใช้เป็นชื่อสำหรับตัวแปรได้ ไม่สามารถกำหนดความหมายหรือหน้าที่ได้แต่สามารถที่จะหาคำมาทดแทนได้ โดยการใช้ประโยชน์จาก compile control directive ที่กล่าวไว้ในตอนก่อนหน้า keywords ใน C language มี 32 keywords คือ<table class='table'><tr><td>auto</td><td>double</td><td>int</td><td>struct</td></tr><tr><td>break</td><td>else</td><td>long</td><td>switch</td></tr><tr><td>case</td><td>enum</td><td>register</td><td>typedef</td></tr><tr><td>char</td><td>extern</td><td>return</td><td>union</td></tr><tr><td>const</td><td>float</td><td> short</td><td>unsigned</td></tr><tr><td>continue</td><td>for</td><td>signed</td><td>void</td></tr><tr><td>default</td><td>goto</td><td>sizeof</td><td>volatile</td></tr><tr><td>do</td><td>if</td><td>static</td><td>while </td></tr></table></p><!-- /topic content -->
+			
+			<p><span class="title is-4">Identifiers</span> <br/>หมายถึงคำที่นำมาใช้เป็นชื่อของตัวแปร หรือ function กฏในการใช้ identifier มีดังนี้<ul><li>อักษรตัวแรกต้องเป็นอักษรในภาษาอังกฤษ หรือ  underscore(_)</li><li>สามารถใช้ตัวอักษรภาษาอังกฤษ ตัวเลข (0-9) และ underscore(_) ร่วมกันได้ ห้ามใช้ตัวอักษรพิเศษ</li><li>ต้องไม่ใช่่ keywords</li><li>ไม่ควรมีความยาวมากกว่า  31 ตัวอักษร </li></ul></p><!-- /topic content -->
+			
+			<p><span class="title is-4">Constants</span> <br/>บางครั้งถูกเรียก่ว่า literal คือตัวแปรที่ไม่สามารถเปลี่ยนแปลงค่าที่กำหนดให้ตั้งแต่แรกได้ การประกาศจะใช้ <span class='has-text-link has-text-weight-bold '>const</span> นำหน้าชื่อ</p><!-- /topic content -->
+			
+			<p><span class="title is-4">String</span> <br/>คือชุดของตัวอักษรที่มีอักขระพิเศษปิดท้าย และต้องถูกล้อมด้วย "" เช่น "Hello World" </p><!-- /topic content -->
+			
+			<p><span class="title is-4">Special symbols</span> <br/>คืออักขระพิเศษที่มีความหมายในตัว ได้แก่<table class='table'><thead><tr><th>สัญญลักษณ์</th><th>ความหมาย</th></tr></thead><tbody><tr><td>Brackets [ ] </td><td>ใช้ระบุค่าของตัวแปร array</td></tr><tr><td>Parentheses ()</td><td>function call</td></tr><tr><td>Braces {}</td><td>code block</td></tr><tr><td>Comma (, )</td><td>แยกชุดคำสั่ง</td></tr><tr><td>Semicolor ; </td><td>จบบรรทัดของชุดคำสั่่ง</td></tr><tr><td>Asterisk * </td><td>สร้างตัวแปรประเภท poiter (กล่าวถึงภายหลัง)</td></tr><tr><td>Pre-processor  # </td><td>กล่าวถึงในตอนก่อนหน้า</td></tr></tbody></table></p><!-- /topic content -->
+			
+			<p><span class="title is-4">Operators</span> <br/>แบ่งได้ 3 ประเภท<dl><dt><span class='has-text-link has-text-weight-bold '>Unary operator</span></dt><dd>Operator ที่ต้องการเพียง 1 operand เช่น a++ , ++b  เป็นการสั่งให้เพิ่มค่าของ a และ b ขึ้น 1 โดย a และ b คือ operand และ ++ คือ operator </dd><dt><span class='has-text-link has-text-weight-bold '>Binary operator</span></dt><dd>Operator ที่ต้องการ 2 operands เช่น a = 5, b = 6 เป็นการกำหนดค่าให้ a,b โดย a,b,5,6 คือ operands และ = คือ operator</dd><dt><span class='has-text-link has-text-weight-bold '>Ternary operator</span></dt><dd>มักรู้จักในชื่อ condition operator สัญญลักษณ์คือ ? รูปแบบการใช้งาน <pre class='code box'>expression 1 ? expression 2 : expression 3</pre></dd></dl></p><!-- /topic content -->
+			
+			<br/><br/>
+			
+			<a class="list-item-title button" 
+				onclick='currentDiv(2)'>Previous Topic</a>
+			
+			
+			
+			<a class="list-item-title button" 
+				onclick='currentDiv(4)'>Next Topic</a>
+			
+			<div class="divider">&clubs;&clubs;&clubs;</div> <!-- /topic separate line -->
+		</section><!-- /topic section -->	
+		
+		
+		<section class="section slide box content">
+			<p class="title is-3">Data Types</p><!-- /topic title -->
+			
+			<p>Data type หมายถึงกลุ่มหรือชนิดของค่าที่สามารถใช้กับตัวแปร มีนัยถึงจำนวนพื้นที่ในหน่วยความจำ และค่าที่เป็นไปได้ของต้วแปร</p><!-- /topic content -->
+			
+			<p><br/><span class="title is-4">Basic data type</span> <br/><table class='table'><thead><tr><th>Data type</th><th>Value Range</th><th>Storage Size</th></tr></thead><tbody><tr><td>unsigned int</td><td>	0 to 65,535</td><td>2 bytes</td></tr><tr><td>int </td><td>-32,768 to 32,767</td><td>2 to 4 bytes</td></tr><tr><td>long int (signed long int)</td><td>	-2,147,483,648 to 2,147,483,647</td><td>	4 bytes</td></tr><tr><td>short int (signed short int)</td><td>	-32,768 to 32,767</td><td>	2 bytes</td></tr><tr><td>unsigned long int</td><td>0 to 4,294,967,295</td><td>	4 bytes</td></tr><tr><td>double</td><td>2.3E-308 to 1.7E+308 </td><td>	8 bytes</td></tr><tr><td>long double</td><td>	3.4E-4932 to 1.1E+4932 </td><td>	10 bytes</td></tr><tr><td>float</td><td>1.2E-38 to 3.4E+38</td><td>	4 bytes</td></tr><tr><td>char (signed char)</td><td>	-128 to 127</td><td>	1 byte</td></tr><tr><td>unsigned char</td><td>0 to 255</td><td>	1 byte</td></tr><tr><td>void</td><td>No meaning</td><td>	0 byte</td></tr></tbody></table></p><!-- /topic content -->
+			
+			<p><br/><span class="title is-4">Derived data type</span> <br/>เกิดจากการนำเอา basic data type มาขยายขอบเขตการใช้งาน ไม่ใช่เป็น data type ชนิดใหม่ <dl><dt><span class='has-text-link has-text-weight-bold '>Array</span></dt><dd>ordered sequence ของ data type ชนิดเดียวกัน โดยใช้ identifier เดียวกัน</dd><dt><span class='has-text-link has-text-weight-bold '>Pointer</span></dt><dd>ค่าของ addess (ตำแหน่งในหน่วยความจำ) ของตัวแปร</dd><dt><span class='has-text-link has-text-weight-bold '>Structure</span></dt><dd>กลุ่มของ data type หลายชนิด</dd><dt><span class='has-text-link has-text-weight-bold '>Union</span></dt><dd>คล้ายกับ Structure</dd></dl></p><!-- /topic content -->
+			
+			<p><br/><span class="title is-4">Enumerate data type</span> <br/>To be continue...</p><!-- /topic content -->
+			
+			<p><br/><br/><span class="title is-4"> เอกสารอ้างอิง</span> <br/><ul><li>https://pubs.opengroup.org/onlinepubs/009604599/basedefs/stdint.h.html</li><li>https://sites.uclouvain.be/SystInfo/usr/include/stdint.h.html</li></ul></p><!-- /topic content -->
+			
+			<br/><br/>
+			
+			<a class="list-item-title button" 
+				onclick='currentDiv(3)'>Previous Topic</a>
+			
+			
+			
+			<a class="list-item-title button" 
+				onclick='currentDiv(5)'>Next Topic</a>
+			
+			<div class="divider">&clubs;&clubs;&clubs;</div> <!-- /topic separate line -->
+		</section><!-- /topic section -->	
+		
+		
+		<section class="section slide box content">
+			<p class="title is-3">การประกาศตัวแปร (Varaiable Declaration)</p><!-- /topic title -->
+			
+			<p>ตัวแปร (Variable) เป็นส่วนสำคํญที่ต้องถูกนำมาใช้ตลอดเวลาในการเขียนคอมพิวเตอร์ในทุกภาษา ยกตัวอย่างเช่น การหาพื้นที่วงกลมจากสูตร \( area = \pi r^2 \) ต้องใช้ variable 2 ตัวเพื่อใช้เก็บค่าของข้อมูลที่เป็นพื้นที่ (area) และรัศมีของวงกลม (r) ส่วนค่า \(\pi\) ก็จัดเป็น variable แบบหนึ่งแต่เป็น variable ที่ไม่เปลี่ยนแปลงค่า (constant) </p><!-- /topic content -->
+			
+			<p>ตัวแปรในโปรแกรมคือสิ่งที่ใช้ตำแหน่งในหน่วยความจำหลักของคอมพิวเตอร์ที่ใช้จัดเก็บค่าของตัวแปรที่กำลังอ้างถึง จินตนาการถึงหนังสือ แต่ละหน้าของหนังสือเทียบได้กับตัวแปร แต่ละหน้ามีข้อความเทียบได้กับค่าของข้อมูลและเลขหน้าระบุตำแหน่งของหน้าในหนังสือซึ่งเทียบได้กับหน่วยความจำหลักทั้งหมด <div class='columns'><div class='column'></div><div class='column' ><figure class='image'><img src='./img/c-lang-var-analogy.jpg' /></figure></div><div class='column'></div></div></p><!-- /topic content -->
+			
+			<p>การสร้างตัวแปรจะอาศัย statement แบบพิเศษเรียกว่า <span class="has-text-link has-text-weight-bold">definition</span>รูปแบบทั่วไปของ statement สำหรับการสร้างตัวแปรคือ</p><!-- /topic content -->
+			
+			<p><div class='box code has-background-info-light'><i>&#60;datatype&#62; &#60;variable name&#62; = &#60;initializing value&#62;</i></div></p><!-- /topic content -->
+			
+			<p>การประกาศตัวแปรทำได้ใน 2 รูปแบบคือ<ol><li>การประกาศแบบไม่มีค่าเริ่มต้น (without iniitializing value)</li><li>การประกาศแบบมีค่าเริ่มต้น (with iniitializing value)</li></ol></p><!-- /topic content -->
+			
+			<p>เช่น</p><!-- /topic content -->
+			
+			<p><div class='box code has-background-info-light'>int x = 20;</div></p><!-- /topic content -->
+			
+			<p>เป็นการประกาศว่า ตัวแปร x มี datatype เป็น integer ใช้ขนาดพื้นที่ 2 bytes ค่าที่เป็นไปได้อยุ่ระหว่าง -32,768 ถึง 32,767 ค่าปัจจุบันคือ 20ซึ่งเป็นตัวอย่างของการประกาศตัวแปรโดยมีค่าเริ่มต้น เปรียบได้กับหนังสือที่มีเลขหน้าและข้อความบนหน้ากระดาษแล้ว</p><!-- /topic content -->
+			
+			<p>อีกรูปแบบหนึ่ง เช่น </p><!-- /topic content -->
+			
+			<p><div class='box code has-background-info-light'>int y ;</div></p><!-- /topic content -->
+			
+			<p>การประกาศแบบนี้ ตัวแปร y ยังไม่มีค่าในตัวเทียบได้กับกระดาษเปล่า ยังไม่มีเลขหน้า ก่อนนำไปใช้งานต้องทำการให้ค่าเสียก่อน เมื่อตัวแปรได้รับค่าแล้วก็จะเหมือนกับกระดาษที่มีข้อความและมีเลขหน้า</p><!-- /topic content -->
+			
+			<p>ตัวอย่างการประกาศตัวแปรของ data type ต่างๆ<table class='table'><thead><tr><th>Data type</th><th>ตัวอย่าง</th></tr></thead><tbody><tr><td>unsigned int</td><td>unsigned int x = 9; </td></tr><tr><td>int </td><td>int x = -2 ;</td></tr><tr><td>long int</td><td>long int long_x =2147483647</td></tr><tr><td>short int </td><td>short int short_x =-32,768</td></tr><tr><td>double</td><td>double d_x =3.2325467;</td></tr><tr><td>float</td><td>float x = 0.414</td></tr><tr><td>char</td><td>char x = '2';<br/>char x = 127;</td></tr><tr><td>unsigned char</td><td>unsigned char x = 255</td></tr></tbody></table></p><!-- /topic content -->
+			
+			<p><br/><div class='box code has-background-warning-light'><p class="title is-5"><ion-icon name="school-outline"></ion-icon>&nbsp;Tip:</p>C อนุญาตให้สามารถประกาศตัวแปรหลายตัวที่มี datatype เดียวกันในบรรทัดเดียวกันได้ เช่น<br/> int a=2,b=3,c=5;</div><br/></p><!-- /topic content -->
+			
+			<p><div class='box code has-background-danger-light'><p class="title is-5"><ion-icon name="star-outline"></ion-icon> &nbsp Remember : </p>กฏการประกาศตัวแปร<ol><li>ตัวแปรจะต้องไม่มีชื่อซ้ำกันในโปรแกรมเดียวกัน</li><li>ตัวแปรจะเป็นได้เพียง 1 datatype เท่านั้น</li><li>ตัวแปรจะไม่สามารถเปลี่ยนชนิดของ datatype ได้ ตลอดการทำงานของโปรแกรม</li></div></p><!-- /topic content -->
+			
+			<br/><br/>
+			
+			<a class="list-item-title button" 
+				onclick='currentDiv(4)'>Previous Topic</a>
+			
+			
+			
+			<a class="list-item-title button" 
+				onclick='currentDiv(6)'>Next Topic</a>
+			
+			<div class="divider">&clubs;&clubs;&clubs;</div> <!-- /topic separate line -->
+		</section><!-- /topic section -->	
+		
+		
+		<section class="section slide box content">
+			<p class="title is-3">Compiler, Linker, Libraries</p><!-- /topic title -->
+			
+			<p>พิจารณาขั้นตอนการพัฒนาโปรแกรมด้วย C language</p><!-- /topic content -->
+			
+			<p><div class='columns'><div class='column'></div><div class='column is-half'><figure class='image'><img src='./img/how_c-lang_dev.jpg' /></figure></div><div class='column'></div></div></p><!-- /topic content -->
+			
+			<p>ในขั้นตอน compile programm คือการแปลงชุดคำสั่ง C language ที่เขียนขึ้นไปเป็นภาษาเครื่อง "<a href='https://www.computerhope.com/jargon/m/machlang.htm'>machain language "</a>สิ่งที่ต้องใช้คือ <a href='https://www.techtarget.com/whatis/definition/compiler'>" ตัวแปรภาษา" (compiler)</a> โดย compiler จะทำการตรวจสอบ statement ทีละ statement ซึ่งประกอบด้วยกิจกรรมหลัก 2 อย่างคือ<ol><li>ตรวจสอบความถูกต้องของการเขียน statement ว่าตรงตามกฏของภาษา (syntax) หรือไม่ หากพบความผิดพลาดจะบันทึกไว้ แล้วทำการรายงานออกมาหลังจากการตรวจสอบ statement สุดท้ายเสร็จ ในขั้นตอนนี้ยังไม่มีการแปลงภาษา</li><li>หากไม่พบข้อผิดพลาดใด จะทำการแปลง statements ให้เป็น machine language รูปแบบที่เรียกว่า <a href='https://en.wikipedia.org/wiki/Object_file'>object file</a> โดยทั่วไป object file คือ file ที่มีชื่อเดียวกับไฟล์ชุดคำสั่ง แต่มีนามสกุล ".o" หรือ ".obj "  เช่น abc.c หลังจาก compile แล้ว compiler จะสร้าง object file ชื่อ abc.o ออกมา</li> </p><!-- /topic content -->
+			
+			<p><div class='columns'><div class='column'></div><div class='column is-half'><figure class='image'><img src='./img/c-lang-compiler.jpg' /></figure></div><div class='column'></div></div></p><!-- /topic content -->
+			
+			<p>ขั้นตอนต่อไปคือการทำงานของ software ที่เรียกว่า <a href='https://en.wikipedia.org/wiki/Linker_(computing)'>linker</a> งานที่ linker ทำมี 3 ขั้นตอนคือ<ol><li>ทำการรวบ object file(s) ที่ถูกสร้างขึ้นรวมเป็น 1 ไฟล์ เรียกว่า executable file </li><li>ทำการเชื่อมโยง external library files หากมีการร้องขอในโปรแกรมชุดคำสั่ง</li><li>แก้ไชปัญหาการเกิดความขัดแย้งของการใช้ libraries (จะกล่าวถึงภายหลัง)</li></ol></p><!-- /topic content -->
+			
+			<p><div class='columns'><div class='column'></div><div class='column is-half'><figure class='image'><img src='./img/c-lang-linker.jpg' /></figure></div><div class='column'></div></div></p><!-- /topic content -->
+			
+			<br/><br/>
+			
+			<a class="list-item-title button" 
+				onclick='currentDiv(5)'>Previous Topic</a>
+			
+			
+			
+			<a class="list-item-title button" 
+				onclick='currentDiv(7)'>Next Topic</a>
+			
+			<div class="divider">&clubs;&clubs;&clubs;</div> <!-- /topic separate line -->
+		</section><!-- /topic section -->	
+		
+		
+		<section class="section slide box content">
+			<p class="title is-3">First program : Area of a circle</p><!-- /topic title -->
+			
+			<p>เปิดหน้า <a href="javascript:open_window('https://ss-ebooks.github.io/compiler/')">Code editor and compiler </a> แล้วพิมพ์ชุดคำสั่งตามตัวอย่าง</p><!-- /topic content -->
+			
+			<p><pre class='code box'>
+#include "stdio.h"
+
+float process(int r){
+&nbsp;&nbsp;&nbsp;&nbsp;const float pi = 3.1416;
+&nbsp;&nbsp;&nbsp;&nbsp;float area = pi * r * r;
+&nbsp;&nbsp;&nbsp;&nbsp;return area;
+}
+
+int main() {
+&nbsp;&nbsp;&nbsp;&nbsp;int r  = 10;
+&nbsp;&nbsp;&nbsp;&nbsp;float area = process(r);
+&nbsp;&nbsp;&nbsp;&nbsp;printf("area of circle = %7.2f",area);
+&nbsp;&nbsp;&nbsp;&nbsp;return 0;
+}
+</pre></p><!-- /topic content -->
+			
+			<p>กดปุ่ม Run แล้วสังเกตุผลที่ได้</p><!-- /topic content -->
+			
+			<p>จากเรื่องโครงสร้างของโปรแกรม จะเห็นว่าโปรแกรมนี้ทั้ง 3 ส่วนคือ headers, functions และ main function ตามภาพข้างล่าง</p><!-- /topic content -->
+			
+			<p><div class='columns'><div class='column'></div><div class='column is-half'><figure class='image'><img src='./img/c-lang-01-structure.png' /></figure></div><div class='column'></div></div></p><!-- /topic content -->
+			
+			<p>ส่วน header มี pre-processor directive แบบ include file สั่งให้นำเนื้อหาหรือชุดคำสั่งใน stdio.h เข้ามา stdio มาจากคำว่า " standard input output" ภายในบรรจุคำสั่งที่ใช้สำหรับการแสดงผลและรับค่าจากผู้ใช้ ในตัวอย่างได้นำ <span class='has-text-link has-text-weight-bold'>prinf()</span> มาใช้แสดงผล</p><!-- /topic content -->
+			
+			<p>ถัดลงมาเป็นส่วนของ functions ในตัวอย่างมี 1 function ชื่อ process() รับ 1 parameter เป็น data type แบบ integer ให้ชื่อตัวแปรเป็น r ภายใน process เป็นชุดคำสั่งสำหรับคำนวณหาพื้นที่วงกลม โดยนำค่า r ที่ได้มาคำนวณ แล้วส่งค่าออกไปจาก function ด้วยคำสั่ง return ค่าที่ส่งออกไปเป็นdata type แบบ float เพราะเมื่อนำค่า pi มาคูณกับค่า r แล้วผลลัพธ์จะต้องเป็นตัวเลขที่มีจุดทศนิยม จึ่งต้องกำหนด datat type ให้เป็น float หรือ double </p><!-- /topic content -->
+			
+			<p>ส่วนสุดท้ายคือ main function ซึ่งบรรจุลำดับการทำงานของโปรแกรมทั้งหมดไว้ เริ่มจากกำหนดค่า r ให้เป็น 10 แล้วนำไปคำนวณหาพื้นที่ด้วยการส่ง r ไปให้ process() จากนั้นนำค่าที่ได้มาแสดงผลด้วยคำสั่ง printf()</p><!-- /topic content -->
+			
+			<br/><br/>
+			
+			<a class="list-item-title button" 
+				onclick='currentDiv(6)'>Previous Topic</a>
+			
+			
+			
+			<div class="divider">&clubs;&clubs;&clubs;</div> <!-- /topic separate line -->
+		</section><!-- /topic section -->	
+		
+		
+		<section class="section slide box content">
+			<p class="title is-3">Main Content</p><!-- /topic title -->
+			
+			<br/><br/>
+			
+			
+			
+			<div class="divider">&clubs;&clubs;&clubs;</div> <!-- /topic separate line -->
+		</section><!-- /topic section -->	
+		
+		
 		<!-- topic section -->
 		<!-- footer -->
 		<footer class="quickview-footer">
 			<div class="buttons">
-				<a class="pagination-link" href='{{ site.data.chapter_1["prev_page"] }}' alt="Home">
+				<a class="pagination-link" href='./index.html' alt="Home">
 					<ion-icon name="list-outline"></ion-icon>Main Contents
 				</a>
-				<a class="pagination-link" href='{{ site.data.chapter_1["next_page"] }}'>
+				<a class="pagination-link" href='./chapter2.html'>
 					Next Chapter<ion-icon name="chevron-forward-outline"></ion-icon>
 				</a>
 			</div>
@@ -99,15 +350,55 @@ title: Chapter 1
 		<div class="quickview-body">
 			<div class="quickview-block">
 				<div class="list">
-					{% for item in site.data.chapter_1.topics %}					
+										
 					<div class="list-item">
-						{% if item.location == "" %}
-						<a class="list-item-title" onclick="currentDiv({{ item.order }})">{{ item.title }}</a>
-						{% else %}
-						<a class="list-item-title" href="{{ item.location }}">{{ item.title }}</a>
-						{% endif %}
+						
+						<a class="list-item-title" onclick="currentDiv(1)">บทนำ (Introduction)</a>
+						
 					</div>					
-					{% endfor %}					
+										
+					<div class="list-item">
+						
+						<a class="list-item-title" onclick="currentDiv(2)">โครงสร้างของ C program</a>
+						
+					</div>					
+										
+					<div class="list-item">
+						
+						<a class="list-item-title" onclick="currentDiv(3)">C Tokens</a>
+						
+					</div>					
+										
+					<div class="list-item">
+						
+						<a class="list-item-title" onclick="currentDiv(4)">Data Types</a>
+						
+					</div>					
+										
+					<div class="list-item">
+						
+						<a class="list-item-title" onclick="currentDiv(5)">การประกาศตัวแปร (Varaiable Declaration)</a>
+						
+					</div>					
+										
+					<div class="list-item">
+						
+						<a class="list-item-title" onclick="currentDiv(6)">Compiler, Linker, Libraries</a>
+						
+					</div>					
+										
+					<div class="list-item">
+						
+						<a class="list-item-title" onclick="currentDiv(7)">First program : Area of a circle</a>
+						
+					</div>					
+										
+					<div class="list-item">
+						
+						<a class="list-item-title" href="./index.html">Main Content</a>
+						
+					</div>					
+										
 				</div><!-- /list -->
 			</div><!--/block -->
 		</div><!--/body-->	
