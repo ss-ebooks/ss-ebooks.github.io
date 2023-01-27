@@ -14,12 +14,26 @@
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@creativebulma/bulma-tooltip@1.2.0/dist/bulma-tooltip.min.css" />  
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/styles/default.min.css">
   <link rel="stylesheet" href="/css/my_css.css" />  
+  <style>
+	  body, html {
+  height: 100%;
+  }
+  .bg {
+  background: url(./img/C_1_cover.png);  
+  height: 20%;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+  </style>
   </head>
   <body>
 	<!-- ######################### -->  	
-	<nav class="navbar bg-nasa" role="navigation" aria-label="main navigation">
+	<nav class="navbar bg" role="navigation" aria-label="main navigation">
 		<div class="navbar-brand">
-			<span class="navbar-item title is-2 has-text-white" >รู้จัก Derived Data Type</span>				
+			<span class="navbar-item title is-2 has-text-white ss-font-otto">
+				รู้จัก Derived Data Type
+			</span>				
 		</div>
 		<div class="navbar-end">
 			<div class="navbar-item" >
@@ -134,7 +148,7 @@ int* addr_of_var = &char_var;
 		
 		
 		<section class="section slide box content">
-			<p class="title is-3">Array</p><!-- /topic title -->
+			<p class="title is-3">Array 1 มิติ (One dimensional array)</p><!-- /topic title -->
 			
 			<p>ตัวแปรประเภท Array ใช้ในกรณีที่ต้องการเก็บข้อมูลไว้เป็นชุดโดยใช้ตัวแปรเดียว เช่น ชุดของตัวเลขจำนวนเต็ม ชุดของตัวอักษร ฯล รูปแบบการประกาศตัวแปร array คือ</p><!-- /topic content -->
 			
@@ -259,6 +273,14 @@ printf("%d\n",*(x+3));
 การใช้ dereferencing เข้าถึงค่าของสมาชิกใน array มีความเร็วมากกว่าการใช้ index number
 </div></p><!-- /topic content -->
 			
+			<p><br/><div class='box has-background-danger-light'><p class='title is-5'><ion-icon name='star-outline'></ion-icon> &nbsp Remember : </p><ul>
+<li>ต้องมีประกาศต้วแปรก่อนการใช้งานเสมอ</li>
+<li>การประกาศต้วแปร array ต้องมีการระบุ data type เสมอ</li>
+<li>เลข index number เริ้มต้นที่ 0 ไปจนถึง size - 1 </li>
+<li>สมาชิกแต่ละตัวใน array จะมี address ในหน่วยความจำแยกกันแต่จะเรียงต่อกัน</li>
+</ul>
+</div></p><!-- /topic content -->
+			
 			<br/><br/>
 			
 			<a class="list-item-title button" 
@@ -267,6 +289,22 @@ printf("%d\n",*(x+3));
 			
 			<a class="list-item-title button" 
 				onclick='currentDiv(4)'>Next Topic</a>
+			
+			<div class="divider">&clubs;&clubs;&clubs;</div> <!-- /topic separate line -->
+		</section><!-- /topic section -->	
+		
+		
+		<section class="section slide box content">
+			<p class="title is-3">Array หลายมิติ (Multidimensional array)</p><!-- /topic title -->
+			
+			<br/><br/>
+			
+			<a class="list-item-title button" 
+				onclick='currentDiv(3)'>Previous Topic</a>
+			
+			
+			<a class="list-item-title button" 
+				onclick='currentDiv(5)'>Next Topic</a>
 			
 			<div class="divider">&clubs;&clubs;&clubs;</div> <!-- /topic separate line -->
 		</section><!-- /topic section -->	
@@ -325,7 +363,13 @@ printf("%d\n",*(x+3));
 										
 					<div class="list-item">
 						
-						<a class="list-item-title" onclick="currentDiv(3)">Array</a>
+						<a class="list-item-title" onclick="currentDiv(3)">Array 1 มิติ (One dimensional array)</a>
+						
+					</div>					
+										
+					<div class="list-item">
+						
+						<a class="list-item-title" onclick="currentDiv(4)">Array หลายมิติ (Multidimensional array)</a>
 						
 					</div>					
 										
