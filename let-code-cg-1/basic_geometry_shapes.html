@@ -1,0 +1,291 @@
+<!DOCTYPE HTML>
+<html lang="en" class="sidebar-visible no-js light">
+    <head>
+        <!-- Book generated using mdBook -->
+        <meta charset="UTF-8">
+        <title>รูปร่างเชิงเรขาคณิต (Basic Geometry Shapes) - Let&#x27;s code graphics on Raspberry Pi</title>
+
+
+        <!-- Custom HTML head -->
+        
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="theme-color" content="#ffffff" />
+
+        <link rel="icon" href="favicon.svg">
+        <link rel="shortcut icon" href="favicon.png">
+        <link rel="stylesheet" href="css/variables.css">
+        <link rel="stylesheet" href="css/general.css">
+        <link rel="stylesheet" href="css/chrome.css">
+        <link rel="stylesheet" href="css/print.css" media="print">
+
+        <!-- Fonts -->
+        <link rel="stylesheet" href="FontAwesome/css/font-awesome.css">
+        <link rel="stylesheet" href="fonts/fonts.css">
+
+        <!-- Highlight.js Stylesheets -->
+        <link rel="stylesheet" href="highlight.css">
+        <link rel="stylesheet" href="tomorrow-night.css">
+        <link rel="stylesheet" href="ayu-highlight.css">
+
+        <!-- Custom theme stylesheets -->
+        <link rel="stylesheet" href="css/watermark.css">
+        <link rel="stylesheet" href="css/openmoji-color-awesome.css">
+        <link rel="stylesheet" href="css/openmoji-black-awesome.css">
+        <link rel="stylesheet" href="css/modal.css">
+
+        <!-- MathJax -->
+        <script async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    </head>
+    <body>
+    <div id="body-container">
+        <!-- Provide site root to javascript -->
+        <script>
+            var path_to_root = "";
+            var default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "navy" : "light";
+        </script>
+
+        <!-- Work around some values being stored in localStorage wrapped in quotes -->
+        <script>
+            try {
+                var theme = localStorage.getItem('mdbook-theme');
+                var sidebar = localStorage.getItem('mdbook-sidebar');
+
+                if (theme.startsWith('"') && theme.endsWith('"')) {
+                    localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
+                }
+
+                if (sidebar.startsWith('"') && sidebar.endsWith('"')) {
+                    localStorage.setItem('mdbook-sidebar', sidebar.slice(1, sidebar.length - 1));
+                }
+            } catch (e) { }
+        </script>
+
+        <!-- Set the theme before any content is loaded, prevents flash -->
+        <script>
+            var theme;
+            try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
+            if (theme === null || theme === undefined) { theme = default_theme; }
+            var html = document.querySelector('html');
+            html.classList.remove('no-js')
+            html.classList.remove('light')
+            html.classList.add(theme);
+            html.classList.add('js');
+        </script>
+
+        <input type="checkbox" id="sidebar-toggle-anchor" class="hidden">
+
+        <!-- Hide / unhide sidebar before it is displayed -->
+        <script>
+            var html = document.querySelector('html');
+            var sidebar = null;
+            var sidebar_toggle = document.getElementById("sidebar-toggle-anchor");
+            if (document.body.clientWidth >= 1080) {
+                try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
+                sidebar = sidebar || 'visible';
+            } else {
+                sidebar = 'hidden';
+            }
+            sidebar_toggle.checked = sidebar === 'visible';
+            html.classList.remove('sidebar-visible');
+            html.classList.add("sidebar-" + sidebar);
+        </script>
+
+        <nav id="sidebar" class="sidebar" aria-label="Table of contents">
+            <div class="sidebar-scrollbox">
+                <ol class="chapter"><li class="chapter-item "><a href="cover.html"><strong aria-hidden="true">1.</strong> Cover</a></li><li class="chapter-item "><a href="intro.html"><strong aria-hidden="true">2.</strong> บทนำ</a></li><li class="chapter-item "><a href="basic_idea.html"><strong aria-hidden="true">3.</strong> ความรู้พื้นฐาน</a></li><li class="chapter-item "><a href="install_raylib.html"><strong aria-hidden="true">4.</strong> การติดตั้ง raylib บน Raspberry Pi</a></li><li class="chapter-item "><div><strong aria-hidden="true">5.</strong> เริ่มต้นวาด</div><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="template_cpp.html"><strong aria-hidden="true">5.1.</strong> template.cpp</a></li><li class="chapter-item "><a href="hello_world_window.html"><strong aria-hidden="true">5.2.</strong> HelloWorld Window</a></li><li class="chapter-item "><a href="rgb_window.html"><strong aria-hidden="true">5.3.</strong> RGB Color Space Window</a></li></ol></li><li class="chapter-item expanded "><a href="basic_geometry_shapes.html" class="active"><strong aria-hidden="true">6.</strong> รูปร่างเชิงเรขาคณิต (Basic Geometry Shapes)</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="basic-shapes/line.html"><strong aria-hidden="true">6.1.</strong> เส้นตรง</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="basic-shapes/line_naiv.html"><strong aria-hidden="true">6.1.1.</strong> วาดเส้นตรงจากสมการ</a></li><li class="chapter-item "><a href="basic-shapes/line_bresenham.html"><strong aria-hidden="true">6.1.2.</strong> Bresenham's algorithm</a></li><li class="chapter-item "><a href="basic-shapes/line_raylib.html"><strong aria-hidden="true">6.1.3.</strong> วาดเส้นตรงด้วย raylib</a></li></ol></li><li class="chapter-item "><a href="basic-shapes/circle.html"><strong aria-hidden="true">6.2.</strong> วงกลม</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="basic-shapes/circle_naiv.html"><strong aria-hidden="true">6.2.1.</strong> วาดวงกลมจากสมการวงกลม</a></li><li class="chapter-item "><a href="basic-shapes/circle_midpoint.html"><strong aria-hidden="true">6.2.2.</strong> Midpoint circle algorithm</a></li><li class="chapter-item "><a href="basic-shapes/circle_bresenham.html"><strong aria-hidden="true">6.2.3.</strong> Bresenham's algorithm</a></li><li class="chapter-item "><a href="basic-shapes/circle_raylib.html"><strong aria-hidden="true">6.2.4.</strong> วาดวงกลมด้วย raylib </a></li></ol></li><li class="chapter-item "><a href="basic-shapes/ellipse.html"><strong aria-hidden="true">6.3.</strong> วงรี</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="basic-shapes/ellipse_naiv.html"><strong aria-hidden="true">6.3.1.</strong> วาดวงรีจากสมการวงรี</a></li><li class="chapter-item "><a href="basic-shapes/ellipse_midpoint.html"><strong aria-hidden="true">6.3.2.</strong> Midpoint ellipse algorithm</a></li><li class="chapter-item "><a href="basic-shapes/ellipse_raylib.html"><strong aria-hidden="true">6.3.3.</strong> วาดวงรีด้วย raylib </a></li></ol></li></ol></li><li class="chapter-item "><a href="bookshelf.html"><strong aria-hidden="true">7.</strong> กลับสู่ชั้นหนังสือ</a></li></ol>
+            </div>
+            <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
+        </nav>
+
+        <!-- Track and set sidebar scroll position -->
+        <script>
+            var sidebarScrollbox = document.querySelector('#sidebar .sidebar-scrollbox');
+            sidebarScrollbox.addEventListener('click', function(e) {
+                if (e.target.tagName === 'A') {
+                    sessionStorage.setItem('sidebar-scroll', sidebarScrollbox.scrollTop);
+                }
+            }, { passive: true });
+            var sidebarScrollTop = sessionStorage.getItem('sidebar-scroll');
+            sessionStorage.removeItem('sidebar-scroll');
+            if (sidebarScrollTop) {
+                // preserve sidebar scroll position when navigating via links within sidebar
+                sidebarScrollbox.scrollTop = sidebarScrollTop;
+            } else {
+                // scroll sidebar to current active section when navigating via "next/previous chapter" buttons
+                var activeSection = document.querySelector('#sidebar .active');
+                if (activeSection) {
+                    activeSection.scrollIntoView({ block: 'center' });
+                }
+            }
+        </script>
+
+        <div id="page-wrapper" class="page-wrapper">
+
+            <div class="page">
+                                <div id="menu-bar-hover-placeholder"></div>
+                <div id="menu-bar" class="menu-bar sticky">
+                    <div class="left-buttons">
+                        <label id="sidebar-toggle" class="icon-button" for="sidebar-toggle-anchor" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
+                            <i class="fa fa-bars"></i>
+                        </label>
+                        <button id="theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="theme-list">
+                            <i class="fa fa-paint-brush"></i>
+                        </button>
+                        <ul id="theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                            <li role="none"><button role="menuitem" class="theme" id="light">Light</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="rust">Rust</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="coal">Coal</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="navy">Navy</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="ayu">Ayu</button></li>
+                        </ul>
+                        <button id="search-toggle" class="icon-button" type="button" title="Search. (Shortkey: s)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="S" aria-controls="searchbar">
+                            <i class="fa fa-search"></i>
+                        </button>
+                    </div>
+
+                    <h1 class="menu-title">Let&#x27;s code graphics on Raspberry Pi</h1>
+
+                    <div class="right-buttons">
+                        <a href="print.html" title="Print this book" aria-label="Print this book">
+                            <i id="print-button" class="fa fa-print"></i>
+                        </a>
+
+                    </div>
+                </div>
+
+                <div id="search-wrapper" class="hidden">
+                    <form id="searchbar-outer" class="searchbar-outer">
+                        <input type="search" id="searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="searchresults-outer" aria-describedby="searchresults-header">
+                    </form>
+                    <div id="searchresults-outer" class="searchresults-outer hidden">
+                        <div id="searchresults-header" class="searchresults-header"></div>
+                        <ul id="searchresults">
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
+                <script>
+                    document.getElementById('sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
+                    document.getElementById('sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
+                    Array.from(document.querySelectorAll('#sidebar a')).forEach(function(link) {
+                        link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
+                    });
+                </script>
+
+                <div id="content" class="content">
+                    <main>
+                        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css" integrity="sha384-AfEj0r4/OFrOo5t7NnNe46zW/tFgW6x/bCJG8FqQCEo3+Aro6EYUG4+cU+KJWu/X" crossorigin="anonymous">
+<div style="background-image: url('./images/logo-1.png');
+            background-repeat: space;
+            background-position: center;
+            ">
+<h1 id="รูปรางเชิงเรขาคณิต-basic-geometry-shapes"><a class="header" href="#รูปรางเชิงเรขาคณิต-basic-geometry-shapes"><span style="color:rgb(61,127,200);">รูปร่างเชิงเรขาคณิต (Basic Geometry Shapes)</span></a></h1>
+<p>รูปร่างเป็นพื้นฐานสำคัญทางด้าน graphics รูปร่างมีอยู่ทุกหนแ่หงในธรรมชาติ ทุกสิ่งที่เรามองเห็นมีรูปร่าง
+ความหมายทางเรขาคณิตบอกว่า <strong>รูปร่าง (shape)</strong> หรือ <strong>รูป (figure)</strong> คือรูปแบบปิด (closed form) ที่ประกอบด้วย <strong>จุด (piont)</strong>, <strong>เส้น (line)</strong> , <strong>มุม (angle)</strong> และ <strong>พื้นผิว (surface)</strong>
+รูปร่างเชิงเรขาคณิตที่พบได้บ่อยได้แก่</p>
+<ol>
+<li>Square, Rectangle</li>
+<li>Circle</li>
+<li>Triangle</li>
+<li>Polygons</li>
+</ol>
+<h2 id="เรขาคณิตเบืองตน-basic-of-geometry"><a class="header" href="#เรขาคณิตเบืองตน-basic-of-geometry"><span style="color:rgb(90,150,220);">เรขาคณิตเบื้องต้น (Basic of Geometry)</span></a></h2>
+<ol>
+<li>
+<p><strong><a href="https://en.wikipedia.org/wiki/Point_(geometry)">จุด (point)</a></strong> คือตำแหน่งบน <a href="https://www.cuemath.com/geometry/plane-definition/">plane</a> 
+ไม่มีขนาด ใช้ coordinate system ในการระบุตำแหน่งของจุด</p>
+</li>
+<li>
+<p><strong><a href="https://en.wikipedia.org/wiki/Line_(geometry)">เส้นตรง (line)</a></strong> คือเซตของจุดที่ต่อเนื่องกัน โดยที่ coordinates ของทุกจุดจะต้องเป็นไปตาม <strong>linear equation</strong> (<span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6667em;vertical-align:-0.0833em;"></span><span class="mord mathnormal">a</span><span class="mord mathnormal">x</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:0.8889em;vertical-align:-0.1944em;"></span><span class="mord mathnormal">b</span><span class="mord mathnormal" style="margin-right:0.03588em;">y</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:0.4306em;"></span><span class="mord mathnormal">c</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:0.6444em;"></span><span class="mord">0</span></span></span></span>) อันใดอันหนึ่ง(ผู้เขียนสรุปเอง) 
+ในเชิงทฤษฎีเส้นตรงไม่มีจุดเริ่มต้นและจุดสิ้นสุด แต่ในการวาดเส้นตรงบนหน้าจอจำเป็นต้องมีจุดเริ่มต้นและสิ้นสุด ดังนั้นส่วนใหญ่แล้วมักจะกล่าวถึง <strong>ส่วนของเส้นตรง (line segment)</strong></p>
+</li>
+<li>
+<p><strong><a href="https://en.wikipedia.org/wiki/Line_(geometry)#Ray">ray</a></strong> เพื่อให้เข้าใจความหมายของคำนี้ ลองนึกถึงแสงจากดวงอาทิตย์ (sun ray) มีจุดกำเนิดที่ดวงอาทิตย์ แต่จุดสิ้นสุดถือว่าไม่มี นั่นคือ ray เป็นรูปส่วนหนึ่งของเส้นตรงที่มีจุดเริ่มต้นแต่ไม่มีจุดสิ้นสุด ซึ่งต่างจาก <strong>line segment</strong></p>
+</li>
+<li>
+<p><strong><a href="https://en.wikipedia.org/wiki/Angle">มุม (angle)</a></strong> เกิดจาก 2 <strong>ray</strong> ที่มีจุดกำเนิดร่วมกัน (vertex of angle) การวัดขนาดของมุมนิยมใช้กัน 2 หน่วยคือ <strong>degree</strong> และ <strong>radians</strong></p>
+</li>
+</ol>
+<!-- end page -->
+</div>
+<br/>
+<hr />
+<footer>
+  <!--Copyright section-->
+  <div>
+    © 2023 Created by :
+    <a href="https://www.facebook.com/groups/699124890456645">Smarter Machine</a>
+  </div>
+</footer>
+
+                    </main>
+
+                    <nav class="nav-wrapper" aria-label="Page navigation">
+                        <!-- Mobile navigation buttons -->
+                            <a rel="prev" href="rgb_window.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                                <i class="fa fa-angle-left"></i>
+                            </a>
+
+                            <a rel="next" href="basic-shapes/line.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                                <i class="fa fa-angle-right"></i>
+                            </a>
+
+                        <div style="clear: both"></div>
+                    </nav>
+                </div>
+            </div>
+
+            <nav class="nav-wide-wrapper" aria-label="Page navigation">
+                    <a rel="prev" href="rgb_window.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                        <i class="fa fa-angle-left"></i>
+                    </a>
+
+                    <a rel="next" href="basic-shapes/line.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                        <i class="fa fa-angle-right"></i>
+                    </a>
+            </nav>
+
+        </div>
+
+        <!-- Livereload script (if served using the cli tool) -->
+        <script>
+            const wsProtocol = location.protocol === 'https:' ? 'wss:' : 'ws:';
+            const wsAddress = wsProtocol + "//" + location.host + "/" + "__livereload";
+            const socket = new WebSocket(wsAddress);
+            socket.onmessage = function (event) {
+                if (event.data === "reload") {
+                    socket.close();
+                    location.reload();
+                }
+            };
+
+            window.onbeforeunload = function() {
+                socket.close();
+            }
+        </script>
+
+
+
+        <script>
+            window.playground_copyable = true;
+        </script>
+
+
+        <script src="elasticlunr.min.js"></script>
+        <script src="mark.min.js"></script>
+        <script src="searcher.js"></script>
+
+        <script src="clipboard.min.js"></script>
+        <script src="highlight.js"></script>
+        <script src="book.js"></script>
+
+        <!-- Custom JS scripts -->
+        <script src="js/mermaid.min.js"></script>
+        <script src="js/mermaid-init.js"></script>
+
+
+    </div>
+    </body>
+</html>
