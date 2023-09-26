@@ -1,0 +1,406 @@
+<!DOCTYPE HTML>
+<html lang="en" class="sidebar-visible no-js light">
+    <head>
+        <!-- Book generated using mdBook -->
+        <meta charset="UTF-8">
+        <title>วาดวงกลมด้วย raylib  - Let&#x27;s code graphics on Raspberry Pi</title>
+
+
+        <!-- Custom HTML head -->
+        
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="theme-color" content="#ffffff" />
+
+        <link rel="icon" href="../favicon.svg">
+        <link rel="shortcut icon" href="../favicon.png">
+        <link rel="stylesheet" href="../css/variables.css">
+        <link rel="stylesheet" href="../css/general.css">
+        <link rel="stylesheet" href="../css/chrome.css">
+        <link rel="stylesheet" href="../css/print.css" media="print">
+
+        <!-- Fonts -->
+        <link rel="stylesheet" href="../FontAwesome/css/font-awesome.css">
+        <link rel="stylesheet" href="../fonts/fonts.css">
+
+        <!-- Highlight.js Stylesheets -->
+        <link rel="stylesheet" href="../highlight.css">
+        <link rel="stylesheet" href="../tomorrow-night.css">
+        <link rel="stylesheet" href="../ayu-highlight.css">
+
+        <!-- Custom theme stylesheets -->
+        <link rel="stylesheet" href="../css/watermark.css">
+        <link rel="stylesheet" href="../css/openmoji-color-awesome.css">
+        <link rel="stylesheet" href="../css/openmoji-black-awesome.css">
+        <link rel="stylesheet" href="../css/modal.css">
+
+        <!-- MathJax -->
+        <script async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    </head>
+    <body>
+    <div id="body-container">
+        <!-- Provide site root to javascript -->
+        <script>
+            var path_to_root = "../";
+            var default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "navy" : "light";
+        </script>
+
+        <!-- Work around some values being stored in localStorage wrapped in quotes -->
+        <script>
+            try {
+                var theme = localStorage.getItem('mdbook-theme');
+                var sidebar = localStorage.getItem('mdbook-sidebar');
+
+                if (theme.startsWith('"') && theme.endsWith('"')) {
+                    localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
+                }
+
+                if (sidebar.startsWith('"') && sidebar.endsWith('"')) {
+                    localStorage.setItem('mdbook-sidebar', sidebar.slice(1, sidebar.length - 1));
+                }
+            } catch (e) { }
+        </script>
+
+        <!-- Set the theme before any content is loaded, prevents flash -->
+        <script>
+            var theme;
+            try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
+            if (theme === null || theme === undefined) { theme = default_theme; }
+            var html = document.querySelector('html');
+            html.classList.remove('no-js')
+            html.classList.remove('light')
+            html.classList.add(theme);
+            html.classList.add('js');
+        </script>
+
+        <input type="checkbox" id="sidebar-toggle-anchor" class="hidden">
+
+        <!-- Hide / unhide sidebar before it is displayed -->
+        <script>
+            var html = document.querySelector('html');
+            var sidebar = null;
+            var sidebar_toggle = document.getElementById("sidebar-toggle-anchor");
+            if (document.body.clientWidth >= 1080) {
+                try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
+                sidebar = sidebar || 'visible';
+            } else {
+                sidebar = 'hidden';
+            }
+            sidebar_toggle.checked = sidebar === 'visible';
+            html.classList.remove('sidebar-visible');
+            html.classList.add("sidebar-" + sidebar);
+        </script>
+
+        <nav id="sidebar" class="sidebar" aria-label="Table of contents">
+            <div class="sidebar-scrollbox">
+                <ol class="chapter"><li class="chapter-item "><a href="../cover.html"><strong aria-hidden="true">1.</strong> Cover</a></li><li class="chapter-item "><a href="../intro.html"><strong aria-hidden="true">2.</strong> บทนำ</a></li><li class="chapter-item "><a href="../basic_idea.html"><strong aria-hidden="true">3.</strong> ความรู้พื้นฐาน</a></li><li class="chapter-item "><a href="../install_raylib.html"><strong aria-hidden="true">4.</strong> การติดตั้ง raylib บน Raspberry Pi</a></li><li class="chapter-item "><div><strong aria-hidden="true">5.</strong> เริ่มต้นวาด</div><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../template_cpp.html"><strong aria-hidden="true">5.1.</strong> template.cpp</a></li><li class="chapter-item "><a href="../hello_world_window.html"><strong aria-hidden="true">5.2.</strong> HelloWorld Window</a></li><li class="chapter-item "><a href="../rgb_window.html"><strong aria-hidden="true">5.3.</strong> RGB Color Space Window</a></li></ol></li><li class="chapter-item expanded "><a href="../basic_geometry_shapes.html"><strong aria-hidden="true">6.</strong> รูปร่างเชิงเรขาคณิต (Basic Geometry Shapes)</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../basic-shapes/line.html"><strong aria-hidden="true">6.1.</strong> เส้นตรง</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../basic-shapes/line_naiv.html"><strong aria-hidden="true">6.1.1.</strong> วาดเส้นตรงจากสมการ</a></li><li class="chapter-item "><a href="../basic-shapes/line_bresenham.html"><strong aria-hidden="true">6.1.2.</strong> Bresenham's algorithm</a></li><li class="chapter-item "><a href="../basic-shapes/line_raylib.html"><strong aria-hidden="true">6.1.3.</strong> วาดเส้นตรงด้วย raylib</a></li></ol></li><li class="chapter-item expanded "><a href="../basic-shapes/circle.html"><strong aria-hidden="true">6.2.</strong> วงกลม</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../basic-shapes/circle_naiv.html"><strong aria-hidden="true">6.2.1.</strong> วาดวงกลมจากสมการวงกลม</a></li><li class="chapter-item "><a href="../basic-shapes/circle_midpoint.html"><strong aria-hidden="true">6.2.2.</strong> Midpoint circle algorithm</a></li><li class="chapter-item "><a href="../basic-shapes/circle_bresenham.html"><strong aria-hidden="true">6.2.3.</strong> Bresenham's algorithm</a></li><li class="chapter-item expanded "><a href="../basic-shapes/circle_raylib.html" class="active"><strong aria-hidden="true">6.2.4.</strong> วาดวงกลมด้วย raylib </a></li></ol></li><li class="chapter-item "><a href="../basic-shapes/ellipse.html"><strong aria-hidden="true">6.3.</strong> วงรี</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../basic-shapes/ellipse_naiv.html"><strong aria-hidden="true">6.3.1.</strong> วาดวงรีจากสมการวงรี</a></li><li class="chapter-item "><a href="../basic-shapes/ellipse_midpoint.html"><strong aria-hidden="true">6.3.2.</strong> Midpoint ellipse algorithm</a></li><li class="chapter-item "><a href="../basic-shapes/ellipse_raylib.html"><strong aria-hidden="true">6.3.3.</strong> วาดวงรีด้วย raylib </a></li></ol></li></ol></li><li class="chapter-item "><a href="../bookshelf.html"><strong aria-hidden="true">7.</strong> กลับสู่ชั้นหนังสือ</a></li></ol>
+            </div>
+            <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
+        </nav>
+
+        <!-- Track and set sidebar scroll position -->
+        <script>
+            var sidebarScrollbox = document.querySelector('#sidebar .sidebar-scrollbox');
+            sidebarScrollbox.addEventListener('click', function(e) {
+                if (e.target.tagName === 'A') {
+                    sessionStorage.setItem('sidebar-scroll', sidebarScrollbox.scrollTop);
+                }
+            }, { passive: true });
+            var sidebarScrollTop = sessionStorage.getItem('sidebar-scroll');
+            sessionStorage.removeItem('sidebar-scroll');
+            if (sidebarScrollTop) {
+                // preserve sidebar scroll position when navigating via links within sidebar
+                sidebarScrollbox.scrollTop = sidebarScrollTop;
+            } else {
+                // scroll sidebar to current active section when navigating via "next/previous chapter" buttons
+                var activeSection = document.querySelector('#sidebar .active');
+                if (activeSection) {
+                    activeSection.scrollIntoView({ block: 'center' });
+                }
+            }
+        </script>
+
+        <div id="page-wrapper" class="page-wrapper">
+
+            <div class="page">
+                                <div id="menu-bar-hover-placeholder"></div>
+                <div id="menu-bar" class="menu-bar sticky">
+                    <div class="left-buttons">
+                        <label id="sidebar-toggle" class="icon-button" for="sidebar-toggle-anchor" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
+                            <i class="fa fa-bars"></i>
+                        </label>
+                        <button id="theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="theme-list">
+                            <i class="fa fa-paint-brush"></i>
+                        </button>
+                        <ul id="theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                            <li role="none"><button role="menuitem" class="theme" id="light">Light</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="rust">Rust</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="coal">Coal</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="navy">Navy</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="ayu">Ayu</button></li>
+                        </ul>
+                        <button id="search-toggle" class="icon-button" type="button" title="Search. (Shortkey: s)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="S" aria-controls="searchbar">
+                            <i class="fa fa-search"></i>
+                        </button>
+                    </div>
+
+                    <h1 class="menu-title">Let&#x27;s code graphics on Raspberry Pi</h1>
+
+                    <div class="right-buttons">
+                        <a href="../print.html" title="Print this book" aria-label="Print this book">
+                            <i id="print-button" class="fa fa-print"></i>
+                        </a>
+
+                    </div>
+                </div>
+
+                <div id="search-wrapper" class="hidden">
+                    <form id="searchbar-outer" class="searchbar-outer">
+                        <input type="search" id="searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="searchresults-outer" aria-describedby="searchresults-header">
+                    </form>
+                    <div id="searchresults-outer" class="searchresults-outer hidden">
+                        <div id="searchresults-header" class="searchresults-header"></div>
+                        <ul id="searchresults">
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
+                <script>
+                    document.getElementById('sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
+                    document.getElementById('sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
+                    Array.from(document.querySelectorAll('#sidebar a')).forEach(function(link) {
+                        link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
+                    });
+                </script>
+
+                <div id="content" class="content">
+                    <main>
+                        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css" integrity="sha384-AfEj0r4/OFrOo5t7NnNe46zW/tFgW6x/bCJG8FqQCEo3+Aro6EYUG4+cU+KJWu/X" crossorigin="anonymous">
+<div style="background-image: url('../images/logo-1.png');
+            background-repeat: space;
+            background-position: center;
+            ">
+<h1 id="วาดวงกลมดวย-raylib"><a class="header" href="#วาดวงกลมดวย-raylib"><span style="color:rgb(61,127,200);">วาดวงกลมด้วย raylib </span></a></h1>
+<p>raylib มี function ที่ใช้วาดวงกลมและวงแหวนได้ดังนี้</p>
+<ol>
+<li>
+<p>Filled circle ที่มีรัศมี radias ด้วย color ที่ตำแหน่ง centerX, centerY </p>
+<pre><code class="language-cpp">void DrawCircle(int centerX, 
+	int centerY, 
+	float radius, 
+	Color color) 
+</code></pre>
+</li>
+<li>
+<p>เหมือนกับข้อแรกต่างกันที่การระบุตำแหน่งของจุดศูนย์กลางใช้ ตัวแปรโครงสร้าง Vector2 </p>
+<pre><code class="language-cpp">void DrawCircleV(Vector2 center, 
+	float radius, 
+	Color color) 
+</code></pre>
+</li>
+<li>
+<p>เหมือนกับข้อแรกแต่เพิ่มการไล่สีจาก color1 ไปยัง color2</p>
+<pre><code class="language-cpp">void DrawCircleGradient(int centerX, 
+	int centerY, 
+	float radius, 
+	Color color1, 
+	Color color2)
+</code></pre>
+</li>
+<li>
+<p>วาดเฉพาะเส้นรอบวง</p>
+<pre><code class="language-cpp">void DrawCircleLines(int centerX, 
+	int centerY, 
+	float radius, 
+	Color color)
+</code></pre>
+</li>
+<li>
+<p>ใช้วาดรูปวงแหวนแบบ filled ring เหมือนกับการวาดวงกลมซ้อนกันสองวง ดังนั้นต้องกำหนดค่า radius 2 ค่าสำหรับวงกลมที่อยู่ภายในและวงกลมที่อยู่ภายนอก
+โดยสามารถกำหนดค่าให้กับมุมที่เริ่มต้นวาด (startAngle) และมุมสุดท้ายของการวาด (endAngle) โดยใช้หน่วย degrees </p>
+<pre><code class="language-cpp">void DrawRing(Vector2 center, 
+	float innerRadius, 
+	float outerRadius, 
+	float startAngle, 
+	float endAngle, 
+	int segments, 
+	Color color)
+</code></pre>
+</li>
+<li>
+<p>เหมือนกับข้อ 5 แต่เป็นการวาดเฉพาะเส้นรอบรูป</p>
+<pre><code class="language-cpp">void DrawRingLines(Vector2 center, 
+	float innerRadius, 
+	float outerRadius, 
+	float startAngle, 
+	float endAngle, 
+	int segments, 
+	Color color); 
+</code></pre>
+</li>
+</ol>
+<h3 id="ตัวอยางที-1"><a class="header" href="#ตัวอยางที-1"><span style="color:rgb(120,100,230);">ตัวอย่างที่ 1 </span></a></h3>
+<p>เป็นการแสดงต้วอย่างการใช้งานฟังก์ชั่น DrawCircle,DrawCircleLines,DrawCircleSector,DrawCircleSectorLines และ DrawCircleGradient โดยการเขียนชุดคำสั่ง
+ตามตัวอย่างข้างล่างนี้ใน draw() ของ template.cpp แล้วบันทึกเป็นชื่อ circle_raylib.cpp</p>
+<pre><code class="language-cpp">	void draw(){
+		float radius = 100.0f;
+		DrawCircle(200,200,radius,RED);
+		DrawCircleLines(600,200,radius,GREEN);
+		DrawRing((Vector2){200.0f,600.0f},radius,radius-20,-90.0f,90.0f,100,BLUE);
+		DrawRingLines((Vector2){600.0f,600.0f},radius,radius-20,-90.0f,90.0f,VIOLET);
+		DrawCircleGradient(cx,cy,radius,WHITE,YELLOW);
+	}
+</code></pre>
+<p>บันทึก,  build แล้วดูผลที่ได้</p>
+<figure align="center">
+<img src="./images/circle-9.png" width="300" height="300" />
+	<figcaption>
+		<small>รูปที่ 1</small>
+	<figcaption>
+</figure>
+<h3 id="ตัวอยางที-2"><a class="header" href="#ตัวอยางที-2"><span style="color:rgb(120,100,230);">ตัวอย่างที่ 2 </span></a></h3>
+<p>ตัวอย่างนี้จะใช้ function จาก raylib มารวมกันเพื่อสร้างหน้าคนอย่างง่าย การออกแบบก่อนที่จะเขียน code เป็นดังภาพ</p>
+<figure align="center">
+<img src="./images/face-1.png  " width="" height="" />
+	<figcaption>
+		<small></small>
+	<figcaption>
+</figure>
+<p>เราจะสร้างสีขึ้นมาเพื่อใช้เป็นสีผิว </p>
+<pre><code class="language-cpp">	Color skin = (Color){240,165,90,255};
+
+</code></pre>
+<p>ชุดคำสั่งใน draw() เพื่อวาดใบหน้า</p>
+<pre><code class="language-cpp">	void draw(){
+		Color skin = (Color){240,165,90,255};
+		
+		/* face */
+		DrawCircleGradient(cx,cy,400,LIGHTGRAY,skin);
+		
+		/* eye ball */
+		DrawCircleGradient(200,200,100,WHITE,LIGHTGRAY);
+		DrawCircleGradient(600,200,100,WHITE,LIGHTGRAY);
+		
+		/* pupil */
+		DrawCircle(180,200,40,BLACK);
+		DrawCircle(580,200,40,BLACK);
+		
+		/* nose */
+		DrawCircleGradient(400,400,100,RED,LIGHTGRAY);
+		
+		/* mouth */
+		DrawRing((Vector2){400.0f,500.0f},200,180,-90.0f,90.0f,100,BLACK);
+	}
+</code></pre>
+<p>บันทึก,  build แล้วดูผลที่ได้</p>
+<figure align="center">
+<img src="./images/face-2.png" width="400" height="400 " />
+	<figcaption>
+		<small></small>
+	<figcaption>
+</figure>
+<!--
+<section>
+    <input type="checkbox" id="click" style="display: none;">
+    <center>
+    <label for="click" class="button-launch">
+		<a>Click to see result</a>
+	</label>
+	</center>
+    <div class="modal">
+		<div class="model__content">
+			<canvas id="canvas" contextmenu="event.preventDefault()" tabindex="-1" ></canvas>   
+		</div>
+		<label for="click"  class="button">
+			<a class="button-close">CLOSE</a>
+		</label>
+	</div>
+	<div class="overlay"></div>    
+</section>
+-->
+<!-- end page -->
+</div>
+<br/>
+<hr />
+<footer>
+  <!--Copyright section-->
+  <div>
+    © 2023 Created by :
+    <a href="https://www.facebook.com/groups/699124890456645">Smarter Machine</a>
+  </div>
+</footer>
+<!--
+<script src="https://ss-ebooks.github.io/wasm/script1.js"></script>
+<script async src="https://ss-ebooks.github.io/wasm/clock.js"></script>
+-->
+
+                    </main>
+
+                    <nav class="nav-wrapper" aria-label="Page navigation">
+                        <!-- Mobile navigation buttons -->
+                            <a rel="prev" href="../basic-shapes/circle_bresenham.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                                <i class="fa fa-angle-left"></i>
+                            </a>
+
+                            <a rel="next" href="../basic-shapes/ellipse.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                                <i class="fa fa-angle-right"></i>
+                            </a>
+
+                        <div style="clear: both"></div>
+                    </nav>
+                </div>
+            </div>
+
+            <nav class="nav-wide-wrapper" aria-label="Page navigation">
+                    <a rel="prev" href="../basic-shapes/circle_bresenham.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                        <i class="fa fa-angle-left"></i>
+                    </a>
+
+                    <a rel="next" href="../basic-shapes/ellipse.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                        <i class="fa fa-angle-right"></i>
+                    </a>
+            </nav>
+
+        </div>
+
+        <!-- Livereload script (if served using the cli tool) -->
+        <script>
+            const wsProtocol = location.protocol === 'https:' ? 'wss:' : 'ws:';
+            const wsAddress = wsProtocol + "//" + location.host + "/" + "__livereload";
+            const socket = new WebSocket(wsAddress);
+            socket.onmessage = function (event) {
+                if (event.data === "reload") {
+                    socket.close();
+                    location.reload();
+                }
+            };
+
+            window.onbeforeunload = function() {
+                socket.close();
+            }
+        </script>
+
+
+
+        <script>
+            window.playground_copyable = true;
+        </script>
+
+
+        <script src="../elasticlunr.min.js"></script>
+        <script src="../mark.min.js"></script>
+        <script src="../searcher.js"></script>
+
+        <script src="../clipboard.min.js"></script>
+        <script src="../highlight.js"></script>
+        <script src="../book.js"></script>
+
+        <!-- Custom JS scripts -->
+        <script src="../js/mermaid.min.js"></script>
+        <script src="../js/mermaid-init.js"></script>
+
+
+    </div>
+    </body>
+</html>
