@@ -1,0 +1,542 @@
+<!DOCTYPE HTML>
+<html lang="en" class="sidebar-visible no-js rust">
+    <head>
+        <!-- Book generated using mdBook -->
+        <meta charset="UTF-8">
+        <title>โครงงานที่ 1 : Icecream Cone - Let&#x27;s Code Graphics on Raspberry Pi</title>
+
+
+        <!-- Custom HTML head -->
+        
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="theme-color" content="#ffffff" />
+
+        <link rel="icon" href="../favicon.svg">
+        <link rel="shortcut icon" href="../favicon.png">
+        <link rel="stylesheet" href="../css/variables.css">
+        <link rel="stylesheet" href="../css/general.css">
+        <link rel="stylesheet" href="../css/chrome.css">
+        <link rel="stylesheet" href="../css/print.css" media="print">
+
+        <!-- Fonts -->
+        <link rel="stylesheet" href="../FontAwesome/css/font-awesome.css">
+        <link rel="stylesheet" href="../fonts/fonts.css">
+
+        <!-- Highlight.js Stylesheets -->
+        <link rel="stylesheet" href="../highlight.css">
+        <link rel="stylesheet" href="../tomorrow-night.css">
+        <link rel="stylesheet" href="../ayu-highlight.css">
+
+        <!-- Custom theme stylesheets -->
+        <link rel="stylesheet" href="../css/watermark.css">
+        <link rel="stylesheet" href="../css/openmoji-color-awesome.css">
+        <link rel="stylesheet" href="../css/openmoji-black-awesome.css">
+        <link rel="stylesheet" href="../css/modal.css">
+
+        <!-- MathJax -->
+        <script async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    </head>
+    <body>
+    <div id="body-container">
+        <!-- Provide site root to javascript -->
+        <script>
+            var path_to_root = "../";
+            var default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "navy" : "rust";
+        </script>
+
+        <!-- Work around some values being stored in localStorage wrapped in quotes -->
+        <script>
+            try {
+                var theme = localStorage.getItem('mdbook-theme');
+                var sidebar = localStorage.getItem('mdbook-sidebar');
+
+                if (theme.startsWith('"') && theme.endsWith('"')) {
+                    localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
+                }
+
+                if (sidebar.startsWith('"') && sidebar.endsWith('"')) {
+                    localStorage.setItem('mdbook-sidebar', sidebar.slice(1, sidebar.length - 1));
+                }
+            } catch (e) { }
+        </script>
+
+        <!-- Set the theme before any content is loaded, prevents flash -->
+        <script>
+            var theme;
+            try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
+            if (theme === null || theme === undefined) { theme = default_theme; }
+            var html = document.querySelector('html');
+            html.classList.remove('no-js')
+            html.classList.remove('rust')
+            html.classList.add(theme);
+            html.classList.add('js');
+        </script>
+
+        <input type="checkbox" id="sidebar-toggle-anchor" class="hidden">
+
+        <!-- Hide / unhide sidebar before it is displayed -->
+        <script>
+            var html = document.querySelector('html');
+            var sidebar = null;
+            var sidebar_toggle = document.getElementById("sidebar-toggle-anchor");
+            if (document.body.clientWidth >= 1080) {
+                try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
+                sidebar = sidebar || 'visible';
+            } else {
+                sidebar = 'hidden';
+            }
+            sidebar_toggle.checked = sidebar === 'visible';
+            html.classList.remove('sidebar-visible');
+            html.classList.add("sidebar-" + sidebar);
+        </script>
+
+        <nav id="sidebar" class="sidebar" aria-label="Table of contents">
+            <div class="sidebar-scrollbox">
+                <ol class="chapter"><li class="chapter-item "><a href="../cover.html"><strong aria-hidden="true">1.</strong> Cover</a></li><li class="chapter-item "><a href="../intro.html"><strong aria-hidden="true">2.</strong> บทนำ</a></li><li class="chapter-item "><a href="../basic_idea.html"><strong aria-hidden="true">3.</strong> ความรู้พื้นฐาน</a></li><li class="chapter-item "><a href="../install_raylib.html"><strong aria-hidden="true">4.</strong> การติดตั้ง raylib บน Raspberry Pi</a></li><li class="chapter-item "><div><strong aria-hidden="true">5.</strong> เริ่มต้นวาด</div><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../template_cpp.html"><strong aria-hidden="true">5.1.</strong> template.cpp</a></li><li class="chapter-item "><a href="../hello_world_window.html"><strong aria-hidden="true">5.2.</strong> HelloWorld Window</a></li><li class="chapter-item "><a href="../rgb_window.html"><strong aria-hidden="true">5.3.</strong> RGB Color Space Window</a></li></ol></li><li class="chapter-item expanded "><a href="../basic_geometry_shapes.html"><strong aria-hidden="true">6.</strong> รูปร่างเชิงเรขาคณิต (Basic Geometry Shapes)</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../basic-shapes/line.html"><strong aria-hidden="true">6.1.</strong> เส้นตรง</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../basic-shapes/line_naiv.html"><strong aria-hidden="true">6.1.1.</strong> วาดเส้นตรงจากสมการ</a></li><li class="chapter-item "><a href="../basic-shapes/line_bresenham.html"><strong aria-hidden="true">6.1.2.</strong> Bresenham's algorithm</a></li><li class="chapter-item "><a href="../basic-shapes/line_raylib.html"><strong aria-hidden="true">6.1.3.</strong> วาดเส้นตรงด้วย raylib</a></li></ol></li><li class="chapter-item "><a href="../basic-shapes/circle.html"><strong aria-hidden="true">6.2.</strong> วงกลม</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../basic-shapes/circle_naiv.html"><strong aria-hidden="true">6.2.1.</strong> วาดวงกลมจากสมการวงกลม</a></li><li class="chapter-item "><a href="../basic-shapes/circle_midpoint.html"><strong aria-hidden="true">6.2.2.</strong> Midpoint circle algorithm</a></li><li class="chapter-item "><a href="../basic-shapes/circle_bresenham.html"><strong aria-hidden="true">6.2.3.</strong> Bresenham's algorithm</a></li><li class="chapter-item "><a href="../basic-shapes/circle_raylib.html"><strong aria-hidden="true">6.2.4.</strong> วาดวงกลมด้วย raylib </a></li></ol></li><li class="chapter-item "><a href="../basic-shapes/ellipse.html"><strong aria-hidden="true">6.3.</strong> วงรี</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../basic-shapes/ellipse_naiv.html"><strong aria-hidden="true">6.3.1.</strong> วาดวงรีจากสมการวงรี</a></li><li class="chapter-item "><a href="../basic-shapes/ellipse_midpoint.html"><strong aria-hidden="true">6.3.2.</strong> Midpoint ellipse algorithm</a></li><li class="chapter-item "><a href="../basic-shapes/ellipse_raylib.html"><strong aria-hidden="true">6.3.3.</strong> วาดวงรีด้วย raylib </a></li></ol></li><li class="chapter-item "><a href="../basic-shapes/polygon.html"><strong aria-hidden="true">6.4.</strong> รูปหลายเหลี่ยม</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../basic-shapes/polygon_raylib.html"><strong aria-hidden="true">6.4.1.</strong> วาดรูปหลายเหลี่ยมด้วย raylib </a></li></ol></li><li class="chapter-item expanded "><a href="../basic-shapes/exercise1.html" class="active"><strong aria-hidden="true">6.5.</strong> โครงงานที่ 1 : Icecream Cone</a></li></ol></li><li class="chapter-item "><a href="../bookshelf.html"><strong aria-hidden="true">7.</strong> กลับสู่ชั้นหนังสือ</a></li></ol>
+            </div>
+            <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
+        </nav>
+
+        <!-- Track and set sidebar scroll position -->
+        <script>
+            var sidebarScrollbox = document.querySelector('#sidebar .sidebar-scrollbox');
+            sidebarScrollbox.addEventListener('click', function(e) {
+                if (e.target.tagName === 'A') {
+                    sessionStorage.setItem('sidebar-scroll', sidebarScrollbox.scrollTop);
+                }
+            }, { passive: true });
+            var sidebarScrollTop = sessionStorage.getItem('sidebar-scroll');
+            sessionStorage.removeItem('sidebar-scroll');
+            if (sidebarScrollTop) {
+                // preserve sidebar scroll position when navigating via links within sidebar
+                sidebarScrollbox.scrollTop = sidebarScrollTop;
+            } else {
+                // scroll sidebar to current active section when navigating via "next/previous chapter" buttons
+                var activeSection = document.querySelector('#sidebar .active');
+                if (activeSection) {
+                    activeSection.scrollIntoView({ block: 'center' });
+                }
+            }
+        </script>
+
+        <div id="page-wrapper" class="page-wrapper">
+
+            <div class="page">
+                                <div id="menu-bar-hover-placeholder"></div>
+                <div id="menu-bar" class="menu-bar sticky">
+                    <div class="left-buttons">
+                        <label id="sidebar-toggle" class="icon-button" for="sidebar-toggle-anchor" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
+                            <i class="fa fa-bars"></i>
+                        </label>
+                        <button id="theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="theme-list">
+                            <i class="fa fa-paint-brush"></i>
+                        </button>
+                        <ul id="theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                            <li role="none"><button role="menuitem" class="theme" id="light">Light</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="rust">Rust</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="coal">Coal</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="navy">Navy</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="ayu">Ayu</button></li>
+                        </ul>
+                        <button id="search-toggle" class="icon-button" type="button" title="Search. (Shortkey: s)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="S" aria-controls="searchbar">
+                            <i class="fa fa-search"></i>
+                        </button>
+                    </div>
+
+                    <h1 class="menu-title">Let&#x27;s Code Graphics on Raspberry Pi</h1>
+
+                    <div class="right-buttons">
+                        <a href="../print.html" title="Print this book" aria-label="Print this book">
+                            <i id="print-button" class="fa fa-print"></i>
+                        </a>
+
+                    </div>
+                </div>
+
+                <div id="search-wrapper" class="hidden">
+                    <form id="searchbar-outer" class="searchbar-outer">
+                        <input type="search" id="searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="searchresults-outer" aria-describedby="searchresults-header">
+                    </form>
+                    <div id="searchresults-outer" class="searchresults-outer hidden">
+                        <div id="searchresults-header" class="searchresults-header"></div>
+                        <ul id="searchresults">
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
+                <script>
+                    document.getElementById('sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
+                    document.getElementById('sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
+                    Array.from(document.querySelectorAll('#sidebar a')).forEach(function(link) {
+                        link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
+                    });
+                </script>
+
+                <div id="content" class="content">
+                    <main>
+                        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css" integrity="sha384-AfEj0r4/OFrOo5t7NnNe46zW/tFgW6x/bCJG8FqQCEo3+Aro6EYUG4+cU+KJWu/X" crossorigin="anonymous">
+<div style="background-image: url('../images/logo-1.png');
+            background-repeat: space;
+            background-position: center;
+            ">
+<h1 id="โครงงานที-1--icecream-cone"><a class="header" href="#โครงงานที-1--icecream-cone"><span style="color:rgb(61,127,200);">โครงงานที่ 1 : Icecream Cone </span></a></h1>
+<p>เนื้อหาที่ผ่านมา ได้ทำให้รู้จัก function มากพอที่จะเริ่มการวาดรูปที่ซับซ้อนขึ้นกว่ารูปร่างพื้นฐาน ในโครงงานจะเขียน code ขึ้นเพื่อให้
+คอมพิวเตอร์วาดรูปบนหน้าจอดังรูปที่ 1</p>
+<figure align="center">
+<img src="./images/ws1-icecream.png" width="400" height="415" />
+	<figcaption>
+		<small>รูปที่ 1</small>
+	<figcaption>
+</figure>
+<h2 id="การวิเคราะห"><a class="header" href="#การวิเคราะห"><span style="color:rgb(90,150,220);">การวิเคราะห์</span></a></h2>
+<p><a href="https://en.wikipedia.org/wiki/Scene_graph">Scene graph</a>คือเครื่องมือที่ช่วยในการวิเคราะห์และแสดงความสัมพันธ์ระหว่าง object 
+มักถูกใช้ในงาน computer graphics และ games ในโครงงานจะใช้ scene graph เพื่อแยกองค์ประกอบของภาพออกมาว่าประกอบด้วยรูปร่างพื้นฐานอะไรบ้าง</p>
+<figure align="center">
+<img src="./images/icecream-scenegraph.png" width="" height="" />
+	<figcaption>
+		<small>รูปที่ 2 scene graph แสดงองค์ประกอบของรูป icecream</small>
+	<figcaption>
+</figure>
+<p>จากรูปที่ 2 เมื่อทราบรูปร่างพื้นฐานที่จะใช้งานแล้ว ก็ทำให้สามารถเลือก function ของ raylib ที่จะมาใช้งานได้</p>
+<div class="table-wrapper"><table><thead><tr><th>Appearance</th><th>Geometric Shapes</th><th>Function</th></tr></thead><tbody>
+<tr><td>Cone</td><td>Triangles</td><td>DrawTriangle(...)</td></tr>
+<tr><td>Ice cream</td><td>Circle</td><td>DrawCircle(...)</td></tr>
+<tr><td>Chocobar</td><td>Rectangle</td><td>DrawRectanglePro(...)</td></tr>
+<tr><td>Cone strip</td><td>Lines</td><td>DrawLineEx(...)</td></tr>
+</tbody></table>
+</div>
+<h2 id="การสราง-code"><a class="header" href="#การสราง-code"><span style="color:rgb(90,150,220);">การสร้าง code</span></a></h2>
+<h3 id="สรางสีทีตองการ"><a class="header" href="#สรางสีทีตองการ"><span style="color:rgb(120,100,230);">สร้างสีที่ต้องการ</span></a></h3>
+<p>raylib ได้ประกาศค่าสีสำเร็จรูปไว้แล้วบางสี พร้อมระบุค่าสีของแต่ละ channel ดังนี้</p>
+<pre><code class="language-cpp">// Custom raylib color palette for amazing visuals on WHITE background
+    #define LIGHTGRAY  (Color){ 200, 200, 200, 255 }   // Light Gray
+    #define GRAY       (Color){ 130, 130, 130, 255 }   // Gray
+    #define DARKGRAY   (Color){ 80, 80, 80, 255 }      // Dark Gray
+    #define YELLOW     (Color){ 253, 249, 0, 255 }     // Yellow
+    #define GOLD       (Color){ 255, 203, 0, 255 }     // Gold
+    #define ORANGE     (Color){ 255, 161, 0, 255 }     // Orange
+    #define PINK       (Color){ 255, 109, 194, 255 }   // Pink
+    #define RED        (Color){ 230, 41, 55, 255 }     // Red
+    #define MAROON     (Color){ 190, 33, 55, 255 }     // Maroon
+    #define GREEN      (Color){ 0, 228, 48, 255 }      // Green
+    #define LIME       (Color){ 0, 158, 47, 255 }      // Lime
+    #define DARKGREEN  (Color){ 0, 117, 44, 255 }      // Dark Green
+    #define SKYBLUE    (Color){ 102, 191, 255, 255 }   // Sky Blue
+    #define BLUE       (Color){ 0, 121, 241, 255 }     // Blue
+    #define DARKBLUE   (Color){ 0, 82, 172, 255 }      // Dark Blue
+    #define PURPLE     (Color){ 200, 122, 255, 255 }   // Purple
+    #define VIOLET     (Color){ 135, 60, 190, 255 }    // Violet
+    #define DARKPURPLE (Color){ 112, 31, 126, 255 }    // Dark Purple
+    #define BEIGE      (Color){ 211, 176, 131, 255 }   // Beige
+    #define BROWN      (Color){ 127, 106, 79, 255 }    // Brown
+    #define DARKBROWN  (Color){ 76, 63, 47, 255 }      // Dark Brown
+
+    #define WHITE      (Color){ 255, 255, 255, 255 }   // White
+    #define BLACK      (Color){ 0, 0, 0, 255 }         // Black
+    #define BLANK      (Color){ 0, 0, 0, 0 }           // Blank (Transparent)
+    #define MAGENTA    (Color){ 255, 0, 255, 255 }     // Magenta
+    #define RAYWHITE   (Color){ 245, 245, 245, 255 }   // My own White (raylib logo)
+
+</code></pre>
+<p>ผู้ใช้สามารถนำไปใช้งานโดยการอ้างชื่อสี เช่น RED, PURPLE, BLUE แต่ในกรณีที่ต้องการผสมค่าสีให้ได้สีที่ต่างออกไป
+จำเป็นต้องใช้เครื่องมือช่วยเพื่อให้ได้ค่าสีที่ต้องการ ในตัวอย่างโครงงานนี้ใช้ <a href="https://htmlcolorcodes.com/">https://htmlcolorcodes.com/</a>
+โดยการเลื่อนเมาส์ไปมาบนถาดสีจนได้สีที่ต้องการแล้ว ก็ทำการจดค่าสีที่ระบุใน RGB มาใช้ในการสร้างสีของโปรแกรมได้</p>
+<figure align="center">
+<img src="./images/html_color_code.png" width="" height="" />
+	<figcaption>
+		<small>รูปที่ 3 </small>
+	<figcaption>
+</figure>
+<p>หากกลับไปพิจารณา scene graph ตามรูปที่ 2 จะเห็นว่าสีที่ต้องการใช้มีทั้งหมด 8 สี ตัวอย่างการสร้างสีแสดงในตัวอย่าง</p>
+<pre><code class="language-cpp">Color bgcolor = (Color){0,210,250,255};
+Color lemon = (Color){140,230,140,255};
+Color raspi = (Color){210,50,255,255};
+Color straw = (Color){250,50,40,255};
+Color cone1 = (Color){220,200,110,255};
+Color cone2 = (Color){180,160,70,255};
+Color strip =  (Color){130,95,0,255};
+Color chocbar  = (Color){90,80,45,255};
+Color vanila  = (Color){220,230,240,255};
+</code></pre>
+<hr />
+<p><strong>หมายเหตุ</strong> </p>
+<ul>
+<li>ค่าของสีไม่จำเป็นเหมือนกับในตัวอย่าง ให้เป็นไปตามความต้องการของแต่ละคน</li>
+<li>ในตัวอย่างได้ทำการเพิ่มสีของฉากหลัง (bgcolor) ไว้ด้วย</li>
+</ul>
+<hr />
+<h3 id="หาคา-coordinates"><a class="header" href="#หาคา-coordinates"><span style="color:rgb(120,100,230);">หาค่า coordinates </span></a></h3>
+<p>การวาด geomatric shape ต้องการค่า coordinates เพื่อกำหนดตำแหน่งที่จะแสดงบนจอภาพ เช่นเดียวกับการให้สี จำเป็นต้องหาไว้ก่อน เครื่องมือที่ง่ายที่สุดคือการ
+วาดด้วยมือลงบนกระดาษกราฟ (graph paper) หรืออาจใช้บริการ online เช่น <a href="https://virtual-graph-paper.com/">https://virtual-graph-paper.com/</a></p>
+<figure align="center">
+<img src="./images/icecream_coordinates.png" width="" height="" />
+	<figcaption>
+		<small>รูปที่ 4 </small>
+	<figcaption>
+</figure>
+<p>ตำแหน่งของ shape แสดงในตาราง</p>
+<div class="table-wrapper"><table><thead><tr><th>Appearance</th><th>Geometric Shapes</th><th>Coordinates</th></tr></thead><tbody>
+<tr><td>Cone</td><td>Triangles (big)</td><td>{400,750},{595,230},{263,362}</td></tr>
+<tr><td></td><td>Triangles (small)</td><td>{263,362},{350,330},{210,230}</td></tr>
+<tr><td>Icecream</td><td>Circle (red)</td><td>{290,200},{510,200}</td></tr>
+<tr><td></td><td>Circle (white)</td><td>{400,150}</td></tr>
+<tr><td></td><td>Circle (green)</td><td>{325,250},{500,250}</td></tr>
+<tr><td></td><td>Circle (purple)</td><td>{400,275}</td></tr>
+<tr><td>Chocobar</td><td>Rectangle</td><td>{300,250}</td></tr>
+<tr><td>Cone strip</td><td>Lines</td><td>{350,400},{450,450},{450,400},{350,450}</td></tr>
+<tr><td></td><td>Lines</td><td>{350,450},{450,500},{450,450},{350,500}</td></tr>
+<tr><td></td><td>Lines</td><td>{350,500},{450,550},{450,500},{350,550}</td></tr>
+</tbody></table>
+</div>
+<h3 id="code-ลำดับของการวาด"><a class="header" href="#code-ลำดับของการวาด"><span style="color:rgb(120,100,230);">code ลำดับของการวาด </span></a></h3>
+<p>เพื่อให้ภาพออกมาดูมีมิติ ลำดับของวัตถุที่อยู่ใกล้ - ไกล มีความสำคัญ ลำดับของการวาดจะเริ่มวาดจากวัตถุอยู่ไกลที่สุดก่อน (เทียบกับผู้สังเกตุ) 
+แล้ววาดไล่มาจนถึงวัตถุที่อยู่ใกล้ที่สุดจะถูกวาดเป็นลำดับสุดท้าย ้พิจารณาจากรูปที่ 1 และ 2 แล้ว ลำดับของการวาดจะแสดงในรูปที่ 5 (ลำดับของวัตถุที่จะถูกวาดคือจากบนลงล่าง)</p>
+<figure align="center">
+<img src="./images/icecream-order.png" width="220" height="445" />
+	<figcaption>
+		<small>รูปที่ 5</small>
+	<figcaption>
+</figure>
+<h3 id="code-สำหรับวาด"><a class="header" href="#code-สำหรับวาด"><span style="color:rgb(120,100,230);">code สำหรับวาด </span></a></h3>
+<p>ขั้นตอนนี้เป็นการนำข้อมูลที่ได้ทั้งหมดมาแปลงเป็นชุดคำสั่งเพื่อสร้างรูปภาพขึ้นมา</p>
+<pre><code class="language-cpp">void draw(){
+// draw vanila
+	DrawCircle(400,150,ir,vanila);
+	
+	// strawberry	
+	DrawCircle(290,200,ir,straw);
+	DrawCircle(510,200,ir,straw);	
+	
+	// darkchoc
+	DrawRectanglePro((Rectangle){300,250,275,75},(Vector2){0,0},-45.0f,darkchoc);
+	
+	// lemons
+	DrawCircle(325,250,ir,lemon);
+	DrawCircle(500,250,ir,lemon);
+	
+	// raspberry 	
+	DrawCircle(400,275,ir,raspi);
+	
+
+	// icecream cone
+	DrawTriangle((Vector2){400,750},(Vector2){595,230},(Vector2){263,362},cone1);
+	DrawTriangle((Vector2){263,362},(Vector2){350,330},(Vector2){210,230},cone2);
+	
+	for(float y = 400.0f;y &lt;= 500.0f;y+=50.0f){
+		Vector2 p1 = (Vector2){350,y};
+		Vector2 p2 = (Vector2){450,y+50.f};
+		Vector2 p3 = (Vector2){450,y};
+		Vector2 p4 = (Vector2){350,y+50.f};
+		DrawLineEx(p1,p2,3.0f,strip);
+		DrawLineEx(p3,p4,3.0f,strip);
+	}
+}	
+</code></pre>
+<p>Final code :</p>
+<pre><code class="language-cpp">#include &quot;raylib.h&quot;
+#include &quot;raymath.h&quot;
+
+#if defined(PLATFORM_WEB)
+   #include &lt;emscripten/emscripten.h&gt;
+#endif   
+
+/* Global Variables Declarion */
+/* Some predefines  */
+const int SCR_WIDTH = 800;
+const int SCR_HEIGHT = 800;
+const float cx = (float)(SCR_WIDTH/2);
+const float cy = (float)(SCR_HEIGHT/2);
+const int FPS = 60;
+const char *title = &quot;Workshop 1 : Icecream Cone &quot;;
+
+/* Custom Variable Declaration section  */
+Color bgcolor = (Color){0,210,250,125 };
+Color lemon = (Color){140,230,140,255};
+Color raspi = (Color){210,50,255,255};
+Color straw = (Color){250,50,40,255};
+Color cone1 = (Color){220,200,110,255};
+Color cone2 = (Color){180,160,70,255};
+Color strip =  (Color){130,95,0,255};
+Color chocbar  = (Color){90,80,45,255};
+Color vanila  = (Color){220,230,240,255};
+
+int ir = 80; /* radius of icecream*/
+
+
+/* ******************************** */
+/* Module Functions Declaration section */
+
+void setup(); /* To initialize every thing */
+void loop(); /* Program loop */
+void update(); /* To update variables  */ 
+void draw(); /* To draw a frame */
+void unload(); /* To unload all variables */
+/* ******************************** */
+void setup(){
+	/* TODO : initialize all variables */
+	
+}
+
+void loop(){
+	while(!WindowShouldClose()){
+		/* Implement algorithm */
+		update();
+		
+		/* ********************** */		
+		ClearBackground(bgcolor); /* clear screen */
+		BeginDrawing();
+			/* Draw what you want on screen */
+			draw();
+			
+		EndDrawing();
+	}
+	
+}
+
+void draw(){
+
+	// draw vanila
+	DrawCircle(400,150,ir,vanila);
+	
+	// strawberry	
+	DrawCircle(290,200,ir,straw);
+	DrawCircle(510,200,ir,straw);	
+	
+	// darkchoc
+	DrawRectanglePro((Rectangle){300,250,275,75},(Vector2){0,0},-45.0f,chocbar);
+	
+	// lemons
+	DrawCircle(325,250,ir,lemon);
+	DrawCircle(500,250,ir,lemon);
+	
+	// raspberry 	
+	DrawCircle(400,275,ir,raspi);
+	
+
+	// icecream cone
+	DrawTriangle((Vector2){400,750},(Vector2){595,230},(Vector2){263,362},cone1);
+	DrawTriangle((Vector2){263,362},(Vector2){350,330},(Vector2){210,230},cone2);
+	
+	for(float y = 400.0f;y &lt;= 500.0f;y+=50.0f){
+		Vector2 p1 = (Vector2){350,y};
+		Vector2 p2 = (Vector2){450,y+50.f};
+		Vector2 p3 = (Vector2){450,y};
+		Vector2 p4 = (Vector2){350,y+50.f};
+		DrawLineEx(p1,p2,3.0f,strip);
+		DrawLineEx(p3,p4,3.0f,strip);
+	}
+}
+
+void update(){
+	/* TODO : to update variables*/
+}
+
+void unload(){
+	/* TODO : unload all dynamic loaded data */
+}
+
+void UpdateDrawFrame(){
+	/* Webassembly frame work */
+	update();
+	draw();
+}
+
+/* Main entry point */
+int main(void){
+	setup();
+	InitWindow(SCR_WIDTH,SCR_HEIGHT,title);
+	#if defined(PLATFORM_WEB)
+		emscripten_set_main_loop(UpdateDrawFrame, FPS, 1);
+	#else
+		SetTargetFPS(FPS);
+		loop();	
+	#endif
+	
+	unload();
+	CloseWindow();
+	return 0;
+}
+</code></pre>
+<!-- end page -->
+</div>
+<br/>
+<hr />
+<footer>
+  <!--Copyright section-->
+  <div>
+    © 2023 Created by :
+    <a href="https://www.facebook.com/groups/699124890456645">Smarter Machine</a>
+  </div>
+</footer>
+
+                    </main>
+
+                    <nav class="nav-wrapper" aria-label="Page navigation">
+                        <!-- Mobile navigation buttons -->
+                            <a rel="prev" href="../basic-shapes/polygon_raylib.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                                <i class="fa fa-angle-left"></i>
+                            </a>
+
+                            <a rel="next" href="../bookshelf.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                                <i class="fa fa-angle-right"></i>
+                            </a>
+
+                        <div style="clear: both"></div>
+                    </nav>
+                </div>
+            </div>
+
+            <nav class="nav-wide-wrapper" aria-label="Page navigation">
+                    <a rel="prev" href="../basic-shapes/polygon_raylib.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                        <i class="fa fa-angle-left"></i>
+                    </a>
+
+                    <a rel="next" href="../bookshelf.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                        <i class="fa fa-angle-right"></i>
+                    </a>
+            </nav>
+
+        </div>
+
+        <!-- Livereload script (if served using the cli tool) -->
+        <script>
+            const wsProtocol = location.protocol === 'https:' ? 'wss:' : 'ws:';
+            const wsAddress = wsProtocol + "//" + location.host + "/" + "__livereload";
+            const socket = new WebSocket(wsAddress);
+            socket.onmessage = function (event) {
+                if (event.data === "reload") {
+                    socket.close();
+                    location.reload();
+                }
+            };
+
+            window.onbeforeunload = function() {
+                socket.close();
+            }
+        </script>
+
+
+
+        <script>
+            window.playground_copyable = true;
+        </script>
+
+
+        <script src="../elasticlunr.min.js"></script>
+        <script src="../mark.min.js"></script>
+        <script src="../searcher.js"></script>
+
+        <script src="../clipboard.min.js"></script>
+        <script src="../highlight.js"></script>
+        <script src="../book.js"></script>
+
+        <!-- Custom JS scripts -->
+        <script src="../js/mermaid.min.js"></script>
+        <script src="../js/mermaid-init.js"></script>
+
+
+    </div>
+    </body>
+</html>
