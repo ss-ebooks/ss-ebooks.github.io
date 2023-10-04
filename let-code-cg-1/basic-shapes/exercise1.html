@@ -352,6 +352,8 @@ const int FPS = 60;
 const char *title = &quot;Workshop 1 : Icecream Cone &quot;;
 
 /* Custom Variable Declaration section  */
+
+/* Define colors */
 Color bgcolor = (Color){0,210,250,125 };
 Color lemon = (Color){140,230,140,255};
 Color raspi = (Color){210,50,255,255};
@@ -362,7 +364,8 @@ Color strip =  (Color){130,95,0,255};
 Color chocbar  = (Color){90,80,45,255};
 Color vanila  = (Color){220,230,240,255};
 
-int ir = 80; /* radius of icecream*/
+/* radius of icecream*/
+int ir = 80; 
 
 
 /* ******************************** */
@@ -404,7 +407,7 @@ void draw(){
 	DrawCircle(290,200,ir,straw);
 	DrawCircle(510,200,ir,straw);	
 	
-	// darkchoc
+	// chocbar
 	DrawRectanglePro((Rectangle){300,250,275,75},(Vector2){0,0},-45.0f,chocbar);
 	
 	// lemons
@@ -419,6 +422,7 @@ void draw(){
 	DrawTriangle((Vector2){400,750},(Vector2){595,230},(Vector2){263,362},cone1);
 	DrawTriangle((Vector2){263,362},(Vector2){350,330},(Vector2){210,230},cone2);
 	
+	// cone strip
 	for(float y = 400.0f;y &lt;= 500.0f;y+=50.0f){
 		Vector2 p1 = (Vector2){350,y};
 		Vector2 p2 = (Vector2){450,y+50.f};
